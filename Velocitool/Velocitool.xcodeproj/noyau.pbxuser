@@ -484,6 +484,11 @@
 		name = VTWrapper.m;
 		path = /Users/noyau/Projects/velocitek/Velocitool/VTWrapper.m;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {991, 5362}}";
+			sepNavSelRange = "{4840, 0}";
+			sepNavVisRange = "{3919, 1599}";
+		};
 	};
 	ED2B24B90F25D10C00A5EDDB /* VTConvert.h */ = {
 		uiCtxt = {
