@@ -15,13 +15,13 @@
 #include <IOKit/hid/IOHIDKeys.h>
 #include <IOKit/usb/IOUSBLib.h>
 
-NSString *VTDeviceChangedNotification = @"VTDeviceChangedNotification";
+NSString *VTDeviceAddedNotification = @"VTDeviceAddedNotification";
+NSString *VTDeviceRemovedNotification = @"VTDeviceRemovedNotification";
 
 
 @interface VTDeviceLoader ()
 - (void)_addDevice:(io_service_t)device;
 - (void)_removeDevice:(io_service_t)device;
-- (void)_notify;
 @end
 
 static VTDeviceLoader *the_one_true_instance = Nil;
@@ -35,7 +35,6 @@ static void _RawDeviceAdded(void *loader_ptr, io_iterator_t iterator) {
         
         IOObjectRelease(usbDevice);
     }
-    [loader _notify];
 }
 
 static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
@@ -47,7 +46,6 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
         
         IOObjectRelease(usbDevice);
     }
-    [loader _notify];
 }
 
 
@@ -62,13 +60,17 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
 }
 
 - (void)dealloc {
+    [_devicesByLocation release]; _devicesByLocation = nil;
+    [_devicesBySerial release]; _devicesBySerial = nil;
     [super dealloc];
-    [_devices release];
-    _devices = nil;
 }
 
 - (NSArray *)devices {
-    return [_devices allValues];
+    return [_devicesBySerial allValues];
+}
+
+- (VTDevice *)deviceForSerialNumber:(NSString *)serial {
+    return [_devicesBySerial objectForKey:serial];
 }
 
 - (void)_addDevice:(io_service_t)usbDevice {
@@ -78,16 +80,22 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     
     result = IORegistryEntryCreateCFProperties(usbDevice, &properties,  kCFAllocatorDefault, kNilOptions);
     if ((result == kIOReturnSuccess) && properties) {
-        NSLog(@"%@", properties);
         
         VTDevice *device = [VTDevice deviceForProperties:(NSDictionary *)properties];
-        
+
+        NSLog(@"%@", device);
+
         if (device) {
             // The locationID uniquely identifies the device and will remain the same, even across
             // reboots, so long as the bus topology doesn't change.        
-            [_devices setObject:device
+            [_devicesByLocation setObject:device
                          forKey:[(NSDictionary *)properties objectForKey:@"locationID"]
-            ]; 
+             ]; 
+            [_devicesBySerial setObject:device
+                         forKey:[device serial]
+             ];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:VTDeviceAddedNotification object:self userInfo:[NSDictionary dictionaryWithObject:[device serial] forKey:@"serial"]];
         }
         CFRelease(properties);
     }
@@ -101,18 +109,23 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     result = IORegistryEntryCreateCFProperties(usbDevice, &properties,  kCFAllocatorDefault, kNilOptions);
     if ((result == kIOReturnSuccess) && properties) {
         NSLog(@"%@", properties);
-        [_devices removeObjectForKey:[(NSDictionary *)properties objectForKey:@"locationID"]]; 
+        NSString *location = [(NSDictionary *)properties objectForKey:@"locationID"];
+        VTDevice *device = [_devicesByLocation objectForKey:location];
+        NSString *serial = [device serial];
+        
+        [_devicesByLocation removeObjectForKey:location]; 
+        [_devicesBySerial removeObjectForKey:serial]; 
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:VTDeviceRemovedNotification object:self userInfo:[NSDictionary dictionaryWithObject:serial forKey:@"serial"]];
+
         CFRelease(properties);
+        
     }
 }
 
-- (void)_notify {
-    [[NSNotificationCenter defaultCenter] postNotificationName:VTDeviceChangedNotification object:self];
-}
-
-
 - init {
-    _devices = [[NSMutableDictionary alloc] init];
+    _devicesByLocation = [[NSMutableDictionary alloc] init];
+    _devicesBySerial = [[NSMutableDictionary alloc] init];
 
     CFRunLoopSourceRef      runLoopSource;
     kern_return_t           kr;
@@ -155,8 +168,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     matchingDict = (CFMutableDictionaryRef) CFRetain(matchingDict);
     kr = IOServiceAddMatchingNotification(notifyPort, kIOFirstMatchNotification, matchingDict, _RawDeviceAdded, self, &rawAddedIter);
     
-    //Iterate over set of matching devices to access already-present devices
-    //and to arm the notification
+    // Iterate over set of matching devices to access already-present devices and to arm the notification
     _RawDeviceAdded(self, rawAddedIter);
     
     // Notification of termination: Retain an additional dictionary references because each call to
@@ -164,8 +176,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     matchingDict = (CFMutableDictionaryRef) CFRetain(matchingDict);
     kr = IOServiceAddMatchingNotification(notifyPort, kIOTerminatedNotification, matchingDict, _RawDeviceRemoved, self, &rawRemovedIter);
     
-    //Iterate over set of matching devices to access already-present devices
-    //and to arm the notification
+    // Iterate over set of matching devices to access already-present devices and to arm the notification
     _RawDeviceRemoved(self, rawRemovedIter);
     
     // Release the matching dictionary

@@ -1,16 +1,22 @@
 
 #import <Cocoa/Cocoa.h>
 
-@class VTWrapperDevice;
+@class VTConnection;
+@class VTRecord;
 //
 // This represent a Velocitek device
 //
 
 @interface VTDevice : NSObject {
     NSDictionary *_properties;
-    VTWrapperDevice *_wrapperDevice;
+    VTConnection *_connection;
 }
 
 + deviceForProperties:(NSDictionary *)properties;
+- (NSString *)serial;
+- (NSString *)model;
+- (NSString *)firmwareVersion;
+- (NSDictionary *)deviceSettings;
+- (void)setDeviceSettings:(NSDictionary *)settings;
 
 @end

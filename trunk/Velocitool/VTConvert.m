@@ -147,65 +147,6 @@ static EnumStruct maxSpeedMode[] = {
 }
 
 
-/*
- float conversion use ldexp(), frexp().
- NAME
- ldexp -- multiply by integer power of 2
- 
- SYNOPSIS
- #include <math.h>
- 
- double
- ldexp(double x, int n);
- 
- long double
- ldexpl(long double x, int n);
- 
- float
- ldexpf(float x, int n);
- 
- DESCRIPTION
- The ldexp() functions multiply x by 2 to the power n.
- 
- SPECIAL VALUES
- ldexp(+-0, n) returns +-0.
- 
- ldexp(x, 0) returns x.
- 
- ldexp(+-infinity, n) returns +-infinity.
- 
- SEE ALSO
- math(3), scalbn(3)
- 
- STANDARDS
- The ldexp() functions conform to ISO/IEC 9899:1999(E).
- 
- 
- 
- On both Intel and PPC macs, the type float corresponds to IEEE-754 single
- precision.  A single-precision number is represented in 32 bits, and has a
- precision of 24 significant bits, roughly like 7 significant decimal dig-
- its.  8 bits are used to encode the exponent, which gives an exponent range
- from -126 to 127, inclusive.
- 
- The header <float.h> defines several useful constants for the float type:
- FLT_MANT_DIG - The number of binary digits in the significand of a float.
- FLT_MIN_EXP - One more than the smallest exponent available in the float
- type.
- FLT_MAX_EXP - One more than the largest exponent available in the float
- type.
- FLT_DIG - the precision in decimal digits of a float.  A decimal value with
- this many digits, stored as a float, always yields the same value up to
- this many digits when converted back to decimal notation.
- FLT_MIN_10_EXP - the smallest n such that 10**n is a non-zero normal number
- as a float.
- FLT_MAX_10_EXP - the largest n such that 10**n is finite as a float.
- FLT_MIN - the smallest positive normal float.
- FLT_MAX - the largest finite float.
- FLT_EPSILON - the difference between 1.0 and the smallest float bigger than
- 1.0.
- 
- */
 
 @end
 

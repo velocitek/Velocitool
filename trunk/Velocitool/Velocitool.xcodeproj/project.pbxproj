@@ -8,14 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		77631A270C06C501005415CB /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77631A260C06C501005415CB /* Python.framework */; };
-		77631A3F0C0748CF005415CB /* main.py in Resources */ = {isa = PBXBuildFile; fileRef = 77631A3E0C0748CF005415CB /* main.py */; };
-		7790198F0C07548A00326F66 /* VelocitoolAppDelegate.py in Resources */ = {isa = PBXBuildFile; fileRef = 7790198E0C07548A00326F66 /* VelocitoolAppDelegate.py */; };
 		77C8C1F90C07829500965286 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C8C1F70C07829500965286 /* MainMenu.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		ED2B24BB0F25D10C00A5EDDB /* VTConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B24BA0F25D10C00A5EDDB /* VTConvert.m */; };
-		ED2B24BC0F25D10C00A5EDDB /* VTConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B24BA0F25D10C00A5EDDB /* VTConvert.m */; };
+		ED2A01600F339B8F005C0CE0 /* VTConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2A015F0F339B8F005C0CE0 /* VTConnection.m */; };
+		ED2A01610F339B8F005C0CE0 /* VTConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2A015F0F339B8F005C0CE0 /* VTConnection.m */; };
 		ED2B25020F261CAB00A5EDDB /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
 		ED2B25030F261CAB00A5EDDB /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
 		ED4B99C80F1548A000AF563B /* VTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B99C70F1548A000AF563B /* VTDevice.m */; };
@@ -23,11 +21,16 @@
 		ED4B9A590F155F8700AF563B /* VTDeviceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */; };
 		ED4B9A5A0F155F8700AF563B /* VTDeviceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */; };
 		ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFC3F690EF8948D00E1DD2F /* IOKit.framework */; };
+		ED60756B0F36558E007B36A9 /* store.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED60756A0F36558E007B36A9 /* store.xcdatamodeld */; };
 		ED6505FB0F099EDD0018D068 /* libftd2xx.0.1.4.dylib in Resources */ = {isa = PBXBuildFile; fileRef = ED6505F90F099EDD0018D068 /* libftd2xx.0.1.4.dylib */; };
-		ED6C71F40F0AD49400BF3260 /* VTWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6C71F30F0AD49400BF3260 /* VTWrapper.m */; };
-		ED6C71F50F0AD49400BF3260 /* VTWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = ED6C71F30F0AD49400BF3260 /* VTWrapper.m */; };
 		EDA9F4010F16B638004112D5 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
 		EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
+		EDF724E00F3DEB9F00E503AE /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF724DF0F3DEB9F00E503AE /* MainWindowController.m */; };
+		EDF725560F3E069700E503AE /* VTStoredDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF725550F3E069700E503AE /* VTStoredDevice.m */; };
+		EDF7261E0F3E274E00E503AE /* VTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF7261D0F3E274E00E503AE /* VTAppDelegate.m */; };
+		EDF726C20F422E1D00E503AE /* SpeedPuck.icns in Resources */ = {isa = PBXBuildFile; fileRef = EDF726C10F422E1D00E503AE /* SpeedPuck.icns */; };
+		EDF726E50F42318F00E503AE /* S10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDF726E30F42318F00E503AE /* S10.jpg */; };
+		EDF726E60F42318F00E503AE /* SC1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDF726E40F42318F00E503AE /* SC1.jpg */; };
 		EDFC3EE20EF8194700E1DD2F /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFC3EE10EF8194700E1DD2F /* Sparkle.framework */; };
 		EDFC3EEE0EF819A000E1DD2F /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = EDFC3EE10EF8194700E1DD2F /* Sparkle.framework */; };
 		EDFC3EF70EF81CCF00E1DD2F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = EDFC3EF60EF81CCF00E1DD2F /* dsa_pub.pem */; };
@@ -59,11 +62,11 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Velocitool_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Velocitool_Prefix.pch; sourceTree = "<group>"; };
 		77631A260C06C501005415CB /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = /System/Library/Frameworks/Python.framework; sourceTree = "<absolute>"; };
-		77631A3E0C0748CF005415CB /* main.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = main.py; sourceTree = "<group>"; };
-		7790198E0C07548A00326F66 /* VelocitoolAppDelegate.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; path = VelocitoolAppDelegate.py; sourceTree = "<group>"; };
 		77C8C1F80C07829500965286 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Velocitool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Velocitool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED2A015E0F339B8F005C0CE0 /* VTConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTConnection.h; sourceTree = "<group>"; };
+		ED2A015F0F339B8F005C0CE0 /* VTConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTConnection.m; sourceTree = "<group>"; };
 		ED2B24B90F25D10C00A5EDDB /* VTConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTConvert.h; sourceTree = "<group>"; };
 		ED2B24BA0F25D10C00A5EDDB /* VTConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTConvert.m; sourceTree = "<group>"; };
 		ED2B25000F261CAB00A5EDDB /* VTGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTGlobals.h; sourceTree = "<group>"; };
@@ -72,6 +75,7 @@
 		ED4B99C70F1548A000AF563B /* VTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDevice.m; sourceTree = "<group>"; };
 		ED4B9A570F155F8700AF563B /* VTDeviceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDeviceLoader.h; sourceTree = "<group>"; };
 		ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDeviceLoader.m; sourceTree = "<group>"; };
+		ED6075660F36557E007B36A9 /* store.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = store.xcdatamodel; sourceTree = "<group>"; };
 		ED6505F90F099EDD0018D068 /* libftd2xx.0.1.4.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libftd2xx.0.1.4.dylib; path = ../libftd2xx.0.1.4.dylib; sourceTree = SOURCE_ROOT; };
 		ED6505FE0F099EFE0018D068 /* ftd2xx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftd2xx.h; sourceTree = "<group>"; };
 		ED6C716F0F09A89D00BF3260 /* WinTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinTypes.h; sourceTree = "<group>"; };
@@ -79,7 +83,16 @@
 		ED6C71F30F0AD49400BF3260 /* VTWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTWrapper.m; sourceTree = "<group>"; };
 		EDA9F3FF0F16B638004112D5 /* VTCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTCommand.h; sourceTree = "<group>"; };
 		EDA9F4000F16B638004112D5 /* VTCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTCommand.m; sourceTree = "<group>"; };
-		EDFC3EE10EF8194700E1DD2F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = ../Sparkle.framework; sourceTree = SOURCE_ROOT; };
+		EDF724DE0F3DEB9F00E503AE /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowController.h; sourceTree = "<group>"; };
+		EDF724DF0F3DEB9F00E503AE /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowController.m; sourceTree = "<group>"; };
+		EDF725540F3E069700E503AE /* VTStoredDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTStoredDevice.h; sourceTree = "<group>"; };
+		EDF725550F3E069700E503AE /* VTStoredDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTStoredDevice.m; sourceTree = "<group>"; };
+		EDF7261C0F3E274E00E503AE /* VTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTAppDelegate.h; sourceTree = "<group>"; };
+		EDF7261D0F3E274E00E503AE /* VTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTAppDelegate.m; sourceTree = "<group>"; };
+		EDF726C10F422E1D00E503AE /* SpeedPuck.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SpeedPuck.icns; sourceTree = "<group>"; };
+		EDF726E30F42318F00E503AE /* S10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = S10.jpg; path = ../S10.jpg; sourceTree = SOURCE_ROOT; };
+		EDF726E40F42318F00E503AE /* SC1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = SC1.jpg; path = ../SC1.jpg; sourceTree = SOURCE_ROOT; };
+		EDFC3EE10EF8194700E1DD2F /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		EDFC3EF60EF81CCF00E1DD2F /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		EDFC3F4D0EF88A5A00E1DD2F /* velocitool.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = velocitool.icns; sourceTree = "<group>"; };
 		EDFC3F570EF8929200E1DD2F /* IOKitTester */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = IOKitTester; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,19 +128,16 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				ED2B25000F261CAB00A5EDDB /* VTGlobals.h */,
-				7790198E0C07548A00326F66 /* VelocitoolAppDelegate.py */,
+				EDF724DE0F3DEB9F00E503AE /* MainWindowController.h */,
+				EDF724DF0F3DEB9F00E503AE /* MainWindowController.m */,
 				ED6C71F20F0AD49400BF3260 /* VTWrapper.h */,
 				ED6C71F30F0AD49400BF3260 /* VTWrapper.m */,
-				ED4B9A570F155F8700AF563B /* VTDeviceLoader.h */,
-				ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */,
-				ED4B99C60F1548A000AF563B /* VTDevice.h */,
-				ED4B99C70F1548A000AF563B /* VTDevice.m */,
-				EDA9F3FF0F16B638004112D5 /* VTCommand.h */,
-				EDA9F4000F16B638004112D5 /* VTCommand.m */,
 				ED2B24B90F25D10C00A5EDDB /* VTConvert.h */,
 				ED2B24BA0F25D10C00A5EDDB /* VTConvert.m */,
-				ED2B25010F261CAB00A5EDDB /* VTGlobals.m */,
+				EDF725540F3E069700E503AE /* VTStoredDevice.h */,
+				EDF725550F3E069700E503AE /* VTStoredDevice.m */,
+				EDF7261C0F3E274E00E503AE /* VTAppDelegate.h */,
+				EDF7261D0F3E274E00E503AE /* VTAppDelegate.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -166,6 +176,8 @@
 		29B97314FDCFA39411CA2CEA /* Velocitool */ = {
 			isa = PBXGroup;
 			children = (
+				ED60756A0F36558E007B36A9 /* store.xcdatamodeld */,
+				ED2A015D0F339B6A005C0CE0 /* NewClasses */,
 				ED6C71710F09A8AB00BF3260 /* ftd2xx */,
 				EDFC3F620EF8933900E1DD2F /* test */,
 				080E96DDFE201D6D7F000001 /* Classes */,
@@ -182,7 +194,6 @@
 			children = (
 				32CA4F630368D1EE00C91783 /* Velocitool_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
-				77631A3E0C0748CF005415CB /* main.py */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -190,6 +201,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				EDF727250F4234B700E503AE /* images */,
 				ED6505F90F099EDD0018D068 /* libftd2xx.0.1.4.dylib */,
 				EDFC3F4D0EF88A5A00E1DD2F /* velocitool.icns */,
 				EDFC3EF60EF81CCF00E1DD2F /* dsa_pub.pem */,
@@ -209,13 +221,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		ED2A015D0F339B6A005C0CE0 /* NewClasses */ = {
+			isa = PBXGroup;
+			children = (
+				ED2B25000F261CAB00A5EDDB /* VTGlobals.h */,
+				ED2B25010F261CAB00A5EDDB /* VTGlobals.m */,
+				ED2A015E0F339B8F005C0CE0 /* VTConnection.h */,
+				ED2A015F0F339B8F005C0CE0 /* VTConnection.m */,
+				EDA9F3FF0F16B638004112D5 /* VTCommand.h */,
+				EDA9F4000F16B638004112D5 /* VTCommand.m */,
+				ED4B99C60F1548A000AF563B /* VTDevice.h */,
+				ED4B99C70F1548A000AF563B /* VTDevice.m */,
+				ED4B9A570F155F8700AF563B /* VTDeviceLoader.h */,
+				ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */,
+			);
+			name = NewClasses;
+			sourceTree = "<group>";
+		};
 		ED6C71710F09A8AB00BF3260 /* ftd2xx */ = {
 			isa = PBXGroup;
 			children = (
-				ED6C716F0F09A89D00BF3260 /* WinTypes.h */,
 				ED6505FE0F099EFE0018D068 /* ftd2xx.h */,
+				ED6C716F0F09A89D00BF3260 /* WinTypes.h */,
 			);
 			name = ftd2xx;
+			sourceTree = "<group>";
+		};
+		EDF727250F4234B700E503AE /* images */ = {
+			isa = PBXGroup;
+			children = (
+				EDF726C10F422E1D00E503AE /* SpeedPuck.icns */,
+				EDF726E40F42318F00E503AE /* SC1.jpg */,
+				EDF726E30F42318F00E503AE /* S10.jpg */,
+			);
+			name = images;
 			sourceTree = "<group>";
 		};
 		EDFC3F620EF8933900E1DD2F /* test */ = {
@@ -290,11 +329,12 @@
 			files = (
 				ED6505FB0F099EDD0018D068 /* libftd2xx.0.1.4.dylib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
-				77631A3F0C0748CF005415CB /* main.py in Resources */,
-				7790198F0C07548A00326F66 /* VelocitoolAppDelegate.py in Resources */,
 				77C8C1F90C07829500965286 /* MainMenu.xib in Resources */,
 				EDFC3EF70EF81CCF00E1DD2F /* dsa_pub.pem in Resources */,
 				EDFC3F4E0EF88A5A00E1DD2F /* velocitool.icns in Resources */,
+				EDF726C20F422E1D00E503AE /* SpeedPuck.icns in Resources */,
+				EDF726E50F42318F00E503AE /* S10.jpg in Resources */,
+				EDF726E60F42318F00E503AE /* SC1.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,12 +362,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
-				ED6C71F50F0AD49400BF3260 /* VTWrapper.m in Sources */,
 				ED4B99C80F1548A000AF563B /* VTDevice.m in Sources */,
 				ED4B9A590F155F8700AF563B /* VTDeviceLoader.m in Sources */,
 				EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */,
-				ED2B24BC0F25D10C00A5EDDB /* VTConvert.m in Sources */,
 				ED2B25030F261CAB00A5EDDB /* VTGlobals.m in Sources */,
+				ED2A01610F339B8F005C0CE0 /* VTConnection.m in Sources */,
+				ED60756B0F36558E007B36A9 /* store.xcdatamodeld in Sources */,
+				EDF724E00F3DEB9F00E503AE /* MainWindowController.m in Sources */,
+				EDF725560F3E069700E503AE /* VTStoredDevice.m in Sources */,
+				EDF7261E0F3E274E00E503AE /* VTAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,12 +379,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				EDFC40600EF89A9000E1DD2F /* tool_main.m in Sources */,
-				ED6C71F40F0AD49400BF3260 /* VTWrapper.m in Sources */,
 				ED4B99C90F1548A000AF563B /* VTDevice.m in Sources */,
 				ED4B9A5A0F155F8700AF563B /* VTDeviceLoader.m in Sources */,
 				EDA9F4010F16B638004112D5 /* VTCommand.m in Sources */,
-				ED2B24BB0F25D10C00A5EDDB /* VTConvert.m in Sources */,
 				ED2B25020F261CAB00A5EDDB /* VTGlobals.m in Sources */,
+				ED2A01600F339B8F005C0CE0 /* VTConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,16 +437,16 @@
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_MISSING_PARENTHESES = YES;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_PEDANTIC = YES;
-				GCC_WARN_PROTOTYPE_CONVERSION = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -444,8 +486,8 @@
 				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
 				GCC_WARN_MISSING_PARENTHESES = YES;
 				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
-				GCC_WARN_PEDANTIC = YES;
-				GCC_WARN_PROTOTYPE_CONVERSION = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_TYPECHECK_CALLS_TO_PRINTF = YES;
@@ -453,7 +495,7 @@
 				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
-				GCC_WARN_UNUSED_PARAMETER = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -576,6 +618,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		ED60756A0F36558E007B36A9 /* store.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				ED6075660F36557E007B36A9 /* store.xcdatamodel */,
+			);
+			currentVersion = ED6075660F36557E007B36A9 /* store.xcdatamodel */;
+			path = store.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
 }
