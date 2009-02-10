@@ -1,8 +1,8 @@
 
 #import "VTDevice.h"
-#import "VTWrapper.h"
+#import "VTConnection.h"
+#import "VTCommand.h"
 #import "VTGlobals.h"
-#import "VTConvert.h"
 
 #include <IOKit/usb/IOUSBLib.h>
 
@@ -10,11 +10,16 @@
 static NSDictionary *productIDToClass = nil;
 
 @interface VTDevice ()
-- initWithDeviceWrapper:(VTWrapperDevice *)wrapperDevice properties:(NSDictionary *)properties;
+- initWithConnection:(VTConnection *)connection properties:(NSDictionary *)properties;
 @end
 
 
-@interface VTDeviceSpeedPuck:VTDevice {} @end
+@interface VTDeviceSpeedPuck:VTDevice {
+    NSString *_firmwareVersion;
+    NSDictionary *_deviceSettings;
+} 
+@end
+
 @interface VTDeviceS10:VTDevice {} @end
 @interface VTDeviceSC1:VTDevice {} @end
 
@@ -30,7 +35,7 @@ static NSDictionary *productIDToClass = nil;
 }
 
 + deviceForProperties:(NSDictionary *)properties {
-    VTWrapperDevice *wrapperDevice;
+    VTConnection *connection;
     
     int vendorID = [[properties objectForKey:@kUSBVendorID] intValue];
     int productID = [[properties objectForKey:@kUSBProductID] intValue];
@@ -38,34 +43,33 @@ static NSDictionary *productIDToClass = nil;
     id klass = [productIDToClass objectForKey:[NSNumber numberWithInt:productID]];
     
     if (vendorID && klass && serial &&
-        (wrapperDevice = [[VTWrapper wrapper] openDeviceWithVendorID:vendorID productID:productID serialNumber:serial]) ) {
-            return [[[klass alloc] initWithDeviceWrapper:wrapperDevice properties:properties] autorelease];
+        (connection = [VTConnection connectionWithVendorID:vendorID productID:productID serialNumber:serial]) ) {
+            return [[[klass alloc] initWithConnection:connection properties:properties] autorelease];
     }
     return nil;
 }
 
-- initWithDeviceWrapper:(VTWrapperDevice *)wrapperDevice properties:(NSDictionary *)properties {
+- initWithConnection:(VTConnection *)connection properties:(NSDictionary *)properties {
+    _connection = [connection retain];
     _properties = [properties copy];
-    _wrapperDevice = [wrapperDevice retain];
     return self;
     
 }
-
-+ converterClass {
-    // For subclassers to implement
-    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
-    return nil;
-}
-
 
 - (NSString *)serial {
     return [_properties objectForKey:@"USB Serial Number"];
 }
 
 - (void)dealloc {
+    [_connection release]; _connection = nil;
+    [_properties release]; _properties = nil;
     [super dealloc];
-    [_properties release];     _properties = nil;
-    [_wrapperDevice release];  _wrapperDevice = nil;
+}
+
+- (NSString *)model {
+    // For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+    return nil;
 }
 
 - (NSString *)firmwareVersion {
@@ -92,25 +96,38 @@ static NSDictionary *productIDToClass = nil;
 }
 
 - (NSString *)description {
-    NSString *sd = [super description];
-    NSString *s = [self serial];
-    NSString *fv =  [self firmwareVersion];
-    NSDictionary *ds = [self deviceSettings];
+    NSString *sd     = [super description];
+    NSString *s      = [self serial];
+    NSString *fv     = [self firmwareVersion];
     
-    return [NSString stringWithFormat:@"%@ (%@, %@, settings = %@)", sd, s, fv, ds];
+    return [NSString stringWithFormat:@"%@ (%@, %@)", sd, s, fv];
 }
 
 @end
 
 @implementation VTDeviceS10
+
 - (BOOL)isPowered {
     return YES;
+}
+
+- (NSString *)model {
+    return @"S10";
 }
 
 - (NSString *)firmwareVersion {
     // There is no way to get the firmware version of the S10. Just return the known version
     return @"1.1";
 }
+
+
+- (NSDictionary *)deviceSettings {
+    return [NSDictionary dictionary];
+}
+
+- (void)setDeviceSettings:(NSDictionary *)settings {
+}
+
 @end
 
 @implementation VTDeviceSC1
@@ -120,13 +137,13 @@ static NSDictionary *productIDToClass = nil;
     //
     // The new method is a simple command, as used on the puck. 
     //
+- (NSString *)model {
+    return @"SC1";
+}
+
 @end
 
 @implementation VTDeviceSpeedPuck
-
-+ converterClass {
-    return [VTPuckSettings class];
-}
 
 - (BOOL)isPowered {
     return YES;
@@ -139,61 +156,44 @@ static NSDictionary *productIDToClass = nil;
     */
 }
 
+- (NSString *)model {
+    return @"SpeedPuck";
+}
+
+- (void)dealloc {
+    [_firmwareVersion release]; _firmwareVersion = nil;
+    [_deviceSettings release];  _deviceSettings = nil;
+    [super dealloc];
+}
+
 - (NSString *)firmwareVersion {
-    NSData *result = [_wrapperDevice runCommand:'V' responsePrefix:'v' expectedLength:4];
-    
-    if (result) {
-        const unsigned char *bytes = [result bytes];
-        return [NSString stringWithFormat:@"%d.%d", bytes[0], bytes[1]]; // The two other bytes are not used.
+    if(!_firmwareVersion) {
+        VTFirmwareVersionRecord *result = (VTFirmwareVersionRecord *)[_connection runCommand:[VTCommand commandWithSignal:'V' parameter:nil resultClass:[VTFirmwareVersionRecord class]]];
+        
+        _firmwareVersion = [[result version] copy];
     }
-    return nil;
+    return _firmwareVersion;
 }
 
 - (NSDictionary *)deviceSettings {
-    NSData *result = [_wrapperDevice runCommand:'S' responsePrefix:'d' expectedLength:8];
-    if (result) {
-        return [[[self class] converterClass] settingsDictionaryForData:result];
+    if(!_deviceSettings) {
+        VTPuckSettingsRecord *result = (VTPuckSettingsRecord *)[_connection runCommand:[VTCommand commandWithSignal:'S' parameter:nil resultClass:[VTPuckSettingsRecord class]]];
+    
+        _deviceSettings = [[result settingsDictionary] copy];
     }
-    return nil;
+    return _deviceSettings;
 }
 
 - (void)setDeviceSettings:(NSDictionary *)settings {
-    [_wrapperDevice runCommand:'D' withArgumentsPrefix:'d' arguments:[[[self class] converterClass] dataForSettingsDictionary:settings] responsePrefix:'r' expectedLength:1];
+    [_connection runCommand:[VTCommand commandWithSignal:'D' parameter:[VTPuckSettingsRecord recordFromSettingsDictionary:settings] resultClass:[VTCommandResultRecord class]]];
     
-    //usleep(500000); // Let the device digest this data...
-    
-    //[_wrapperDevice reset];
-        
-    [self firmwareVersion];
-    
-    /*NSData *result = */
-    /*
-    if (result) {
-        ((char *)[result bytes])[0];
-    }
-    */
+    [_deviceSettings release]; _deviceSettings = nil;
 }
 
 - (NSArray *)trackpointLogs {
-    NSData *result = [_wrapperDevice runCommand:'O' responsePrefix:'2' expectedLength:2];
-    if (result) {
-        const unsigned char *bytes = [result bytes];
-        
-        int version = bytes[0];
-        int count = bytes[1];
-        int ii;
-        NSMutableArray *aa = [NSMutableArray array];
-        for(ii = 0; ii < count; ii++) {
-            NSData *log = [_wrapperDevice readLength:19];
-            
-            [aa addObject:[[[self class] converterClass] trackpointLogDictionaryForData:log]];
-        }
-        return aa;
-    }
-    return nil;
+    NSArray *records = (NSArray *)[_connection runCommand:[VTCommand commandWithSignal:'O' parameter:nil resultsClass:[VTTrackpointLogRecord class]]];
+    return records;
 }
-
-
                                                    
 @end
 

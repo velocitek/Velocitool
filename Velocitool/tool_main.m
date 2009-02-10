@@ -5,6 +5,7 @@
 
 @interface Observer:NSObject {} @end
 @implementation Observer
+
 - (void)ping:(NSNotification *)note {
     NSArray *devices = [[VTDeviceLoader loader] devices];
     //NSLog(@"Devices = %@", devices);
@@ -24,9 +25,10 @@ int main(int argc, const char *argv[]) {
     NSAutoreleasePool *inner_pool = [NSAutoreleasePool new];
     
     // Initialize the wrapper
-    [VTWrapper wrapperForLibAtPath:@"/Users/noyau/Projects/velocitek/FTDI Driver/D2XX/bin/libftd2xx.0.1.4.dylib"];\
+    //[VTWrapper wrapperForLibAtPath:@"/Users/noyau/Projects/velocitek/FTDI Driver/D2XX/bin/libftd2xx.0.1.4.dylib"];\
     
-    [[NSNotificationCenter defaultCenter] addObserver:[Observer new] selector:@selector(ping:) name:VTDeviceChangedNotification object:[VTDeviceLoader loader]];
+    [[NSNotificationCenter defaultCenter] addObserver:[Observer new] selector:@selector(ping:) name:VTDeviceAddedNotification object:[VTDeviceLoader loader]];
+    [[NSNotificationCenter defaultCenter] addObserver:[Observer new] selector:@selector(ping:) name:VTDeviceRemovedNotification object:[VTDeviceLoader loader]];
     
     [[[Observer new] autorelease] ping:nil];
     
