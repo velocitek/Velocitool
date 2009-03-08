@@ -382,7 +382,9 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 }
 
 - (void)writeChar:(char)c {
-    [self write:[NSData dataWithBytes:&c length:1]];
+    unsigned char v = ((unsigned char)c) + 128; // Whatever!
+    [self writeUnsignedChar:v];
+    //[self write:[NSData dataWithBytes:&c length:1]];
 }
 
 - (void)writeUnsignedChar:(unsigned char)c {
@@ -394,20 +396,22 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     [self write:[NSData dataWithBytes:&v length:1]];
 }
 
-- (char)readChar {
+- (unsigned char)readUnsignedChar {
     NSData *r = [self readLength:1];
     
     if(r) {
-        const char *bytes = [r bytes];
+        const unsigned char *bytes = [r bytes];
         return bytes[0];
     } else {
         return 0;
     }
 }
 
-- (unsigned char)readUnsignedChar {
-    return (unsigned char)[self readChar];
+- (char)readChar {
+    return (char)(((int)[self readUnsignedChar]) - 128);
+    
 }
+
 
 - (BOOL)readBool {
     return [self readChar]? YES: NO;

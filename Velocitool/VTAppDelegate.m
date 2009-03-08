@@ -118,11 +118,30 @@
 /**
  Primes the USB watch for new devices
  */
+- (void)_switchHandler:(NSNotification*) notification {
+    // Get the device loader to clear the USB devices asap.
+    if ([[notification name] isEqualToString:NSWorkspaceSessionDidResignActiveNotification]) {
+        // FIXME Perform deactivation tasks here.
+    } else {
+        // FIXME Perform activation tasks here.
+    }    
+}
+
 - (void)applicationDidFinishLaunching:sender {
+    // If fast user switching is used I need to release the USB devices. Or at least stop talking to them...
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(_switchHandler:) name:NSWorkspaceSessionDidBecomeActiveNotification object:nil];
+    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(_switchHandler:) name:NSWorkspaceSessionDidResignActiveNotification object:nil];
+
     // prime it
     _loader = [VTDeviceLoader loader]; // No need to retain: singleton
 }
 
+/**
+ I can't believe I'm doing this.
+ */
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
+    return YES;
+}
 
 /**
  Implementation of the applicationShouldTerminate: method, used here to
@@ -132,7 +151,7 @@
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
     
-    NSError *error;
+    NSError *error = nil;
     int reply = NSTerminateNow;
     
     if (managedObjectContext != nil) {
