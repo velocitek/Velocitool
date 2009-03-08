@@ -28,8 +28,8 @@ static NSDictionary *productIDToClass = nil;
 + (void)initialize {
     productIDToClass = [[NSDictionary alloc] initWithObjectsAndKeys:
                         [VTDeviceSpeedPuck class], [NSNumber numberWithInt:0xb709], 
-                        [VTDeviceS10 class], [NSNumber numberWithInt:0x6001], 
-                        [VTDeviceSC1 class], [NSNumber numberWithInt:0xb708], 
+                        [VTDeviceS10 class],       [NSNumber numberWithInt:0x6001], 
+                        [VTDeviceSC1 class],       [NSNumber numberWithInt:0xb708], 
                         nil
     ];
 }
@@ -108,7 +108,7 @@ static NSDictionary *productIDToClass = nil;
 @implementation VTDeviceS10
 
 - (BOOL)isPowered {
-    return YES;
+    return YES; // Actually, who knows.
 }
 
 - (NSString *)model {
@@ -122,7 +122,7 @@ static NSDictionary *productIDToClass = nil;
 
 
 - (NSDictionary *)deviceSettings {
-    return [NSDictionary dictionary];
+    return [NSDictionary dictionary]; // No settings
 }
 
 - (void)setDeviceSettings:(NSDictionary *)settings {

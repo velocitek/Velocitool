@@ -13,8 +13,12 @@
 
 @implementation VTStoredDevice
 
+- (VTDevice *)_getDevice {
+    return [[VTDeviceLoader loader] deviceForSerialNumber:[self serial]];
+}
+
 - (void)_updateFromConnectedDevice {
-    VTDevice *device = [[VTDeviceLoader loader] deviceForSerialNumber:[self serial]];
+    VTDevice *device = [self _getDevice] ;
 
     if (![self name]) {
         [self setName:[self serial]];
@@ -31,6 +35,8 @@
     }
     [self setImagePath:path];
     NSLog(@"All updated! %@ %@", [self identity], [self imagePath]);
+    
+    deviceSettings = nil;
 }
 
 - (void)awakeFromFetch {
@@ -45,6 +51,33 @@
     [self didChangeValueForKey:@"serial"];
     [self _updateFromConnectedDevice];
 }
+
+
+- (NSMutableDictionary *)puckSettings {
+    VTDevice *device = [self _getDevice];
+    
+    if (!deviceSettings) {
+        deviceSettings = [[device deviceSettings] mutableCopy];
+    }
+    if ([[device model] isEqual:@"SpeedPuck"]) {
+        return deviceSettings ;
+    }
+    return nil;
+}
+
+- (IBAction)saveSettings:target {
+    NSLog(@"Settings = %@", deviceSettings);
+}
+
+- (IBAction)cancelSettings:target {
+    [deviceSettings release]; deviceSettings = nil; // Will request them again.
+}
+
+- (void)dealloc {
+    [deviceSettings release]; deviceSettings = nil;
+    [super dealloc];
+}
+
 
 @end
 

@@ -79,7 +79,7 @@ static EnumStruct maxSpeedMode[] = {
         const unsigned char *bytes = [settings bytes];
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                               [NSNumber numberWithUnsignedChar:bytes[0]],  @"recordRate",
-                              [NSNumber numberWithChar:(char)bytes[1]],    @"declinaison",
+                              [NSNumber numberWithChar:(char)bytes[1]],    @"declination",
                               [NSNumber numberWithUnsignedChar:bytes[2]],  @"speedUnitOfMeasurement",
                               [NSNumber numberWithUnsignedChar:bytes[3]],  @"speedDamping",
                               [NSNumber numberWithUnsignedChar:bytes[4]],  @"headingDamping",
@@ -98,7 +98,7 @@ static EnumStruct maxSpeedMode[] = {
     
     NSMutableDictionary *fullSettings = [NSMutableDictionary dictionaryWithObjectsAndKeys:
         [NSNumber numberWithUnsignedChar:4],  @"recordRate",
-        [NSNumber numberWithChar:0],    @"declinaison",
+        [NSNumber numberWithChar:0],    @"declination",
         [NSNumber numberWithUnsignedChar:1],  @"speedUnitOfMeasurement",
         [NSNumber numberWithUnsignedChar:1],  @"speedDamping",
         [NSNumber numberWithUnsignedChar:1],  @"headingDamping",
@@ -113,7 +113,7 @@ static EnumStruct maxSpeedMode[] = {
     }
     int ii = 0;
     buffer[ii++] = [[fullSettings objectForKey:@"recordRate"] unsignedCharValue];
-    buffer[ii++] = [[fullSettings objectForKey:@"declinaison"] charValue];
+    buffer[ii++] = [[fullSettings objectForKey:@"declination"] charValue];
     buffer[ii++] = [[fullSettings objectForKey:@"speedUnitOfMeasurement"] unsignedCharValue];
     buffer[ii++] = [[fullSettings objectForKey:@"speedDamping"] unsignedCharValue];
     buffer[ii++] = [[fullSettings objectForKey:@"headingDamping"] unsignedCharValue];

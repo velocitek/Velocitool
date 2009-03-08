@@ -111,7 +111,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
         NSLog(@"%@", properties);
         NSString *location = [(NSDictionary *)properties objectForKey:@"locationID"];
         VTDevice *device = [_devicesByLocation objectForKey:location];
-        NSString *serial = [device serial];
+        NSString *serial = [[[device serial] retain] autorelease];
         
         [_devicesByLocation removeObjectForKey:location]; 
         [_devicesBySerial removeObjectForKey:serial]; 

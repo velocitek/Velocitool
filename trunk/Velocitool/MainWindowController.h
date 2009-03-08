@@ -14,4 +14,6 @@
     
 }
 
+
+- (IBAction)selectionChanged:sender;
 @end

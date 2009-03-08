@@ -9,23 +9,33 @@
 #import <Cocoa/Cocoa.h>
 
 @interface VTStoredDevice : NSManagedObject {
+    NSMutableDictionary *deviceSettings;
 }
 
 @end
 
 @interface VTStoredDevice (CoreDataGeneratedAccessors)
 
+// Stuff stored in the DB
 @property (retain) NSString *name;
 @property (retain) NSString *serial;
 @property (retain) NSSet *tracklogs;
 
-@property (retain) NSDictionary *deviceInfo;
-@property (retain) NSString *currentAction;
+// Derived value for display purpose. Read only.
 @property (retain) NSString *identity;
 @property (retain) NSString *imagePath;
+
+// Stuff from the USB communication
+@property (retain) NSDictionary *deviceInfo;
+@property (retain) NSString *currentAction;
+
 
 - (void)addTracklogsObject:(NSManagedObject *)value;
 - (void)removeTracklogsObject:(NSManagedObject *)value;
 - (void)addTracklogs:(NSSet *)value;
 - (void)removeTracklogs:(NSSet *)value;
+
+- (NSMutableDictionary *)puckSettings;
+- (IBAction)saveSettings:target;
+- (IBAction)cancelSettings:target;
 @end

@@ -7,9 +7,34 @@
 @implementation MainWindowController
 
 - (void)awakeFromNib {
+        
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_deviceAdded:) name:VTDeviceAddedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_deviceRemoved:) name:VTDeviceRemovedNotification object:nil];
+
+    NSManagedObjectContext *moc = [[[NSApplication sharedApplication] delegate] managedObjectContext];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_needsave:) name:NSManagedObjectContextObjectsDidChangeNotification object:moc];
 }
+
+- (void)_needsave:(NSNotification *)note {
+    [self performSelector:@selector(_autosave:) withObject:[note userInfo] afterDelay:0.0];
+}
+
+- (void)_autosave:changes {
+    NSError *error;
+    NSManagedObjectContext *moc = [[[NSApplication sharedApplication] delegate] managedObjectContext];
+
+    NSLog(@"Saving changes: %@", changes);
+    
+    if (![moc save:&error]) {
+        BOOL errorResult = [[NSApplication sharedApplication] presentError:error];
+    
+        if (errorResult == YES) {
+            // now what?
+        }
+    }
+}
+
 
 - (void)_deviceAdded:(NSNotification *)note {
     NSString *serial = [[note userInfo] objectForKey:@"serial"];
@@ -63,10 +88,18 @@
         for (VTStoredDevice *storedDevice in [deviceController arrangedObjects]) {
             if ([[storedDevice serial] isEqual:serial]) {
                 [deviceController removeObject:storedDevice];
+                
+                // I can't find a way to tell this stupid array controller to not
+                // *delete* the object from the store when I just want to remove it
+                // from view.
+                
                 break;
             }
         }
     }
+}
+
+- (IBAction)selectionChanged:sender {
 }
 
 

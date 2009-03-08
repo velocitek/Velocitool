@@ -9,10 +9,12 @@
 
 
 @implementation VTCommand
+// Commands returning a single result
 + commandWithSignal:(unsigned char)signalChar parameter:(VTRecord *)parameter resultClass:(Class)resultClass {
     return [[[self alloc] initWithSignal:signalChar parameter:parameter resultClass:resultClass isList:NO] autorelease];
 }
 
+// Commands returning a list of results
 + commandWithSignal:(unsigned char)signalChar parameter:(VTRecord *)parameter resultsClass:(Class)resultClass {
     return [[[self alloc] initWithSignal:signalChar parameter:parameter resultClass:resultClass isList:YES] autorelease];
 }
@@ -85,25 +87,6 @@
 @end
 
 
-#define VTRecordRateAll           1
-#define VTRecordRateEveryTwo      2
-#define VTRecordRateEveryFour     4
-#define VTRecordRateEveryEight    8
-#define VTRecordRateEverySixteen 16
-
-#define VTSpeedUnitKnots           1
-#define VTSpeedUnitMilesHours      2
-#define VTSpeedUnitKilometersHours 3
-#define VTSpeedUnitMetersSeconds   4
-
-#define VTMaxSpeedInstant  0
-#define VTMaxSpeed10Second 1
-#define VTMaxSpeedBoth     2
-
-#define VTPuckModeNormal 0
-#define VTPuckModeMotor  1
-#define VTPuckModeBlank  2
-
 @implementation VTPuckSettingsRecord : VTRecord 
 
 + (unsigned char)recordHeader {
@@ -112,8 +95,9 @@
 
 - init {
     [super init];
+    // load some default values
     _recordRate = VTRecordRateEveryFour;
-    _declinaison = 0;
+    _declination = 0;
     _speedUnitOfMeasurement = VTSpeedUnitKnots;
     _speedDamping = 1;
     _headingDamping = 1;
@@ -125,13 +109,15 @@
 
 + (VTPuckSettingsRecord *)recordFromSettingsDictionary:(NSDictionary *)settings {
     VTPuckSettingsRecord *record = [[self alloc] init];
-    [record setSettingsDictionary:settings];
-    return self;
+    if(settings) {
+        [record setSettingsDictionary:settings];
+    }
+    return record;
 }
 
 - (void)writeDeviceDataForConnection:(VTConnection *)connection {
     [connection writeUnsignedChar:_recordRate];
-    [connection writeChar:_declinaison];
+    [connection writeChar:_declination];
     [connection writeUnsignedChar:_speedUnitOfMeasurement];
     [connection writeUnsignedChar:_speedDamping];
     [connection writeUnsignedChar:_headingDamping];
@@ -142,7 +128,7 @@
 
 - (void)readDeviceDataFromConnection:(VTConnection *)connection {
     _recordRate = [connection readUnsignedChar];
-    _declinaison = [connection readChar];
+    _declination = [connection readChar];
     _speedUnitOfMeasurement = [connection readUnsignedChar];
     _speedDamping = [connection readUnsignedChar];
     _headingDamping = [connection readUnsignedChar];
@@ -153,29 +139,46 @@
 
 - (NSDictionary *)settingsDictionary {
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                          [NSNumber numberWithUnsignedChar:_recordRate], @"recordRate",
-                          [NSNumber numberWithChar:_declinaison], @"declinaison",
-                          [NSNumber numberWithUnsignedChar:_speedUnitOfMeasurement],  @"speedUnitOfMeasurement",
-                          [NSNumber numberWithUnsignedChar:_speedDamping], @"speedDamping",
-                          [NSNumber numberWithUnsignedChar:_headingDamping], @"headingDamping",
-                          [NSNumber numberWithUnsignedChar:_maxSpeedMode], @"maxSpeedMode",
-                          [NSNumber numberWithBool:_barGraphEnabled], @"barGraphOption",
-                          [NSNumber numberWithUnsignedChar:_deviceOperationOption],  @"deviceOperationOption",
+                          [NSNumber numberWithUnsignedChar:_recordRate], VTRecordRatePref,
+                          [NSNumber numberWithChar:_declination], VTDeclinationPref,
+                          [NSNumber numberWithUnsignedChar:_speedUnitOfMeasurement], VTSpeedUnitPref,
+                          [NSNumber numberWithUnsignedChar:_speedDamping], VTSpeedDampingPref,
+                          [NSNumber numberWithUnsignedChar:_headingDamping], VTHeadingDampingPref,
+                          [NSNumber numberWithUnsignedChar:_maxSpeedMode], VTMaxSpeedPref,
+                          [NSNumber numberWithBool:_barGraphEnabled], VTBarGraphEnabled,
+                          [NSNumber numberWithUnsignedChar:_deviceOperationOption],  VTPuckModePref,
                           nil
                           ];
     return dict;
 }
 
 - (void)setSettingsDictionary:(NSDictionary *)settings {
-    // Extremely dangerous. If a key ios absent this will send the wrong data to the device...
-    _recordRate = [[settings objectForKey:@"recordRate"] unsignedCharValue];
-    _declinaison = [[settings objectForKey:@"declinaison"] charValue];
-    _speedUnitOfMeasurement = [[settings objectForKey:@"speedUnitOfMeasurement"] unsignedCharValue];
-    _speedDamping = [[settings objectForKey:@"speedDamping"] unsignedCharValue];
-    _headingDamping = [[settings objectForKey:@"headingDamping"] unsignedCharValue];
-    _maxSpeedMode = [[settings objectForKey:@"maxSpeedMode"] unsignedCharValue];
-    _barGraphEnabled = [[settings objectForKey:@"barGraphOption"] boolValue];
-    _deviceOperationOption = [[settings objectForKey:@"deviceOperationOption"] unsignedCharValue];
+    id value = nil;
+    
+    if( (value = [settings objectForKey:VTRecordRatePref]) ) {
+        _recordRate = [value unsignedCharValue];
+    }
+    if( (value = [settings objectForKey:VTDeclinationPref]) ) {
+        _declination = [value charValue];
+    }
+    if( (value = [settings objectForKey:VTSpeedUnitPref]) ) {
+        _speedUnitOfMeasurement = [value unsignedCharValue];
+    }
+    if( (value = [settings objectForKey:VTSpeedDampingPref]) ) {
+        _speedDamping = [value unsignedCharValue];
+    }
+    if( (value = [settings objectForKey:VTHeadingDampingPref]) ) {
+        _headingDamping = [value unsignedCharValue];
+    }
+    if( (value = [settings objectForKey:VTMaxSpeedPref]) ) {
+        _maxSpeedMode = [value unsignedCharValue];
+    }
+    if( (value = [settings objectForKey:VTBarGraphEnabled]) ) {
+        _deviceOperationOption = [value boolValue];
+    }
+    if( (value = [settings objectForKey:VTPuckModePref]) ) {
+        _deviceOperationOption = [value unsignedCharValue];
+    }
 }
 
 @end
