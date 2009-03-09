@@ -12,12 +12,13 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		ED21C50E0F64438D002BE074 /* FakeStuff.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED21C50D0F64438D002BE074 /* FakeStuff.jpg */; };
+		ED21C5E00F647FAB002BE074 /* VTPuckSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = ED21C5DF0F647FAB002BE074 /* VTPuckSettings.m */; };
 		ED2A01610F339B8F005C0CE0 /* VTConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2A015F0F339B8F005C0CE0 /* VTConnection.m */; };
 		ED2B25030F261CAB00A5EDDB /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
 		ED4B99C80F1548A000AF563B /* VTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B99C70F1548A000AF563B /* VTDevice.m */; };
 		ED4B9A590F155F8700AF563B /* VTDeviceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */; };
 		ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFC3F690EF8948D00E1DD2F /* IOKit.framework */; };
-		ED4CD7860F5B770800330E6E /* VTPuckSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4CD7850F5B770800330E6E /* VTPuckSettingsController.m */; };
 		ED60756B0F36558E007B36A9 /* store.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED60756A0F36558E007B36A9 /* store.xcdatamodeld */; };
 		ED6505FB0F099EDD0018D068 /* libftd2xx.0.1.4.dylib in Resources */ = {isa = PBXBuildFile; fileRef = ED6505F90F099EDD0018D068 /* libftd2xx.0.1.4.dylib */; };
 		EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
@@ -58,6 +59,9 @@
 		77C8C1F80C07829500965286 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Velocitool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Velocitool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED21C50D0F64438D002BE074 /* FakeStuff.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FakeStuff.jpg; sourceTree = "<group>"; };
+		ED21C5DE0F647FAB002BE074 /* VTPuckSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTPuckSettings.h; sourceTree = "<group>"; };
+		ED21C5DF0F647FAB002BE074 /* VTPuckSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTPuckSettings.m; sourceTree = "<group>"; };
 		ED2A015E0F339B8F005C0CE0 /* VTConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTConnection.h; sourceTree = "<group>"; };
 		ED2A015F0F339B8F005C0CE0 /* VTConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTConnection.m; sourceTree = "<group>"; };
 		ED2B24B90F25D10C00A5EDDB /* VTConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTConvert.h; sourceTree = "<group>"; };
@@ -68,8 +72,6 @@
 		ED4B99C70F1548A000AF563B /* VTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDevice.m; sourceTree = "<group>"; };
 		ED4B9A570F155F8700AF563B /* VTDeviceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDeviceLoader.h; sourceTree = "<group>"; };
 		ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDeviceLoader.m; sourceTree = "<group>"; };
-		ED4CD7840F5B770800330E6E /* VTPuckSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTPuckSettingsController.h; sourceTree = "<group>"; };
-		ED4CD7850F5B770800330E6E /* VTPuckSettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTPuckSettingsController.m; sourceTree = "<group>"; };
 		ED6075660F36557E007B36A9 /* store.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = store.xcdatamodel; sourceTree = "<group>"; };
 		ED6505F90F099EDD0018D068 /* libftd2xx.0.1.4.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libftd2xx.0.1.4.dylib; path = ../libftd2xx.0.1.4.dylib; sourceTree = SOURCE_ROOT; };
 		ED6505FE0F099EFE0018D068 /* ftd2xx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftd2xx.h; sourceTree = "<group>"; };
@@ -109,23 +111,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Classes */ = {
+		080E96DDFE201D6D7F000001 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				EDF724DE0F3DEB9F00E503AE /* MainWindowController.h */,
-				EDF724DF0F3DEB9F00E503AE /* MainWindowController.m */,
 				ED6C71F20F0AD49400BF3260 /* VTWrapper.h */,
 				ED6C71F30F0AD49400BF3260 /* VTWrapper.m */,
 				ED2B24B90F25D10C00A5EDDB /* VTConvert.h */,
 				ED2B24BA0F25D10C00A5EDDB /* VTConvert.m */,
 				EDF725540F3E069700E503AE /* VTStoredDevice.h */,
 				EDF725550F3E069700E503AE /* VTStoredDevice.m */,
-				EDF7261C0F3E274E00E503AE /* VTAppDelegate.h */,
 				EDF7261D0F3E274E00E503AE /* VTAppDelegate.m */,
-				ED4CD7840F5B770800330E6E /* VTPuckSettingsController.h */,
-				ED4CD7850F5B770800330E6E /* VTPuckSettingsController.m */,
+				ED21C5DE0F647FAB002BE074 /* VTPuckSettings.h */,
+				ED21C5DF0F647FAB002BE074 /* VTPuckSettings.m */,
 			);
-			name = Classes;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
@@ -163,7 +162,8 @@
 			children = (
 				ED60756A0F36558E007B36A9 /* store.xcdatamodeld */,
 				ED2A015D0F339B6A005C0CE0 /* Communication */,
-				080E96DDFE201D6D7F000001 /* Classes */,
+				080E96DDFE201D6D7F000001 /* Model */,
+				ED21C5D30F64779E002BE074 /* View */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -204,6 +204,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		ED21C5D30F64779E002BE074 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EDF724DE0F3DEB9F00E503AE /* MainWindowController.h */,
+				EDF724DF0F3DEB9F00E503AE /* MainWindowController.m */,
+				EDF7261C0F3E274E00E503AE /* VTAppDelegate.h */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		ED2A015D0F339B6A005C0CE0 /* Communication */ = {
 			isa = PBXGroup;
 			children = (
@@ -234,6 +244,7 @@
 		EDF727250F4234B700E503AE /* images */ = {
 			isa = PBXGroup;
 			children = (
+				ED21C50D0F64438D002BE074 /* FakeStuff.jpg */,
 				EDF726C10F422E1D00E503AE /* SpeedPuck.icns */,
 				EDF726E40F42318F00E503AE /* SC1.jpg */,
 				EDF726E30F42318F00E503AE /* S10.jpg */,
@@ -294,6 +305,7 @@
 				EDF726C20F422E1D00E503AE /* SpeedPuck.icns in Resources */,
 				EDF726E50F42318F00E503AE /* S10.jpg in Resources */,
 				EDF726E60F42318F00E503AE /* SC1.jpg in Resources */,
+				ED21C50E0F64438D002BE074 /* FakeStuff.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -330,7 +342,7 @@
 				EDF724E00F3DEB9F00E503AE /* MainWindowController.m in Sources */,
 				EDF725560F3E069700E503AE /* VTStoredDevice.m in Sources */,
 				EDF7261E0F3E274E00E503AE /* VTAppDelegate.m in Sources */,
-				ED4CD7860F5B770800330E6E /* VTPuckSettingsController.m in Sources */,
+				ED21C5E00F647FAB002BE074 /* VTPuckSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
