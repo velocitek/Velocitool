@@ -9,6 +9,7 @@
 #import "VTStoredDevice.h"
 #import "VTDevice.h"
 #import "VTDeviceLoader.h"
+#import "VTPuckSettings.h"
 
 
 @implementation VTStoredDevice
@@ -28,13 +29,11 @@
     NSString *path = nil;
     for (NSString *ext in [NSArray arrayWithObjects:@"icns", @"jpg", nil]) {
         path = [[NSBundle mainBundle] pathForResource:[device model] ofType:ext];
-        NSLog(@"path for ext/Model %@/%@ %@", ext, [device model], path);
         if (path) {
             break;
         }
     }
     [self setImagePath:path];
-    NSLog(@"All updated! %@ %@", [self identity], [self imagePath]);
     
     deviceSettings = nil;
 }
@@ -53,20 +52,19 @@
 }
 
 
-- (NSMutableDictionary *)puckSettings {
+- (VTPuckSettings *)puckSettings {
     VTDevice *device = [self _getDevice];
     
-    if (!deviceSettings) {
-        deviceSettings = [[device deviceSettings] mutableCopy];
+    if (!deviceSettings && ([[device model] isEqual:@"SpeedPuck"] || [[device model] isEqual:@"FakeStuff"])) {
+        deviceSettings = [[VTPuckSettings settingsWithDictionary:[device deviceSettings]] retain];
     }
-    if ([[device model] isEqual:@"SpeedPuck"]) {
-        return deviceSettings ;
-    }
-    return nil;
+    return deviceSettings ;
 }
 
 - (IBAction)saveSettings:target {
-    NSLog(@"Settings = %@", deviceSettings);
+    VTDevice *device = [self _getDevice];
+
+    [device setDeviceSettings:[deviceSettings settingsDictionary]];
 }
 
 - (IBAction)cancelSettings:target {

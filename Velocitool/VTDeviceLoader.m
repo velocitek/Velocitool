@@ -74,22 +74,28 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
 }
 
 - (void)_addDevice:(io_service_t)usbDevice {
-    NSLog(@"Adding device");
 	IOReturn result;
     CFMutableDictionaryRef properties;
+    NSString *location;
     
-    result = IORegistryEntryCreateCFProperties(usbDevice, &properties,  kCFAllocatorDefault, kNilOptions);
+    if (!usbDevice) {
+        result = kIOReturnSuccess;
+        properties = (CFMutableDictionaryRef)[NSDictionary new];
+        location = @"Nowhere";
+    } else {
+        result = IORegistryEntryCreateCFProperties(usbDevice, &properties,  kCFAllocatorDefault, kNilOptions);
+        location = [(NSDictionary *)properties objectForKey:@"locationID"];
+    }
+    
     if ((result == kIOReturnSuccess) && properties) {
         
         VTDevice *device = [VTDevice deviceForProperties:(NSDictionary *)properties];
-
-        NSLog(@"%@", device);
 
         if (device) {
             // The locationID uniquely identifies the device and will remain the same, even across
             // reboots, so long as the bus topology doesn't change.        
             [_devicesByLocation setObject:device
-                         forKey:[(NSDictionary *)properties objectForKey:@"locationID"]
+                         forKey:location
              ]; 
             [_devicesBySerial setObject:device
                          forKey:[device serial]
@@ -102,13 +108,11 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
 }
 
 - (void)_removeDevice:(io_service_t)usbDevice {
-    NSLog(@"removing device");
 	IOReturn result;
     CFMutableDictionaryRef properties;
     
     result = IORegistryEntryCreateCFProperties(usbDevice, &properties,  kCFAllocatorDefault, kNilOptions);
     if ((result == kIOReturnSuccess) && properties) {
-        NSLog(@"%@", properties);
         NSString *location = [(NSDictionary *)properties objectForKey:@"locationID"];
         VTDevice *device = [_devicesByLocation objectForKey:location];
         NSString *serial = [[[device serial] retain] autorelease];
@@ -181,7 +185,9 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     
     // Release the matching dictionary
     CFRelease(matchingDict);
-        
+    
+    // For debug
+    [self _addDevice:IO_OBJECT_NULL];
     return self;
 }
 

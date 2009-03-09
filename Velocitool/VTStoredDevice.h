@@ -8,8 +8,10 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class VTPuckSettings;
+
 @interface VTStoredDevice : NSManagedObject {
-    NSMutableDictionary *deviceSettings;
+    VTPuckSettings *deviceSettings;
 }
 
 @end
@@ -35,7 +37,7 @@
 - (void)addTracklogs:(NSSet *)value;
 - (void)removeTracklogs:(NSSet *)value;
 
-- (NSMutableDictionary *)puckSettings;
+- (VTPuckSettings *)puckSettings;
 - (IBAction)saveSettings:target;
 - (IBAction)cancelSettings:target;
 @end

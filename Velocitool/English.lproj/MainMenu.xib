@@ -9,7 +9,7 @@
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<integer value="695"/>
-			<integer value="541"/>
+			<integer value="372"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -1602,24 +1602,17 @@
 			<object class="NSObjectController" id="690443199">
 				<object class="NSMutableArray" key="NSDeclaredKeys">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>recordRate</string>
-					<string>declination</string>
-					<string>speedUnitOfMeasurement</string>
-					<string>speedDamping</string>
-					<string>headingDamping</string>
-					<string>maxSpeedMode</string>
-					<string>barGraphOption</string>
-					<string>deviceOperationOption</string>
-					<string>barGraphLabel</string>
-					<string>declinationEnabled</string>
-					<string>everythingOff</string>
 					<string>barGraphEnabled</string>
-					<string>selection.barGraphOption</string>
-					<string>selection.declination</string>
-					<string>selection.recordRate</string>
-					<string>selection.speedUnitOfMeasurement</string>
-					<string>selection.maxSpeedMode</string>
+					<string>barGraphState</string>
+					<string>compassEnabled</string>
+					<string>declination</string>
+					<string>recordRate</string>
+					<string>speedUnitOfMeasurement</string>
+					<string>everythingOff</string>
+					<string>maxSpeedMode</string>
+					<string>barGraphLabel</string>
 				</object>
+				<string key="NSObjectClassName">VTPuckSettings</string>
 				<bool key="NSEditable">YES</bool>
 				<object class="_NSManagedProxy" key="_NSManagedProxy"/>
 			</object>
@@ -2110,110 +2103,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: self.barGraphEnabled</string>
-						<reference key="source" ref="300432679"/>
-						<reference key="destination" ref="690443199"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="300432679"/>
-							<reference key="NSDestination" ref="690443199"/>
-							<string key="NSLabel">enabled: self.barGraphEnabled</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">self.barGraphEnabled</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">825</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">title: self.barGraphLabel</string>
-						<reference key="source" ref="300432679"/>
-						<reference key="destination" ref="690443199"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="300432679"/>
-							<reference key="NSDestination" ref="690443199"/>
-							<string key="NSLabel">title: self.barGraphLabel</string>
-							<string key="NSBinding">title</string>
-							<string key="NSKeyPath">self.barGraphLabel</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">828</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: self.declinationEnabled</string>
-						<reference key="source" ref="222416974"/>
-						<reference key="destination" ref="690443199"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="222416974"/>
-							<reference key="NSDestination" ref="690443199"/>
-							<string key="NSLabel">enabled: self.declinationEnabled</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">self.declinationEnabled</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">831</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: self.declinationEnabled</string>
-						<reference key="source" ref="159248332"/>
-						<reference key="destination" ref="690443199"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="159248332"/>
-							<reference key="NSDestination" ref="690443199"/>
-							<string key="NSLabel">enabled: self.declinationEnabled</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">self.declinationEnabled</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">834</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: self.everythingOff</string>
-						<reference key="source" ref="441521825"/>
-						<reference key="destination" ref="690443199"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="441521825"/>
-							<reference key="NSDestination" ref="690443199"/>
-							<string key="NSLabel">enabled: self.everythingOff</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">self.everythingOff</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSNegateBoolean</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">838</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">enabled: self.everythingOff</string>
-						<reference key="source" ref="400511500"/>
-						<reference key="destination" ref="690443199"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="400511500"/>
-							<reference key="NSDestination" ref="690443199"/>
-							<string key="NSLabel">enabled: self.everythingOff</string>
-							<string key="NSBinding">enabled</string>
-							<string key="NSKeyPath">self.everythingOff</string>
-							<object class="NSDictionary" key="NSOptions">
-								<string key="NS.key.0">NSValueTransformerName</string>
-								<string key="NS.object.0">NSNegateBoolean</string>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">842</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
 						<string key="label">selectedTag: selection.deviceOperationOption</string>
 						<reference key="source" ref="344743063"/>
 						<reference key="destination" ref="690443199"/>
@@ -2227,119 +2116,6 @@
 						</object>
 					</object>
 					<int key="connectionID">844</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: self.selection.barGraphOption</string>
-						<reference key="source" ref="300432679"/>
-						<reference key="destination" ref="690443199"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="300432679"/>
-							<reference key="NSDestination" ref="690443199"/>
-							<string key="NSLabel">value: self.selection.barGraphOption</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">self.selection.barGraphOption</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">848</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: self.selection.declination</string>
-						<reference key="source" ref="222416974"/>
-						<reference key="destination" ref="690443199"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="222416974"/>
-							<reference key="NSDestination" ref="690443199"/>
-							<string key="NSLabel">value: self.selection.declination</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">self.selection.declination</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">850</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">value: self.selection.declination</string>
-						<reference key="source" ref="159248332"/>
-						<reference key="destination" ref="690443199"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="159248332"/>
-							<reference key="NSDestination" ref="690443199"/>
-							<string key="NSLabel">value: self.selection.declination</string>
-							<string key="NSBinding">value</string>
-							<string key="NSKeyPath">self.selection.declination</string>
-							<object class="NSDictionary" key="NSOptions">
-								<bool key="EncodedWithXMLCoder">YES</bool>
-								<object class="NSMutableArray" key="dict.sortedKeys">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>NSMultipleValuesPlaceholder</string>
-									<string>NSNoSelectionPlaceholder</string>
-									<string>NSNotApplicablePlaceholder</string>
-									<string>NSNullPlaceholder</string>
-								</object>
-								<object class="NSMutableArray" key="dict.values">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<string>--</string>
-									<string>--</string>
-									<string>--</string>
-									<string>--</string>
-								</object>
-							</object>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">852</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedTag: self.selection.recordRate</string>
-						<reference key="source" ref="589382979"/>
-						<reference key="destination" ref="690443199"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="589382979"/>
-							<reference key="NSDestination" ref="690443199"/>
-							<string key="NSLabel">selectedTag: self.selection.recordRate</string>
-							<string key="NSBinding">selectedTag</string>
-							<string key="NSKeyPath">self.selection.recordRate</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">854</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedTag: self.selection.speedUnitOfMeasurement</string>
-						<reference key="source" ref="441521825"/>
-						<reference key="destination" ref="690443199"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="441521825"/>
-							<reference key="NSDestination" ref="690443199"/>
-							<string key="NSLabel">selectedTag: self.selection.speedUnitOfMeasurement</string>
-							<string key="NSBinding">selectedTag</string>
-							<string key="NSKeyPath">self.selection.speedUnitOfMeasurement</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">856</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBBindingConnection" key="connection">
-						<string key="label">selectedTag: self.selection.maxSpeedMode</string>
-						<reference key="source" ref="400511500"/>
-						<reference key="destination" ref="690443199"/>
-						<object class="NSNibBindingConnector" key="connector">
-							<reference key="NSSource" ref="400511500"/>
-							<reference key="NSDestination" ref="690443199"/>
-							<string key="NSLabel">selectedTag: self.selection.maxSpeedMode</string>
-							<string key="NSBinding">selectedTag</string>
-							<string key="NSKeyPath">self.selection.maxSpeedMode</string>
-							<int key="NSNibBindingConnectorVersion">2</int>
-						</object>
-					</object>
-					<int key="connectionID">858</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -2380,6 +2156,223 @@
 						</object>
 					</object>
 					<int key="connectionID">862</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.barGraphEnabled</string>
+						<reference key="source" ref="300432679"/>
+						<reference key="destination" ref="690443199"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="300432679"/>
+							<reference key="NSDestination" ref="690443199"/>
+							<string key="NSLabel">value: selection.barGraphEnabled</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.barGraphEnabled</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">875</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: selection.barGraphState</string>
+						<reference key="source" ref="300432679"/>
+						<reference key="destination" ref="690443199"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="300432679"/>
+							<reference key="NSDestination" ref="690443199"/>
+							<string key="NSLabel">enabled: selection.barGraphState</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">selection.barGraphState</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">876</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.declination</string>
+						<reference key="source" ref="222416974"/>
+						<reference key="destination" ref="690443199"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="222416974"/>
+							<reference key="NSDestination" ref="690443199"/>
+							<string key="NSLabel">value: selection.declination</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.declination</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">880</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">value: selection.declination</string>
+						<reference key="source" ref="159248332"/>
+						<reference key="destination" ref="690443199"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="159248332"/>
+							<reference key="NSDestination" ref="690443199"/>
+							<string key="NSLabel">value: selection.declination</string>
+							<string key="NSBinding">value</string>
+							<string key="NSKeyPath">selection.declination</string>
+							<object class="NSDictionary" key="NSOptions">
+								<bool key="EncodedWithXMLCoder">YES</bool>
+								<object class="NSMutableArray" key="dict.sortedKeys">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>NSMultipleValuesPlaceholder</string>
+									<string>NSNoSelectionPlaceholder</string>
+									<string>NSNotApplicablePlaceholder</string>
+									<string>NSNullPlaceholder</string>
+								</object>
+								<object class="NSMutableArray" key="dict.values">
+									<bool key="EncodedWithXMLCoder">YES</bool>
+									<string>--</string>
+									<string>--</string>
+									<string>--</string>
+									<string>--</string>
+								</object>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">884</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedTag: selection.recordRate</string>
+						<reference key="source" ref="589382979"/>
+						<reference key="destination" ref="690443199"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="589382979"/>
+							<reference key="NSDestination" ref="690443199"/>
+							<string key="NSLabel">selectedTag: selection.recordRate</string>
+							<string key="NSBinding">selectedTag</string>
+							<string key="NSKeyPath">selection.recordRate</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">886</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedTag: selection.speedUnitOfMeasurement</string>
+						<reference key="source" ref="441521825"/>
+						<reference key="destination" ref="690443199"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="441521825"/>
+							<reference key="NSDestination" ref="690443199"/>
+							<string key="NSLabel">selectedTag: selection.speedUnitOfMeasurement</string>
+							<string key="NSBinding">selectedTag</string>
+							<string key="NSKeyPath">selection.speedUnitOfMeasurement</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">888</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: selection.everythingOff</string>
+						<reference key="source" ref="441521825"/>
+						<reference key="destination" ref="690443199"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="441521825"/>
+							<reference key="NSDestination" ref="690443199"/>
+							<string key="NSLabel">enabled: selection.everythingOff</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">selection.everythingOff</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">889</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: selection.everythingOff</string>
+						<reference key="source" ref="400511500"/>
+						<reference key="destination" ref="690443199"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="400511500"/>
+							<reference key="NSDestination" ref="690443199"/>
+							<string key="NSLabel">enabled: selection.everythingOff</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">selection.everythingOff</string>
+							<object class="NSDictionary" key="NSOptions">
+								<string key="NS.key.0">NSValueTransformerName</string>
+								<string key="NS.object.0">NSNegateBoolean</string>
+							</object>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">892</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">title: selection.barGraphLabel</string>
+						<reference key="source" ref="300432679"/>
+						<reference key="destination" ref="690443199"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="300432679"/>
+							<reference key="NSDestination" ref="690443199"/>
+							<string key="NSLabel">title: selection.barGraphLabel</string>
+							<string key="NSBinding">title</string>
+							<string key="NSKeyPath">selection.barGraphLabel</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">893</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">selectedTag: selection.maxSpeedMode</string>
+						<reference key="source" ref="400511500"/>
+						<reference key="destination" ref="690443199"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="400511500"/>
+							<reference key="NSDestination" ref="690443199"/>
+							<string key="NSLabel">selectedTag: selection.maxSpeedMode</string>
+							<string key="NSBinding">selectedTag</string>
+							<string key="NSKeyPath">selection.maxSpeedMode</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">895</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: selection.compassEnabled</string>
+						<reference key="source" ref="222416974"/>
+						<reference key="destination" ref="690443199"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="222416974"/>
+							<reference key="NSDestination" ref="690443199"/>
+							<string key="NSLabel">enabled: selection.compassEnabled</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">selection.compassEnabled</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">899</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBBindingConnection" key="connection">
+						<string key="label">enabled: selection.compassEnabled</string>
+						<reference key="source" ref="159248332"/>
+						<reference key="destination" ref="690443199"/>
+						<object class="NSNibBindingConnector" key="connector">
+							<reference key="NSSource" ref="159248332"/>
+							<reference key="NSDestination" ref="690443199"/>
+							<string key="NSLabel">enabled: selection.compassEnabled</string>
+							<string key="NSBinding">enabled</string>
+							<string key="NSKeyPath">selection.compassEnabled</string>
+							<int key="NSNibBindingConnectorVersion">2</int>
+						</object>
+					</object>
+					<int key="connectionID">900</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -3682,7 +3675,6 @@
 					<string>745.IBPluginDependency</string>
 					<string>746.IBPluginDependency</string>
 					<string>747.IBPluginDependency</string>
-					<string>750.CustomClassName</string>
 					<string>750.IBPluginDependency</string>
 					<string>767.IBPluginDependency</string>
 					<string>768.IBPluginDependency</string>
@@ -3831,8 +3823,8 @@
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{92, 356}, {647, 500}}</string>
-					<string>{{92, 356}, {647, 500}}</string>
+					<string>{{184, 308}, {647, 500}}</string>
+					<string>{{184, 308}, {647, 500}}</string>
 					<reference ref="9"/>
 					<string>{{238, 285}, {480, 360}}</string>
 					<reference ref="5"/>
@@ -3873,8 +3865,8 @@
 					<reference ref="9"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{79, 445}, {366, 245}}</string>
-					<string>{{79, 445}, {366, 245}}</string>
+					<string>{{132, 611}, {366, 245}}</string>
+					<string>{{132, 611}, {366, 245}}</string>
 					<reference ref="5"/>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3911,7 +3903,7 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<reference ref="9"/>
-					<string>{{211, 609}, {246, 63}}</string>
+					<string>{{615, 775}, {246, 63}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3928,7 +3920,6 @@
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>VTPuckSettingsController</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -3969,7 +3960,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">862</int>
+			<int key="maxID">900</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -3996,14 +3987,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">VTAppDelegate.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">VTPuckSettingsController</string>
-					<string key="superclassName">NSObjectController</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">VTPuckSettingsController.h</string>
 					</object>
 				</object>
 			</object>
