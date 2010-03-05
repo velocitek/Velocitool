@@ -13,7 +13,7 @@
 // some point, it will need to be redone all in free code.
 //
 // Anyway, to avoid the issue I'm loading the dyld file from the resource folder at launch time. All
-// the functions i use are dynamically looked up and stored in those static variables.
+// the functions I use are dynamically looked up and stored in those static variables.
 //
 //
 static FT_STATUS (*pFT_SetVIDPID)(DWORD dwVID, DWORD dwPID);
@@ -50,13 +50,13 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 
 @implementation VTConnection
 
-+ initialize {
++ (id)initialize {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"libftd2xx.0.1.4.dylib" ofType:@""];
 
     void *handle = dlopen([path UTF8String], RTLD_LAZY | RTLD_GLOBAL);
     NSAssert2(handle, @"Can't load the library at %@: %s", path, dlerror());
 
-    pFT_SetVIDPID              = dlsym(handle, "FT_SetVIDPID");             NSAssert(pFT_SetVIDPID, @"FT_SetVIDPID");
+    pFT_SetVIDPID              = dlsym(handle, "FT_SetVIDPID");              NSAssert(pFT_SetVIDPID, @"FT_SetVIDPID");
     pFT_OpenEx                 = dlsym(handle, "FT_OpenEx");                 NSAssert(pFT_OpenEx, @"FT_OpenEx");
     pFT_SetBaudRate            = dlsym(handle, "FT_SetBaudRate");            NSAssert(pFT_SetBaudRate, @"FT_SetBaudRate");
     pFT_SetDataCharacteristics = dlsym(handle, "FT_SetDataCharacteristics"); NSAssert(pFT_SetDataCharacteristics, @"FT_SetDataCharacteristics");
@@ -222,6 +222,9 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     if (sizedone != [data length]) {
         NSLog(@"VTError: Call to FT_Write failed, wrote only %d of %d", sizedone, [data length] );
     }
+    
+    NSLog(@"write %d: %@", sizedone, data);
+
     return sizedone;
 }
 
@@ -382,9 +385,9 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 }
 
 - (void)writeChar:(char)c {
-    unsigned char v = ((unsigned char)c) + 128; // Whatever!
-    [self writeUnsignedChar:v];
-    //[self write:[NSData dataWithBytes:&c length:1]];
+    //unsigned char v = ((unsigned char)c) + 128; // Whatever!
+    //[self writeUnsignedChar:v];
+    [self write:[NSData dataWithBytes:&c length:1]];
 }
 
 - (void)writeUnsignedChar:(unsigned char)c {
@@ -392,7 +395,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 }
 
 - (void)writeBool:(BOOL)boolValue {
-    char v = boolValue ? 0: 1;
+    char v = boolValue ? 1: 0;
     [self write:[NSData dataWithBytes:&v length:1]];
 }
 
@@ -408,8 +411,14 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 }
 
 - (char)readChar {
-    return (char)(((int)[self readUnsignedChar]) - 128);
+    NSData *r = [self readLength:1];
     
+    if(r) {
+        const char *bytes = [r bytes];
+        return bytes[0];
+    } else {
+        return 0;
+    }
 }
 
 
