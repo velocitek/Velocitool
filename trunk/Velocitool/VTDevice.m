@@ -83,10 +83,10 @@ static NSDictionary *productIDToClass = nil;
     return nil;
 }
 
-- (NSString *)isPowered {
+- (BOOL)isPowered {
     // For subclassers to implement
     VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
-    return nil;
+    return FALSE;
 }
 
 - (NSDictionary *)deviceSettings {
@@ -98,6 +98,12 @@ static NSDictionary *productIDToClass = nil;
 - (void)setDeviceSettings:(NSDictionary *)settings {
     // For subclassers to implement
     VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+}
+
+- (NSArray *)trackpointLogs {
+    // For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+    return nil;
 }
 
 - (NSString *)description {
@@ -124,7 +130,6 @@ static NSDictionary *productIDToClass = nil;
     // There is no way to get the firmware version of the S10. Just return the known version
     return @"1.1";
 }
-
 
 - (NSDictionary *)deviceSettings {
     return [NSDictionary dictionary]; // No settings
