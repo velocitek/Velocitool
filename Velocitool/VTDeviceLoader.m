@@ -94,12 +94,8 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
         if (device) {
             // The locationID uniquely identifies the device and will remain the same, even across
             // reboots, so long as the bus topology doesn't change.        
-            [_devicesByLocation setObject:device
-                         forKey:location
-             ]; 
-            [_devicesBySerial setObject:device
-                         forKey:[device serial]
-             ];
+            [_devicesByLocation setObject:device forKey:location]; 
+            [_devicesBySerial setObject:device forKey:[device serial]];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:VTDeviceAddedNotification object:self userInfo:[NSDictionary dictionaryWithObject:[device serial] forKey:@"serial"]];
         }
