@@ -6,7 +6,7 @@
 
 /**
  Returns the support folder for the application, used to store the Core Data
- store file.  This code uses a folder named "test" for
+ store file.  This code uses a folder named "Velocitool" for
  the content, either in the NSApplicationSupportDirectory location or (if the
  former cannot be found), the system's temporary directory.
  */
@@ -118,6 +118,8 @@
 /**
  Primes the USB watch for new devices
  */
+
+// This is called for user switching, there is a need to release the devices then...
 - (void)_switchHandler:(NSNotification*) notification {
     // Get the device loader to clear the USB devices asap.
     if ([[notification name] isEqualToString:NSWorkspaceSessionDidResignActiveNotification]) {
@@ -163,9 +165,6 @@
                 // attempting to fix the error.)  As a result, this implementation will 
                 // present the information to the user and then follow up with a panel asking 
                 // if the user wishes to "Quit Anyway", without saving the changes.
-                
-                // Typically, this process should be altered to include application-specific 
-                // recovery steps.  
                 
                 BOOL errorResult = [[NSApplication sharedApplication] presentError:error];
 				

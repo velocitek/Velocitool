@@ -4,10 +4,10 @@
 extern void VTRaiseAbstractMethodException(id object, SEL _cmd, Class abstractClass);
 
 
-#define VTDeclinationPref @"declination"
-#define VTSpeedDampingPref @"speedDamping"
+#define VTDeclinationPref    @"declination"
+#define VTSpeedDampingPref   @"speedDamping"
 #define VTHeadingDampingPref @"headingDamping"
-#define VTBarGraphEnabled @"barGraphOption"
+#define VTBarGraphEnabled    @"barGraphOption"
 
 #define VTRecordRatePref          @"recordRate"
 #define VTRecordRateAll           1

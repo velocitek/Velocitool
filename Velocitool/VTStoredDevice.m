@@ -71,6 +71,11 @@
     [deviceSettings release]; deviceSettings = nil; // Will request them again.
 }
 
+- (void)didTurnIntoFault {
+    [deviceSettings release]; deviceSettings = nil;
+    [super didTurnIntoFault];
+}
+
 - (void)dealloc {
     [deviceSettings release]; deviceSettings = nil;
     [super dealloc];

@@ -1,15 +1,12 @@
-//
-//  Convert.h
-//  Velocitool
-//
-//  Created by Eric Noyau on 20/01/2009.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
+/*
+ * This class is a first draft and currently UNUSED! See VTConnection instead.
+ */
 
 #import <Cocoa/Cocoa.h>
 
 @interface VTSettings : NSObject {
 }
+
 + (NSDictionary *)supportedSettingValues;
 
 + (NSData *)dataForSettingsDictionary:(NSDictionary *)settings;

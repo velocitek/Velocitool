@@ -1,10 +1,6 @@
-//
-//  VTConvert.m
-//  Velocitool
-//
-//  Created by Eric Noyau on 20/01/2009.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
+/*
+ * This class is a first draft and currently UNUSED! See VTConnection instead.
+ */
 
 #import "VTConvert.h"
 #import "VTGlobals.h"
@@ -75,6 +71,7 @@ static EnumStruct maxSpeedMode[] = {
 @implementation VTPuckSettings : VTSettings 
 
 + (NSDictionary *)settingsDictionaryForData:(NSData *)settings {
+    
     if (settings && [settings length] == 8) {
         const unsigned char *bytes = [settings bytes];
         NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -92,6 +89,7 @@ static EnumStruct maxSpeedMode[] = {
     }
     return nil;
 }
+
 
 + (NSData *)dataForSettingsDictionary:(NSDictionary *)settings {
     unsigned char buffer[8];

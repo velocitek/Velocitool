@@ -21,5 +21,6 @@
 
 + (VTPuckSettings *)settingsWithDictionary:(NSDictionary *)settings;
 - (NSDictionary *)settingsDictionary;
+
 @end
 
