@@ -20,6 +20,7 @@
 
 @end
 
+
 @interface VTRecord : NSObject {
 }
 
@@ -29,10 +30,12 @@
 
 @end
 
+
 @interface VTCommandResultRecord: VTRecord {
 }
 
 @end
+
 
 @interface VTPuckSettingsRecord : VTRecord {
     unsigned char _recordRate;
@@ -51,12 +54,14 @@
     
 @end
 
+
 @interface VTFirmwareVersionRecord : VTRecord {
     NSString *_version;
 }
 
 - (NSString *)version;
 @end
+
 
 @interface VTTrackpointLogRecord : VTRecord {
     char _logIndex;

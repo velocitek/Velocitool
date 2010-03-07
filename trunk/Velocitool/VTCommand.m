@@ -9,18 +9,20 @@
 
 
 @implementation VTCommand
+
 // Commands returning a single result
 + commandWithSignal:(unsigned char)signalChar parameter:(VTRecord *)parameter resultClass:(Class)resultClass {
     return [[[self alloc] initWithSignal:signalChar parameter:parameter resultClass:resultClass isList:NO] autorelease];
 }
 
-// Commands returning a list of results
+
+// Commands returning a list of results, not the 's' at results.
 + commandWithSignal:(unsigned char)signalChar parameter:(VTRecord *)parameter resultsClass:(Class)resultClass {
     return [[[self alloc] initWithSignal:signalChar parameter:parameter resultClass:resultClass isList:YES] autorelease];
 }
 
 
-- initWithSignal:(unsigned char)signalChar parameter:(VTRecord *)parameter resultClass:(Class)resultClass isList:(BOOL)flag{
+- initWithSignal:(unsigned char)signalChar parameter:(VTRecord *)parameter resultClass:(Class)resultClass isList:(BOOL)flag {
     [super init];
     _signal = signalChar;
     _parameter = [parameter retain];
@@ -29,32 +31,39 @@
     return self;
 }
 
+
 - (void)dealloc {
     [_parameter release]; _parameter = nil;
     [super dealloc];
 }
 
+
 - (BOOL)flowControl {
     return NO;
 }
+
 
 - (unsigned char)signal {
     return _signal;
 }
 
+
 - (VTRecord *)parameter {
     return _parameter;
 }
 
+
 - (Class)resultClass {
     return _resultClass;
 }
+
 
 - (BOOL)returnsList {
     return _isList;
 }
 
 @end
+
 
 @implementation VTRecord : NSObject
 
@@ -63,9 +72,11 @@
     return '\0';
 }
 
+
 - (void)writeDeviceDataForConnection:(VTConnection *)connection {
     VTRaiseAbstractMethodException(self, _cmd, [VTRecord self]);
 }
+
 
 - (void)readDeviceDataFromConnection:(VTConnection *)connection {
     VTRaiseAbstractMethodException(self, _cmd, [VTRecord self]);
@@ -80,6 +91,7 @@
     return 'r';
 }
 
+
 - (void)readDeviceDataFromConnection:(VTConnection *)connection {
     [connection readUnsignedChar];
 }
@@ -93,8 +105,10 @@
     return 'd';
 }
 
+
 - init {
     [super init];
+    
     // load some default values
     _recordRate = VTRecordRateEveryFour;
     _declination = 0;
@@ -107,6 +121,7 @@
     return self;
 }
 
+
 + (VTPuckSettingsRecord *)recordFromSettingsDictionary:(NSDictionary *)settings {
     VTPuckSettingsRecord *record = [[self alloc] init];
     if(settings) {
@@ -114,6 +129,7 @@
     }
     return record;
 }
+
 
 - (void)writeDeviceDataForConnection:(VTConnection *)connection {
     [connection writeUnsignedChar:_recordRate];
@@ -126,6 +142,7 @@
     [connection writeUnsignedChar:_deviceOperationOption];
 }
 
+
 - (void)readDeviceDataFromConnection:(VTConnection *)connection {
     _recordRate = [connection readUnsignedChar];
     _declination = [connection readChar];
@@ -136,6 +153,7 @@
     _barGraphEnabled = [connection readBool];
     _deviceOperationOption = [connection readUnsignedChar];
 }
+
 
 - (NSDictionary *)settingsDictionary {
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
@@ -151,6 +169,7 @@
                           ];
     return dict;
 }
+
 
 - (void)setSettingsDictionary:(NSDictionary *)settings {
     id value = nil;

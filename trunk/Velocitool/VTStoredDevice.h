@@ -38,6 +38,7 @@
 - (void)removeTracklogs:(NSSet *)value;
 
 - (VTPuckSettings *)puckSettings;
+
 - (IBAction)saveSettings:target;
 - (IBAction)cancelSettings:target;
 @end

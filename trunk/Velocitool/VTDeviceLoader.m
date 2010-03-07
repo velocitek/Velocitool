@@ -37,6 +37,7 @@ static void _RawDeviceAdded(void *loader_ptr, io_iterator_t iterator) {
     }
 }
 
+
 static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     VTDeviceLoader *loader = (VTDeviceLoader *)loader_ptr;
     io_service_t usbDevice;
@@ -59,19 +60,23 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     return the_one_true_instance;
 }
 
+
 - (void)dealloc {
     [_devicesByLocation release]; _devicesByLocation = nil;
     [_devicesBySerial release]; _devicesBySerial = nil;
     [super dealloc];
 }
 
+
 - (NSArray *)devices {
     return [_devicesBySerial allValues];
 }
 
+
 - (VTDevice *)deviceForSerialNumber:(NSString *)serial {
     return [_devicesBySerial objectForKey:serial];
 }
+
 
 - (void)_addDevice:(io_service_t)usbDevice {
 	IOReturn result;
@@ -82,6 +87,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
         result = kIOReturnSuccess;
         properties = (CFMutableDictionaryRef)[NSDictionary new];
         location = @"Nowhere";
+
     } else {
         result = IORegistryEntryCreateCFProperties(usbDevice, &properties,  kCFAllocatorDefault, kNilOptions);
         location = [(NSDictionary *)properties objectForKey:@"locationID"];
@@ -103,6 +109,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     }
 }
 
+
 - (void)_removeDevice:(io_service_t)usbDevice {
 	IOReturn result;
     CFMutableDictionaryRef properties;
@@ -122,6 +129,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
         
     }
 }
+
 
 - init {
     _devicesByLocation = [[NSMutableDictionary alloc] init];
@@ -182,7 +190,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     // Release the matching dictionary
     CFRelease(matchingDict);
     
-    // For debug
+    // For debug, add a fake device by default.
     [self _addDevice:IO_OBJECT_NULL];
     return self;
 }

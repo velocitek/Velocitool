@@ -1,3 +1,7 @@
+/*
+ * This class is a first draft and currently UNUSED! See VTConnection instead.
+ */
+
 //
 // This is really fugly, but unfortunately the device driver for the hardware Velocitek uses is only
 // available in binary form, as a dyld file to be installed in /usr/local. This is a really bad idea
@@ -26,16 +30,18 @@
     _wrapper = wrapper; // No need for retain, wrapper is a singleton
     _vendorID = vendorID;
     _productID = productID;
-    _serial = serial;
+    _serial = [serial copy];
     
     [self open];
     
+    // open had the side effect of setting the _ft_handle to the library.
     if (_ft_handle) {
         return self;
     } else {
         return nil;
     }
 }
+
 
 - (void)open {
     FT_STATUS ft_error;
@@ -114,10 +120,14 @@
     _ft_handle = ft_handle;
 }
 
+
 - (void)reset {
-    [self close];
-    [self open];
+    if (_ft_handle) {
+        [self close];
+        [self open];
+    }
 }
+
 
 - (void)close {
     FT_STATUS ft_error;
@@ -132,15 +142,12 @@
 
 
 - (NSData *)runCommand:(char)command responsePrefix:(char)prefix expectedLength:(int)length {
+    
     return [self runCommand:(char)command withArgumentsPrefix:'\0' arguments:nil responsePrefix:(char)prefix expectedLength:(int)length];
 }
 
 
-- (NSData *)runCommand:(char)command 
-   withArgumentsPrefix:(char)argPrefix 
-             arguments:(NSData *)arguments 
-        responsePrefix:(char)prefix 
-        expectedLength:(int)length {
+- (NSData *)runCommand:(char)command withArgumentsPrefix:(char)argPrefix arguments:(NSData *)arguments responsePrefix:(char)prefix expectedLength:(int)length {
     
     NSLog(@"set RTS");
     [self setRTS];
@@ -194,8 +201,6 @@
 }
 
 
-
-
 - (void)setRTS {
     FT_STATUS ft_error;
     FT_STATUS (*FT_SetRts)(FT_HANDLE ftHandle);
@@ -207,6 +212,7 @@
     usleep(500000); // Give the device 50ms to react...
 }
 
+
 - (void)clearRTS {
     FT_STATUS ft_error;
     FT_STATUS (*FT_ClrRts)(FT_HANDLE ftHandle);
@@ -217,6 +223,7 @@
     }
     usleep(500000); // Give the device 50ms to react...
 }
+
 
 - (void)setFlowControl:(BOOL)onOff {
     FT_STATUS ft_error;
@@ -234,6 +241,7 @@
     }
 }
 
+
 - (void)write:(NSData *)data {
     FT_STATUS ft_error;
     FT_STATUS (*FT_Write)(FT_HANDLE ftHandle, LPVOID lpBuffer, DWORD nBufferSize, LPDWORD lpBytesWritten);
@@ -249,9 +257,11 @@
     }
 }
 
+
 - (NSData *)readLength:(int)length {
     return [self readLength:length timeout:5000];
 }
+
 
 - (NSData *)readLength:(int)length timeout:(int)timeOutInMs {
     FT_STATUS ft_error;
@@ -309,13 +319,18 @@
     return 0;
 }
 
+
 - (void)dealloc {
-    [self close];
+    if (_ft_handle) {
+        [self close];
+    }
+    [_serial release];
     [super dealloc];
 }
 
 
 @end
+
 
 
 static VTWrapper *the_one_true_instance = Nil;
@@ -334,12 +349,14 @@ static VTWrapper *the_one_true_instance = Nil;
     return the_one_true_instance;
 }
 
+
 + (VTWrapper *)wrapper {
     if (!the_one_true_instance) {
         [NSException raise:@"VTError" format:@"Don't call -wrapper first! "];
     }
     return the_one_true_instance;
 }
+
 
 - (void *)_functionForName:(NSString *)name {
     void *function = dlsym(_handle, [name UTF8String]);
@@ -349,29 +366,31 @@ static VTWrapper *the_one_true_instance = Nil;
     return function;
 }
 
+
 - initForLibAtPath:(NSString *)path {
     _handle = dlopen([path UTF8String], RTLD_LAZY | RTLD_GLOBAL);
 
     if (!_handle) {
 		[NSException raise:@"VTNoLibrary" format:@"Can't load the library at %@: %s", path, dlerror()];
     }
-    _FT_SetVIDPID = [self _functionForName:@"FT_SetVIDPID"];
-    _FT_OpenEx = [self _functionForName:@"FT_OpenEx"];
-    _FT_SetBaudRate = [self _functionForName:@"FT_SetBaudRate"];
+    _FT_SetVIDPID              = [self _functionForName:@"FT_SetVIDPID"];
+    _FT_OpenEx                 = [self _functionForName:@"FT_OpenEx"];
+    _FT_SetBaudRate            = [self _functionForName:@"FT_SetBaudRate"];
     _FT_SetDataCharacteristics = [self _functionForName:@"FT_SetDataCharacteristics"];
-    _FT_SetTimeouts = [self _functionForName:@"FT_SetTimeouts"];
-    _FT_SetRts = [self _functionForName:@"FT_SetRts"];
-    _FT_ClrRts = [self _functionForName:@"FT_ClrRts"];
-    _FT_SetFlowControl = [self _functionForName:@"FT_SetFlowControl"];
-    _FT_Write = [self _functionForName:@"FT_Write"];
-    _FT_Read = [self _functionForName:@"FT_Read"];
-    _FT_GetStatus = [self _functionForName:@"FT_GetStatus"];
-    _FT_ResetDevice = [self _functionForName:@"FT_ResetDevice"];
-    _FT_Purge = [self _functionForName:@"FT_Purge"];
-    _FT_Close = [self _functionForName:@"FT_Close"];
+    _FT_SetTimeouts            = [self _functionForName:@"FT_SetTimeouts"];
+    _FT_SetRts                 = [self _functionForName:@"FT_SetRts"];
+    _FT_ClrRts                 = [self _functionForName:@"FT_ClrRts"];
+    _FT_SetFlowControl         = [self _functionForName:@"FT_SetFlowControl"];
+    _FT_Write                  = [self _functionForName:@"FT_Write"];
+    _FT_Read                   = [self _functionForName:@"FT_Read"];
+    _FT_GetStatus              = [self _functionForName:@"FT_GetStatus"];
+    _FT_ResetDevice            = [self _functionForName:@"FT_ResetDevice"];
+    _FT_Purge                  = [self _functionForName:@"FT_Purge"];
+    _FT_Close                  = [self _functionForName:@"FT_Close"];
     
     return self;
 }
+
 
 - (VTWrapperDevice *)openDeviceWithVendorID:(int)vendorID productID:(int)productID serialNumber:(NSString *)serial {
     return [[[VTWrapperDevice alloc] initWithWrapper:self vendorID:vendorID productID:productID serialNumber:serial] autorelease];

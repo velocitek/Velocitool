@@ -28,12 +28,15 @@ static NSDictionary *productIDToClass = nil;
 
 + (void)initialize {
     productIDToClass = [[NSDictionary alloc] initWithObjectsAndKeys:
+
                         [VTDeviceSpeedPuck class], [NSNumber numberWithInt:0xb709], 
                         [VTDeviceS10 class],       [NSNumber numberWithInt:0x6001], 
                         [VTDeviceSC1 class],       [NSNumber numberWithInt:0xb708], 
+                        
                         nil
     ];
 }
+
 
 + deviceForProperties:(NSDictionary *)properties {
     VTConnection *connection;
@@ -54,6 +57,7 @@ static NSDictionary *productIDToClass = nil;
     return nil;
 }
 
+
 - initWithConnection:(VTConnection *)connection properties:(NSDictionary *)properties {
     _connection = [connection retain];
     _properties = [properties copy];
@@ -61,9 +65,11 @@ static NSDictionary *productIDToClass = nil;
     
 }
 
+
 - (NSString *)serial {
     return [_properties objectForKey:@"USB Serial Number"];
 }
+
 
 - (void)dealloc {
     [_connection release]; _connection = nil;
@@ -71,11 +77,13 @@ static NSDictionary *productIDToClass = nil;
     [super dealloc];
 }
 
+
 - (NSString *)model {
     // For subclassers to implement
     VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
     return nil;
 }
+
 
 - (NSString *)firmwareVersion {
     // For subclassers to implement
@@ -83,11 +91,13 @@ static NSDictionary *productIDToClass = nil;
     return nil;
 }
 
+
 - (BOOL)isPowered {
     // For subclassers to implement
     VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
     return FALSE;
 }
+
 
 - (NSDictionary *)deviceSettings {
     // For subclassers to implement
@@ -95,16 +105,19 @@ static NSDictionary *productIDToClass = nil;
     return nil;
 }
 
+
 - (void)setDeviceSettings:(NSDictionary *)settings {
     // For subclassers to implement
     VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
 }
+
 
 - (NSArray *)trackpointLogs {
     // For subclassers to implement
     VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
     return nil;
 }
+
 
 - (NSString *)description {
     NSString *sd     = [super description];
@@ -122,23 +135,28 @@ static NSDictionary *productIDToClass = nil;
     return YES; // Actually, who knows.
 }
 
+
 - (NSString *)model {
     return @"S10";
 }
+
 
 - (NSString *)firmwareVersion {
     // There is no way to get the firmware version of the S10. Just return the known version
     return @"1.1";
 }
 
+
 - (NSDictionary *)deviceSettings {
     return [NSDictionary dictionary]; // No settings
 }
+
 
 - (void)setDeviceSettings:(NSDictionary *)settings {
 }
 
 @end
+
 
 @implementation VTDeviceSC1
     // The legacy method of determining firmware version was to get a user information record and
@@ -153,31 +171,38 @@ static NSDictionary *productIDToClass = nil;
 
 @end
 
+
 @implementation VTFakeDevice
 
 - (BOOL)isPowered {
     return YES;
 }
 
+
 - (NSString *)model {
     return @"FakeStuff";
 }
+
 
 - (NSString *)serial {
     return @"Fake007";
 }
 
+
 - (NSString *)firmwareVersion {
     return @"3.1415";
 }
+
 
 - (NSDictionary *)deviceSettings {
     return [[VTPuckSettingsRecord recordFromSettingsDictionary:nil] settingsDictionary];
 }
 
+
 - (void)setDeviceSettings:(NSDictionary *)settings {
     NSLog(@"set settings %@", settings);
 }
+
 
 - (NSArray *)trackpointLogs {
     return [NSArray array];
@@ -199,15 +224,18 @@ static NSDictionary *productIDToClass = nil;
     */
 }
 
+
 - (NSString *)model {
     return @"SpeedPuck";
 }
+
 
 - (void)dealloc {
     [_firmwareVersion release]; _firmwareVersion = nil;
     [_deviceSettings release];  _deviceSettings = nil;
     [super dealloc];
 }
+
 
 - (NSString *)firmwareVersion {
     if(!_firmwareVersion) {
@@ -218,6 +246,7 @@ static NSDictionary *productIDToClass = nil;
     return _firmwareVersion;
 }
 
+
 - (NSDictionary *)deviceSettings {
     if(!_deviceSettings) {
         VTPuckSettingsRecord *result = (VTPuckSettingsRecord *)[_connection runCommand:[VTCommand commandWithSignal:'S' parameter:nil resultClass:[VTPuckSettingsRecord class]]];
@@ -227,11 +256,13 @@ static NSDictionary *productIDToClass = nil;
     return _deviceSettings;
 }
 
+
 - (void)setDeviceSettings:(NSDictionary *)settings {
     [_connection runCommand:[VTCommand commandWithSignal:'D' parameter:[VTPuckSettingsRecord recordFromSettingsDictionary:settings] resultClass:[VTCommandResultRecord class]]];
     
     [_deviceSettings release]; _deviceSettings = nil;
 }
+
 
 - (NSArray *)trackpointLogs {
     NSArray *records = (NSArray *)[_connection runCommand:[VTCommand commandWithSignal:'O' parameter:nil resultsClass:[VTTrackpointLogRecord class]]];

@@ -114,13 +114,9 @@
 		080E96DDFE201D6D7F000001 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				ED6C71F20F0AD49400BF3260 /* VTWrapper.h */,
-				ED6C71F30F0AD49400BF3260 /* VTWrapper.m */,
-				ED2B24B90F25D10C00A5EDDB /* VTConvert.h */,
-				ED2B24BA0F25D10C00A5EDDB /* VTConvert.m */,
+				EDDC83D81143B80E00E1C809 /* Obsolete */,
 				EDF725540F3E069700E503AE /* VTStoredDevice.h */,
 				EDF725550F3E069700E503AE /* VTStoredDevice.m */,
-				EDF7261D0F3E274E00E503AE /* VTAppDelegate.m */,
 				ED21C5DE0F647FAB002BE074 /* VTPuckSettings.h */,
 				ED21C5DF0F647FAB002BE074 /* VTPuckSettings.m */,
 			);
@@ -210,6 +206,7 @@
 				EDF724DE0F3DEB9F00E503AE /* MainWindowController.h */,
 				EDF724DF0F3DEB9F00E503AE /* MainWindowController.m */,
 				EDF7261C0F3E274E00E503AE /* VTAppDelegate.h */,
+				EDF7261D0F3E274E00E503AE /* VTAppDelegate.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -239,6 +236,17 @@
 				ED6C716F0F09A89D00BF3260 /* WinTypes.h */,
 			);
 			name = ftd2xx;
+			sourceTree = "<group>";
+		};
+		EDDC83D81143B80E00E1C809 /* Obsolete */ = {
+			isa = PBXGroup;
+			children = (
+				ED6C71F20F0AD49400BF3260 /* VTWrapper.h */,
+				ED6C71F30F0AD49400BF3260 /* VTWrapper.m */,
+				ED2B24B90F25D10C00A5EDDB /* VTConvert.h */,
+				ED2B24BA0F25D10C00A5EDDB /* VTConvert.m */,
+			);
+			name = Obsolete;
 			sourceTree = "<group>";
 		};
 		EDF727250F4234B700E503AE /* images */ = {

@@ -1,6 +1,9 @@
 
 #import <Cocoa/Cocoa.h>
 
+/*
+ * This class is a first draft and currently UNUSED! See VTConnection instead.
+ */
 @class VTWrapperDevice;
 
 @interface VTWrapper : NSObject {
@@ -30,6 +33,7 @@
 
 @end
 
+
 @interface VTWrapperDevice : NSObject {
     VTWrapper *_wrapper;
     void *_ft_handle;
@@ -37,7 +41,6 @@
     int _productID;
     NSString * _serial;
 }
-
 
 - (NSData *)runCommand:(char)command responsePrefix:(char)prefix expectedLength:(int)length;
 - (NSData *)runCommand:(char)command withArgumentsPrefix:(char)argPrefix arguments:(NSData *)arguments responsePrefix:(char)prefix expectedLength:(int)length;

@@ -50,7 +50,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 
 @implementation VTConnection
 
-+ (id)initialize {
++ (void)initialize {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"libftd2xx.0.1.4.dylib" ofType:@""];
 
     void *handle = dlopen([path UTF8String], RTLD_LAZY | RTLD_GLOBAL);
@@ -71,28 +71,32 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     pFT_Purge                  = dlsym(handle, "FT_Purge");                  NSAssert(pFT_Purge, @"FT_Purge");
     pFT_Close                  = dlsym(handle, "FT_Close");                  NSAssert(pFT_Close, @"FT_Close");
     
-    return self;
 }
+
 
 + connectionWithVendorID:(int)vendorID productID:(int)productID serialNumber:(NSString *)serial {
     return [[[self alloc] initWithVendorID:vendorID productID:productID serialNumber:serial] autorelease];
 }
 
+
 - initWithVendorID:(int)vendorID productID:(int)productID serialNumber:(NSString *)serial {
     [super init];
     _vendorID = vendorID;
     _productID = productID;
-    _serial = serial;
+    _serial = [serial copy];
     
     [self open];
     
     return _ft_handle ? self: nil;
 }
 
+
 - (void)dealloc {
     [self close];
+    [_serial release]; _serial = nil;
     [super dealloc];
 }
+
 
 - (void)open {
     FT_STATUS ft_error;
@@ -171,10 +175,12 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     _available = 0;
 }
 
+
 - (void)reset {
     [self close];
     [self open];
 }
+
 
 - (void)setRTS {
     FT_STATUS ft_error;
@@ -186,14 +192,17 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     usleep(500000); // Give the device 50ms to react...
 }
 
+
 - (void)clearRTS  {
     FT_STATUS ft_error;
+
     if ( (ft_error = (*pFT_ClrRts)(_ft_handle)) ){
         NSLog(@"VTError: Call to FT_ClrRts failed with error %d", ft_error);
         return;
     }
     usleep(500000); // Give the device 50ms to react...
 }
+
 
 - (void)setFlowControl:(BOOL)onOff {
     FT_STATUS ft_error;
@@ -228,9 +237,11 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     return sizedone;
 }
 
+
 - (NSData *)readLength:(unsigned int)length {
     return [self readLength:length timeout:5000];
 }
+
 
 - (NSData *)readLength:(unsigned int)length timeout:(int)timeOutInMs {
     FT_STATUS ft_error;
@@ -285,6 +296,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     return 0;
 }
 
+
 - (void)_recover {
     
     unsigned int toRead = [self waitForResponseLength:10000 timeout:5000];
@@ -299,6 +311,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     [self close];
     [self open];
 }
+
 
 - runCommand:(VTCommand *)command {
     unsigned char response;
@@ -362,7 +375,8 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
                 [results addObject:result];
             }            
         }
-        returnValue = [results copy];
+        returnValue = [[results copy] autorelease];
+
     } else {
         VTRecord *result = [[[resultClass alloc] init] autorelease];
         if(signalChar) {
@@ -384,20 +398,24 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     return returnValue;
 }
 
+
 - (void)writeChar:(char)c {
     //unsigned char v = ((unsigned char)c) + 128; // Whatever!
     //[self writeUnsignedChar:v];
     [self write:[NSData dataWithBytes:&c length:1]];
 }
 
+
 - (void)writeUnsignedChar:(unsigned char)c {
     [self write:[NSData dataWithBytes:&c length:1]];
 }
+
 
 - (void)writeBool:(BOOL)boolValue {
     char v = boolValue ? 1: 0;
     [self write:[NSData dataWithBytes:&v length:1]];
 }
+
 
 - (unsigned char)readUnsignedChar {
     NSData *r = [self readLength:1];
@@ -409,6 +427,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
         return 0;
     }
 }
+
 
 - (char)readChar {
     NSData *r = [self readLength:1];
@@ -426,6 +445,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     return [self readChar]? YES: NO;
 }
 
+
 - (int)readInt32 {
     NSData *r = [self readLength:4];
     
@@ -436,6 +456,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
         return 0;
     }
 }
+
 
 - (NSDate *)readDate {
     int year = 2000 + [self readUnsignedChar];
