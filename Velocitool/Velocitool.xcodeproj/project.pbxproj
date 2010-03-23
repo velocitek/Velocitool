@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		77631A270C06C501005415CB /* Python.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77631A260C06C501005415CB /* Python.framework */; };
 		77C8C1F90C07829500965286 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C8C1F70C07829500965286 /* MainMenu.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -22,6 +21,14 @@
 		ED60756B0F36558E007B36A9 /* store.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED60756A0F36558E007B36A9 /* store.xcdatamodeld */; };
 		ED6505FB0F099EDD0018D068 /* libftd2xx.0.1.4.dylib in Resources */ = {isa = PBXBuildFile; fileRef = ED6505F90F099EDD0018D068 /* libftd2xx.0.1.4.dylib */; };
 		EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
+		EDE897E41158CDCF009E8151 /* tool.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE897E31158CDCF009E8151 /* tool.m */; };
+		EDE897E61158CE3A009E8151 /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
+		EDE897E81158CE3A009E8151 /* VTConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2A015F0F339B8F005C0CE0 /* VTConnection.m */; };
+		EDE897EA1158CE3A009E8151 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
+		EDE897EC1158CE3A009E8151 /* VTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B99C70F1548A000AF563B /* VTDevice.m */; };
+		EDE897EE1158CE3A009E8151 /* VTDeviceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */; };
+		EDE8982E1158D31D009E8151 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFC3F690EF8948D00E1DD2F /* IOKit.framework */; };
+		EDE8982F1158D31D009E8151 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		EDF724E00F3DEB9F00E503AE /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF724DF0F3DEB9F00E503AE /* MainWindowController.m */; };
 		EDF725560F3E069700E503AE /* VTStoredDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF725550F3E069700E503AE /* VTStoredDevice.m */; };
 		EDF7261E0F3E274E00E503AE /* VTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF7261D0F3E274E00E503AE /* VTAppDelegate.m */; };
@@ -33,6 +40,16 @@
 		EDFC3EF70EF81CCF00E1DD2F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = EDFC3EF60EF81CCF00E1DD2F /* dsa_pub.pem */; };
 		EDFC3F4E0EF88A5A00E1DD2F /* velocitool.icns in Resources */ = {isa = PBXBuildFile; fileRef = EDFC3F4D0EF88A5A00E1DD2F /* velocitool.icns */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EDE897E01158CD5C009E8151 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EDE897D91158CD2D009E8151 /* Tool */;
+			remoteInfo = Tool;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		EDFC3EF20EF819B600E1DD2F /* CopyFiles */ = {
@@ -80,6 +97,8 @@
 		ED6C71F30F0AD49400BF3260 /* VTWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTWrapper.m; sourceTree = "<group>"; };
 		EDA9F3FF0F16B638004112D5 /* VTCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTCommand.h; sourceTree = "<group>"; };
 		EDA9F4000F16B638004112D5 /* VTCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTCommand.m; sourceTree = "<group>"; };
+		EDE897DA1158CD2D009E8151 /* Tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; name = Tool; path = /Users/noyau/Builds/Debug/Tool; sourceTree = "<absolute>"; };
+		EDE897E31158CDCF009E8151 /* tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tool.m; sourceTree = "<group>"; };
 		EDF724DE0F3DEB9F00E503AE /* MainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainWindowController.h; sourceTree = "<group>"; };
 		EDF724DF0F3DEB9F00E503AE /* MainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainWindowController.m; sourceTree = "<group>"; };
 		EDF725540F3E069700E503AE /* VTStoredDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTStoredDevice.h; sourceTree = "<group>"; };
@@ -103,8 +122,16 @@
 			files = (
 				ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
-				77631A270C06C501005415CB /* Python.framework in Frameworks */,
 				EDFC3EE20EF8194700E1DD2F /* Sparkle.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EDE897D81158CD2D009E8151 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDE8982E1158D31D009E8151 /* IOKit.framework in Frameworks */,
+				EDE8982F1158D31D009E8151 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +176,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* Velocitool.app */,
+				EDE897DA1158CD2D009E8151 /* Tool */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -158,6 +186,7 @@
 			children = (
 				ED60756A0F36558E007B36A9 /* store.xcdatamodeld */,
 				ED2A015D0F339B6A005C0CE0 /* Communication */,
+				EDE897E21158CD82009E8151 /* CmdLine */,
 				080E96DDFE201D6D7F000001 /* Model */,
 				ED21C5D30F64779E002BE074 /* View */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -249,6 +278,14 @@
 			name = Obsolete;
 			sourceTree = "<group>";
 		};
+		EDE897E21158CD82009E8151 /* CmdLine */ = {
+			isa = PBXGroup;
+			children = (
+				EDE897E31158CDCF009E8151 /* tool.m */,
+			);
+			name = CmdLine;
+			sourceTree = "<group>";
+		};
 		EDF727250F4234B700E503AE /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,12 +313,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				EDE897E11158CD5C009E8151 /* PBXTargetDependency */,
 			);
 			name = Velocitool;
 			productInstallPath = "$(HOME)/Applications";
 			productName = Velocitool;
 			productReference = 8D1107320486CEB800E47090 /* Velocitool.app */;
 			productType = "com.apple.product-type.application";
+		};
+		EDE897D91158CD2D009E8151 /* Tool */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EDE897DF1158CD4D009E8151 /* Build configuration list for PBXNativeTarget "Tool" */;
+			buildPhases = (
+				EDE897D71158CD2D009E8151 /* Sources */,
+				EDE897D81158CD2D009E8151 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tool;
+			productName = Tool;
+			productReference = EDE897DA1158CD2D009E8151 /* Tool */;
+			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
 
@@ -296,6 +350,7 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* Velocitool */,
+				EDE897D91158CD2D009E8151 /* Tool */,
 			);
 		};
 /* End PBXProject section */
@@ -354,7 +409,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EDE897D71158CD2D009E8151 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EDE897E41158CDCF009E8151 /* tool.m in Sources */,
+				EDE897E61158CE3A009E8151 /* VTGlobals.m in Sources */,
+				EDE897E81158CE3A009E8151 /* VTConnection.m in Sources */,
+				EDE897EA1158CE3A009E8151 /* VTCommand.m in Sources */,
+				EDE897EC1158CE3A009E8151 /* VTDevice.m in Sources */,
+				EDE897EE1158CE3A009E8151 /* VTDeviceLoader.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EDE897E11158CD5C009E8151 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EDE897D91158CD2D009E8151 /* Tool */;
+			targetProxy = EDE897E01158CD5C009E8151 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
@@ -500,6 +576,52 @@
 			};
 			name = Release;
 		};
+		EDE897DC1158CD2F009E8151 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tool;
+			};
+			name = Debug;
+		};
+		EDE897DD1158CD2F009E8151 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				INSTALL_PATH = /usr/local/bin;
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					AppKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = Tool;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -517,6 +639,15 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EDE897DF1158CD4D009E8151 /* Build configuration list for PBXNativeTarget "Tool" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EDE897DC1158CD2F009E8151 /* Debug */,
+				EDE897DD1158CD2F009E8151 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
