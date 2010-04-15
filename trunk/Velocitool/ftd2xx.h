@@ -172,6 +172,8 @@ enum {
 #define FT_FLOW_RTS_CTS     0x0100
 #define FT_FLOW_DTR_DSR     0x0200
 #define FT_FLOW_XON_XOFF    0x0400
+#define XON		0x11
+#define XOFF	0x13
 
 //
 // Purge rx and tx buffers

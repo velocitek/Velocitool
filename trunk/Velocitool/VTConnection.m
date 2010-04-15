@@ -1,6 +1,13 @@
 
+#define ACKLOD 0x06
+
 #import "VTConnection.h"
 #import "VTCommand.h"
+#import "VTRecord.h"
+#import "VTDateTime.h"
+#import "VTFloat.h"
+#import "VTFirmwareFile.h"
+
 
 #import <dlfcn.h>
 #import "ftd2xx.h"
@@ -51,7 +58,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 @implementation VTConnection
 
 + (void)initialize {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"libftd2xx.0.1.4.dylib" ofType:@""];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"libftd2xx.0.1.7.dylib" ofType:@""];
 
     void *handle = dlopen([path UTF8String], RTLD_LAZY | RTLD_GLOBAL);
     NSAssert2(handle, @"Can't load the library at %@: %s", path, dlerror());
@@ -155,7 +162,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     
     // Set timeouts
     //
-    if ( (ft_error = (*pFT_SetTimeouts)(ft_handle, 500, 500)) ){
+    if ( (ft_error = (*pFT_SetTimeouts)(ft_handle, 1000, 1000)) ){
         NSLog(@"VTError: Call to FT_SetTimeouts failed with error %d", ft_error);
         [self close];
         return;
@@ -189,7 +196,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
         NSLog(@"VTError: Call to FT_SetRts failed with error %d", ft_error);
         return;
     }
-    usleep(500000); // Give the device 50ms to react...
+    usleep(50000); // Give the device 50ms to react...
 }
 
 
@@ -200,7 +207,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
         NSLog(@"VTError: Call to FT_ClrRts failed with error %d", ft_error);
         return;
     }
-    usleep(500000); // Give the device 50ms to react...
+    usleep(500000); // Give the device 500ms to react...
 }
 
 
@@ -208,7 +215,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     FT_STATUS ft_error;
 
     if (onOff) {
-        ft_error = (*pFT_SetFlowControl)(_ft_handle, FT_FLOW_XON_XOFF, 0x11, 0x13);
+        ft_error = (*pFT_SetFlowControl)(_ft_handle, FT_FLOW_XON_XOFF, XON, XOFF);
     } else {
         ft_error = (*pFT_SetFlowControl)(_ft_handle, FT_FLOW_NONE, 0, 0);
     }
@@ -219,7 +226,8 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 }
 
 
-- (int)write:(NSData *)data {
+- (int)write:(NSData *)data 
+{
     FT_STATUS ft_error;
     DWORD sizedone;
     
@@ -232,8 +240,8 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
         NSLog(@"VTError: Call to FT_Write failed, wrote only %d of %d", sizedone, [data length] );
     }
     
-    NSLog(@"write %d: %@", sizedone, data);
-
+    //NSLog(@"write %d: %@", sizedone, data);
+	
     return sizedone;
 }
 
@@ -267,7 +275,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     }
     
     NSData *data = [NSData dataWithBytes:buffer length:length];
-    NSLog(@"Read %d (%d left) %@", sizedone, _available, data);
+    //NSLog(@"Read %d (%d left) %@", sizedone, _available, data);
     return data;
 }
 
@@ -292,12 +300,12 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
         
         usleep(timeoutInUSeconds / 100);
     }
-    NSLog(@"VTError: No response FT_GetStatus during the alloted time");
+    NSLog(@"waitForResponseLength timed out after waiting %d ms for %d byte(s)", timeOutInMs, length);
     return 0;
 }
 
 
-- (void)_recover {
+- (void)recover {
     
     unsigned int toRead = [self waitForResponseLength:10000 timeout:5000];
     
@@ -328,7 +336,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     response = [self readUnsignedChar];
     if (response != signalChar) {
         NSLog(@"VTError: Wrong response %c to signal %c. Aborting.", response, signalChar);
-        [self _recover];
+        [self recover];
         return nil;
     }
     
@@ -340,20 +348,20 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     
     if (parameter) {
         NSLog(@"Writing args %@", parameter);
-        [self writeUnsignedChar:[[parameter class] recordHeader]];
-        [parameter writeDeviceDataForConnection:self];
+		
+        [parameter writeForConnection:self];
     }
             
     response = [self readUnsignedChar];    
     if (response != signalChar) {
         NSLog(@"VTError: Wrong response %c to signal %c. Aborting.", response, signalChar);
-        [self _recover];
+        [self recover];
         return nil;
     }
     
     BOOL returnsList = [command returnsList];
     Class resultClass = [command resultClass];
-    signalChar = [resultClass recordHeader];
+    //signalChar = [resultClass recordHeader];
     id returnValue = nil;
     
     if(returnsList) {
@@ -362,42 +370,163 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
         while([self waitForResponseLength:1 timeout:5000]) {
             
             VTRecord *result = [[[resultClass alloc] init] autorelease];
-            if(signalChar) {
-                NSLog(@"reading result record %c", signalChar);
-                response = [self readUnsignedChar];
-                
-                if (response != signalChar) {
-                    NSLog(@"VTError: Record header invalid %c. expected %c. Aborting.", response, signal);
-                    [self _recover];
-                    return nil;
-                }
-                [result readDeviceDataFromConnection:self];
-                [results addObject:result];
-            }            
+            
+			[result readFromConnection:self];
+            [results addObject:result];
+                        
         }
         returnValue = [[results copy] autorelease];
 
-    } else {
-        VTRecord *result = [[[resultClass alloc] init] autorelease];
-        if(signalChar) {
-            NSLog(@"reading result record %c", signalChar);
-            response = [self readUnsignedChar];
-    
-            if (response != signalChar) {
-                NSLog(@"VTError: Record header invalid %c. expected %c. Aborting.", response, signal);
-                [self _recover];
-                return nil;
-            }
-        }
-        [result readDeviceDataFromConnection:self];
+    } 
+	
+	else {
+        
+		VTRecord *result = [[[resultClass alloc] init] autorelease];        
+        
+		[result readFromConnection:self];
         returnValue = result;
     }
+	
     [self clearRTS];
+	
     NSLog(@"Done!");
 
     return returnValue;
 }
 
+- (BOOL)runFirmwareUpdate:(VTFirmwareFile *)firmwareFile
+{
+
+	unsigned char response;	
+	
+	[self setRTS];
+    
+    //Send the Write Firmware command signal
+	unsigned char signalChar = 'L';
+    NSLog(@"signalling command %c", signalChar);
+	
+    [self writeUnsignedChar:signalChar];
+    
+    response = [self readUnsignedChar];
+    if (response != 'R') {
+        NSLog(@"VTError: Wrong response %c to signal %c.", response, signalChar);
+        [self recover];
+		return FIRMWARE_UPDATE_FAILED;
+        
+    }
+	
+	[self clearRTS];
+
+	return [self writeFirmwareFile:firmwareFile];			
+	
+}
+
+//This routine writes the bytes of a firmware file to the connection
+- (BOOL)writeFirmwareFile:(VTFirmwareFile*)firmwareFile
+{
+	NSArray *firmwareData = [firmwareFile firmwareData]; 
+	
+	float lineCounter = 0;
+	float numLinesInUpdate = (float)[firmwareData count];
+	float percentComplete = 0;
+	float percentCompleteToReport = 0.0;
+	
+	[self setFlowControl:YES];
+
+	int bytesWritten;
+	
+	NSLog(@"Starting to send firmware data.");
+	//for each element in firmwareData
+	for (NSData* dataLine in firmwareData) 
+	{
+		 //write data object to connection
+		 bytesWritten = [self write:dataLine];
+		 
+		 if (bytesWritten != [dataLine length]) 
+		 {
+			 NSLog(@"VTError: Firmware line %d was not written successfully, resetting connection and trying again", (int)lineCounter);
+			 			 
+			 [self close];
+			 
+			 usleep(50000);
+			 
+			 [self open];
+			 
+			  bytesWritten = [self write:dataLine];
+			 
+		 }
+		 
+		 if (bytesWritten != [dataLine length]) 
+		 {
+			 NSLog(@"VTError: Unable to write firmware line %d, even after resetting connection", lineCounter);
+			 return FIRMWARE_UPDATE_FAILED;
+			 
+		 }
+		 
+		 
+		 unsigned char firstFlowControlCharacter = [self readChar];
+		 if (firstFlowControlCharacter != XOFF) 
+		 {
+			 NSLog(@"VTError: First flow control character received from device not valid, aborting firmware update");
+			 return FIRMWARE_UPDATE_FAILED;
+
+		 }
+		
+		unsigned char secondFlowControlCharacter = [self readChar];
+		if (secondFlowControlCharacter == XON) 
+		{
+			NSLog(@"VTError: ACK (0x06) not received between XOFF and XON.  This means the end of a firmware line was received by the device but the line did not pass the checksum test.");
+			NSLog(@"Aborting firmware update.");
+			return FIRMWARE_UPDATE_FAILED;
+		}
+		else if (secondFlowControlCharacter != ACKLOD)
+		{
+			NSLog(@"VTError: firmware line not acknowledged even though successfully written. Aborting firmware update");
+			return FIRMWARE_UPDATE_FAILED;
+
+		}
+		
+		unsigned thirdFlowControlCharacter =  [self readChar];
+		
+		if (thirdFlowControlCharacter != XON) 
+		{
+			NSLog(@"VTError: Third flow control character received from device, not valid aborting firmware update");
+			return FIRMWARE_UPDATE_FAILED;
+			
+		}
+		 
+		 
+		 //output that we have just written line number lineCounter
+		 //NSLog(@"Firmware Line %d of %d written to device",(int)lineCounter + 1, [firmwareData count]);
+		 
+		 percentComplete = ((lineCounter + 1) / numLinesInUpdate) * 100.0;
+		 
+		 //if percentComplete is greater than or equal to percentCompleteToReport + 5.0
+		 if (percentComplete >= percentCompleteToReport + 5.0)
+		 {
+			 percentCompleteToReport = percentComplete;
+			 
+			 //reportPercentComplete
+			 NSLog(@"Firmware update is now %f %% complete",percentCompleteToReport);
+	 
+		 }
+		 
+		 if(lineCounter == numLinesInUpdate)
+		 {
+			
+			 NSLog(@"Firmware update is now 100 %% complete");
+			 [self setFlowControl:NO];
+			 return FIRMWARE_UPDATE_SUCCEEDED;
+				   
+		 }
+	 
+		 lineCounter++;
+	 
+	}
+	
+	return FIRMWARE_UPDATE_FAILED;
+	
+}
 
 - (void)writeChar:(char)c {
     //unsigned char v = ((unsigned char)c) + 128; // Whatever!
@@ -415,6 +544,22 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     char v = boolValue ? 1: 0;
     [self write:[NSData dataWithBytes:&v length:1]];
 }
+
+- (void)writeDate:(NSDate *)dateToWrite {
+	
+	VTDateTime *dateToConvert = [VTDateTime vtDateWithDate:dateToWrite];
+	
+	[self write:[dateToConvert picDateRepresentation]];
+
+}
+
+- (void)writeFloat:(float)floatToWrite {
+
+	VTFloat *floatToConvert = [VTFloat vtFloatWithFloat:floatToWrite];
+	
+	[self write:[floatToConvert picFloatRepresentation]];
+}
+
 
 
 - (unsigned char)readUnsignedChar {
@@ -459,18 +604,46 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 
 
 - (NSDate *)readDate {
-    int year = 2000 + [self readUnsignedChar];
-    int month = [self readChar];
-    int day = [self readChar];
-    int hour = [self readChar];
-    int minutes = [self readChar];
-    int seconds = [self readChar];
-    int hundreth = [self readChar];
-    
-    // Can't find a NSDate constructor precise to the hundreth of a second for some reason...
-    NSDate *when = [NSDate dateWithString:[NSString stringWithFormat:@"%04d-%02d-%02d %02d:%02d:%02d +0000", year, month, day, hour, minutes, seconds]];
-    [when addTimeInterval:(hundreth / 100.0)];
-    return when;
+	
+	VTDateTime *dateToConvert = [VTDateTime vtDateWithPicBytes:[self readLength:NUM_BYTES_IN_PIC_DATETIME]];
+	
+	
+	NSDate *result = [[NSDate alloc] init];
+	result = [dateToConvert date];
+	
+    return result;
+}
+
+- (float)readFloat {
+	
+	VTFloat *floatToConvert = [VTFloat vtFloatWithPicBytes:[self readLength:NUM_BYTES_IN_PIC_FLOAT]];
+	
+	float result = [floatToConvert floatingPointNumber];
+	
+	return result;
+	
+}
+
+- (float)convertPicFloatToFloat:(NSData *)picRepresentation {
+	
+	const int NUM_BYTES_IN_FLOAT = 4;
+	
+	unsigned char picBytes[NUM_BYTES_IN_PIC_FLOAT];
+	unsigned char floatBytes[NUM_BYTES_IN_FLOAT];
+	
+	
+	[picRepresentation getBytes:picBytes length:NUM_BYTES_IN_PIC_FLOAT];
+	
+	unsigned char exponent = picBytes[0];
+	unsigned char signBit = picBytes[1] & 0x80;
+	
+	//Rearrange the bytes to convert from the PIC representation of a float to the IEEE-754 single precision representation
+	floatBytes[3] = signBit + ((exponent & 0xFE) >> 1);
+	floatBytes[2] = ((exponent & 0x01) << 7) + (picBytes[1] & 0x7F);
+	floatBytes[1] = picBytes[2];
+	floatBytes[0] = picBytes[3];
+
+	return (float)*picBytes;
 }
 
 

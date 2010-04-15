@@ -1,0 +1,3 @@
+/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFloat.m:138: warning: incomplete implementation of class 'VTFloat'
+/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFloat.m:138: warning: method definition for '+vtDateWithDate:' not found
+/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFloat.m:138: warning: method definition for '+vtDateWithPicBytes:' not found

@@ -3,6 +3,11 @@
 #import "VTDeviceLoader.h"
 #import "VTStoredDevice.h"
 
+//For test
+#import "VTDevice.h"
+#import "VTCommand.h"
+#import "VTRecord.h"
+
 
 @implementation MainWindowController
 
@@ -98,6 +103,50 @@
         }
     }
 }
+
+
+- (IBAction)runTest:(id)sender
+{
+	NSLog(@"Communication Test Beginning");
+	
+	
+	
+
+	VTDevice *testDevice;
+	NSString *testDeviceFirmwareVersion;
+	
+	NSString *testDeviceSerialNumber;
+	NSArray *testDeviceTrackpointLogs;
+	
+	NSString *testUnitSerialNumber;
+	testUnitSerialNumber = @"VT000902";
+	
+	VTTrackpointLogRecord *firstTrackpointLog;
+	
+	VTDeviceLoader *_loader;
+	
+	_loader = [VTDeviceLoader loader];
+	
+	testDevice = [_loader deviceForSerialNumber:testUnitSerialNumber];
+	
+	
+	
+	testDeviceSerialNumber = [testDevice serial];
+	NSLog(@"Test Unit Serial Number is: %@",testDeviceSerialNumber);					
+	
+	
+	testDeviceFirmwareVersion = [testDevice firmwareVersion];	
+	NSLog(@"Test Unit Firmware Version is: %@",testDeviceFirmwareVersion);
+
+	testDeviceTrackpointLogs = [testDevice trackpointLogs];
+	firstTrackpointLog = [testDeviceTrackpointLogs objectAtIndex:0];
+	
+	NSLog(@"%@",[firstTrackpointLog description]);
+	
+	
+	
+}
+
 
 - (IBAction)selectionChanged:sender {
 }

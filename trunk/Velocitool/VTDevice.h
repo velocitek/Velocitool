@@ -3,6 +3,7 @@
 
 @class VTConnection;
 @class VTRecord;
+@class VTReadTrackpointsCommandParameter;
 //
 // This represent a Velocitek device
 //
@@ -18,5 +19,8 @@
 - (NSString *)firmwareVersion;
 - (NSDictionary *)deviceSettings;
 - (void)setDeviceSettings:(NSDictionary *)settings;
+- (NSArray *)trackpointLogs;
+- (NSArray *)trackpoints:(NSDate *)downloadFrom endTime:(NSDate *)downloadTo;
+- (BOOL)updateFirmware:(NSString *)filePath;
 
 @end
