@@ -1,0 +1,5 @@
+/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFirmwareUpdate.m: In function '-[VTFirmwareUpdate writeFirmwareToConnection:]':
+/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFirmwareUpdate.m:76: warning: implicit conversion shortens 64-bit value into a 32-bit value
+/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFirmwareUpdate.m:88: warning: implicit conversion shortens 64-bit value into a 32-bit value
+/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFirmwareUpdate.m: In function '-[VTFirmwareFile(private) removeExtraneousLines:]':
+/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFirmwareUpdate.m:170: warning: comparison between signed and unsigned

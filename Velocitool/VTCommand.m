@@ -1,7 +1,10 @@
 
+
 #import "VTCommand.h"
+#import "VTRecord.h"
 #import "VTGlobals.h"
 #import "VTConnection.h"
+
 
 @interface VTCommand()
 - initWithSignal:(unsigned char)signal parameter:(VTRecord *)parameter resultClass:(Class)resultClass isList:(BOOL)yn;
@@ -16,7 +19,7 @@
 }
 
 
-// Commands returning a list of results, not the 's' at results.
+// Commands returning a list of results, note the 's' at the end of 'results'.
 + commandWithSignal:(unsigned char)signalChar parameter:(VTRecord *)parameter resultsClass:(Class)resultClass {
     return [[[self alloc] initWithSignal:signalChar parameter:parameter resultClass:resultClass isList:YES] autorelease];
 }
@@ -65,188 +68,7 @@
 @end
 
 
-@implementation VTRecord : NSObject
 
-+ (unsigned char)recordHeader {
-    VTRaiseAbstractMethodException(self, _cmd, [VTRecord self]);
-    return '\0';
-}
-
-
-- (void)writeDeviceDataForConnection:(VTConnection *)connection {
-    VTRaiseAbstractMethodException(self, _cmd, [VTRecord self]);
-}
-
-
-- (void)readDeviceDataFromConnection:(VTConnection *)connection {
-    VTRaiseAbstractMethodException(self, _cmd, [VTRecord self]);
-}
-
-@end
-
-
-@implementation VTCommandResultRecord: VTRecord
-
-+ (unsigned char)recordHeader {
-    return 'r';
-}
-
-
-- (void)readDeviceDataFromConnection:(VTConnection *)connection {
-    [connection readUnsignedChar];
-}
-
-@end
-
-
-@implementation VTPuckSettingsRecord : VTRecord 
-
-+ (unsigned char)recordHeader {
-    return 'd';
-}
-
-
-- init {
-    [super init];
-    
-    // load some default values
-    _recordRate = VTRecordRateEveryFour;
-    _declination = 0;
-    _speedUnitOfMeasurement = VTSpeedUnitKnots;
-    _speedDamping = 1;
-    _headingDamping = 1;
-    _maxSpeedMode = VTMaxSpeed10Second;
-    _barGraphEnabled = YES;
-    _deviceOperationOption = VTPuckModeNormal;
-    return self;
-}
-
-
-+ (VTPuckSettingsRecord *)recordFromSettingsDictionary:(NSDictionary *)settings {
-    VTPuckSettingsRecord *record = [[self alloc] init];
-    if(settings) {
-        [record setSettingsDictionary:settings];
-    }
-    return record;
-}
-
-
-- (void)writeDeviceDataForConnection:(VTConnection *)connection {
-    [connection writeUnsignedChar:_recordRate];
-    [connection writeChar:_declination];
-    [connection writeUnsignedChar:_speedUnitOfMeasurement];
-    [connection writeUnsignedChar:_speedDamping];
-    [connection writeUnsignedChar:_headingDamping];
-    [connection writeUnsignedChar:_maxSpeedMode];
-    [connection writeBool:_barGraphEnabled];
-    [connection writeUnsignedChar:_deviceOperationOption];
-}
-
-
-- (void)readDeviceDataFromConnection:(VTConnection *)connection {
-    _recordRate = [connection readUnsignedChar];
-    _declination = [connection readChar];
-    _speedUnitOfMeasurement = [connection readUnsignedChar];
-    _speedDamping = [connection readUnsignedChar];
-    _headingDamping = [connection readUnsignedChar];
-    _maxSpeedMode = [connection readUnsignedChar];
-    _barGraphEnabled = [connection readBool];
-    _deviceOperationOption = [connection readUnsignedChar];
-}
-
-
-- (NSDictionary *)settingsDictionary {
-    NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                          [NSNumber numberWithUnsignedChar:_recordRate], VTRecordRatePref,
-                          [NSNumber numberWithChar:_declination], VTDeclinationPref,
-                          [NSNumber numberWithUnsignedChar:_speedUnitOfMeasurement], VTSpeedUnitPref,
-                          [NSNumber numberWithUnsignedChar:_speedDamping], VTSpeedDampingPref,
-                          [NSNumber numberWithUnsignedChar:_headingDamping], VTHeadingDampingPref,
-                          [NSNumber numberWithUnsignedChar:_maxSpeedMode], VTMaxSpeedPref,
-                          [NSNumber numberWithBool:_barGraphEnabled], VTBarGraphEnabled,
-                          [NSNumber numberWithUnsignedChar:_deviceOperationOption],  VTPuckModePref,
-                          nil
-                          ];
-    return dict;
-}
-
-
-- (void)setSettingsDictionary:(NSDictionary *)settings {
-    id value = nil;
-    
-    if( (value = [settings objectForKey:VTRecordRatePref]) ) {
-        _recordRate = [value unsignedCharValue];
-    }
-    if( (value = [settings objectForKey:VTDeclinationPref]) ) {
-        _declination = [value charValue];
-    }
-    if( (value = [settings objectForKey:VTSpeedUnitPref]) ) {
-        _speedUnitOfMeasurement = [value unsignedCharValue];
-    }
-    if( (value = [settings objectForKey:VTSpeedDampingPref]) ) {
-        _speedDamping = [value unsignedCharValue];
-    }
-    if( (value = [settings objectForKey:VTHeadingDampingPref]) ) {
-        _headingDamping = [value unsignedCharValue];
-    }
-    if( (value = [settings objectForKey:VTMaxSpeedPref]) ) {
-        _maxSpeedMode = [value unsignedCharValue];
-    }
-    if( (value = [settings objectForKey:VTBarGraphEnabled]) ) {
-        _deviceOperationOption = [value boolValue];
-    }
-    if( (value = [settings objectForKey:VTPuckModePref]) ) {
-        _deviceOperationOption = [value unsignedCharValue];
-    }
-}
-
-@end
-
-
-@implementation VTFirmwareVersionRecord
-
-+ (unsigned char)recordHeader {
-    return 'v';
-}
-
-- (void)dealloc {
-    [_version release]; _version = nil;
-    [super dealloc];
-}
-
-- (void)readDeviceDataFromConnection:(VTConnection *)connection {
-    unsigned char major = [connection readUnsignedChar];
-    unsigned char minor = [connection readChar];
-    [connection readLength:2]; // Ignore those
-    _version = [[NSString alloc] initWithFormat:@"%d.%d", major, minor];
-}
-
-- (NSString *)version {
-    return _version;
-}
-
-@end
-
-
-
-@implementation VTTrackpointLogRecord : VTRecord
-
-+ (unsigned char)recordHeader {
-    return 'l';
-}
-
-- (void)dealloc {
-    [super dealloc];
-}
-
-- (void)readDeviceDataFromConnection:(VTConnection *)connection {
-    _logIndex = [connection readUnsignedChar];
-    _trackpointCount = [connection readInt32];
-    _start = [connection readDate]; 
-    _end = [connection readDate];
-}
-
-@end
 
 /*
  

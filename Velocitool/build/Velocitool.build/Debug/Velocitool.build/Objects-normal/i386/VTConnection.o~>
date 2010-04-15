@@ -1,0 +1,5 @@
+/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.m: In function '-[VTConnection writeFirmwareFile:]':
+/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.m:432: warning: implicit conversion shortens 64-bit value into a 32-bit value
+/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.m:445: warning: comparison between signed and unsigned
+/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.m:459: warning: comparison between signed and unsigned
+/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.m:502: warning: implicit conversion shortens 64-bit value into a 32-bit value

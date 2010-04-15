@@ -2,7 +2,9 @@
 #import "VTDevice.h"
 #import "VTConnection.h"
 #import "VTCommand.h"
+#import "VTRecord.h"
 #import "VTGlobals.h"
+#import "VTFirmwareFile.h"
 
 #include <IOKit/usb/IOUSBLib.h>
 
@@ -125,6 +127,21 @@ static NSDictionary *productIDToClass = nil;
     NSString *fv     = [self firmwareVersion];
     
     return [NSString stringWithFormat:@"%@ (%@, %@)", sd, s, fv];
+}
+- (NSArray *)trackpoints:(NSDate *)downloadFrom endTime:(NSDate *)downloadTo {
+    // For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+    return nil;
+}
+
+
+- (BOOL)updateFirmware:(NSString *)filePath;
+{
+	// For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+	
+	return FIRMWARE_UPDATE_FAILED;
+
 }
 
 @end
@@ -265,8 +282,29 @@ static NSDictionary *productIDToClass = nil;
 
 
 - (NSArray *)trackpointLogs {
+	
     NSArray *records = (NSArray *)[_connection runCommand:[VTCommand commandWithSignal:'O' parameter:nil resultsClass:[VTTrackpointLogRecord class]]];
     return records;
+	
+}
+
+
+- (NSArray *)trackpoints:(NSDate *)downloadFrom endTime:(NSDate *)downloadTo {
+
+	VTReadTrackpointsCommandParameter *commandParameter = [VTReadTrackpointsCommandParameter commandParameterFromTimeInverval:downloadFrom end:downloadTo];
+	
+	NSArray *records = (NSArray *)[_connection runCommand:[VTCommand commandWithSignal:'T' 
+																			 parameter:commandParameter
+																		   resultsClass:[VTTrackpointRecord class]]];
+	return records;
+	
+}
+
+- (BOOL)updateFirmware:(NSString *)filePath
+{
+	VTFirmwareFile* firmwareFile = [VTFirmwareFile vtFirmwareFileWithFilePath:filePath];
+	return [_connection runFirmwareUpdate:firmwareFile];
+	
 }
                                                    
 @end

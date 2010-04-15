@@ -14,6 +14,6 @@
     
 }
 
-
+- (IBAction)runTest:(id)sender;
 - (IBAction)selectionChanged:sender;
 @end
