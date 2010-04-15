@@ -7,6 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7069B7F911769A05004824C0 /* untitled.m in Sources */ = {isa = PBXBuildFile; fileRef = 7069B7F811769A05004824C0 /* untitled.m */; };
+		7069B7FA11769A05004824C0 /* untitled.m in Sources */ = {isa = PBXBuildFile; fileRef = 7069B7F811769A05004824C0 /* untitled.m */; };
+		7080EDF71159AA510013C9C3 /* libftd2xx.0.1.7.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 7080EDF61159AA510013C9C3 /* libftd2xx.0.1.7.dylib */; };
+		7080EDF81159AA510013C9C3 /* libftd2xx.0.1.7.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7080EDF61159AA510013C9C3 /* libftd2xx.0.1.7.dylib */; };
+		7080EFD5115C35D00013C9C3 /* VTDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080EFD4115C35D00013C9C3 /* VTDateTime.m */; };
+		7080EFD6115C35D00013C9C3 /* VTDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080EFD4115C35D00013C9C3 /* VTDateTime.m */; };
+		7080F18F115D7DA50013C9C3 /* VTFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080F18E115D7DA50013C9C3 /* VTFloat.m */; };
+		7080F190115D7DA50013C9C3 /* VTFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080F18E115D7DA50013C9C3 /* VTFloat.m */; };
+		70FB5CF41171ADE6009E2E8C /* VTFirmwareFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB5CF31171ADE6009E2E8C /* VTFirmwareFile.m */; };
+		70FB5CF51171ADE6009E2E8C /* VTFirmwareFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB5CF31171ADE6009E2E8C /* VTFirmwareFile.m */; };
+		70FBA0C41161A477005BE3B4 /* VTRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FBA0C31161A477005BE3B4 /* VTRecord.m */; };
+		70FBA0C51161A477005BE3B4 /* VTRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FBA0C31161A477005BE3B4 /* VTRecord.m */; };
 		77C8C1F90C07829500965286 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C8C1F70C07829500965286 /* MainMenu.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -19,7 +31,6 @@
 		ED4B9A590F155F8700AF563B /* VTDeviceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */; };
 		ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFC3F690EF8948D00E1DD2F /* IOKit.framework */; };
 		ED60756B0F36558E007B36A9 /* store.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ED60756A0F36558E007B36A9 /* store.xcdatamodeld */; };
-		ED6505FB0F099EDD0018D068 /* libftd2xx.0.1.4.dylib in Resources */ = {isa = PBXBuildFile; fileRef = ED6505F90F099EDD0018D068 /* libftd2xx.0.1.4.dylib */; };
 		EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
 		EDE897E41158CDCF009E8151 /* tool.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE897E31158CDCF009E8151 /* tool.m */; };
 		EDE897E61158CE3A009E8151 /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
@@ -72,6 +83,16 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Velocitool_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Velocitool_Prefix.pch; sourceTree = "<group>"; };
+		7069B7F711769A05004824C0 /* untitled.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = untitled.h; sourceTree = "<group>"; };
+		7069B7F811769A05004824C0 /* untitled.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = untitled.m; sourceTree = "<group>"; };
+		7080EFD3115C35D00013C9C3 /* VTDateTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDateTime.h; sourceTree = "<group>"; };
+		7080EFD4115C35D00013C9C3 /* VTDateTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDateTime.m; sourceTree = "<group>"; };
+		7080F18D115D7DA50013C9C3 /* VTFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTFloat.h; sourceTree = "<group>"; };
+		7080F18E115D7DA50013C9C3 /* VTFloat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTFloat.m; sourceTree = "<group>"; };
+		70FB5CF21171ADE6009E2E8C /* VTFirmwareFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTFirmwareFile.h; sourceTree = "<group>"; };
+		70FB5CF31171ADE6009E2E8C /* VTFirmwareFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTFirmwareFile.m; sourceTree = "<group>"; };
+		70FBA0C21161A477005BE3B4 /* VTRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTRecord.h; sourceTree = "<group>"; };
+		70FBA0C31161A477005BE3B4 /* VTRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTRecord.m; sourceTree = "<group>"; };
 		77631A260C06C501005415CB /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = /System/Library/Frameworks/Python.framework; sourceTree = "<absolute>"; };
 		77C8C1F80C07829500965286 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -90,7 +111,7 @@
 		ED4B9A570F155F8700AF563B /* VTDeviceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDeviceLoader.h; sourceTree = "<group>"; };
 		ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDeviceLoader.m; sourceTree = "<group>"; };
 		ED6075660F36557E007B36A9 /* store.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = store.xcdatamodel; sourceTree = "<group>"; };
-		ED6505F90F099EDD0018D068 /* libftd2xx.0.1.4.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libftd2xx.0.1.4.dylib; path = ../libftd2xx.0.1.4.dylib; sourceTree = SOURCE_ROOT; };
+		ED6505F90F099EDD0018D068 /* English */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = English; path = /Users/alec/Code/sandbox/command_line_tool/speedtrack/English.lproj/libftd2xx.0.1.7.dylib; sourceTree = "<absolute>"; };
 		ED6505FE0F099EFE0018D068 /* ftd2xx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftd2xx.h; sourceTree = "<group>"; };
 		ED6C716F0F09A89D00BF3260 /* WinTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinTypes.h; sourceTree = "<group>"; };
 		ED6C71F20F0AD49400BF3260 /* VTWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTWrapper.h; sourceTree = "<group>"; };
@@ -132,6 +153,7 @@
 			files = (
 				EDE8982E1158D31D009E8151 /* IOKit.framework in Frameworks */,
 				EDE8982F1158D31D009E8151 /* Cocoa.framework in Frameworks */,
+				7080EDF81159AA510013C9C3 /* libftd2xx.0.1.7.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +224,12 @@
 			children = (
 				32CA4F630368D1EE00C91783 /* Velocitool_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				7080F18D115D7DA50013C9C3 /* VTFloat.h */,
+				7080F18E115D7DA50013C9C3 /* VTFloat.m */,
+				7080EFD3115C35D00013C9C3 /* VTDateTime.h */,
+				7080EFD4115C35D00013C9C3 /* VTDateTime.m */,
+				70FB5CF21171ADE6009E2E8C /* VTFirmwareFile.h */,
+				70FB5CF31171ADE6009E2E8C /* VTFirmwareFile.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -210,7 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				EDF727250F4234B700E503AE /* images */,
-				ED6505F90F099EDD0018D068 /* libftd2xx.0.1.4.dylib */,
+				7080EDF61159AA510013C9C3 /* libftd2xx.0.1.7.dylib */,
 				EDFC3F4D0EF88A5A00E1DD2F /* velocitool.icns */,
 				EDFC3EF60EF81CCF00E1DD2F /* dsa_pub.pem */,
 				77C8C1F70C07829500965286 /* MainMenu.xib */,
@@ -243,6 +271,8 @@
 		ED2A015D0F339B6A005C0CE0 /* Communication */ = {
 			isa = PBXGroup;
 			children = (
+				7069B7F711769A05004824C0 /* untitled.h */,
+				7069B7F811769A05004824C0 /* untitled.m */,
 				ED6C71710F09A8AB00BF3260 /* ftd2xx */,
 				ED2B25000F261CAB00A5EDDB /* VTGlobals.h */,
 				ED2B25010F261CAB00A5EDDB /* VTGlobals.m */,
@@ -250,6 +280,8 @@
 				ED2A015F0F339B8F005C0CE0 /* VTConnection.m */,
 				EDA9F3FF0F16B638004112D5 /* VTCommand.h */,
 				EDA9F4000F16B638004112D5 /* VTCommand.m */,
+				70FBA0C21161A477005BE3B4 /* VTRecord.h */,
+				70FBA0C31161A477005BE3B4 /* VTRecord.m */,
 				ED4B99C60F1548A000AF563B /* VTDevice.h */,
 				ED4B99C70F1548A000AF563B /* VTDevice.m */,
 				ED4B9A570F155F8700AF563B /* VTDeviceLoader.h */,
@@ -360,7 +392,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED6505FB0F099EDD0018D068 /* libftd2xx.0.1.4.dylib in Resources */,
+				7080EDF71159AA510013C9C3 /* libftd2xx.0.1.7.dylib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				77C8C1F90C07829500965286 /* MainMenu.xib in Resources */,
 				EDFC3EF70EF81CCF00E1DD2F /* dsa_pub.pem in Resources */,
@@ -406,6 +438,11 @@
 				EDF725560F3E069700E503AE /* VTStoredDevice.m in Sources */,
 				EDF7261E0F3E274E00E503AE /* VTAppDelegate.m in Sources */,
 				ED21C5E00F647FAB002BE074 /* VTPuckSettings.m in Sources */,
+				7080EFD6115C35D00013C9C3 /* VTDateTime.m in Sources */,
+				7080F18F115D7DA50013C9C3 /* VTFloat.m in Sources */,
+				70FBA0C41161A477005BE3B4 /* VTRecord.m in Sources */,
+				70FB5CF41171ADE6009E2E8C /* VTFirmwareFile.m in Sources */,
+				7069B7F911769A05004824C0 /* untitled.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +456,11 @@
 				EDE897EA1158CE3A009E8151 /* VTCommand.m in Sources */,
 				EDE897EC1158CE3A009E8151 /* VTDevice.m in Sources */,
 				EDE897EE1158CE3A009E8151 /* VTDeviceLoader.m in Sources */,
+				7080EFD5115C35D00013C9C3 /* VTDateTime.m in Sources */,
+				7080F190115D7DA50013C9C3 /* VTFloat.m in Sources */,
+				70FBA0C51161A477005BE3B4 /* VTRecord.m in Sources */,
+				70FB5CF51171ADE6009E2E8C /* VTFirmwareFile.m in Sources */,
+				7069B7FA11769A05004824C0 /* untitled.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -439,6 +481,15 @@
 				089C165DFE840E0CC02AAC07 /* English */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		7080EDF61159AA510013C9C3 /* libftd2xx.0.1.7.dylib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ED6505F90F099EDD0018D068 /* English */,
+			);
+			name = libftd2xx.0.1.7.dylib;
+			path = ../../../../../Code/sandbox/command_line_tool/speedtrack;
 			sourceTree = "<group>";
 		};
 		77C8C1F70C07829500965286 /* MainMenu.xib */ = {
@@ -557,6 +608,7 @@
 			buildSettings = {
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.5;
 				PREBINDING = NO;
 				SDKROOT = macosx10.5;
 			};
@@ -583,11 +635,17 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_GC = unsupported;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../Code/sandbox/command_line_tool/speedtrack\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
@@ -610,6 +668,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
 				INSTALL_PATH = /usr/local/bin;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../../../../Code/sandbox/command_line_tool/speedtrack\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					Foundation,
