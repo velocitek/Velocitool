@@ -7,6 +7,7 @@
 @class VTCommand;
 @class VTRecord;
 @class VTFirmwareFile;
+@class VTProgressTracker;
 
 @interface VTConnection : NSObject {
     void *_ft_handle;
@@ -15,7 +16,11 @@
     NSString * _serial;
     
     unsigned int _available;
+	
+	VTProgressTracker *progressTracker;
 }
+
+@property(readwrite, retain) VTProgressTracker *progressTracker;
 
 + connectionWithVendorID:(int)vendorID productID:(int)productID serialNumber:(NSString *)serial;
 
@@ -23,6 +28,8 @@
 - (BOOL)runFirmwareUpdate:(VTFirmwareFile *)firmwareFile;
 
 - (BOOL)writeFirmwareFile:(VTFirmwareFile*)firmwareFile;
+- (BOOL)readFirmwareUpdateFlowControlChars;
+
 - (void)writeChar:(char)c;
 - (void)writeUnsignedChar:(unsigned char)c;
 - (void)writeBool:(BOOL)yn;

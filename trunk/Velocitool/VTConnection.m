@@ -7,6 +7,7 @@
 #import "VTDateTime.h"
 #import "VTFloat.h"
 #import "VTFirmwareFile.h"
+#import "VTProgressTracker.h"
 
 
 #import <dlfcn.h>
@@ -37,6 +38,7 @@ static FT_STATUS (*pFT_SetFlowControl)(FT_HANDLE ftHandle, USHORT FlowControl, U
 static FT_STATUS (*pFT_Write)(FT_HANDLE ftHandle, LPVOID lpBuffer, DWORD nBufferSize, LPDWORD lpBytesWritten);
 static FT_STATUS (*pFT_Read)(FT_HANDLE ftHandle, LPVOID lpBuffer, DWORD nBufferSize, LPDWORD lpBytesReturned);
 static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *dwTxBytes, DWORD *dwEventDWord);
+static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 
 @interface VTConnection()
 - initWithVendorID:(int)vendorID productID:(int)productID serialNumber:(NSString *)serial;
@@ -57,12 +59,14 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 
 @implementation VTConnection
 
+@synthesize progressTracker;
+
 + (void)initialize {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"libftd2xx.0.1.7.dylib" ofType:@""];
-
+	
     void *handle = dlopen([path UTF8String], RTLD_LAZY | RTLD_GLOBAL);
     NSAssert2(handle, @"Can't load the library at %@: %s", path, dlerror());
-
+	
     pFT_SetVIDPID              = dlsym(handle, "FT_SetVIDPID");              NSAssert(pFT_SetVIDPID, @"FT_SetVIDPID");
     pFT_OpenEx                 = dlsym(handle, "FT_OpenEx");                 NSAssert(pFT_OpenEx, @"FT_OpenEx");
     pFT_SetBaudRate            = dlsym(handle, "FT_SetBaudRate");            NSAssert(pFT_SetBaudRate, @"FT_SetBaudRate");
@@ -77,7 +81,8 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     pFT_ResetDevice            = dlsym(handle, "FT_ResetDevice");            NSAssert(pFT_ResetDevice, @"FT_ResetDevice");
     pFT_Purge                  = dlsym(handle, "FT_Purge");                  NSAssert(pFT_Purge, @"FT_Purge");
     pFT_Close                  = dlsym(handle, "FT_Close");                  NSAssert(pFT_Close, @"FT_Close");
-    
+    pFT_ListDevices			   = dlsym(handle, "FT_ListDevices");			 NSAssert(pFT_ListDevices, @"FT_ListDevices");
+									   
 }
 
 
@@ -88,6 +93,8 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 
 - initWithVendorID:(int)vendorID productID:(int)productID serialNumber:(NSString *)serial {
     [super init];
+	
+	progressTracker = [[VTProgressTracker alloc] init];
     _vendorID = vendorID;
     _productID = productID;
     _serial = [serial copy];
@@ -101,6 +108,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 - (void)dealloc {
     [self close];
     [_serial release]; _serial = nil;
+	[progressTracker release];
     [super dealloc];
 }
 
@@ -114,15 +122,18 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     if ( (ft_error = (*pFT_SetVIDPID)(_vendorID, _productID)) ) {
         NSLog(@"VTError: Call to FT_SetVIDPID failed with error %d", ft_error);
         return;
-    }
+    }					
     
     // Open the device
     //
-    if ( (ft_error = (*pFT_OpenEx)((char*)[_serial UTF8String], FT_OPEN_BY_SERIAL_NUMBER, &ft_handle)) ) {
+	const char *serialString = [_serial UTF8String];
+	
+    if ( (ft_error = (*pFT_OpenEx)((char*)serialString, FT_OPEN_BY_SERIAL_NUMBER, &ft_handle)) ) {
         NSLog(@"VTError: Call to FT_OpenEx failed with error %d", ft_error);
         return;
     }
-
+	
+	
     if(!ft_handle) {
         NSLog(@"VTError: Unable to open device with serial number %@", _serial);
         return;
@@ -202,7 +213,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 
 - (void)clearRTS  {
     FT_STATUS ft_error;
-
+	
     if ( (ft_error = (*pFT_ClrRts)(_ft_handle)) ){
         NSLog(@"VTError: Call to FT_ClrRts failed with error %d", ft_error);
         return;
@@ -213,7 +224,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 
 - (void)setFlowControl:(BOOL)onOff {
     FT_STATUS ft_error;
-
+	
     if (onOff) {
         ft_error = (*pFT_SetFlowControl)(_ft_handle, FT_FLOW_XON_XOFF, XON, XOFF);
     } else {
@@ -228,20 +239,28 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 
 - (int)write:(NSData *)data 
 {
-    FT_STATUS ft_error;
+    
+	FT_STATUS ft_error;
     DWORD sizedone;
     
-    if ( (ft_error = (*pFT_Write)(_ft_handle, (void*)[data bytes], [data length], &sizedone)) ){
-        NSLog(@"VTError: Call to FT_Write failed with error %d", ft_error);
-        return 0;
-    }
-    
-    if (sizedone != [data length]) {
-        NSLog(@"VTError: Call to FT_Write failed, wrote only %d of %d", sizedone, [data length] );
-    }
+	if ([data length] != 0) 
+	{
+		if ( (ft_error = (*pFT_Write)(_ft_handle, (void*)[data bytes], [data length], &sizedone)) ){
+			NSLog(@"VTError: Call to FT_Write failed with error %d", ft_error);
+			return 0;
+		}
+		if (sizedone != [data length]) {
+			NSLog(@"VTError: Call to FT_Write failed, wrote only %d of %d", sizedone, [data length] );
+		}
+	}
+	else
+	{
+		NSLog(@"%@",[data description]);
+		sizedone = [data length];
+	}
+	
     
     //NSLog(@"write %d: %@", sizedone, data);
-	
     return sizedone;
 }
 
@@ -330,7 +349,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     
     unsigned char signalChar = [command signal];
     NSLog(@"signalling command %c", signalChar);
-
+	
     [self writeUnsignedChar:signalChar];
     
     response = [self readUnsignedChar];
@@ -348,10 +367,9 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     
     if (parameter) {
         NSLog(@"Writing args %@", parameter);
-		
         [parameter writeForConnection:self];
     }
-            
+	
     response = [self readUnsignedChar];    
     if (response != signalChar) {
         NSLog(@"VTError: Wrong response %c to signal %c. Aborting.", response, signalChar);
@@ -367,18 +385,18 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
     if(returnsList) {
         NSMutableArray *results = [NSMutableArray array];
         
-        while([self waitForResponseLength:1 timeout:5000]) {
+        while([self waitForResponseLength:1 timeout:500]) {
             
             VTRecord *result = [[[resultClass alloc] init] autorelease];
             
 			[result readFromConnection:self];
             [results addObject:result];
-                        
+			[progressTracker performSelectorOnMainThread:@selector(incrementProgress) withObject:nil waitUntilDone:YES];											
+			
         }
         returnValue = [[results copy] autorelease];
-
+		
     } 
-	
 	else {
         
 		VTRecord *result = [[[resultClass alloc] init] autorelease];        
@@ -386,25 +404,24 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 		[result readFromConnection:self];
         returnValue = result;
     }
-	
     [self clearRTS];
-	
     NSLog(@"Done!");
-
+	
     return returnValue;
 }
 
+
+
+//This routine writes the bytes of a firmware file to the connection
 - (BOOL)runFirmwareUpdate:(VTFirmwareFile *)firmwareFile
 {
-
-	unsigned char response;	
 	
+	unsigned char response;
 	[self setRTS];
     
     //Send the Write Firmware command signal
 	unsigned char signalChar = 'L';
     NSLog(@"signalling command %c", signalChar);
-	
     [self writeUnsignedChar:signalChar];
     
     response = [self readUnsignedChar];
@@ -414,118 +431,101 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 		return FIRMWARE_UPDATE_FAILED;
         
     }
-	
 	[self clearRTS];
-
-	return [self writeFirmwareFile:firmwareFile];			
 	
+	return [self writeFirmwareFile:firmwareFile];
 }
 
 //This routine writes the bytes of a firmware file to the connection
 - (BOOL)writeFirmwareFile:(VTFirmwareFile*)firmwareFile
 {
 	NSArray *firmwareData = [firmwareFile firmwareData]; 
-	
 	float lineCounter = 0;
 	float numLinesInUpdate = (float)[firmwareData count];
 	float percentComplete = 0;
-	float percentCompleteToReport = 0.0;
-	
+	float percentCompleteToReport = 0;
+	DWORD numBytesInTXQueue;
+	DWORD numBytesInRXQueue;
+	DWORD event;
+	FT_STATUS status;
 	[self setFlowControl:YES];
-
-	int bytesWritten;
 	
+	unsigned int bytesWritten;
 	NSLog(@"Starting to send firmware data.");
 	//for each element in firmwareData
 	for (NSData* dataLine in firmwareData) 
 	{
-		 //write data object to connection
-		 bytesWritten = [self write:dataLine];
-		 
-		 if (bytesWritten != [dataLine length]) 
-		 {
-			 NSLog(@"VTError: Firmware line %d was not written successfully, resetting connection and trying again", (int)lineCounter);
-			 			 
-			 [self close];
-			 
-			 usleep(50000);
-			 
-			 [self open];
-			 
-			  bytesWritten = [self write:dataLine];
-			 
-		 }
-		 
-		 if (bytesWritten != [dataLine length]) 
-		 {
-			 NSLog(@"VTError: Unable to write firmware line %d, even after resetting connection", lineCounter);
-			 return FIRMWARE_UPDATE_FAILED;
-			 
-		 }
-		 
-		 
-		 unsigned char firstFlowControlCharacter = [self readChar];
-		 if (firstFlowControlCharacter != XOFF) 
-		 {
-			 NSLog(@"VTError: First flow control character received from device not valid, aborting firmware update");
-			 return FIRMWARE_UPDATE_FAILED;
-
-		 }
+		status = (*pFT_GetStatus)(_ft_handle, &numBytesInRXQueue, &numBytesInTXQueue, &event);
+		//NSLog(@"About to write firmware line %d.  %d bytes in RX Queue, %d bytes in TX Queue.", (int)lineCounter, numBytesInRXQueue, numBytesInTXQueue);
+		//write data object to connection
+		bytesWritten = [self write:dataLine];
 		
-		unsigned char secondFlowControlCharacter = [self readChar];
-		if (secondFlowControlCharacter == XON) 
+		if (bytesWritten != [dataLine length]) 
 		{
-			NSLog(@"VTError: ACK (0x06) not received between XOFF and XON.  This means the end of a firmware line was received by the device but the line did not pass the checksum test.");
-			NSLog(@"Aborting firmware update.");
-			return FIRMWARE_UPDATE_FAILED;
-		}
-		else if (secondFlowControlCharacter != ACKLOD)
-		{
-			NSLog(@"VTError: firmware line not acknowledged even though successfully written. Aborting firmware update");
-			return FIRMWARE_UPDATE_FAILED;
-
-		}
-		
-		unsigned thirdFlowControlCharacter =  [self readChar];
-		
-		if (thirdFlowControlCharacter != XON) 
-		{
-			NSLog(@"VTError: Third flow control character received from device, not valid aborting firmware update");
-			return FIRMWARE_UPDATE_FAILED;
+			NSLog(@"VTError: Firmware line %d was not written successfully.  Aborting firmware update.", (int)lineCounter);
+			
 			
 		}
-		 
-		 
-		 //output that we have just written line number lineCounter
-		 //NSLog(@"Firmware Line %d of %d written to device",(int)lineCounter + 1, [firmwareData count]);
-		 
-		 percentComplete = ((lineCounter + 1) / numLinesInUpdate) * 100.0;
-		 
-		 //if percentComplete is greater than or equal to percentCompleteToReport + 5.0
-		 if (percentComplete >= percentCompleteToReport + 5.0)
-		 {
-			 percentCompleteToReport = percentComplete;
-			 
-			 //reportPercentComplete
-			 NSLog(@"Firmware update is now %f %% complete",percentCompleteToReport);
-	 
-		 }
-		 
-		 if(lineCounter == numLinesInUpdate)
-		 {
+		
+		
+		if (![self readFirmwareUpdateFlowControlChars]) return FIRMWARE_UPDATE_FAILED;
+		
+		//output that we have just written line number lineCounter
+		//NSLog(@"Firmware Line %d of %d written to device",(int)lineCounter + 1, [firmwareData count]);
+		
+		percentComplete = ((lineCounter + 1) / numLinesInUpdate) * 100;
+		
+		//if percentComplete is greater than or equal to percentCompleteToReport + 5.0
+		if (percentComplete >= percentCompleteToReport + 5.0)
+		{
+			percentCompleteToReport = percentComplete;
 			
-			 NSLog(@"Firmware update is now 100 %% complete");
-			 [self setFlowControl:NO];
-			 return FIRMWARE_UPDATE_SUCCEEDED;
-				   
-		 }
-	 
-		 lineCounter++;
-	 
+			//reportPercentComplete
+			NSLog(@"Firmware update is now %f %% complete",percentCompleteToReport);
+			
+		}
+		
+		if(lineCounter == (numLinesInUpdate - 1))
+		{
+			NSLog(@"Firmware update is now 100 %% complete");
+			[self setFlowControl:NO];
+			return FIRMWARE_UPDATE_SUCCEEDED;
+			
+		}
+		
+		lineCounter++;
+		
 	}
-	
 	return FIRMWARE_UPDATE_FAILED;
-	
+}
+
+- (BOOL)readFirmwareUpdateFlowControlChars
+{
+	unsigned char firstFlowControlCharacter = [self readChar]; //XOFF;//
+	if (firstFlowControlCharacter != XOFF) 
+	{
+		NSLog(@"VTError: First flow control character received from device not valid, aborting firmware update");
+		return FIRMWARE_UPDATE_FAILED;
+	}
+	unsigned char secondFlowControlCharacter = [self readChar];  //ACKLOD;//
+	if (secondFlowControlCharacter == XON) 
+	{
+		NSLog(@"VTError: ACK (0x06) not received between XOFF and XON.  This means the end of a firmware line was received by the device but the line did not pass the checksum test.");
+		NSLog(@"Aborting firmware update.");
+		return FIRMWARE_UPDATE_FAILED;
+	}
+	else if (secondFlowControlCharacter != ACKLOD)
+	{
+		NSLog(@"VTError: firmware line not acknowledged even though successfully written. Aborting firmware update");
+		return FIRMWARE_UPDATE_FAILED;
+	}
+	unsigned thirdFlowControlCharacter =  [self readChar];  //XON;//
+	if (thirdFlowControlCharacter != XON) 
+	{
+		NSLog(@"VTError: Third flow control character received from device, not valid aborting firmware update");
+		return FIRMWARE_UPDATE_FAILED;
+	}
+	return FIRMWARE_UPDATE_SUCCEEDED;
 }
 
 - (void)writeChar:(char)c {
@@ -546,17 +546,14 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 }
 
 - (void)writeDate:(NSDate *)dateToWrite {
-	
 	VTDateTime *dateToConvert = [VTDateTime vtDateWithDate:dateToWrite];
-	
 	[self write:[dateToConvert picDateRepresentation]];
-
+	
 }
 
 - (void)writeFloat:(float)floatToWrite {
-
-	VTFloat *floatToConvert = [VTFloat vtFloatWithFloat:floatToWrite];
 	
+	VTFloat *floatToConvert = [VTFloat vtFloatWithFloat:floatToWrite];
 	[self write:[floatToConvert picFloatRepresentation]];
 }
 
@@ -604,45 +601,31 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes, DWORD *d
 
 
 - (NSDate *)readDate {
-	
 	VTDateTime *dateToConvert = [VTDateTime vtDateWithPicBytes:[self readLength:NUM_BYTES_IN_PIC_DATETIME]];
-	
-	
 	NSDate *result = [[NSDate alloc] init];
 	result = [dateToConvert date];
-	
     return result;
 }
 
 - (float)readFloat {
-	
 	VTFloat *floatToConvert = [VTFloat vtFloatWithPicBytes:[self readLength:NUM_BYTES_IN_PIC_FLOAT]];
-	
 	float result = [floatToConvert floatingPointNumber];
-	
 	return result;
-	
 }
 
 - (float)convertPicFloatToFloat:(NSData *)picRepresentation {
-	
 	const int NUM_BYTES_IN_FLOAT = 4;
-	
 	unsigned char picBytes[NUM_BYTES_IN_PIC_FLOAT];
 	unsigned char floatBytes[NUM_BYTES_IN_FLOAT];
-	
-	
 	[picRepresentation getBytes:picBytes length:NUM_BYTES_IN_PIC_FLOAT];
-	
 	unsigned char exponent = picBytes[0];
 	unsigned char signBit = picBytes[1] & 0x80;
-	
 	//Rearrange the bytes to convert from the PIC representation of a float to the IEEE-754 single precision representation
 	floatBytes[3] = signBit + ((exponent & 0xFE) >> 1);
 	floatBytes[2] = ((exponent & 0x01) << 7) + (picBytes[1] & 0x7F);
 	floatBytes[1] = picBytes[2];
 	floatBytes[0] = picBytes[3];
-
+	
 	return (float)*picBytes;
 }
 

@@ -67,7 +67,7 @@
 	NSString *line;
 	bool removeLine = NO;
 	
-	int i = 0;
+	unsigned int i = 0;
 	//For each element in arrayOfStrings
 	for (i = 0; i < [arrayOfStrings count]; i++)
 	{

@@ -15,7 +15,7 @@
 @implementation VTStoredDevice
 
 - (VTDevice *)_getDevice {
-    return [[VTDeviceLoader loader] deviceForSerialNumber:[self serial]];
+    return nil;//[[VTDeviceLoader loader] deviceForSerialNumber:[self serial]];
 }
 
 - (void)_updateFromConnectedDevice {

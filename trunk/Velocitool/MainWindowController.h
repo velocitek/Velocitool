@@ -2,18 +2,47 @@
 //  MainWindowController.h
 //  Velocitool
 //
-//  Created by Eric Noyau on 07/02/2009.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
+//  Created by Alec Stewart on 5/25/10.
+//  Copyright 2010 Velocitek. All rights reserved.
 //
 
+//State Definitions
+#define READY 0
+#define DOWNLOADING_TRACK_LOGS 1
+#define TRACK_LOG_VIEW 2
+#define DOWNLOADING_TRACK 3
+#define FILE_VIEW 4
+
+
+
+
 #import <Cocoa/Cocoa.h>
+@class VTDevice;
+@class TrackLogViewController;
+@class TrackFileViewController;
 
 
 @interface MainWindowController : NSWindowController {
-    IBOutlet NSArrayController *deviceController;
-    
+	
+	IBOutlet NSBox *box;
+	IBOutlet NSButton *viewSwitchButton;
+	IBOutlet NSProgressIndicator *trackLogsDownloadingProgressIndicator;
+
+	
+	unsigned int currentState;
+	
+	TrackLogViewController *trackLogViewController;	
+	TrackFileViewController *trackFileViewController;
+	
+	    
 }
 
-- (IBAction)runTest:(id)sender;
-- (IBAction)selectionChanged:sender;
+@property (readwrite) unsigned int currentState;
+@property (readonly) TrackLogViewController *trackLogViewController;	
+@property (readonly) TrackFileViewController *trackFileViewController;
+
+
+- (IBAction)switchViews:(id)sender;
+
+
 @end

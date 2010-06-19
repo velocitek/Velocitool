@@ -37,6 +37,11 @@
 
 @implementation VTTrackpointRecord : VTRecord
 
+@synthesize _timestamp;
+@synthesize _latitude;
+@synthesize	_longitude;
+@synthesize _speed;
+@synthesize _heading;
 
 - (void)dealloc {
 	[super dealloc];
@@ -332,15 +337,22 @@
 
 @implementation VTTrackpointLogRecord : VTRecordWithHeader
 
-@synthesize _start;
-@synthesize _end;
+@synthesize selectedForDownload;
+@synthesize start;
+@synthesize end;
+@synthesize numTrackpoints;
 
 + (unsigned char)recordHeader {
     return 'l';
 }
 
 - (void)dealloc {
-    [super dealloc];
+    
+	[start release];
+	[end release];
+	
+	[super dealloc];
+	
 }
 
 - (NSString *)description
@@ -351,9 +363,9 @@
 	
 	NSString *description_string;
 	
-	number_trackpoints_description = [[NSString alloc] initWithFormat:@"Number of trackpoints in log: %d", _trackpointCount];
-	beginning_date_time_description = [[NSString alloc] initWithFormat:@"Log Start: %@", _start];
-	ending_date_time_description = [[NSString alloc] initWithFormat:@"Log End: %@", _end];
+	number_trackpoints_description = [[NSString alloc] initWithFormat:@"Number of trackpoints in log: %d", numTrackpoints];
+	beginning_date_time_description = [[NSString alloc] initWithFormat:@"Log Start: %@", start];
+	ending_date_time_description = [[NSString alloc] initWithFormat:@"Log End: %@", end];
 	
 	description_string = [[NSString alloc] initWithFormat:@"\t%@\n\t%@\n\t%@\n", number_trackpoints_description, beginning_date_time_description, ending_date_time_description]; 
 	
@@ -361,10 +373,10 @@
 }
 
 - (void)readDeviceDataFromConnection:(VTConnection *)connection {
-    _logIndex = [connection readUnsignedChar];
-    _trackpointCount = [connection readInt32];
-    _start = [connection readDate]; 
-    _end = [connection readDate];
+    logIndex = [connection readUnsignedChar];
+    numTrackpoints = [connection readInt32];
+    start = [[connection readDate] retain]; 
+    end = [[connection readDate] retain];
 }
 
 @end

@@ -16,12 +16,14 @@ extern NSString *VTDeviceAddedNotification;
 extern NSString *VTDeviceRemovedNotification;
 
 @interface VTDeviceLoader : NSObject {
-    NSMutableDictionary *_devicesByLocation;
+    
+	NSMutableDictionary *_devicesByLocation;
     NSMutableDictionary *_devicesBySerial;
+			
 }
 
 + loader;
-- (NSArray *)devices; // Returns an array of currently pluged in VTDevices
+- (NSArray *)devices; // Returns an array of currently plugged in VTDevices
 - (VTDevice *)deviceForSerialNumber:(NSString *)serial;
 
 @end

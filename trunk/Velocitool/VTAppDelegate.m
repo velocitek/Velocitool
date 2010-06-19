@@ -1,8 +1,20 @@
 #import "VTAppDelegate.h"
 #import "VTDeviceLoader.h"
+#import "MainWindowController.h"
+
+NSString *VTFileSaveSelectedNotification = @"VTFileSaveSelectedNotification";
+NSString *VTFileOpenSelectedNotification = @"VTFileOpenSelectedNotification";
+NSString *VTFileCloseSelectedNotification = @"VTFileCloseSelectedNotification";
+NSString *VTFileExportGPXSelectedNotification = @"VTFileExportGPXSelectedNotification";
+NSString *VTFileExportKMLSelectedNotification = @"VTFileExportKMLSelectedNotification";
+
+NSString *VTSetupUpdateDeviceSettingsSelectedNotification = @"VTSetupUpdateDeviceSettingsSelectedNotification";
+NSString *VTSetupEraseAllSelectedNotification = @"VTSetupEraseAllSelectedNotification";
+NSString *VTSetupUpdateDeviceFirmwareSelectedNotification = @"VTSetupUpdateDeviceFirmwareSelectedNotification";
+
+NSString *VTHelpTutorialVideoSelectedNotification = @"VTHelpTutorialVideoSelectedNotification";
 
 @implementation VTAppDelegate
-
 
 /**
  Returns the support folder for the application, used to store the Core Data
@@ -19,104 +31,83 @@
 }
 
 
-/**
- Creates, retains, and returns the managed object model for the application 
- by merging all of the models found in the application bundle.
- */
+// Actions for main menu
+- (IBAction)fileSave:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that File > Save has been selected by the user.");
+	[notificationCenter postNotificationName:VTFileSaveSelectedNotification object:self];
+		
+}
 
-- (NSManagedObjectModel *)managedObjectModel {
-    
-    if (managedObjectModel != nil) {
-        return managedObjectModel;
-    }
+- (IBAction)fileOpen:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that File > Open has been selected by the user.");
+	[notificationCenter postNotificationName:VTFileOpenSelectedNotification object:self];
 	
-    managedObjectModel = [[NSManagedObjectModel mergedModelFromBundles:nil] retain];    
-    return managedObjectModel;
+}
+
+
+- (IBAction)fileClose:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that File > Close has been selected by the user.");
+	[notificationCenter postNotificationName:VTFileCloseSelectedNotification object:self];
+	
+}
+
+- (IBAction)fileExportGPX:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that File > Export > GPX has been selected by the user.");
+	[notificationCenter postNotificationName:VTFileExportGPXSelectedNotification object:self];
+	
+}
+
+- (IBAction)fileExportKML:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that File > Export > KML has been selected by the user.");
+	[notificationCenter postNotificationName:VTFileExportKMLSelectedNotification object:self];
+	
+}
+
+- (IBAction)setupUpdateDeviceSettings:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that Setup > Update Device Settings has been selected by the user.");
+	[notificationCenter postNotificationName:VTSetupUpdateDeviceSettingsSelectedNotification object:self];
+	
+}
+
+- (IBAction)setupEraseAll:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that Setup > Erase All has been selected by the user.");
+	[notificationCenter postNotificationName:VTSetupEraseAllSelectedNotification object:self];
+	
+}
+
+- (IBAction)setupUpdateDeviceFirmware:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that Setup > Update Device Firmware has been selected by the user.");
+	[notificationCenter postNotificationName:VTSetupUpdateDeviceFirmwareSelectedNotification object:self];
+	
+}
+
+- (IBAction)helpTutorialVideo:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that Help>Tutorial Video has been selected by the user.");
+	[notificationCenter postNotificationName:VTHelpTutorialVideoSelectedNotification object:self];
+	
 }
 
 
 /**
- Returns the persistent store coordinator for the application.  This 
- implementation will create and return a coordinator, having added the 
- store for the application to it.  (The folder for the store is created, 
- if necessary.)
- */
-
-- (NSPersistentStoreCoordinator *) persistentStoreCoordinator {
-    
-    if (persistentStoreCoordinator != nil) {
-        return persistentStoreCoordinator;
-    }
-    
-    NSFileManager *fileManager;
-    NSString *applicationSupportFolder = nil;
-    NSURL *url;
-    NSError *error;
-    
-    fileManager = [NSFileManager defaultManager];
-    applicationSupportFolder = [self applicationSupportFolder];
-    if ( ![fileManager fileExistsAtPath:applicationSupportFolder isDirectory:NULL] ) {
-        [fileManager createDirectoryAtPath:applicationSupportFolder attributes:nil];
-    }
-    
-    url = [NSURL fileURLWithPath: [applicationSupportFolder stringByAppendingPathComponent: @"devicedb"]];
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: [self managedObjectModel]];
-    if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:nil error:&error]){
-        [[NSApplication sharedApplication] presentError:error];
-    }    
-    
-    return persistentStoreCoordinator;
-}
-
-
-/**
- Returns the managed object context for the application (which is already
- bound to the persistent store coordinator for the application.) 
- */
-
-- (NSManagedObjectContext *) managedObjectContext {
-    
-    if (managedObjectContext != nil) {
-        return managedObjectContext;
-    }
-    
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
-    if (coordinator != nil) {
-        managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [managedObjectContext setPersistentStoreCoordinator: coordinator];
-    }
-    
-    return managedObjectContext;
-}
-
-
-/**
- Returns the NSUndoManager for the application.  In this case, the manager
- returned is that of the managed object context for the application.
- */
-
-- (NSUndoManager *)windowWillReturnUndoManager:(NSWindow *)window {
-    return [[self managedObjectContext] undoManager];
-}
-
-
-/**
- Performs the save action for the application, which is to send the save:
- message to the application's managed object context.  Any encountered errors
- are presented to the user.
- */
-
-- (IBAction) saveAction:(id)sender {
-    
-    NSError *error = nil;
-    if (![[self managedObjectContext] save:&error]) {
-        [[NSApplication sharedApplication] presentError:error];
-    }
-}
-
-
-/**
- Primes the USB watch for new devices
+ Primes the USB watch for new devices and launches the the main window
  */
 
 // This is called for user switching, there is a need to release the devices then...
@@ -130,12 +121,17 @@
 }
 
 - (void)applicationDidFinishLaunching:sender {
-    // If fast user switching is used I need to release the USB devices. Or at least stop talking to them...
+    
+	// If fast user switching is used I need to release the USB devices. Or at least stop talking to them...
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(_switchHandler:) name:NSWorkspaceSessionDidBecomeActiveNotification object:nil];
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(_switchHandler:) name:NSWorkspaceSessionDidResignActiveNotification object:nil];
 
-    // prime it
+	// prime it
     _loader = [VTDeviceLoader loader]; // No need to retain: singleton
+	
+	// Create the main window
+	MainWindowController *mainWindowController = [MainWindowController alloc];	
+	[mainWindowController init];		
 }
 
 /**
@@ -145,50 +141,6 @@
     return YES;
 }
 
-/**
- Implementation of the applicationShouldTerminate: method, used here to
- handle the saving of changes in the application managed object context
- before the application terminates.
- */
-
-- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender {
-    
-    NSError *error = nil;
-    int reply = NSTerminateNow;
-    
-    if (managedObjectContext != nil) {
-        if ([managedObjectContext commitEditing]) {
-            if ([managedObjectContext hasChanges] && ![managedObjectContext save:&error]) {
-				
-                // This error handling simply presents error information in a panel with an 
-                // "Ok" button, which does not include any attempt at error recovery (meaning, 
-                // attempting to fix the error.)  As a result, this implementation will 
-                // present the information to the user and then follow up with a panel asking 
-                // if the user wishes to "Quit Anyway", without saving the changes.
-                
-                BOOL errorResult = [[NSApplication sharedApplication] presentError:error];
-				
-                if (errorResult == YES) {
-                    reply = NSTerminateCancel;
-                } 
-                
-                else {
-					
-                    int alertReturn = NSRunAlertPanel(nil, @"Could not save changes while quitting. Quit anyway?" , @"Quit anyway", @"Cancel", nil);
-                    if (alertReturn == NSAlertAlternateReturn) {
-                        reply = NSTerminateCancel;	
-                    }
-                }
-            }
-        } 
-        
-        else {
-            reply = NSTerminateCancel;
-        }
-    }
-    
-    return reply;
-}
 
 
 /**
@@ -197,9 +149,6 @@
 
 - (void) dealloc {
     
-    [managedObjectContext release], managedObjectContext = nil;
-    [persistentStoreCoordinator release], persistentStoreCoordinator = nil;
-    [managedObjectModel release], managedObjectModel = nil;
     _loader = nil;
     
     [super dealloc];

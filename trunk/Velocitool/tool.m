@@ -1,12 +1,14 @@
 #define MAX_NUM_CHARS_IN_FIRMWARE_FILE 200000
 
 #define LOAD_DEVICE
-#define FIRMWARE_UPDATE
+//#define TRACKPOINT_SAVE
+//#define FIRMWARE_UPDATE
 //#define FILE_READ
 //#define FIRMWARE_VERSION_READ
 //#define SERIAL_NUMBER_READ
 //#define TRACKPOINT_LOG_READ
-//#define TRACKPOINTS_READ
+#define TRACKPOINTS_READ
+//#define PROGRESS_TRACKER
 
 #import <Cocoa/Cocoa.h>
 #import "VTDeviceLoader.h"
@@ -16,10 +18,17 @@
 #import "VTDateTime.h"
 #import "VTFloat.h"
 #import "VTFirmwareFile.h"
-
+#import "VTTrackpointElement.h"
+#import "VTTrackpointsElement.h"
+#import "VTBoundaryElement.h"
+#import "VTCapturedTrackElement.h"
+#import "VTVccRootElement.h"
+#import "VTVccXmlDoc.h"
+#import "VTProgressTracker.h"
 
 #import <Foundation/Foundation.h>
 
+void testTrackpointSave(VTDevice *device);
 
 void testFirmwareFileRead(NSString *fileName);
 unsigned char getCharFromDataObject(int charNumber,NSData *dataObject);
@@ -32,6 +41,13 @@ void testVTFloatClass(void);
 void testTrackpointsRead(VTDevice *testDevice);
 
 void testTrackpointReadCommandParameter(VTDevice *testDevice);
+
+
+void testProgressTracker();
+
+NSString* createXMLDateString(NSDate *date);
+NSString* removeGMTFromDateString(NSString *dateString);
+
 
 int main (int argc, const char * argv[]) {
     
@@ -55,6 +71,10 @@ int main (int argc, const char * argv[]) {
 	loader = [VTDeviceLoader loader];
 	
 	testDevice = [loader deviceForSerialNumber:testUnitSerialNumber];
+#endif
+	
+#ifdef TRACKPOINT_SAVE
+	testTrackpointSave(testDevice);
 #endif
 	
 	
@@ -92,10 +112,79 @@ int main (int argc, const char * argv[]) {
 	}
 
 #endif
+	
+#ifdef PROGRESS_TRACKER
+	testProgressTracker();
+#endif
 
     
     [pool drain];
     return 0;
+}
+
+void testProgressTracker()
+{
+	VTProgressTracker* progressTracker = [[VTProgressTracker alloc] init];
+	
+	[progressTracker setCurrentProgress:0];
+	[progressTracker setGoal:500];
+	
+	int i;
+	for(i = 0; i < 500; i++)
+	{
+		[progressTracker incrementProgress];
+		NSLog(@"%@",[progressTracker progressPercentageToDisplay]);
+	}
+		
+}
+
+
+void testTrackpointSave(VTDevice* device)
+{
+	
+	VTTrackpointRecord *testTrackpoint = [[VTTrackpointRecord alloc] init];
+	
+	NSDate *timeStamp = [NSDate dateWithString:@"2010-04-27 17:30:50 -1000"];
+
+	[testTrackpoint set_timestamp:timeStamp];
+	[testTrackpoint set_latitude:20.917650];
+	[testTrackpoint set_longitude:-156.1234567890123456];
+	[testTrackpoint set_speed: 2.5];
+	[testTrackpoint set_heading:180.0];
+	
+	VTTrackpointRecord *testTrackpoint2 = [[VTTrackpointRecord alloc] init];
+	
+	NSDate *timeStamp2 = [NSDate dateWithString:@"2010-04-27 17:30:52 -1000"];
+	
+	[testTrackpoint2 set_timestamp:timeStamp2];
+	[testTrackpoint2 set_latitude:20.1234];
+	[testTrackpoint2 set_longitude:-156.54321];
+	[testTrackpoint2 set_speed: 2.8];
+	[testTrackpoint2 set_heading:175.0];
+	
+	
+	NSMutableArray *trackpoints = [[NSMutableArray alloc] init];
+	
+	[trackpoints addObject:testTrackpoint];
+	[trackpoints addObject:testTrackpoint2];
+	
+		
+	VTCapturedTrackElement *capturedTrackElement = [VTCapturedTrackElement capturedTrackElementWithTrackPointsAndDevice:trackpoints device:device];
+	
+	//VTVccRootElement *rootElement = [VTVccRootElement generateVccRootElement];
+	
+	//[rootElement addChild:capturedTrackElement];
+	
+	//capturedTrackElementWithTrackPointsAndDevice:trackpoints device:device];
+	
+		
+			
+	//VTVccXmlDoc *xmlDoc = [[NSXMLDocument alloc] initWithRootElement:rootElement];
+	
+	VTVccXmlDoc *xmlDoc = [VTVccXmlDoc vccXmlDocWithCapturedTrack:capturedTrackElement];
+	
+	[xmlDoc saveAsVccFile];
+			
 }
 
 
@@ -113,14 +202,14 @@ void testFirmwareFileRead(NSString *filePath)
 
 
 
-//Reads all the trackpoints stored on the test device
 void testTrackpointsRead(VTDevice *testDevice)
 {
 	
 	
-	NSDate *beginningOfFirstLog = [NSDate dateWithString:@"2010-03-11 15:04:42 -1000"];
+	NSDate *beginningOfFirstLog = [NSDate dateWithString:@"2010-06-06 23:01:15 -1000"];
 								   
-	NSDate *endOfLastLog = [NSDate dateWithString:@"2010-03-11 15:19:38 -1000"];
+	NSDate *endOfLastLog = [NSDate dateWithString:@"2010-06-06 28:08:57 -1000"];
+	
 	
 	
 	VTReadTrackpointsCommandParameter *testCommandParameter = [VTReadTrackpointsCommandParameter commandParameterFromTimeInverval:beginningOfFirstLog
@@ -151,8 +240,8 @@ void testTrackpointReadCommandParameter(VTDevice *testDevice)
 	VTTrackpointLogRecord *firstLog = [arrayOfTrackpointLogs objectAtIndex:0];
 	VTTrackpointLogRecord *lastLog = [arrayOfTrackpointLogs objectAtIndex:([arrayOfTrackpointLogs count] - 1)];
 	
-	NSDate *beginningOfFirstLog = [firstLog _start];
-	NSDate *endOfLastLog = [lastLog _end];
+	NSDate *beginningOfFirstLog = [firstLog start];
+	NSDate *endOfLastLog = [lastLog end];
 	
 	VTReadTrackpointsCommandParameter *testCommandParameter = [VTReadTrackpointsCommandParameter commandParameterFromTimeInverval:beginningOfFirstLog
 																															  end:endOfLastLog];

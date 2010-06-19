@@ -11,9 +11,13 @@
 @interface VTDevice : NSObject {
     NSDictionary *_properties;
     VTConnection *_connection;
+	
 }
+@property (readwrite, retain) VTConnection *_connection;
 
 + deviceForProperties:(NSDictionary *)properties;
+
+
 - (NSString *)serial;
 - (NSString *)model;
 - (NSString *)firmwareVersion;

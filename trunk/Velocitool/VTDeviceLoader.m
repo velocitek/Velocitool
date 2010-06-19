@@ -87,7 +87,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
         result = kIOReturnSuccess;
         properties = (CFMutableDictionaryRef)[NSDictionary new];
         location = @"Nowhere";
-
+		
     } else {
         result = IORegistryEntryCreateCFProperties(usbDevice, &properties,  kCFAllocatorDefault, kNilOptions);
         location = [(NSDictionary *)properties objectForKey:@"locationID"];
@@ -96,7 +96,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     if ((result == kIOReturnSuccess) && properties) {
         
         VTDevice *device = [VTDevice deviceForProperties:(NSDictionary *)properties];
-
+		
         if (device) {
             // The locationID uniquely identifies the device and will remain the same, even across
             // reboots, so long as the bus topology doesn't change.        
@@ -124,7 +124,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
         [_devicesBySerial removeObjectForKey:serial]; 
         
         [[NSNotificationCenter defaultCenter] postNotificationName:VTDeviceRemovedNotification object:self userInfo:[NSDictionary dictionaryWithObject:serial forKey:@"serial"]];
-
+		
         CFRelease(properties);
         
     }
@@ -134,14 +134,14 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
 - init {
     _devicesByLocation = [[NSMutableDictionary alloc] init];
     _devicesBySerial = [[NSMutableDictionary alloc] init];
-
+	
     CFRunLoopSourceRef      runLoopSource;
     kern_return_t           kr;
     io_iterator_t           rawAddedIter;
     io_iterator_t           rawRemovedIter;
     CFMutableDictionaryRef  matchingDict;
     IONotificationPortRef   notifyPort;
-
+	
     // Set up matching dictionary for class IOUSBDevice and its subclasses
     matchingDict = IOServiceMatching(kIOUSBDeviceClassName);
     if (!matchingDict) {
@@ -154,7 +154,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     CFNumberRef   vendorID = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &usbVendor);
     CFDictionarySetValue(matchingDict, CFSTR(kUSBVendorID), vendorID);
     CFRelease(vendorID);
-
+	
     // Add a wild card match for the productID to the matching dictionary.
     CFDictionarySetValue(matchingDict, CFSTR(kUSBProductID), CFSTR("*"));
     
@@ -191,7 +191,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     CFRelease(matchingDict);
     
     // For debug, add a fake device by default.
-    [self _addDevice:IO_OBJECT_NULL];
+    //[self _addDevice:IO_OBJECT_NULL];
     return self;
 }
 

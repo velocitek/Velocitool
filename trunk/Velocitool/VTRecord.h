@@ -32,6 +32,12 @@
 	
 }
 
+@property(readwrite, retain) NSDate *_timestamp;
+@property(readwrite) float _latitude;
+@property(readwrite) float _longitude;
+@property(readwrite) float _speed;
+@property(readwrite) float _heading;
+
 @end
 
 @interface VTReadTrackpointsCommandParameter : VTRecord
@@ -97,14 +103,18 @@
 
 
 
-@interface VTTrackpointLogRecord : VTRecordWithHeader {
+@interface VTTrackpointLogRecord : VTRecordWithHeader 
+{
 	
-    char _logIndex;
-    int _trackpointCount;
-    NSDate *_start; 
-    NSDate *_end; 
+    bool selectedForDownload;
+	char logIndex;
+    int numTrackpoints;
+    NSDate *start; 
+    NSDate *end;
 }
-@property(readonly) NSDate *_start;
-@property(readonly) NSDate *_end;
+@property(readwrite) bool selectedForDownload;
+@property(readonly) NSDate *start;
+@property(readonly) NSDate *end;
+@property(readonly) int numTrackpoints;
 
 @end
