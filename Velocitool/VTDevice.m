@@ -15,7 +15,6 @@ static NSDictionary *productIDToClass = nil;
 - initWithConnection:(VTConnection *)connection properties:(NSDictionary *)properties;
 @end
 
-
 @interface VTDeviceSpeedPuck:VTDevice {
     NSString *_firmwareVersion;
     NSDictionary *_deviceSettings;
@@ -26,7 +25,11 @@ static NSDictionary *productIDToClass = nil;
 @interface VTDeviceSC1:VTDevice {} @end
 @interface VTFakeDevice:VTDevice {} @end
 
+
+
 @implementation VTDevice
+
+@synthesize _connection;
 
 + (void)initialize {
     productIDToClass = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -63,6 +66,8 @@ static NSDictionary *productIDToClass = nil;
 - initWithConnection:(VTConnection *)connection properties:(NSDictionary *)properties {
     _connection = [connection retain];
     _properties = [properties copy];
+	
+	
     return self;
     
 }
@@ -282,8 +287,9 @@ static NSDictionary *productIDToClass = nil;
 
 
 - (NSArray *)trackpointLogs {
-	
-    NSArray *records = (NSArray *)[_connection runCommand:[VTCommand commandWithSignal:'O' parameter:nil resultsClass:[VTTrackpointLogRecord class]]];
+	   	
+	NSArray *records = (NSArray *)[_connection runCommand:[VTCommand commandWithSignal:'O' parameter:nil resultsClass:[VTTrackpointLogRecord class]]];
+		
     return records;
 	
 }
@@ -293,9 +299,11 @@ static NSDictionary *productIDToClass = nil;
 
 	VTReadTrackpointsCommandParameter *commandParameter = [VTReadTrackpointsCommandParameter commandParameterFromTimeInverval:downloadFrom end:downloadTo];
 	
-	NSArray *records = (NSArray *)[_connection runCommand:[VTCommand commandWithSignal:'T' 
-																			 parameter:commandParameter
-																		   resultsClass:[VTTrackpointRecord class]]];
+	VTCommand *command = [VTCommand commandWithSignal:'T' 
+											parameter:commandParameter
+										 resultsClass:[VTTrackpointRecord class]];
+	
+	NSArray *records = (NSArray *)[_connection runCommand:command];
 	return records;
 	
 }
