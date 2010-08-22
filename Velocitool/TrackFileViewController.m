@@ -6,13 +6,16 @@
 //  Copyright 2010 Velocitek. All rights reserved.
 //
 
+
 #import "TrackFileViewController.h"
+
+
+#import "VTGlobals.h"
 #import "VTTrackFromDevice.h"
 #import "VTVccXmlDoc.h"
 #import "VTCapturedTrackElement.h"
 #import "VTAppDelegate.h"
 #import "VTVccFile.h"
-
 
 
 @interface TrackFileViewController (private)
@@ -28,6 +31,61 @@
 @synthesize trackFromDevice;
 @synthesize currentFile;
 
+
+- (IBAction)fileSave:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that the Save button has been selected by the user.");
+	[notificationCenter postNotificationName:VTSaveButtonSelectedNotification object:self];
+	
+}
+
+- (IBAction)fileOpen:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that the Open button has been selected by the user.");
+	[notificationCenter postNotificationName:VTOpenButtonSelectedNotification object:self];
+	
+}
+
+
+- (IBAction)fileClose:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that File > Close has been selected by the user.");
+	[notificationCenter postNotificationName:VTCloseButtonPressedNotification object:self];
+	
+}
+
+- (IBAction)fileExportGPX:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that File > Export > GPX has been selected by the user.");
+	[notificationCenter postNotificationName:VTExportGPXButtonSelectedNotification object:self];
+	
+}
+
+- (IBAction)fileExportKML:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that File > Export > KML has been selected by the user.");
+	[notificationCenter postNotificationName:VTExportKMLButtonSelectedNotification object:self];
+	
+}
+
+
+- (IBAction)launchReplay:(id)sender
+{
+	[currentFile launchReplayInGpsar];
+}
+
+- (IBAction)returnToDeviceView:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that the Return to Device View button has been pressed by the user.");	
+	[notificationCenter postNotificationName:VTCloseButtonPressedNotification object:self];
+}
+
 - (id)init {
 	
 	if(![super initWithNibName:@"TrackFileView" bundle:nil])
@@ -39,54 +97,50 @@
 	
 }
 
+
+
 -(void)registerForNotifications
 {
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	
 	[nc addObserver:self
 		   selector:@selector(handleFileSaveSelected:)
-			   name:VTFileSaveSelectedNotification
+			   name:VTSaveButtonSelectedNotification
 			 object:nil];
 	
 	[nc addObserver:self
 		   selector:@selector(handleFileOpenSelected:)
-			   name:VTFileOpenSelectedNotification
+			   name:VTOpenButtonSelectedNotification
 			 object:nil];
 	
 	[nc addObserver:self
 		   selector:@selector(handleFileCloseSelected:)
-			   name:VTFileCloseSelectedNotification
+			   name:VTCloseButtonPressedNotification
 			 object:nil];
 	
 	[nc addObserver:self
 		   selector:@selector(handleFileExportGPXSelected:)
-			   name:VTFileExportGPXSelectedNotification
+			   name:VTExportGPXButtonSelectedNotification
 			 object:nil];
 	
 	[nc addObserver:self
 		   selector:@selector(handleFileExportKMLSelected:)
-			   name:VTFileExportKMLSelectedNotification
-			 object:nil];
+			   name:VTExportKMLButtonSelectedNotification
+			 object:nil];		
 	
-	[nc addObserver:self
-		   selector:@selector(handleSetupUpdateDeviceSettingsSelected:)
-			   name:VTSetupUpdateDeviceSettingsSelectedNotification
-			 object:nil];
-	
-	[nc addObserver:self
-		   selector:@selector(handleSetupEraseAllSelected:)
-			   name:VTSetupEraseAllSelectedNotification
-			 object:nil];
-	
-	[nc addObserver:self
+	/*[nc addObserver:self
 		   selector:@selector(handleSetupUpdateDeviceFirmwareSelected:)
 			   name:VTSetupUpdateDeviceFirmwareSelectedNotification
 			 object:nil];
+	 */
 	
-	[nc addObserver:self
+	
+	/*[nc addObserver:self
 		   selector:@selector(handleHelpTutorialVideoSelected:)
 			   name:VTHelpTutorialVideoSelectedNotification
 			 object:nil];
+	 */
+	 
 		
 }
 
@@ -113,7 +167,8 @@
 - (void)handleFileExportGPXSelected:(NSNotification*)note
 {
 	
-	NSLog(@"Received notification: %@", [note name]);	
+	NSLog(@"Received notification: %@", [note name]);
+	[currentFile saveAsGpx];
 	
 }
 
@@ -121,21 +176,10 @@
 {
 	
 	NSLog(@"Received notification: %@", [note name]);	
+	[currentFile saveAsKml];
 	
 }
 
-- (void)handleSetupUpdateDeviceSettingsSelected:(NSNotification*)note
-{
-	
-	NSLog(@"Received notification: %@", [note name]);		
-}
-
-- (void)handleSetupEraseAllSelected:(NSNotification*)note
-{
-	
-	NSLog(@"Received notification: %@", [note name]);	
-	
-}
 
 - (void)handleSetupUpdateDeviceFirmwareSelected:(NSNotification*)note
 {

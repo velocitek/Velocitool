@@ -26,5 +26,6 @@
 - (NSArray *)trackpointLogs;
 - (NSArray *)trackpoints:(NSDate *)downloadFrom endTime:(NSDate *)downloadTo;
 - (BOOL)updateFirmware:(NSString *)filePath;
+- (void)eraseAll;
 
 @end

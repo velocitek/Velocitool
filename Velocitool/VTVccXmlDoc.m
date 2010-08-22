@@ -22,9 +22,12 @@
 	
 	//add capturedTrack to rootElement as child
 	[rootElement addChild:capturedTrack];
+	
+	//Convert to canonical for compatibility with xslt transformations
+	NSString *canonicalFormString = [rootElement canonicalXMLStringPreservingComments:YES];
 	    
     //add VCC root element to self as root element
-	[self initWithRootElement:rootElement];
+	[self initWithXMLString:canonicalFormString options:NSXMLDocumentTidyXML error:NULL];
 	[self setVersion:@"1.0"];
 	[self setCharacterEncoding:@"utf-8"];
 	

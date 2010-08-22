@@ -15,8 +15,11 @@
 }
 
 + (id)xmlDateWithDate:(NSDate*) dateTime;
-+ (NSString *)xmlNow;
++ (id)xmlDateWithVccDateString:(NSString*) vccDateString;
++ (NSString *)vccNow;
 - (id)initWithDate:(NSDate*) dateTime;
-- (NSString*)xmlDateString;
+- (id)initWithVccDateString:(NSString*) vccDateString;
+- (NSString*)vccDateString;
+- (NSString*)vccGmtDateString;
 
 @end

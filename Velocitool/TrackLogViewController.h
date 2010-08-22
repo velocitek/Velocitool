@@ -13,27 +13,42 @@ extern NSString *VTStartedEstablishingConnectionWithDeviceNotification;
 extern NSString *VTTrackLogsFinishedDownloadingNotification;
 extern NSString *VTFirstConnectedDeviceRemovedNotification;
 
-extern NSString *VTDownloadButtonPressedNotification;
-
 @interface TrackLogViewController : NSViewController {
+	
 	
 	IBOutlet NSArrayController *deviceController;
 	IBOutlet NSArrayController *trackpointLogController;
 	
+	IBOutlet NSButton *openButton;
 	IBOutlet NSButton *downloadButton;
+			
+	IBOutlet NSButton *deviceSettingsButton;
+	IBOutlet NSButton *eraseAllButton;	
+	
+	IBOutlet NSButton *helpTutorialVideo;
 		
 	NSMutableArray *devices;
 	NSMutableArray *trackpointLogs;
 	
 	VTDevice *firstConnectedDevice;
-
+	
 }
 
 @property(readwrite, retain) NSMutableArray *devices;
 @property(readwrite, retain) NSMutableArray *trackpointLogs;
 @property(readwrite, retain) VTDevice *firstConnectedDevice;
 
+- (IBAction)fileOpen:(id)sender;
+- (IBAction)updateDeviceSettings:(id)sender;
+- (IBAction)eraseAll:(id)sender;
+
+/*Not currently implemented
+- (IBAction)updateDeviceFirmware:(id)sender;
+- (IBAction)helpTutorialVideo:(id)sender;
+*/
+
 - (IBAction)downloadDataFromDevice:(id)sender;
+
 
 - (void)lookForAlreadyConnectedDevices;
 - (void)armNotifications;

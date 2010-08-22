@@ -326,7 +326,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 
 - (void)recover {
     
-    unsigned int toRead = [self waitForResponseLength:10000 timeout:5000];
+    unsigned int toRead = [self waitForResponseLength:10000 timeout:1000];
     
     while(toRead) { // Read all the stuff from the device
         NSLog(@"reading %d of recovery", toRead);
@@ -411,7 +411,6 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 }
 
 
-
 //This routine writes the bytes of a firmware file to the connection
 - (BOOL)runFirmwareUpdate:(VTFirmwareFile *)firmwareFile
 {
@@ -437,13 +436,15 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 }
 
 //This routine writes the bytes of a firmware file to the connection
+//Updating firmware currently does not work because of problems with
+//the reliability of FTDI's mac drivers
 - (BOOL)writeFirmwareFile:(VTFirmwareFile*)firmwareFile
 {
 	NSArray *firmwareData = [firmwareFile firmwareData]; 
 	float lineCounter = 0;
 	float numLinesInUpdate = (float)[firmwareData count];
-	float percentComplete = 0;
-	float percentCompleteToReport = 0;
+	//float percentComplete = 0;
+	//float percentCompleteToReport = 0;
 	DWORD numBytesInTXQueue;
 	DWORD numBytesInRXQueue;
 	DWORD event;
@@ -458,6 +459,8 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 		status = (*pFT_GetStatus)(_ft_handle, &numBytesInRXQueue, &numBytesInTXQueue, &event);
 		//NSLog(@"About to write firmware line %d.  %d bytes in RX Queue, %d bytes in TX Queue.", (int)lineCounter, numBytesInRXQueue, numBytesInTXQueue);
 		//write data object to connection
+		
+		usleep(100000);
 		bytesWritten = [self write:dataLine];
 		
 		if (bytesWritten != [dataLine length]) 
@@ -467,12 +470,14 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 			
 		}
 		
+		[self readChar];
+		[self readChar];
+		[self readChar];
 		
-		if (![self readFirmwareUpdateFlowControlChars]) return FIRMWARE_UPDATE_FAILED;
+		//if (![self readFirmwareUpdateFlowControlChars]) return FIRMWARE_UPDATE_FAILED;
 		
-		//output that we have just written line number lineCounter
-		//NSLog(@"Firmware Line %d of %d written to device",(int)lineCounter + 1, [firmwareData count]);
 		
+		/*
 		percentComplete = ((lineCounter + 1) / numLinesInUpdate) * 100;
 		
 		//if percentComplete is greater than or equal to percentCompleteToReport + 5.0
@@ -484,6 +489,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 			NSLog(@"Firmware update is now %f %% complete",percentCompleteToReport);
 			
 		}
+		*/
 		
 		if(lineCounter == (numLinesInUpdate - 1))
 		{

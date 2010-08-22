@@ -84,8 +84,8 @@
 	[self constructDefaultTrackName];
 	[self addAttribute:[NSXMLNode attributeWithName:@"name" stringValue:defaultTrackName]];
 	
-	//add downloadedOn attribute and set its value equal to the current date as an xmlDate string
-	[self addAttribute:[NSXMLNode attributeWithName:@"downloadedOn" stringValue:[VTXmlDate xmlNow]]];
+	//add downloadedOn attribute and set its value equal to the current date as an vccDate string
+	[self addAttribute:[NSXMLNode attributeWithName:@"downloadedOn" stringValue:[VTXmlDate vccNow]]];
 	
 	//add numberTrkpts attribute and set its value equal to the size of the trackpoints array
 	NSString *numTrackpoints = [NSString stringWithFormat:@"%d", [trackpoints count]];

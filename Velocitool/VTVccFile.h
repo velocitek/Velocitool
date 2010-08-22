@@ -12,13 +12,25 @@
 
 @interface VTVccFile : NSObject {
 
-	VTXmlDoc *xmlRepresentation;
+	VTXmlDoc *vccFormatXmlDoc;
+	
+	NSXMLDocument *vccGmtFormatXmlDoc;
+	NSXMLDocument *gpxFormatXmlDoc;
+	NSXMLDocument *kmlFormatXmlDoc;
+	
+	
 	NSFileWrapper *vccFileWrapper;
+	NSFileWrapper *kmlFileWrapper;
+	NSFileWrapper *gpxFileWrapper;
+	
 	NSString *numTrackpoints;
 	BOOL fileSaved;	
 }
 
 @property(readwrite, retain) NSFileWrapper *vccFileWrapper;
+@property(readwrite, retain) NSFileWrapper *kmlFileWrapper;
+@property(readwrite, retain) NSFileWrapper *gpxFileWrapper;
+
 @property(readwrite, retain) NSString *numTrackpoints;
 @property(readwrite) BOOL fileSaved;	
 
@@ -27,5 +39,8 @@
 - (id)initWithTrackFromDevice:(VTTrackFromDevice*)trackFromDevice;
 - (id)initWithURL:(NSURL*)fileLocation;
 - (void)save;
+-(void)saveAsGpx;
+-(void)saveAsKml;
+-(void)launchReplayInGpsar;
 
 @end
