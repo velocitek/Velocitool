@@ -76,9 +76,9 @@
 - (void)findDateTimeStringValue
 {
 
-	VTXmlDate *xmlDate = [VTXmlDate xmlDateWithDate:[trackpoint _timestamp]];
+	VTXmlDate *vccDate = [VTXmlDate xmlDateWithDate:[trackpoint _timestamp]];
 	
-	dateString = [xmlDate xmlDateString];
+	dateString = [vccDate vccDateString];
 }
 
 @end

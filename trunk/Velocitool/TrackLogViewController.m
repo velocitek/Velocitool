@@ -7,6 +7,8 @@
 //
 
 #import "TrackLogViewController.h"
+#import "VTGlobals.h"
+
 #import "VTDevice.h"
 #import "VTDeviceLoader.h"
 #import "VTRecord.h"
@@ -24,13 +26,69 @@ NSString *VTStartedEstablishingConnectionWithDeviceNotification = @"VTStartedEst
 NSString *VTTrackLogsFinishedDownloadingNotification = @"VTTrackLogsFinishedDownloadingNotification";
 NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRemovedNotification";
 
-NSString *VTDownloadButtonPressedNotification = @"VTDownloadButtonPressedNotification";
-
 @implementation TrackLogViewController
 
 @synthesize devices;
 @synthesize trackpointLogs;
 @synthesize firstConnectedDevice;
+
+
+
+
+
+- (IBAction)fileOpen:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that the Open button has been selected by the user.");
+	[notificationCenter postNotificationName:VTOpenButtonSelectedNotification object:self];
+}
+
+- (IBAction)updateDeviceSettings:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that the Updated Device Settings button has been selected by the user.");
+	[notificationCenter postNotificationName:VTUpdateDeviceSettingsButtonSelectedNotification object:self];	
+}
+
+- (IBAction)eraseAll:(id)sender
+{
+	NSAlert *eraseAllAlert = [NSAlert alertWithMessageText:@"Erase all GPS data on connected device?" 
+											 defaultButton:@"Cancel"
+										   alternateButton:@"OK"
+											   otherButton:nil
+								 informativeTextWithFormat:@""];
+	
+	NSInteger alertResult = [eraseAllAlert runModal];
+	
+	if (alertResult == NSAlertAlternateReturn) 
+	{
+		[firstConnectedDevice eraseAll];
+		NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+		[notificationCenter postNotificationName:VTEraseAllConfirmedNotification object:self];
+			
+		
+		
+	}
+												   	
+	
+}
+
+/*Not currently implemented
+- (IBAction)helpTutorialVideo:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that Help>Tutorial Video has been selected by the user.");
+	[notificationCenter postNotificationName:VTHelpTutorialVideoSelectedNotification object:self];
+}
+
+- (IBAction)updateDeviceFirmware:(id)sender
+{
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+	NSLog(@"Sending notification that Setup > Update Device Firmware has been selected by the user.");
+	[notificationCenter postNotificationName:VTSetupUpdateDeviceFirmwareSelectedNotification object:self];
+	
+}
+*/
 
 
 - (IBAction)downloadDataFromDevice:(id)sender
@@ -42,6 +100,7 @@ NSString *VTDownloadButtonPressedNotification = @"VTDownloadButtonPressedNotific
 	
 }
 
+
 - (id)init {
 	
 	devices = [[NSMutableArray alloc] init];
@@ -51,9 +110,17 @@ NSString *VTDownloadButtonPressedNotification = @"VTDownloadButtonPressedNotific
 		return nil;
 	
 	[self armNotifications];
-	
+			
 	return self;
 	
+}
+
+- (void)awakeFromNib
+{
+	NSSortDescriptor *startDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"start"																	 ascending:NO] retain];	
+	NSArray *sortDescriptors = [NSArray arrayWithObject:startDescriptor];
+	
+	[trackpointLogController setSortDescriptors:sortDescriptors];
 }
 
 
@@ -90,6 +157,9 @@ NSString *VTDownloadButtonPressedNotification = @"VTDownloadButtonPressedNotific
 		for (VTTrackpointLogRecord *trackpointLog in [firstConnectedDevice trackpointLogs])
 		{
 			[trackpointLogController addObject:trackpointLog];
+			
+			//Rearrange the objects to retain proper sorting
+			[trackpointLogController rearrangeObjects];
 			
 		}
 		
@@ -128,6 +198,13 @@ NSString *VTDownloadButtonPressedNotification = @"VTDownloadButtonPressedNotific
 
 - (void)lookForAlreadyConnectedDevices
 {
+	
+	//Remove any devices objects that might be in the devicesController array controller
+	if (firstConnectedDevice) 
+	{
+		[self removeAllDevices];
+	}
+	
 	//Look for any devices already connected to the Mac and add them to the array controller
 	VTDeviceLoader *deviceLoader = [VTDeviceLoader loader];
 	
@@ -186,6 +263,30 @@ NSString *VTDownloadButtonPressedNotification = @"VTDownloadButtonPressedNotific
         }		
 		
     }
+}
+
+@end
+
+
+@interface DeviceHasNoDeviceSettingsValueTransformer: NSValueTransformer {}
+@end
+
+@implementation DeviceHasNoDeviceSettingsValueTransformer
++ (Class)transformedValueClass { return [NSNumber class]; }
++ (BOOL)allowsReverseTransformation { return NO; }
+
+- (id)transformedValue:(VTDevice *)device
+{
+		
+	if([[device model] isEqual:@"SpeedPuck"])
+	{
+		return [NSNumber numberWithBool:NO];		
+	}
+	else 
+	{
+		return [NSNumber numberWithBool:YES];
+	}
+	
 }
 
 @end

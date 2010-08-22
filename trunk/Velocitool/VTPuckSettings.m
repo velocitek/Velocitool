@@ -62,10 +62,10 @@
 }
 
 - barGraphEnabled {
-    return [_settings objectForKey:VTBarGraphEnabled];
+    return [_settings objectForKey:VTBarGraphPref];
 }
 - (void)setBarGraphEnabled:value {
-    [_settings setObject:value forKey:VTBarGraphEnabled];
+    [_settings setObject:value forKey:VTBarGraphPref];
 }
 
 - deviceOperationOption {
@@ -90,10 +90,10 @@
 
 - (NSString *)barGraphLabel {
     switch ([[self deviceOperationOption] intValue]) {
-        case VTPuckModeNormal:
+        case VTPuck1_4ModeNormal:
             return @"Show lift/header indicator";
             break;
-        case VTPuckModeMotor:
+        case VTPuck1_4ModeMotor:
             return @"Speed bars enabled";
             break;
         default:
@@ -103,15 +103,15 @@
 }
 
 - (BOOL)barGraphState {
-    return [[self deviceOperationOption] intValue] != VTPuckModeBlank;
+    return [[self deviceOperationOption] intValue] != VTPuck1_4ModeBlank;
 }
 
 - (BOOL)compassEnabled {
-    return [[self deviceOperationOption] intValue] == VTPuckModeNormal;
+    return [[self deviceOperationOption] intValue] == VTPuck1_4ModeNormal;
 }
 
 - (BOOL)everythingOff {
-    return [[self deviceOperationOption] intValue] == VTPuckModeBlank;
+    return [[self deviceOperationOption] intValue] == VTPuck1_4ModeBlank;
 }
 
 + (VTPuckSettings *)settingsWithDictionary:(NSDictionary *)settings {

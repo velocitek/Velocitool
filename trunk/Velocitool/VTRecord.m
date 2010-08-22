@@ -219,7 +219,7 @@
     _headingDamping = 1;
     _maxSpeedMode = VTMaxSpeed10Second;
     _barGraphEnabled = YES;
-    _deviceOperationOption = VTPuckModeNormal;
+    _deviceOperationOption = VTPuck1_4ModeNormal;
     return self;
 }
 
@@ -235,7 +235,7 @@
 
 - (void)writeDeviceDataForConnection:(VTConnection *)connection {
     [connection writeUnsignedChar:_recordRate];
-    [connection writeChar:_declination];
+    [connection writeUnsignedChar:_declination];
     [connection writeUnsignedChar:_speedUnitOfMeasurement];
     [connection writeUnsignedChar:_speedDamping];
     [connection writeUnsignedChar:_headingDamping];
@@ -249,7 +249,7 @@
 
 - (void)readDeviceDataFromConnection:(VTConnection *)connection {
     _recordRate = [connection readUnsignedChar];
-    _declination = [connection readChar];
+    _declination = [connection readUnsignedChar];
     _speedUnitOfMeasurement = [connection readUnsignedChar];
     _speedDamping = [connection readUnsignedChar];
     _headingDamping = [connection readUnsignedChar];
@@ -262,12 +262,12 @@
 - (NSDictionary *)settingsDictionary {
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                           [NSNumber numberWithUnsignedChar:_recordRate], VTRecordRatePref,
-                          [NSNumber numberWithChar:_declination], VTDeclinationPref,
+                          [NSNumber numberWithUnsignedChar:_declination], VTDeclinationPref,
                           [NSNumber numberWithUnsignedChar:_speedUnitOfMeasurement], VTSpeedUnitPref,
                           [NSNumber numberWithUnsignedChar:_speedDamping], VTSpeedDampingPref,
                           [NSNumber numberWithUnsignedChar:_headingDamping], VTHeadingDampingPref,
                           [NSNumber numberWithUnsignedChar:_maxSpeedMode], VTMaxSpeedPref,
-                          [NSNumber numberWithBool:_barGraphEnabled], VTBarGraphEnabled,
+                          [NSNumber numberWithBool:_barGraphEnabled], VTBarGraphPref,
                           [NSNumber numberWithUnsignedChar:_deviceOperationOption],  VTPuckModePref,
                           nil
                           ];
@@ -282,7 +282,7 @@
         _recordRate = [value unsignedCharValue];
     }
     if( (value = [settings objectForKey:VTDeclinationPref]) ) {
-        _declination = [value charValue];
+        _declination = [value unsignedCharValue];
     }
     if( (value = [settings objectForKey:VTSpeedUnitPref]) ) {
         _speedUnitOfMeasurement = [value unsignedCharValue];
@@ -296,7 +296,7 @@
     if( (value = [settings objectForKey:VTMaxSpeedPref]) ) {
         _maxSpeedMode = [value unsignedCharValue];
     }
-    if( (value = [settings objectForKey:VTBarGraphEnabled]) ) {
+    if( (value = [settings objectForKey:VTBarGraphPref]) ) {
         _deviceOperationOption = [value boolValue];
     }
     if( (value = [settings objectForKey:VTPuckModePref]) ) {

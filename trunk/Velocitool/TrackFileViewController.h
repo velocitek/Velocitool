@@ -12,6 +12,7 @@
 @class VTDevice;
 @class VTVccFile;
 
+
 @interface TrackFileViewController : NSViewController {
 
 	VTTrackFromDevice *trackFromDevice;
@@ -20,7 +21,14 @@
 	VTDevice *device;
 	NSMutableArray *trackLogs;
 	
+	IBOutlet NSButton *openButton;
+	IBOutlet NSButton *saveButton;
+	IBOutlet NSMenuItem *fileExportGPX;
+	IBOutlet NSMenuItem *fileExportKML;
 	
+	IBOutlet NSButton *replayButton;
+	IBOutlet NSButton *returnToDeviceViewButton;
+		
 }
 
 @property(readwrite, retain) NSMutableArray *trackLogs;
@@ -31,5 +39,15 @@
 - (void)downloadTrackFromDevice;
 - (void)initializeCurrentFileFromTrack;
 - (void)initializeCurrentFileFromURL:(NSURL*)url;
+
+- (IBAction)launchReplay:(id)sender;
+- (IBAction)returnToDeviceView:(id)sender;
+
+- (IBAction)fileSave:(id)sender;
+- (IBAction)fileOpen:(id)sender;
+- (IBAction)fileExportGPX:(id)sender;
+- (IBAction)fileExportKML:(id)sender;
+
+
 
 @end

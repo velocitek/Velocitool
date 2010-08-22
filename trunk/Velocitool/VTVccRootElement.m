@@ -46,7 +46,7 @@
 	[self addAttribute:[NSXMLNode attributeWithName:@"xmlns:xsd" stringValue:@"http://www.w3.org/2001/XMLSchema"]];
 	
     //add attribute with name "createdOn" and the current time represented as an xml string
-	[self addAttribute:[NSXMLNode attributeWithName:@"createdOn" stringValue:[VTXmlDate xmlNow]]];
+	[self addAttribute:[NSXMLNode attributeWithName:@"createdOn" stringValue:[VTXmlDate vccNow]]];
 	
     //add attribute with name "xmlns" and value "http://www.velocitekspeed.com/VelocitekControlCenter"
 	[self addAttribute:[NSXMLNode attributeWithName:@"xmlns" stringValue:@"http://www.velocitekspeed.com/VelocitekControlCenter"]];	

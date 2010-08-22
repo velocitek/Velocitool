@@ -17,9 +17,9 @@
 
 
 #import <Cocoa/Cocoa.h>
-@class VTDevice;
 @class TrackLogViewController;
 @class TrackFileViewController;
+@class DeviceSettingsController;
 
 
 @interface MainWindowController : NSWindowController {
@@ -31,6 +31,7 @@
 	
 	unsigned int currentState;
 	
+	DeviceSettingsController *deviceSettingsController;
 	TrackLogViewController *trackLogViewController;	
 	TrackFileViewController *trackFileViewController;
 	

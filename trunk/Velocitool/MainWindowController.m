@@ -7,6 +7,9 @@
 //
 
 #import "MainWindowController.h"
+
+#import "VTGlobals.h"
+
 #import "TrackLogViewController.h"
 #import "TrackFileViewController.h"
 
@@ -14,6 +17,7 @@
 #import "VTTrackDownloadOperation.h"
 
 #import "VTAppDelegate.h"
+#import "DeviceSettingsController.h"
 
 //Events processed by state machine
 #define EV_ENTRY 0
@@ -27,21 +31,18 @@
 #define EV_FILE_OPENED 7
 #define EV_FILE_CLOSED 8
 #define EV_CONNECTION_INTERRUPTED 9
+#define EV_ERASE_ALL_CONFIRMED 10
 
 @interface MainWindowController (private)
 
 -(void)displayViewController:(NSViewController *)vc;
+-(void)openDeviceSettingsPanel;
 -(void)registerForNotifications;
 -(void)runStateMachine:(unsigned int)currentEvent;
 
-
 @end
 
-
-
 @implementation MainWindowController
-
-
 
 @synthesize currentState;
 @synthesize trackLogViewController;	
@@ -50,7 +51,7 @@
 
 - (IBAction)switchViews:(id)sender
 {
-	NSLog(@"switchViews button pressed");
+	
 	[self runStateMachine:EV_FILE_CLOSED];	
 	
 }
@@ -100,7 +101,7 @@
 				NSLog(@"Just changed to READY state.");
 				
 				//Wait for the main window to resize and check to see if any Velocitek devices are connected to the Mac			
-				[trackLogViewController performSelector: @selector(lookForAlreadyConnectedDevices) withObject: nil afterDelay: 0.25];					
+				[trackLogViewController performSelector: @selector(lookForAlreadyConnectedDevices) withObject: nil afterDelay: 0.5];					
 				
 				break;
 				
@@ -177,6 +178,13 @@
 				break;
 				
 			case EV_FIRST_DEVICE_REMOVED:
+				
+				nextState = READY;//Decide what the next state will be
+				makeTransition = TRUE; //mark that we are taking a transition
+				
+				break;
+				
+			case EV_ERASE_ALL_CONFIRMED:
 				
 				nextState = READY;//Decide what the next state will be
 				makeTransition = TRUE; //mark that we are taking a transition
@@ -286,6 +294,8 @@
 	
 }
 
+
+
 -(void)registerForNotifications
 {
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
@@ -317,8 +327,26 @@
 	
 	[nc addObserver:self
 		   selector:@selector(handleFileOpenSelected:)
-			   name:VTFileOpenSelectedNotification
+			   name:VTOpenButtonSelectedNotification
 			 object:nil];
+	
+	[nc addObserver:self
+		   selector:@selector(handleSetupUpdateDeviceSettingsSelected:)
+			   name:VTUpdateDeviceSettingsButtonSelectedNotification
+			 object:nil];
+	
+	[nc addObserver:self
+		   selector:@selector(handleReturnToDeviceViewButtonPressed:)
+			   name:VTCloseButtonPressedNotification
+			 object:nil];
+	
+	[nc addObserver:self
+		   selector:@selector(handleEraseAllConfirmed:)
+			   name:VTEraseAllConfirmedNotification
+			 object:nil];
+	
+	
+	
 }
 
 
@@ -379,6 +407,51 @@
 	}
 	
 }
+
+- (void)handleSetupUpdateDeviceSettingsSelected:(NSNotification*)note
+{
+	[self openDeviceSettingsPanel];
+}
+
+- (void)handleReturnToDeviceViewButtonPressed:(NSNotification*)note
+{
+	[self runStateMachine:EV_FILE_CLOSED];	
+}
+
+- (void)handleEraseAllConfirmed:(NSNotification*)note
+{
+	[self runStateMachine:EV_ERASE_ALL_CONFIRMED];	
+}
+
+-(void)openDeviceSettingsPanel
+{
+	
+	VTDevice *device = [trackLogViewController firstConnectedDevice];
+	NSString *firmwareVersion = [device firmwareVersion];
+	NSString *model = [device model];
+	
+	if ([model compare:@"SpeedPuck"] == NSOrderedSame) {
+		
+		if ([firmwareVersion compare:@"1.3"] == NSOrderedSame) {
+			
+				deviceSettingsController = [[SpeedPuck1_3DeviceSettingsController alloc] initWithDevice:[trackLogViewController firstConnectedDevice]];
+		
+		}
+		
+		else if([firmwareVersion compare:@"1.4"] == NSOrderedSame) {
+		
+			
+			deviceSettingsController = [[SpeedPuck1_4DeviceSettingsController alloc] initWithDevice:[trackLogViewController firstConnectedDevice]];
+			
+		}
+	
+		[deviceSettingsController showWindow:self];
+		
+	}
+	
+	
+}
+
 
 -(void)displayViewController:(NSViewController *)vc
 {

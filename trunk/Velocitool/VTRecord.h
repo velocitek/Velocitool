@@ -75,7 +75,7 @@
 
 @interface VTPuckSettingsRecord : VTRecordWithHeader {
     unsigned char _recordRate;
-    char _declination;
+    unsigned char _declination;
     unsigned char _speedUnitOfMeasurement;
     unsigned char _speedDamping;
     unsigned char _headingDamping;

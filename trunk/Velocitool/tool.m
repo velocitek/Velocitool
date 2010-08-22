@@ -1,14 +1,18 @@
 #define MAX_NUM_CHARS_IN_FIRMWARE_FILE 200000
 
-#define LOAD_DEVICE
+//#define LOAD_DEVICE
 //#define TRACKPOINT_SAVE
 //#define FIRMWARE_UPDATE
 //#define FILE_READ
 //#define FIRMWARE_VERSION_READ
 //#define SERIAL_NUMBER_READ
 //#define TRACKPOINT_LOG_READ
-#define TRACKPOINTS_READ
+//#define TRACKPOINTS_READ
 //#define PROGRESS_TRACKER
+//#define DEVICE_SETTINGS
+//#define XSLT_TEST
+//#define DATE_TEST
+#define LAUNCH_GPSAR_TEST
 
 #import <Cocoa/Cocoa.h>
 #import "VTDeviceLoader.h"
@@ -25,8 +29,15 @@
 #import "VTVccRootElement.h"
 #import "VTVccXmlDoc.h"
 #import "VTProgressTracker.h"
+#import "VTGlobals.h"
+#import "VTFirmwareUpdateOperation.h"
+#import "VTXmlDate.h"
 
 #import <Foundation/Foundation.h>
+
+void testFirmwareUpdate(VTDevice *device);
+
+void testDeviceSettings(VTDevice *device);
 
 void testTrackpointSave(VTDevice *device);
 
@@ -42,8 +53,13 @@ void testTrackpointsRead(VTDevice *testDevice);
 
 void testTrackpointReadCommandParameter(VTDevice *testDevice);
 
-
 void testProgressTracker();
+
+void testDate();
+
+void testXslt();
+
+void testGpsarLaunch();
 
 NSString* createXMLDateString(NSDate *date);
 NSString* removeGMTFromDateString(NSString *dateString);
@@ -64,13 +80,19 @@ int main (int argc, const char * argv[]) {
 	
 	//NOTE: Make sure this corresponds to a corrected device.  For a SpeedPuck this will match the number on the sticker
 	//inside the battery compartment.  This number is not the same as the number on the sticker inside an SC-1
-	testUnitSerialNumber = @"VT000902";
+	testUnitSerialNumber = @"VT000632";
 		
 	VTDeviceLoader *loader;
 	
 	loader = [VTDeviceLoader loader];
 	
 	testDevice = [loader deviceForSerialNumber:testUnitSerialNumber];
+#endif
+	
+#ifdef DATE_TEST
+	
+	testDate();
+	
 #endif
 	
 #ifdef TRACKPOINT_SAVE
@@ -93,6 +115,12 @@ int main (int argc, const char * argv[]) {
 #ifdef TRACKPOINT_LOG_READ
 	testTrackpointLogRead(testDevice);
 #endif
+	
+#ifdef DEVICE_SETTINGS
+	
+	testDeviceSettings(testDevice);
+	
+#endif
 
 #ifdef FILE_READ
 	testFirmwareFileRead(@"/Users/alec/Code/sandbox/speedtrack/Velocitool/fake_firmware.hex");
@@ -100,26 +128,186 @@ int main (int argc, const char * argv[]) {
 	
 #ifdef FIRMWARE_UPDATE
 	
-	//NOTE: Make sure this is the absolute path to where the firmware file is on your machine
-	if([testDevice updateFirmware:@"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/Velocitek_SpeedPuck_1-4.hex"])
-	{
-		NSLog(@"Success!");
+	testFirmwareUpdate(testDevice);
 	
-	}
-	else 
-	{
-		NSLog(@"Failure... boo hoo!");
-	}
-
 #endif
 	
 #ifdef PROGRESS_TRACKER
 	testProgressTracker();
 #endif
+	
+#ifdef XSLT_TEST
+	
+	testXslt();
+	
+#endif
+	
+#ifdef LAUNCH_GPSAR_TEST
+	
+	testGpsarLaunch();
+	
+#endif
+	
+	
 
     
     [pool drain];
     return 0;
+}
+
+void testGpsarLaunch()
+{
+	
+	
+
+	NSArray *arguments = [NSArray arrayWithObjects:@"-jar", 
+						  @"/Users/alec/Desktop/distributionGPSAR/gpsar.jar", 
+						  @"/Users/alec/Dropbox/Code/Test VCC File Output/around_the_block_gpx.gpx",
+						  nil
+						  ];
+	
+	NSURL *javaUrl = [NSURL URLWithString:@"/usr/bin/java"];
+	
+	NSDictionary *configuration = [NSDictionary dictionaryWithObjectsAndKeys:
+								   arguments, NSWorkspaceLaunchConfigurationArguments, nil];
+	
+	[[NSWorkspace sharedWorkspace] launchApplicationAtURL:javaUrl
+												  options:NSWorkspaceLaunchDefault 
+											configuration:configuration 
+													error:NULL];
+	
+	
+}
+
+void testDate()
+{
+	//NSLog(@"hello world");
+	
+	//NSDate *rightNow = [NSDate date];
+	
+	//NSLog(@"current date time is: %@",rightNow);
+	
+	//VTXmlDate *xmlNow;
+	
+	NSString *now = [VTXmlDate vccNow];
+	
+	NSLog(@"current date time in vcc format is: %@",now);
+	
+	VTXmlDate *xmlNow = [VTXmlDate xmlDateWithVccDateString:@"2010-07-20T20:52:42-07:00"];
+	
+
+	
+	NSString *nowInVccGmtFormat = [xmlNow vccGmtDateString];
+	
+	NSLog(@"current date time in vcc gmt format is: %@",nowInVccGmtFormat);
+	
+	
+}
+
+
+void testXslt()
+{
+	
+	//NSURL *xsltFileLocation = [NSURL fileURLWithPath:@"/Users/alec/Dropbox/Code/Velocitool/TrackpointsToKml.xslt"];
+	NSURL *gpxXsltFileLocation = [NSURL fileURLWithPath:@"/Users/alec/Dropbox/Code/Velocitool/TrackpointsToGpx.xslt"];
+	
+	NSURL *vccFileLocation = [NSURL fileURLWithPath:@"/Users/alec/Dropbox/Code/Velocitool/demo_vcc.vcc"];
+	
+	//NSURL *kmlFileLocation = [NSURL fileURLWithPath:@"/Users/alec/Dropbox/Code/Velocitool/demo_kml.kml"];
+	
+	NSURL *gpxFileLocation = [NSURL fileURLWithPath:@"/Users/alec/Dropbox/Code/Velocitool/demo_gpx.gpx"];
+	
+	
+	
+	NSXMLDocument *vccDoc = [[NSXMLDocument alloc] initWithContentsOfURL:vccFileLocation options:0 error:NULL];
+	
+	//NSData *kmlTransformation= [NSData dataWithContentsOfURL:xsltFileLocation];
+	NSData *gpxTransformation= [NSData dataWithContentsOfURL:gpxXsltFileLocation];
+	
+	
+	
+	//NSXMLDocument *kmlDocument = [vccDoc objectByApplyingXSLT:kmlTransformation arguments:nil error:NULL];
+	NSXMLDocument *gpxDocument = [vccDoc objectByApplyingXSLT:gpxTransformation arguments:nil error:NULL];
+	
+	
+	
+	NSLog(@"%@",gpxDocument);
+	
+	
+	
+	
+	//NSData *kmlData = [kmlDocument XMLDataWithOptions:NSXMLNodePrettyPrint];
+	NSData *gpxData = [gpxDocument XMLDataWithOptions:NSXMLNodePrettyPrint];
+	
+	
+	
+	
+	//NSFileWrapper *kmlFileWrapper = [[NSFileWrapper alloc] initRegularFileWithContents:kmlData];
+	NSFileWrapper *gpxFileWrapper = [[NSFileWrapper alloc] initRegularFileWithContents:gpxData];
+	
+	
+	
+	
+	/*[kmlFileWrapper writeToURL:kmlFileLocation
+						options:NSFileWrapperWritingWithNameUpdating 
+			originalContentsURL:nil 
+						  error:NULL];
+	 */
+	
+	
+	[gpxFileWrapper writeToURL:gpxFileLocation
+					   options:NSFileWrapperWritingWithNameUpdating 
+		   originalContentsURL:nil 
+						 error:NULL];
+	 		
+}
+
+void testFirmwareUpdate(VTDevice *device)
+{
+
+	NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+	
+	VTFirmwareUpdateOperation *firmwareUpdateOperation = [[VTFirmwareUpdateOperation alloc] initWithDevice:device];
+	
+	while([firmwareUpdateOperation success] != YES)
+	{
+		
+		[firmwareUpdateOperation setDone:NO];
+		
+		[queue addOperation:firmwareUpdateOperation];		
+		
+		while ([firmwareUpdateOperation done] != YES) 
+		{
+			
+		}
+	
+	}
+		
+	[firmwareUpdateOperation release];
+			
+	
+}
+
+void testDeviceSettings(VTDevice *device)
+{
+	NSLog(@"Starting Device Settings Test",[device description]);
+	
+	NSDictionary *deviceSettings = [device deviceSettings];
+	
+	NSLog(@"%@",[deviceSettings description]);
+	
+	NSMutableDictionary *mutableSettings = [deviceSettings mutableCopy];
+	
+	[mutableSettings setObject:[NSNumber numberWithInt:129] forKey:VTDeclinationPref];
+	
+	NSLog(@"mutableSettings: %@",[mutableSettings description]);
+	
+	[device setDeviceSettings:(NSDictionary *)mutableSettings]; 
+	
+	NSDictionary *newDeviceSettings = [device deviceSettings];
+	
+	
+	NSLog(@"%@",[newDeviceSettings description]);
 }
 
 void testProgressTracker()

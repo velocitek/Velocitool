@@ -1,18 +1,8 @@
 #import "VTAppDelegate.h"
 #import "VTDeviceLoader.h"
 #import "MainWindowController.h"
+#import "DeviceSettingsController.h"
 
-NSString *VTFileSaveSelectedNotification = @"VTFileSaveSelectedNotification";
-NSString *VTFileOpenSelectedNotification = @"VTFileOpenSelectedNotification";
-NSString *VTFileCloseSelectedNotification = @"VTFileCloseSelectedNotification";
-NSString *VTFileExportGPXSelectedNotification = @"VTFileExportGPXSelectedNotification";
-NSString *VTFileExportKMLSelectedNotification = @"VTFileExportKMLSelectedNotification";
-
-NSString *VTSetupUpdateDeviceSettingsSelectedNotification = @"VTSetupUpdateDeviceSettingsSelectedNotification";
-NSString *VTSetupEraseAllSelectedNotification = @"VTSetupEraseAllSelectedNotification";
-NSString *VTSetupUpdateDeviceFirmwareSelectedNotification = @"VTSetupUpdateDeviceFirmwareSelectedNotification";
-
-NSString *VTHelpTutorialVideoSelectedNotification = @"VTHelpTutorialVideoSelectedNotification";
 
 @implementation VTAppDelegate
 
@@ -30,80 +20,6 @@ NSString *VTHelpTutorialVideoSelectedNotification = @"VTHelpTutorialVideoSelecte
     return [basePath stringByAppendingPathComponent:@"Velocitool"];
 }
 
-
-// Actions for main menu
-- (IBAction)fileSave:(id)sender
-{
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that File > Save has been selected by the user.");
-	[notificationCenter postNotificationName:VTFileSaveSelectedNotification object:self];
-		
-}
-
-- (IBAction)fileOpen:(id)sender
-{
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that File > Open has been selected by the user.");
-	[notificationCenter postNotificationName:VTFileOpenSelectedNotification object:self];
-	
-}
-
-
-- (IBAction)fileClose:(id)sender
-{
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that File > Close has been selected by the user.");
-	[notificationCenter postNotificationName:VTFileCloseSelectedNotification object:self];
-	
-}
-
-- (IBAction)fileExportGPX:(id)sender
-{
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that File > Export > GPX has been selected by the user.");
-	[notificationCenter postNotificationName:VTFileExportGPXSelectedNotification object:self];
-	
-}
-
-- (IBAction)fileExportKML:(id)sender
-{
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that File > Export > KML has been selected by the user.");
-	[notificationCenter postNotificationName:VTFileExportKMLSelectedNotification object:self];
-	
-}
-
-- (IBAction)setupUpdateDeviceSettings:(id)sender
-{
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that Setup > Update Device Settings has been selected by the user.");
-	[notificationCenter postNotificationName:VTSetupUpdateDeviceSettingsSelectedNotification object:self];
-	
-}
-
-- (IBAction)setupEraseAll:(id)sender
-{
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that Setup > Erase All has been selected by the user.");
-	[notificationCenter postNotificationName:VTSetupEraseAllSelectedNotification object:self];
-	
-}
-
-- (IBAction)setupUpdateDeviceFirmware:(id)sender
-{
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that Setup > Update Device Firmware has been selected by the user.");
-	[notificationCenter postNotificationName:VTSetupUpdateDeviceFirmwareSelectedNotification object:self];
-	
-}
-
-- (IBAction)helpTutorialVideo:(id)sender
-{
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that Help>Tutorial Video has been selected by the user.");
-	[notificationCenter postNotificationName:VTHelpTutorialVideoSelectedNotification object:self];
-	
-}
 
 
 /**

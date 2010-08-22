@@ -15,11 +15,14 @@ static NSDictionary *productIDToClass = nil;
 - initWithConnection:(VTConnection *)connection properties:(NSDictionary *)properties;
 @end
 
-@interface VTDeviceSpeedPuck:VTDevice {
+@interface VTDeviceGeneration3:VTDevice {
     NSString *_firmwareVersion;
     NSDictionary *_deviceSettings;
 } 
 @end
+
+@interface VTDeviceSpeedPuck:VTDeviceGeneration3 {} @end
+@interface VTDeviceProStart:VTDeviceGeneration3 {} @end
 
 @interface VTDeviceS10:VTDevice {} @end
 @interface VTDeviceSC1:VTDevice {} @end
@@ -34,7 +37,8 @@ static NSDictionary *productIDToClass = nil;
 + (void)initialize {
     productIDToClass = [[NSDictionary alloc] initWithObjectsAndKeys:
 
-                        [VTDeviceSpeedPuck class], [NSNumber numberWithInt:0xb709], 
+                        [VTDeviceSpeedPuck class], [NSNumber numberWithInt:0xb709],
+						[VTDeviceProStart class], [NSNumber numberWithInt:0xb70a],
                         [VTDeviceS10 class],       [NSNumber numberWithInt:0x6001], 
                         [VTDeviceSC1 class],       [NSNumber numberWithInt:0xb708], 
                         
@@ -140,12 +144,19 @@ static NSDictionary *productIDToClass = nil;
 }
 
 
-- (BOOL)updateFirmware:(NSString *)filePath;
+- (BOOL)updateFirmware:(NSString *)filePath
 {
 	// For subclassers to implement
     VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
 	
 	return FIRMWARE_UPDATE_FAILED;
+
+}
+
+- (void)eraseAll
+{
+	// For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
 
 }
 
@@ -193,6 +204,138 @@ static NSDictionary *productIDToClass = nil;
 
 @end
 
+//This is an abstract class
+@implementation VTDeviceGeneration3
+
+- (BOOL)isPowered {
+    return YES;
+}
+
+
+- (NSString *)model {
+	
+	// For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+    return nil;
+}
+
+
+- (void)dealloc {
+    [_firmwareVersion release]; _firmwareVersion = nil;
+    [_deviceSettings release];  _deviceSettings = nil;
+    [super dealloc];
+}
+
+
+- (NSString *)firmwareVersion {
+    if(!_firmwareVersion) {
+        VTFirmwareVersionRecord *result = (VTFirmwareVersionRecord *)[_connection runCommand:[VTCommand commandWithSignal:'V' parameter:nil resultClass:[VTFirmwareVersionRecord class]]];
+        
+        _firmwareVersion = [[result version] copy];
+    }
+    return _firmwareVersion;
+}
+
+
+- (NSDictionary *)deviceSettings {
+    
+	// For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+    return nil;
+}
+
+
+- (void)setDeviceSettings:(NSDictionary *)settings {
+    
+	// For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+ 
+}
+
+
+- (NSArray *)trackpointLogs {
+	   	
+	NSArray *records = (NSArray *)[_connection runCommand:[VTCommand commandWithSignal:'O' parameter:nil resultsClass:[VTTrackpointLogRecord class]]];
+		
+    return records;
+	
+}
+
+
+- (NSArray *)trackpoints:(NSDate *)downloadFrom endTime:(NSDate *)downloadTo {
+
+	VTReadTrackpointsCommandParameter *commandParameter = [VTReadTrackpointsCommandParameter commandParameterFromTimeInverval:downloadFrom end:downloadTo];
+	
+	VTCommand *command = [VTCommand commandWithSignal:'T' 
+											parameter:commandParameter
+										 resultsClass:[VTTrackpointRecord class]];
+	
+	NSArray *records = (NSArray *)[_connection runCommand:command];
+	return records;
+	
+}
+
+- (void)eraseAll
+{
+	[_connection runCommand:[VTCommand commandWithSignal:'E' parameter:nil resultClass:[VTCommandResultRecord class]]];
+}
+
+- (BOOL)updateFirmware:(NSString *)filePath
+{
+	VTFirmwareFile* firmwareFile = [VTFirmwareFile vtFirmwareFileWithFilePath:filePath];
+	return [_connection runFirmwareUpdate:firmwareFile];
+	
+}
+                                                   
+@end
+
+@implementation VTDeviceSpeedPuck
+
+- (NSString *)model {
+    return @"SpeedPuck";
+}
+
+- (NSDictionary *)deviceSettings {
+    if(!_deviceSettings) {
+        VTPuckSettingsRecord *result = (VTPuckSettingsRecord *)[_connection runCommand:[VTCommand commandWithSignal:'S' parameter:nil resultClass:[VTPuckSettingsRecord class]]];
+		
+        _deviceSettings = [[result settingsDictionary] copy];
+    }
+    return _deviceSettings;
+}
+
+- (void)setDeviceSettings:(NSDictionary *)settings {
+    
+	[_connection runCommand:[VTCommand commandWithSignal:'D' parameter:[VTPuckSettingsRecord recordFromSettingsDictionary:settings] resultClass:[VTCommandResultRecord class]]];
+    
+    [_deviceSettings release]; _deviceSettings = nil;
+}
+
+
+@end
+
+@implementation VTDeviceProStart
+
+- (NSString *)model {
+    return @"ProStart";
+}
+
+- (NSDictionary *)deviceSettings {
+    
+	NSLog(@"Call to deviceSettings didn't do anything because the ProStart doesn't have any device settings");	
+	return nil;
+}
+
+- (void)setDeviceSettings:(NSDictionary *)settings {
+    
+	NSLog(@"Call to setDeviceSettings didn't do anything because the ProStart doesn't have any device settings");
+	
+}
+
+@end
+
+
+
 
 @implementation VTFakeDevice
 
@@ -231,90 +374,6 @@ static NSDictionary *productIDToClass = nil;
 }
 
 
-@end
-
-@implementation VTDeviceSpeedPuck
-
-- (BOOL)isPowered {
-    return YES;
-    /* The puck is powered by USB while plugged in. So this code works, but is not necessary
-    NSData *result = [_wrapperDevice runCommand:'P' withArguments:nil responsePrefix:'p' expectedLength:1];
-    if (result) {
-        return ((char *)[result bytes])[0];
-    }
-    return -1;
-    */
-}
-
-
-- (NSString *)model {
-    return @"SpeedPuck";
-}
-
-
-- (void)dealloc {
-    [_firmwareVersion release]; _firmwareVersion = nil;
-    [_deviceSettings release];  _deviceSettings = nil;
-    [super dealloc];
-}
-
-
-- (NSString *)firmwareVersion {
-    if(!_firmwareVersion) {
-        VTFirmwareVersionRecord *result = (VTFirmwareVersionRecord *)[_connection runCommand:[VTCommand commandWithSignal:'V' parameter:nil resultClass:[VTFirmwareVersionRecord class]]];
-        
-        _firmwareVersion = [[result version] copy];
-    }
-    return _firmwareVersion;
-}
-
-
-- (NSDictionary *)deviceSettings {
-    if(!_deviceSettings) {
-        VTPuckSettingsRecord *result = (VTPuckSettingsRecord *)[_connection runCommand:[VTCommand commandWithSignal:'S' parameter:nil resultClass:[VTPuckSettingsRecord class]]];
-    
-        _deviceSettings = [[result settingsDictionary] copy];
-    }
-    return _deviceSettings;
-}
-
-
-- (void)setDeviceSettings:(NSDictionary *)settings {
-    [_connection runCommand:[VTCommand commandWithSignal:'D' parameter:[VTPuckSettingsRecord recordFromSettingsDictionary:settings] resultClass:[VTCommandResultRecord class]]];
-    
-    [_deviceSettings release]; _deviceSettings = nil;
-}
-
-
-- (NSArray *)trackpointLogs {
-	   	
-	NSArray *records = (NSArray *)[_connection runCommand:[VTCommand commandWithSignal:'O' parameter:nil resultsClass:[VTTrackpointLogRecord class]]];
-		
-    return records;
-	
-}
-
-
-- (NSArray *)trackpoints:(NSDate *)downloadFrom endTime:(NSDate *)downloadTo {
-
-	VTReadTrackpointsCommandParameter *commandParameter = [VTReadTrackpointsCommandParameter commandParameterFromTimeInverval:downloadFrom end:downloadTo];
-	
-	VTCommand *command = [VTCommand commandWithSignal:'T' 
-											parameter:commandParameter
-										 resultsClass:[VTTrackpointRecord class]];
-	
-	NSArray *records = (NSArray *)[_connection runCommand:command];
-	return records;
-	
-}
-
-- (BOOL)updateFirmware:(NSString *)filePath
-{
-	VTFirmwareFile* firmwareFile = [VTFirmwareFile vtFirmwareFileWithFilePath:filePath];
-	return [_connection runFirmwareUpdate:firmwareFile];
-	
-}
-                                                   
 @end
 
 

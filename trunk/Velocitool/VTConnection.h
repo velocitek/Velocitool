@@ -25,6 +25,7 @@
 + connectionWithVendorID:(int)vendorID productID:(int)productID serialNumber:(NSString *)serial;
 
 - runCommand:(VTCommand *)command;
+
 - (BOOL)runFirmwareUpdate:(VTFirmwareFile *)firmwareFile;
 
 - (BOOL)writeFirmwareFile:(VTFirmwareFile*)firmwareFile;
