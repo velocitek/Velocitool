@@ -1,6 +1,0 @@
-/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m: In function '-[VTDeviceSpeedPuck updateFirmware:]':
-/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m:303: warning: no '+vtFirmwareFileWithFilePath:' method found
-/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m:303: warning: (Messages without a matching method signature
-/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m:303: warning: will be assumed to return 'id' and accept
-/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m:303: warning: '...' as arguments.)
-/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m:304: warning: incompatible Objective-C types 'struct VTFirmwareFile *', expected 'struct VTFirmwareUpdate *' when passing argument 1 of 'runFirmwareUpdate:' from distinct Objective-C type
