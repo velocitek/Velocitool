@@ -1,1309 +1,0 @@
-TVelocitool
-v7
-r0
-t291149524.178828
-cCheck dependencies
-cProcessInfoPlistFile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Info.plist Info.plist
-cCpResource build/Debug/Velocitool.app/Contents/Resources/English.lproj/libftd2xx.0.1.7.dylib /Users/alec/Code/sandbox/command_line_tool/speedtrack/English.lproj/libftd2xx.0.1.7.dylib
-cCopyStringsFile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/English.lproj/InfoPlist.strings English.lproj/InfoPlist.strings
-cCompileXIB /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/English.lproj/MainMenu.xib
-cCpResource build/Debug/Velocitool.app/Contents/Resources/dsa_pub.pem dsa_pub.pem
-cCpResource build/Debug/Velocitool.app/Contents/Resources/velocitool.icns velocitool.icns
-cCpResource build/Debug/Velocitool.app/Contents/Resources/SpeedPuck.icns SpeedPuck.icns
-cCpResource build/Debug/Velocitool.app/Contents/Resources/S10.jpg ../S10.jpg
-cCpResource build/Debug/Velocitool.app/Contents/Resources/SC1.jpg ../SC1.jpg
-cCpResource build/Debug/Velocitool.app/Contents/Resources/FakeStuff.jpg FakeStuff.jpg
-cProcessPCH /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch.gch Velocitool_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-cDataModelVersionCompile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/store.momd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/store.xcdatamodeld
-cCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/main.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDevice.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDeviceLoader.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDeviceLoader.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTCommand.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTCommand.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTGlobals.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTGlobals.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTConnection.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/MainWindowController.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/MainWindowController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTStoredDevice.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTStoredDevice.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTAppDelegate.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTPuckSettings.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTPuckSettings.m normal i386 objective-c com.apple.compilers.gcc.4_2
-cCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/Velocitool_vers.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/Velocitool_vers.c normal i386 c com.apple.compilers.gcc.4_2
-cLd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/MacOS/Velocitool normal i386
-cPBXCp build/Debug/Velocitool.app/Contents/Frameworks/Sparkle.framework Sparkle.framework
-cPhaseScriptExecution "Run Script" /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Script-EDFC3F000EF81E0000E1DD2F.sh
-cTouch /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app
-
-N/Developer/SDKs/MacOSX10.5.sdk
-c000000004AB44D2500000000000000EE
-t1253330213
-s238
-
-N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Cocoa.framework/Headers/Cocoa.h
-c0000000040C4AA6800000000000001E5
-t1086630504
-s485
-
-N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/Foundation.framework/Headers/NSDate.h
-c000000004864A1CA0000000000000546
-t1214554570
-s1350
-
-N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/IOKit.framework/Headers/IOCFPlugIn.h
-c00000000481BC12A00000000000008D0
-t1209778474
-s2256
-
-N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/IOKit.framework/Headers/IOKitLib.h
-c00000000481BC12A0000000000010CC8
-t1209778474
-s68808
-
-N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/IOKit.framework/Headers/IOMessage.h
-c0000000047E883940000000000000DE0
-t1206420372
-s3552
-
-N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/IOKit.framework/Headers/hid/IOHIDKeys.h
-c000000004864AC1C0000000000003730
-t1214557212
-s14128
-
-N/Developer/SDKs/MacOSX10.5.sdk/System/Library/Frameworks/IOKit.framework/Headers/usb/IOUSBLib.h
-c000000004864BE270000000000029F33
-t1214561831
-s171827
-
-N/Developer/SDKs/MacOSX10.5.sdk/usr/include/dlfcn.h
-c00000000487581E60000000000000AC7
-t1215660518
-s2759
-
-N/Developer/SDKs/MacOSX10.5.sdk/usr/include/math.h
-c0000000047BA987000000000000004B7
-t1203411056
-s1207
-
-N/Developer/SDKs/MacOSX10.5.sdk/usr/include/pthread.h
-c0000000047BA9932000000000000380F
-t1203411250
-s14351
-
-N/Developer/SDKs/MacOSX10.5.sdk/usr/include/sys/time.h
-c0000000047E883D20000000000001E18
-t1206420434
-s7704
-
-N/System/Library/Frameworks/Cocoa.framework/Cocoa
-c000000004A1F2D63000000000000A5E0
-t1243557219
-s42464
-
-N/System/Library/Frameworks/IOKit.framework/IOKit
-c000000004ACE772A000000000016E510
-t1255044906
-s1500432
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/../../../../../Code/sandbox/command_line_tool/speedtrack/libftd2xx.0.1.7.dylib
-c000000004AE0740A0000000000037500
-t1256223754
-s226560
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/../S10.jpg
-c000000004B931A2A00000000000026B3
-t1267931690
-s9907
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/../SC1.jpg
-c000000004B931A0A0000000000003208
-t1267931658
-s12808
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/../libftd2xx.0.1.7.dylib
-c000000004AE0740A0000000000037500
-t1256223754
-s226560
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/English.lproj/InfoPlist.strings
-c000000004BA9450600000000000000BC
-t1269384454
-s188
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/English.lproj/MainMenu.xib
-c000000004BA94506000000000002B8A2
-t1269384454
-s178338
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/FakeStuff.jpg
-c000000004BA94507000000000001D9BE
-t1269384455
-s121278
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/MainWindowController.h
-c000000004B9DE1CC000000000000016D
-t1268638156
-s365
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/MainWindowController.m
-c000000004BA822E100000000000011CF
-t1269310177
-s4559
-i"MainWindowController.h"
-i"VTDeviceLoader.h"
-i"VTStoredDevice.h"
-i"VTDevice.h"
-i"VTCommand.h"
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/Sparkle.framework
-c000000004B91E5DF00000000000000EE
-t1267852767
-s238
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/Sparkle.framework/Sparkle
-c0000000048CC84C200000000000712B4
-t1221362882
-s463540
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/SpeedPuck.icns
-c000000004BA945070000000000017D0B
-t1269384455
-s97547
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTAppDelegate.h
-c000000004B95854B00000000000001C5
-t1268090187
-s453
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTAppDelegate.m
-c000000004B95854B0000000000001B0D
-t1268090187
-s6925
-i"VTAppDelegate.h"
-i"VTDeviceLoader.h"
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTCommand.h
-c000000004B95854B0000000000000602
-t1268090187
-s1538
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTCommand.m
-c000000004BA5806B0000000000002784
-t1269137515
-s10116
-i"VTCommand.h"
-i"VTGlobals.h"
-i"VTConnection.h"
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.h
-c000000004B95854B0000000000000299
-t1268090187
-s665
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.m
-c000000004BA96F1400000000000040E4
-t1269395220
-s16612
-i"VTConnection.h"
-i"VTCommand.h"
-i<dlfcn.h>
-i"ftd2xx.h"
-i<math.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.h
-c000000004BA5835600000000000001C3
-t1269138262
-s451
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m
-c000000004B95854B0000000000001952
-t1268090187
-s6482
-i"VTDevice.h"
-i"VTConnection.h"
-i"VTCommand.h"
-i"VTGlobals.h"
-i<IOKit/usb/IOUSBLib.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTDeviceLoader.h
-c000000004B95854B00000000000002EA
-t1268090187
-s746
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTDeviceLoader.m
-c000000004BA2A69C0000000000001A8C
-t1268950684
-s6796
-i"VTDeviceLoader.h"
-i"VTDevice.h"
-i<IOKit/IOKitLib.h>
-i<IOKit/IOMessage.h>
-i<IOKit/IOCFPlugIn.h>
-i<IOKit/hid/IOHIDKeys.h>
-i<IOKit/usb/IOUSBLib.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTGlobals.h
-c000000004B95854B00000000000003E8
-t1268090187
-s1000
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTGlobals.m
-c000000004B95854B0000000000000285
-t1268090187
-s645
-i"VTGlobals.h"
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTPuckSettings.h
-c000000004B95854B00000000000002BB
-t1268090187
-s699
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTPuckSettings.m
-c000000004B95854B0000000000000CAC
-t1268090187
-s3244
-i"VTPuckSettings.h"
-i"VTGlobals.h"
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTStoredDevice.h
-c000000004B95854B0000000000000405
-t1268090187
-s1029
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTStoredDevice.m
-c000000004BA2BC4E000000000000081D
-t1268956238
-s2077
-i"VTStoredDevice.h"
-i"VTDevice.h"
-i"VTDeviceLoader.h"
-i"VTPuckSettings.h"
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/Velocitool_Prefix.pch
-c000000004BA945070000000000000097
-t1269384455
-s151
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/WinTypes.h
-c000000004B95854B0000000000000900
-t1268090187
-s2304
-i<sys/time.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app
-t1269386230
-s102
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Frameworks/Sparkle.framework
-t1269386230
-s204
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Info.plist
-t1269386225
-s1096
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/MacOS/Velocitool
-t1269386230
-s82368
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/PkgInfo
-t1269386225
-s8
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/English.lproj/InfoPlist.strings
-t1269386225
-s188
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/English.lproj/MainMenu.nib
-t1269386226
-s43212
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/English.lproj/libftd2xx.0.1.7.dylib
-t2
-s0
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/FakeStuff.jpg
-t1269386225
-s121278
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/S10.jpg
-t1269386225
-s9907
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/SC1.jpg
-t1269386225
-s12808
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/SpeedPuck.icns
-t1269386225
-s97547
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/dsa_pub.pem
-t1269386225
-s1178
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/libftd2xx.0.1.7.dylib
-t1269386225
-s226560
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/store.momd
-t1269386229
-s170
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/velocitool.icns
-t1269386225
-s97547
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/Velocitool_vers.c
-c000000004BA94BF100000000000000C7
-t1269386225
-s199
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/MainWindowController.o
-t1269386230
-s32192
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTAppDelegate.o
-t1269386230
-s29804
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTCommand.o
-t1269386229
-s26180
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTConnection.o
-t1269386230
-s38636
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDevice.o
-t1269386229
-s26656
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDeviceLoader.o
-t1269386229
-s18636
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTGlobals.o
-t1269386229
-s6936
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTPuckSettings.o
-t1269386230
-s20052
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTStoredDevice.o
-t1269386230
-s18780
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/Velocitool.LinkFileList
-c000000004BA94BF10000000000000646
-t1269386225
-s1606
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/Velocitool_vers.o
-t1269386230
-s2156
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/main.o
-t1269386229
-s4912
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Script-EDFC3F000EF81E0000E1DD2F.sh
-c000000004BA94BF1000000000000095A
-t1269386225
-s2394
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/dsa_pub.pem
-c000000004BA94507000000000000049A
-t1269384455
-s1178
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/ftd2xx.h
-c000000004B95854B0000000000004F4D
-t1268090187
-s20301
-i<pthread.h>
-i"WinTypes.h"
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/main.m
-c000000004B95854B000000000000007A
-t1268090187
-s122
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/store.xcdatamodeld
-c000000004BA9450600000000000000CC
-t1269384454
-s204
-
-N/Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/velocitool.icns
-c000000004BA945070000000000017D0B
-t1269384455
-s97547
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/English.lproj/libftd2xx.0.1.7.dylib
-c000000004AE0740A0000000000037500
-t1256223754
-s226560
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/../S10.jpg
-c000000004B931A2A00000000000026B3
-t1267931690
-s9907
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/../SC1.jpg
-c000000004B931A0A0000000000003208
-t1267931658
-s12808
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/../libftd2xx.0.1.4.dylib
-c00000000000000000000000000000000
-t2
-s0
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/../libftd2xx.0.1.7.dylib
-c000000004AE0740A0000000000037500
-t1256223754
-s226560
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/English.lproj/InfoPlist.strings
-c000000004BA9450600000000000000BC
-t1269384454
-s188
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/English.lproj/MainMenu.xib
-c000000004BA94506000000000002B8A2
-t1269384454
-s178338
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/FakeStuff.jpg
-c000000004BA94507000000000001D9BE
-t1269384455
-s121278
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/MainWindowController.h
-c000000004B9DE1CC000000000000016D
-t1268638156
-s365
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/MainWindowController.m
-c000000004BB16E3B00000000000011E4
-t1269919291
-s4580
-i"MainWindowController.h"
-i"VTDeviceLoader.h"
-i"VTStoredDevice.h"
-i"VTDevice.h"
-i"VTCommand.h"
-i"VTRecord.h"
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/Sparkle.framework
-c000000004BB7E2C600000000000000EE
-t1270342342
-s238
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/Sparkle.framework/Sparkle
-c0000000048CC84C200000000000712B4
-t1221362882
-s463540
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/SpeedPuck.icns
-c000000004BA945070000000000017D0B
-t1269384455
-s97547
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTAppDelegate.h
-c000000004B95854B00000000000001C5
-t1268090187
-s453
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTAppDelegate.m
-c000000004B95854B0000000000001B0D
-t1268090187
-s6925
-i"VTAppDelegate.h"
-i"VTDeviceLoader.h"
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTCommand.h
-c000000004BB16DAB0000000000000214
-t1269919147
-s532
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTCommand.m
-c000000004BB16FAD0000000000000E2E
-t1269919661
-s3630
-i"VTCommand.h"
-i"VTRecord.h"
-i"VTGlobals.h"
-i"VTConnection.h"
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.h
-c000000004BC2788D0000000000000395
-t1271036045
-s917
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.m
-c000000004BC65ADD0000000000004ADB
-t1271290589
-s19163
-i"VTConnection.h"
-i"VTCommand.h"
-i"VTRecord.h"
-i"VTDateTime.h"
-i"VTFloat.h"
-i"VTFirmwareFile.h"
-i<dlfcn.h>
-i"ftd2xx.h"
-i<math.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDateTime.h
-c000000004BAD3C500000000000000238
-t1269644368
-s568
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDateTime.m
-c000000004BAD47480000000000001175
-t1269647176
-s4469
-i"VTDateTime.h"
-i<Foundation/NSDate.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.h
-c000000004BC23B0A0000000000000268
-t1271020298
-s616
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m
-c000000004BC2788E0000000000001D64
-t1271036046
-s7524
-i"VTDevice.h"
-i"VTConnection.h"
-i"VTCommand.h"
-i"VTRecord.h"
-i"VTGlobals.h"
-i"VTFirmwareFile.h"
-i<IOKit/usb/IOUSBLib.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDeviceLoader.h
-c000000004B95854B00000000000002EA
-t1268090187
-s746
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDeviceLoader.m
-c000000004BA2A69C0000000000001A8C
-t1268950684
-s6796
-i"VTDeviceLoader.h"
-i"VTDevice.h"
-i<IOKit/IOKitLib.h>
-i<IOKit/IOMessage.h>
-i<IOKit/IOCFPlugIn.h>
-i<IOKit/hid/IOHIDKeys.h>
-i<IOKit/usb/IOUSBLib.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFirmwareFile.h
-c000000004BC278AF00000000000001C0
-t1271036079
-s448
-i<Cocoa/Cocoa.h>
-i"VTConnection.h"
-i"VTFirmwareFile.h"
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFirmwareFile.m
-c000000004BC3DB590000000000000FB3
-t1271126873
-s4019
-i"VTFirmwareFile.h"
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFirmwareUpdate.h
-c000000004BC2557700000000000001B1
-t1271027063
-s433
-i<Cocoa/Cocoa.h>
-i"VTConnection.h"
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFirmwareUpdate.m
-c000000004BC25E28000000000000188B
-t1271029288
-s6283
-i"VTFirmwareUpdate.h"
-i"VTConnection.h"
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFloat.h
-c000000004BAEA5A700000000000001E8
-t1269736871
-s488
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFloat.m
-c000000004BAE96470000000000000E00
-t1269732935
-s3584
-i"VTFloat.h"
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTGlobals.h
-c000000004B95854B00000000000003E8
-t1268090187
-s1000
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTGlobals.m
-c000000004B95854B0000000000000285
-t1268090187
-s645
-i"VTGlobals.h"
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTPuckSettings.h
-c000000004B95854B00000000000002BB
-t1268090187
-s699
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTPuckSettings.m
-c000000004B95854B0000000000000CAC
-t1268090187
-s3244
-i"VTPuckSettings.h"
-i"VTGlobals.h"
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTRecord.h
-c000000004BB19660000000000000086D
-t1269929568
-s2157
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTRecord.m
-c000000004BB1A32C0000000000002718
-t1269932844
-s10008
-i"VTRecord.h"
-i"VTConnection.h"
-i"VTGlobals.h"
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTStoredDevice.h
-c000000004B95854B0000000000000405
-t1268090187
-s1029
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTStoredDevice.m
-c000000004BA2BC4E000000000000081D
-t1268956238
-s2077
-i"VTStoredDevice.h"
-i"VTDevice.h"
-i"VTDeviceLoader.h"
-i"VTPuckSettings.h"
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/Velocitool_Prefix.pch
-c000000004BA945070000000000000097
-t1269384455
-s151
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/WinTypes.h
-c000000004B95854B0000000000000900
-t1268090187
-s2304
-i<sys/time.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app
-t1269456724
-s102
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Frameworks/Sparkle.framework
-t1269386230
-s204
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Info.plist
-t1269386225
-s1096
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/MacOS/Velocitool
-t1269456724
-s82368
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/PkgInfo
-t1269386225
-s8
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/English.lproj/InfoPlist.strings
-t1269386225
-s188
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/English.lproj/MainMenu.nib
-t1269386226
-s43212
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/English.lproj/libftd2xx.0.1.7.dylib
-t1269456719
-s226560
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/FakeStuff.jpg
-t1269386225
-s121278
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/S10.jpg
-t1269386225
-s9907
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/SC1.jpg
-t1269386225
-s12808
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/SpeedPuck.icns
-t1269386225
-s97547
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/dsa_pub.pem
-t1269386225
-s1178
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/libftd2xx.0.1.4.dylib
-t2
-s0
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/libftd2xx.0.1.7.dylib
-t1269386225
-s226560
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/store.momd
-t1269386229
-s170
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/velocitool.icns
-t1269386225
-s97547
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/Velocitool_vers.c
-c000000004BA94BF100000000000000C7
-t1269386225
-s199
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/MainWindowController.o
-t1269386230
-s32192
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTAppDelegate.o
-t1269386230
-s29804
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTCommand.o
-t1269386229
-s26180
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTConnection.o
-t1269456723
-s38636
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDateTime.o
-t2
-s0
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDevice.o
-t1269386229
-s26656
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDeviceLoader.o
-t1269386229
-s18636
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTFirmwareFile.o
-t2
-s0
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTFirmwareUpdate.o
-t2
-s0
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTFloat.o
-t2
-s0
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTGlobals.o
-t1269386229
-s6936
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTPuckSettings.o
-t1269386230
-s20052
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTRecord.o
-t2
-s0
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTStoredDevice.o
-t1269386230
-s18780
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/Velocitool.LinkFileList
-c000000004BA94BF10000000000000646
-t1269386225
-s1606
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/Velocitool_vers.o
-t1269386230
-s2156
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/main.o
-t1269386229
-s4912
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Script-EDFC3F000EF81E0000E1DD2F.sh
-c000000004BA94BF1000000000000095A
-t1269386225
-s2394
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/dsa_pub.pem
-c000000004BA94507000000000000049A
-t1269384455
-s1178
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/ftd2xx.h
-c000000004BC3E1190000000000004F71
-t1271128345
-s20337
-i<pthread.h>
-i"WinTypes.h"
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/main.m
-c000000004B95854B000000000000007A
-t1268090187
-s122
-i<Cocoa/Cocoa.h>
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/store.xcdatamodeld
-c000000004BA9450600000000000000CC
-t1269384454
-s204
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/velocitool.icns
-c000000004BA945070000000000017D0B
-t1269384455
-s97547
-
-N/Users/alec/Code/sandbox/command_line_tool/speedtrack/libftd2xx.0.1.7.dylib
-c000000004AE0740A0000000000037500
-t1256223754
-s226560
-
-N/var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch.gch
-t1269386229
-s54006160
-
-N/var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-bbpubcqyuytngtbxngfziviqzroh/Velocitool_Prefix.pch.gch
-t2
-s0
-
-N/var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-fxiqyxzhglouqsdnxotyenzpbaqj/Velocitool_Prefix.pch.gch
-t2
-s0
-
-NInfo.plist
-c000000004BA945070000000000000455
-t1269384455
-s1109
-
-CCheck dependencies
-r0
-lSLF07#2@18"Check dependencies291149519#291149519#0(0"0(0#1#0"4300885448#0"0#
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/MainWindowController.o /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/MainWindowController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/MainWindowController.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/MainWindowController.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s291079029.846168
-e291079030.017805
-r1
-xCompileC
-xbuild/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/MainWindowController.o
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/MainWindowController.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@95"Compile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/MainWindowController.m291079029#291079030#0(0"0(0#0#87"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/MainWindowController.m4300885448#1653"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wmissing-prototypes -Werror-implicit-function-declaration -Wreturn-type -Wmissing-braces -Wparentheses -Wswitch -Wunused-function -Wunused-label -Wunused-variable -Wunused-value -Wunknown-pragmas -Wshadow -Wfour-char-constants -Wsign-compare -Wnewline-eof -Wshorten-64-to-32 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mfix-and-continue -mmacosx-version-min=10.5 -gdwarf-2 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Velocitool.hmap -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/include -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/i386 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources -include /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch -c /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/MainWindowController.m -o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/MainWindowController.o0#
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTAppDelegate.o /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTAppDelegate.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTAppDelegate.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s291079030.076652
-e291079030.254246
-r1
-xCompileC
-xbuild/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTAppDelegate.o
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTAppDelegate.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@88"Compile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTAppDelegate.m291079030#291079030#0(0"0(0#0#80"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTAppDelegate.m4300885448#1639"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wmissing-prototypes -Werror-implicit-function-declaration -Wreturn-type -Wmissing-braces -Wparentheses -Wswitch -Wunused-function -Wunused-label -Wunused-variable -Wunused-value -Wunknown-pragmas -Wshadow -Wfour-char-constants -Wsign-compare -Wnewline-eof -Wshorten-64-to-32 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mfix-and-continue -mmacosx-version-min=10.5 -gdwarf-2 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Velocitool.hmap -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/include -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/i386 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources -include /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch -c /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTAppDelegate.m -o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTAppDelegate.o0#
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTCommand.o /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTCommand.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTCommand.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTCommand.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s291079029.631503
-e291079029.846039
-r1
-xCompileC
-xbuild/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTCommand.o
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTCommand.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@84"Compile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTCommand.m291079029#291079029#0(0"0(0#0#76"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTCommand.m4300885448#1631"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wmissing-prototypes -Werror-implicit-function-declaration -Wreturn-type -Wmissing-braces -Wparentheses -Wswitch -Wunused-function -Wunused-label -Wunused-variable -Wunused-value -Wunknown-pragmas -Wshadow -Wfour-char-constants -Wsign-compare -Wnewline-eof -Wshorten-64-to-32 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mfix-and-continue -mmacosx-version-min=10.5 -gdwarf-2 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Velocitool.hmap -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/include -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/i386 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources -include /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch -c /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTCommand.m -o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTCommand.o0#
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTConnection.o /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTConnection.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s291149519.727809
-e291149523.519791
-r1
-xCompileC
-xbuild/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTConnection.o
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@87"Compile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.m291149519#291149523#0(0"0(0#0#79"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.m4300885448#1637"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wmissing-prototypes -Werror-implicit-function-declaration -Wreturn-type -Wmissing-braces -Wparentheses -Wswitch -Wunused-function -Wunused-label -Wunused-variable -Wunused-value -Wunknown-pragmas -Wshadow -Wfour-char-constants -Wsign-compare -Wnewline-eof -Wshorten-64-to-32 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mfix-and-continue -mmacosx-version-min=10.5 -gdwarf-2 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Velocitool.hmap -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/include -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/i386 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources -include /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch -c /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTConnection.m -o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTConnection.o0#
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDateTime.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDateTime.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDevice.o /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDevice.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s291079029.393304
-e291079029.631398
-r1
-xCompileC
-xbuild/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDevice.o
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@83"Compile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m291079029#291079029#0(0"0(0#0#75"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m4300885448#1629"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wmissing-prototypes -Werror-implicit-function-declaration -Wreturn-type -Wmissing-braces -Wparentheses -Wswitch -Wunused-function -Wunused-label -Wunused-variable -Wunused-value -Wunknown-pragmas -Wshadow -Wfour-char-constants -Wsign-compare -Wnewline-eof -Wshorten-64-to-32 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mfix-and-continue -mmacosx-version-min=10.5 -gdwarf-2 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Velocitool.hmap -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/include -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/i386 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources -include /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch -c /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDevice.m -o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDevice.o0#
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDeviceLoader.o /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTDeviceLoader.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDeviceLoader.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDeviceLoader.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s291079029.448012
-e291079029.669888
-r1
-xCompileC
-xbuild/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDeviceLoader.o
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDeviceLoader.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@89"Compile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDeviceLoader.m291079029#291079029#0(0"0(0#0#81"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDeviceLoader.m4300885448#1641"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wmissing-prototypes -Werror-implicit-function-declaration -Wreturn-type -Wmissing-braces -Wparentheses -Wswitch -Wunused-function -Wunused-label -Wunused-variable -Wunused-value -Wunknown-pragmas -Wshadow -Wfour-char-constants -Wsign-compare -Wnewline-eof -Wshorten-64-to-32 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mfix-and-continue -mmacosx-version-min=10.5 -gdwarf-2 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Velocitool.hmap -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/include -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/i386 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources -include /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch -c /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTDeviceLoader.m -o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTDeviceLoader.o0#
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTFirmwareFile.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFirmwareFile.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTFirmwareUpdate.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFirmwareUpdate.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTFloat.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTFloat.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTGlobals.o /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTGlobals.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTGlobals.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTGlobals.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s291079029.669988
-e291079029.810803
-r1
-xCompileC
-xbuild/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTGlobals.o
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTGlobals.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@84"Compile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTGlobals.m291079029#291079029#0(0"0(0#0#76"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTGlobals.m4300885448#1631"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wmissing-prototypes -Werror-implicit-function-declaration -Wreturn-type -Wmissing-braces -Wparentheses -Wswitch -Wunused-function -Wunused-label -Wunused-variable -Wunused-value -Wunknown-pragmas -Wshadow -Wfour-char-constants -Wsign-compare -Wnewline-eof -Wshorten-64-to-32 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mfix-and-continue -mmacosx-version-min=10.5 -gdwarf-2 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Velocitool.hmap -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/include -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/i386 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources -include /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch -c /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTGlobals.m -o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTGlobals.o0#
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTPuckSettings.o /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTPuckSettings.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTPuckSettings.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTPuckSettings.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s291079030.224298
-e291079030.443268
-r1
-xCompileC
-xbuild/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTPuckSettings.o
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTPuckSettings.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@89"Compile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTPuckSettings.m291079030#291079030#0(0"0(0#0#81"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTPuckSettings.m4300885448#1641"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wmissing-prototypes -Werror-implicit-function-declaration -Wreturn-type -Wmissing-braces -Wparentheses -Wswitch -Wunused-function -Wunused-label -Wunused-variable -Wunused-value -Wunknown-pragmas -Wshadow -Wfour-char-constants -Wsign-compare -Wnewline-eof -Wshorten-64-to-32 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mfix-and-continue -mmacosx-version-min=10.5 -gdwarf-2 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Velocitool.hmap -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/include -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/i386 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources -include /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch -c /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTPuckSettings.m -o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTPuckSettings.o0#
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTRecord.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTRecord.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTStoredDevice.o /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/VTStoredDevice.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTStoredDevice.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTStoredDevice.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s291079030.017908
-e291079030.224194
-r1
-xCompileC
-xbuild/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTStoredDevice.o
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTStoredDevice.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@89"Compile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTStoredDevice.m291079030#291079030#0(0"0(0#0#81"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTStoredDevice.m4300885448#1641"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wmissing-prototypes -Werror-implicit-function-declaration -Wreturn-type -Wmissing-braces -Wparentheses -Wswitch -Wunused-function -Wunused-label -Wunused-variable -Wunused-value -Wunknown-pragmas -Wshadow -Wfour-char-constants -Wsign-compare -Wnewline-eof -Wshorten-64-to-32 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mfix-and-continue -mmacosx-version-min=10.5 -gdwarf-2 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Velocitool.hmap -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/include -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/i386 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources -include /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch -c /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/VTStoredDevice.m -o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/VTStoredDevice.o0#
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/Velocitool_vers.o /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/Velocitool_vers.c normal i386 c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/Velocitool_vers.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/Velocitool_vers.c normal i386 c com.apple.compilers.gcc.4_2
-s291079030.254348
-e291079030.333773
-r1
-xCompileC
-xbuild/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/Velocitool_vers.o
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/Velocitool_vers.c
-xnormal
-xi386
-xc
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@151"Compile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/Velocitool_vers.c291079030#291079030#0(0"0(0#0#143"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/Velocitool_vers.c4300885448#1518"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wmissing-prototypes -Werror-implicit-function-declaration -Wreturn-type -Wmissing-braces -Wparentheses -Wswitch -Wunused-function -Wunused-label -Wunused-variable -Wunused-value -Wunknown-pragmas -Wshadow -Wfour-char-constants -Wsign-compare -Wnewline-eof -Wshorten-64-to-32 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mfix-and-continue -mmacosx-version-min=10.5 -gdwarf-2 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Velocitool.hmap -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/include -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/i386 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources -c /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/Velocitool_vers.c -o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/Velocitool_vers.o0#
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/main.o /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CCompileC build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/main.o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/main.m normal i386 objective-c com.apple.compilers.gcc.4_2
-s291079029.304099
-e291079029.447917
-r1
-xCompileC
-xbuild/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/main.o
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/main.m
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@79"Compile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/main.m291079029#291079029#0(0"0(0#0#71"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/main.m4300885448#1621"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wmissing-prototypes -Werror-implicit-function-declaration -Wreturn-type -Wmissing-braces -Wparentheses -Wswitch -Wunused-function -Wunused-label -Wunused-variable -Wunused-value -Wunknown-pragmas -Wshadow -Wfour-char-constants -Wsign-compare -Wnewline-eof -Wshorten-64-to-32 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mfix-and-continue -mmacosx-version-min=10.5 -gdwarf-2 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Velocitool.hmap -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/include -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/i386 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources -include /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch -c /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/main.m -o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/main.o0#
-
-CCompileXIB /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/English.lproj/MainMenu.xib
-r0
-
-CCompileXIB /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/English.lproj/MainMenu.xib
-s291079025.812363
-e291079026.321483
-r1
-xCompileXIB
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/English.lproj/MainMenu.xib
-lSLF07#2@37"CompileXIB English.lproj/MainMenu.xib291079025#291079026#0(0"0(0#0#91"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/English.lproj/MainMenu.xib4300885448#408"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    /Developer/usr/bin/ibtool --errors --warnings --notices --output-format human-readable-text --compile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/English.lproj/MainMenu.nib /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/English.lproj/MainMenu.xib0#
-
-CCopyStringsFile /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/English.lproj/InfoPlist.strings English.lproj/InfoPlist.strings
-r0
-
-CCopyStringsFile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/English.lproj/InfoPlist.strings English.lproj/InfoPlist.strings
-s291079025.723100
-e291079025.920245
-r1
-xCopyStringsFile
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/English.lproj/InfoPlist.strings
-xEnglish.lproj/InfoPlist.strings
-lSLF07#2@36"Copy English.lproj/InfoPlist.strings291079025#291079025#0(0"0(0#0#96"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/English.lproj/InfoPlist.strings4300885448#421"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv ICONV /usr/bin/iconv    /Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/copystrings --validate --inputencoding utf-16 --outputencoding UTF-16 English.lproj/InfoPlist.strings --outdir /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/English.lproj0#
-
-CCpResource build/Debug/Velocitool.app/Contents/Resources/English.lproj/libftd2xx.0.1.7.dylib /Users/alec/Code/sandbox/command_line_tool/speedtrack/English.lproj/libftd2xx.0.1.7.dylib
-s291149519.671689
-e291149519.727046
-r1
-xCpResource
-xbuild/Debug/Velocitool.app/Contents/Resources/English.lproj/libftd2xx.0.1.7.dylib
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/English.lproj/libftd2xx.0.1.7.dylib
-lSLF07#2@94"Copy /Users/alec/Code/sandbox/command_line_tool/speedtrack/English.lproj/libftd2xx.0.1.7.dylib291149519#291149519#0(0"0(0#0#89"/Users/alec/Code/sandbox/command_line_tool/speedtrack/English.lproj/libftd2xx.0.1.7.dylib4300885448#435"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/alec/Code/sandbox/command_line_tool/speedtrack/English.lproj/libftd2xx.0.1.7.dylib /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/English.lproj0#
-
-CCpResource build/Debug/Velocitool.app/Contents/Resources/FakeStuff.jpg FakeStuff.jpg
-s291079025.925805
-e291079025.943737
-r1
-xCpResource
-xbuild/Debug/Velocitool.app/Contents/Resources/FakeStuff.jpg
-xFakeStuff.jpg
-lSLF07#2@18"Copy FakeStuff.jpg291079025#291079025#0(0"0(0#0#78"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/FakeStuff.jpg4300885448#410"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/FakeStuff.jpg /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources0#
-
-CCpResource build/Debug/Velocitool.app/Contents/Resources/S10.jpg ../S10.jpg
-s291079025.922418
-e291079025.932638
-r1
-xCpResource
-xbuild/Debug/Velocitool.app/Contents/Resources/S10.jpg
-x../S10.jpg
-lSLF07#2@15"Copy ../S10.jpg291079025#291079025#0(0"0(0#0#75"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/../S10.jpg4300885448#407"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/../S10.jpg /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources0#
-
-CCpResource build/Debug/Velocitool.app/Contents/Resources/SC1.jpg ../SC1.jpg
-s291079025.923962
-e291079025.935529
-r1
-xCpResource
-xbuild/Debug/Velocitool.app/Contents/Resources/SC1.jpg
-x../SC1.jpg
-lSLF07#2@15"Copy ../SC1.jpg291079025#291079025#0(0"0(0#0#75"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/../SC1.jpg4300885448#407"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/../SC1.jpg /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources0#
-
-CCpResource build/Debug/Velocitool.app/Contents/Resources/SpeedPuck.icns SpeedPuck.icns
-s291079025.921758
-e291079025.938381
-r1
-xCpResource
-xbuild/Debug/Velocitool.app/Contents/Resources/SpeedPuck.icns
-xSpeedPuck.icns
-lSLF07#2@19"Copy SpeedPuck.icns291079025#291079025#0(0"0(0#0#79"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/SpeedPuck.icns4300885448#411"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/SpeedPuck.icns /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources0#
-
-CCpResource build/Debug/Velocitool.app/Contents/Resources/dsa_pub.pem dsa_pub.pem
-s291079025.920338
-e291079025.927680
-r1
-xCpResource
-xbuild/Debug/Velocitool.app/Contents/Resources/dsa_pub.pem
-xdsa_pub.pem
-lSLF07#2@16"Copy dsa_pub.pem291079025#291079025#0(0"0(0#0#76"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/dsa_pub.pem4300885448#408"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/dsa_pub.pem /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources0#
-
-CCpResource build/Debug/Velocitool.app/Contents/Resources/libftd2xx.0.1.4.dylib ../libftd2xx.0.1.4.dylib
-r0
-
-CCpResource build/Debug/Velocitool.app/Contents/Resources/libftd2xx.0.1.7.dylib ../../../../../Code/sandbox/command_line_tool/speedtrack/libftd2xx.0.1.7.dylib
-r0
-
-CCpResource build/Debug/Velocitool.app/Contents/Resources/libftd2xx.0.1.7.dylib ../libftd2xx.0.1.7.dylib
-s291079025.722457
-e291079025.812267
-r1
-xCpResource
-xbuild/Debug/Velocitool.app/Contents/Resources/libftd2xx.0.1.7.dylib
-x../libftd2xx.0.1.7.dylib
-lSLF07#2@29"Copy ../libftd2xx.0.1.7.dylib291079025#291079025#0(0"0(0#0#89"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/../libftd2xx.0.1.7.dylib4300885448#421"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/../libftd2xx.0.1.7.dylib /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources0#
-
-CCpResource build/Debug/Velocitool.app/Contents/Resources/libftd2xx.0.1.7.dylib /Users/alec/Code/sandbox/command_line_tool/speedtrack/libftd2xx.0.1.7.dylib
-r0
-
-CCpResource build/Debug/Velocitool.app/Contents/Resources/velocitool.icns velocitool.icns
-s291079025.920951
-e291079025.938179
-r1
-xCpResource
-xbuild/Debug/Velocitool.app/Contents/Resources/velocitool.icns
-xvelocitool.icns
-lSLF07#2@20"Copy velocitool.icns291079025#291079025#0(0"0(0#0#80"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/velocitool.icns4300885448#412"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/velocitool.icns /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources0#
-
-CDataModelVersionCompile /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/store.momd /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/store.xcdatamodeld
-r0
-
-CDataModelVersionCompile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/store.momd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/store.xcdatamodeld
-s291079029.303290
-e291079029.393199
-r1
-xDataModelVersionCompile
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/store.momd
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/store.xcdatamodeld
-lSLF07#2@99"DataModelVersionCompile build/Debug/Velocitool.app/Contents/Resources/store.momd store.xcdatamodeld291079029#291079029#0(0"0(0#0#83"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/store.xcdatamodeld4300885448#335"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    /Developer/usr/bin/momc -XD_MOMC_TARGET_VERSION=10.5 /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/store.xcdatamodeld /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Resources/store.momd0#
-
-CLd /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/MacOS/Velocitool normal i386
-r0
-
-CLd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/MacOS/Velocitool normal i386
-s291149523.519979
-e291149524.139764
-r1
-xLd
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/MacOS/Velocitool
-xnormal
-xi386
-lSLF07#2@122"Link /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/MacOS/Velocitool291149523#291149524#0(0"0(0#0#0"4300885448#853"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv MACOSX_DEPLOYMENT_TARGET 10.5    /Developer/usr/bin/gcc-4.2 -arch i386 -isysroot /Developer/SDKs/MacOSX10.5.sdk -L/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug -L/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool -filelist /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/Velocitool.LinkFileList -mmacosx-version-min=10.5 -framework IOKit -framework Cocoa -framework Sparkle -o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/MacOS/Velocitool0#
-
-CPBXCp build/Debug/Velocitool.app/Contents/Frameworks/Sparkle.framework Sparkle.framework
-s291079030.479864
-e291079030.515981
-r1
-xPBXCp
-xbuild/Debug/Velocitool.app/Contents/Frameworks/Sparkle.framework
-xSparkle.framework
-lSLF07#2@22"Copy Sparkle.framework291079030#291079030#0(0"0(0#0#82"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/Sparkle.framework4300885448#415"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    /Developer/Library/PrivateFrameworks/DevToolsCore.framework/Resources/pbxcp -exclude .DS_Store -exclude CVS -exclude .svn -resolve-src-symlinks /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/Sparkle.framework /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Frameworks0#
-
-CPhaseScriptExecution "Run Script" /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Script-EDFC3F000EF81E0000E1DD2F.sh
-r0
-
-CPhaseScriptExecution "Run Script" /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Script-EDFC3F000EF81E0000E1DD2F.sh
-s291149524.139938
-e291149524.150985
-r1
-xPhaseScriptExecution
-xRun Script
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Script-EDFC3F000EF81E0000E1DD2F.sh
-o+ '[' Debug = Release ']'
-lSLF07#2@36"Run custom shell script 'Run Script'291149524#291149524#0(26"+ '[' Debug = Release ']'1(13@26"+ '[' Debug = Release ']'291149524#0#26#0(1@0"0(0#0#0"4300885448#18490"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv ACTION build    setenv ALTERNATE_GROUP staff    setenv ALTERNATE_MODE u+w,go-w,a+rX    setenv ALTERNATE_OWNER alec    setenv ALWAYS_SEARCH_USER_PATHS YES    setenv APPLE_INTERNAL_DEVELOPER_DIR /AppleInternal/Developer    setenv APPLE_INTERNAL_DIR /AppleInternal    setenv APPLE_INTERNAL_DOCUMENTATION_DIR /AppleInternal/Documentation    setenv APPLE_INTERNAL_LIBRARY_DIR /AppleInternal/Library    setenv APPLE_INTERNAL_TOOLS /AppleInternal/Developer/Tools    setenv APPLY_RULES_IN_COPY_FILES NO    setenv ARCHS i386    setenv ARCHS_STANDARD_32_64_BIT "x86_64 i386 ppc"    setenv ARCHS_STANDARD_32_BIT "i386 ppc"    setenv ARCHS_STANDARD_64_BIT x86_64    setenv BUILD_COMPONENTS "headers build"    setenv BUILD_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build    setenv BUILD_ROOT /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build    setenv BUILD_STYLE Debug    setenv BUILD_VARIANTS normal    setenv BUILT_PRODUCTS_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug    setenv CACHE_ROOT /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501    setenv CCHROOT /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501    setenv CHMOD /bin/chmod    setenv CHOWN /usr/sbin/chown    setenv CLASS_FILE_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/JavaClasses    setenv CLEAN_PRECOMPS YES    setenv CLONE_HEADERS NO    setenv CODESIGNING_FOLDER_PATH /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app    setenv CODE_SIGNING_ALLOWED YES    setenv COMMAND_MODE legacy    setenv COMPOSITE_SDK_DIRS /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/CompositeSDKs    setenv CONFIGURATION Debug    setenv CONFIGURATION_BUILD_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug    setenv CONFIGURATION_TEMP_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug    setenv CONTENTS_FOLDER_PATH Velocitool.app/Contents    setenv COPYING_PRESERVES_HFS_DATA NO    setenv COPY_PHASE_STRIP NO    setenv COPY_RESOURCES_FROM_STATIC_FRAMEWORKS YES    setenv CP /bin/cp    setenv CURRENT_ARCH i386    setenv CURRENT_PROJECT_VERSION 1    setenv CURRENT_VARIANT normal    setenv DEAD_CODE_STRIPPING NO    setenv DEBUGGING_SYMBOLS YES    setenv DEBUG_INFORMATION_FORMAT dwarf    setenv DEPLOYMENT_LOCATION NO    setenv DEPLOYMENT_POSTPROCESSING NO    setenv DERIVED_FILES_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources    setenv DERIVED_FILE_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources    setenv DERIVED_SOURCES_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources    setenv DEVELOPER_APPLICATIONS_DIR /Developer/Applications    setenv DEVELOPER_BIN_DIR /Developer/usr/bin    setenv DEVELOPER_DIR /Developer    setenv DEVELOPER_FRAMEWORKS_DIR /Developer/Library/Frameworks    setenv DEVELOPER_FRAMEWORKS_DIR_QUOTED "\"/Developer/Library/Frameworks\""    setenv DEVELOPER_LIBRARY_DIR /Developer/Library    setenv DEVELOPER_SDK_DIR /Developer/SDKs    setenv DEVELOPER_TOOLS_DIR /Developer/Tools    setenv DEVELOPER_USR_DIR /Developer/usr    setenv DEVELOPMENT_LANGUAGE English    setenv DOCUMENTATION_FOLDER_PATH /Documentation    setenv DO_HEADER_SCANNING_IN_JAM NO    setenv DSTROOT /tmp/Velocitool.dst    setenv DWARF_DSYM_FILE_NAME Velocitool.app.dSYM    setenv DWARF_DSYM_FOLDER_PATH /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug    setenv ENABLE_HEADER_DEPENDENCIES YES    setenv ENABLE_OPENMP_SUPPORT NO    setenv EXCLUDED_INSTALLSRC_SUBDIRECTORY_PATTERNS ".svn CVS"    setenv EXCLUDED_RECURSIVE_SEARCH_PATH_SUBDIRECTORIES "*.nib *.lproj *.framework *.gch (*) CVS .svn *.xcodeproj *.xcode *.pbproj *.pbxproj"    setenv EXECUTABLES_FOLDER_PATH Velocitool.app/Contents/Executables    setenv EXECUTABLE_FOLDER_PATH Velocitool.app/Contents/MacOS    setenv EXECUTABLE_NAME Velocitool    setenv EXECUTABLE_PATH Velocitool.app/Contents/MacOS/Velocitool    setenv FILE_LIST /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects/LinkFileList    setenv FIXED_FILES_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/FixedFiles    setenv FRAMEWORKS_FOLDER_PATH Velocitool.app/Contents/Frameworks    setenv FRAMEWORK_FLAG_PREFIX -framework    setenv FRAMEWORK_SEARCH_PATHS "\"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug\"  \"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool\""    setenv FRAMEWORK_VERSION A    setenv FULL_PRODUCT_NAME Velocitool.app    setenv GCC3_VERSION 3.3    setenv GCC_DYNAMIC_NO_PIC NO    setenv GCC_ENABLE_FIX_AND_CONTINUE YES    setenv GCC_INLINES_ARE_PRIVATE_EXTERN YES    setenv GCC_MODEL_TUNING G5    setenv GCC_OPTIMIZATION_LEVEL 0    setenv GCC_PFE_FILE_C_DIALECTS "c objective-c c++ objective-c++"    setenv GCC_PRECOMPILE_PREFIX_HEADER YES    setenv GCC_PREFIX_HEADER Velocitool_Prefix.pch    setenv GCC_SYMBOLS_PRIVATE_EXTERN YES    setenv GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS YES    setenv GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS YES    setenv GCC_TREAT_WARNINGS_AS_ERRORS NO    setenv GCC_VERSION 4.2    setenv GCC_WARN_64_TO_32_BIT_CONVERSION YES    setenv GCC_WARN_ABOUT_MISSING_NEWLINE YES    setenv GCC_WARN_ABOUT_MISSING_PROTOTYPES YES    setenv GCC_WARN_ABOUT_RETURN_TYPE YES    setenv GCC_WARN_CHECK_SWITCH_STATEMENTS YES    setenv GCC_WARN_EFFECTIVE_CPLUSPLUS_VIOLATIONS YES    setenv GCC_WARN_FOUR_CHARACTER_CONSTANTS YES    setenv GCC_WARN_HIDDEN_VIRTUAL_FUNCTIONS YES    setenv GCC_WARN_INHIBIT_ALL_WARNINGS NO    setenv GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED YES    setenv GCC_WARN_MISSING_PARENTHESES YES    setenv GCC_WARN_NON_VIRTUAL_DESTRUCTOR YES    setenv GCC_WARN_PEDANTIC NO    setenv GCC_WARN_PROTOTYPE_CONVERSION NO    setenv GCC_WARN_SHADOW YES    setenv GCC_WARN_SIGN_COMPARE YES    setenv GCC_WARN_TYPECHECK_CALLS_TO_PRINTF YES    setenv GCC_WARN_UNINITIALIZED_AUTOS NO    setenv GCC_WARN_UNKNOWN_PRAGMAS YES    setenv GCC_WARN_UNUSED_FUNCTION YES    setenv GCC_WARN_UNUSED_LABEL YES    setenv GCC_WARN_UNUSED_PARAMETER NO    setenv GCC_WARN_UNUSED_VALUE YES    setenv GCC_WARN_UNUSED_VARIABLE YES    setenv GENERATE_MASTER_OBJECT_FILE NO    setenv GENERATE_PKGINFO_FILE YES    setenv GENERATE_PROFILING_CODE NO    setenv GID 20    setenv GROUP staff    setenv HEADERMAP_INCLUDES_FLAT_ENTRIES_FOR_TARGET_BEING_BUILT YES    setenv HEADERMAP_INCLUDES_FRAMEWORK_ENTRIES_FOR_ALL_PRODUCT_TYPES YES    setenv HEADERMAP_INCLUDES_NONPUBLIC_NONPRIVATE_HEADERS YES    setenv HEADERMAP_INCLUDES_PROJECT_HEADERS YES    setenv HEADER_SEARCH_PATHS "\"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/include\" "    setenv ICONV /usr/bin/iconv    setenv INFOPLIST_EXPAND_BUILD_SETTINGS YES    setenv INFOPLIST_FILE Info.plist    setenv INFOPLIST_OUTPUT_FORMAT same-as-input    setenv INFOPLIST_PATH Velocitool.app/Contents/Info.plist    setenv INFOPLIST_PREPROCESS NO    setenv INFOSTRINGS_PATH /InfoPlist.strings    setenv INSTALL_DIR /tmp/Velocitool.dst/Users/alec/Applications    setenv INSTALL_GROUP staff    setenv INSTALL_MODE_FLAG u+w,go-w,a+rX    setenv INSTALL_OWNER alec    setenv INSTALL_PATH /Users/alec/Applications    setenv INSTALL_ROOT /tmp/Velocitool.dst    setenv JAVAC_DEFAULT_FLAGS "-J-Xms64m -J-XX:NewSize=4M -J-Dfile.encoding=UTF8"    setenv JAVA_APP_STUB /System/Library/Frameworks/JavaVM.framework/Resources/MacOS/JavaApplicationStub    setenv JAVA_ARCHIVE_CLASSES YES    setenv JAVA_ARCHIVE_TYPE JAR    setenv JAVA_COMPILER /usr/bin/javac    setenv JAVA_FOLDER_PATH Velocitool.app/Contents/Resources/Java    setenv JAVA_FRAMEWORK_RESOURCES_DIRS Resources    setenv JAVA_JAR_FLAGS cv    setenv JAVA_SOURCE_SUBDIR .    setenv JAVA_USE_DEPENDENCIES YES    setenv JAVA_ZIP_FLAGS -urg    setenv JIKES_DEFAULT_FLAGS "+E +OLDCSO"    setenv KEEP_PRIVATE_EXTERNS NO    setenv LD_GENERATE_MAP_FILE NO    setenv LD_MAP_FILE_PATH /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Velocitool-LinkMap-normal-i386.txt    setenv LD_OPENMP_FLAGS -fopenmp    setenv LEX /Developer/usr/bin/lex    setenv LIBRARY_FLAG_NOSPACE YES    setenv LIBRARY_FLAG_PREFIX -l    setenv LIBRARY_SEARCH_PATHS "\"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug\"  \"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool\""    setenv LINKER_DISPLAYS_MANGLED_NAMES NO    setenv LINK_FILE_LIST_normal_i386 /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal/i386/Velocitool.LinkFileList    setenv LINK_WITH_STANDARD_LIBRARIES YES    setenv LOCAL_ADMIN_APPS_DIR /Applications/Utilities    setenv LOCAL_APPS_DIR /Applications    setenv LOCAL_DEVELOPER_DIR /Library/Developer    setenv LOCAL_LIBRARY_DIR /Library    setenv MACH_O_TYPE mh_execute    setenv MACOSX_DEPLOYMENT_TARGET 10.5    setenv MAC_OS_X_VERSION_ACTUAL 1062    setenv MAC_OS_X_VERSION_MAJOR 1060    setenv MAC_OS_X_VERSION_MINOR 0602    setenv NATIVE_ARCH i386    setenv NATIVE_ARCH_32_BIT i386    setenv NATIVE_ARCH_64_BIT x86_64    setenv NATIVE_ARCH_ACTUAL x86_64    setenv NO_COMMON YES    setenv OBJECT_FILE_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects    setenv OBJECT_FILE_DIR_normal /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Objects-normal    setenv OBJROOT /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build    setenv ONLY_ACTIVE_ARCH NO    setenv OPTIMIZATION_LEVEL 0    setenv OS MACOS    setenv OSAC /usr/bin/osacompile    setenv PACKAGE_TYPE com.apple.package-type.wrapper.application    setenv PASCAL_STRINGS YES    setenv PATH_PREFIXES_EXCLUDED_FROM_HEADER_DEPENDENCIES "/usr/include /usr/local/include /System/Library/Frameworks /System/Library/PrivateFrameworks /Developer/Headers /Developer/SDKs /Developer/Platforms"    setenv PBDEVELOPMENTPLIST_PATH Velocitool.app/Contents/pbdevelopment.plist    setenv PFE_FILE_C_DIALECTS objective-c    setenv PKGINFO_FILE_PATH /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/PkgInfo    setenv PKGINFO_PATH Velocitool.app/Contents/PkgInfo    setenv PLATFORM_DEVELOPER_APPLICATIONS_DIR /Developer/Applications    setenv PLATFORM_DEVELOPER_BIN_DIR /Developer/usr/bin    setenv PLATFORM_DEVELOPER_LIBRARY_DIR /Developer/Library    setenv PLATFORM_DEVELOPER_SDK_DIR /Developer/SDKs    setenv PLATFORM_DEVELOPER_TOOLS_DIR /Developer/Tools    setenv PLATFORM_DEVELOPER_USR_DIR /Developer/usr    setenv PLATFORM_NAME macosx    setenv PLIST_FILE_OUTPUT_FORMAT same-as-input    setenv PLUGINS_FOLDER_PATH Velocitool.app/Contents/PlugIns    setenv PREBINDING NO    setenv PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR YES    setenv PRECOMP_DESTINATION_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/PrefixHeaders    setenv PRESERVE_DEAD_CODE_INITS_AND_TERMS NO    setenv PRIVATE_HEADERS_FOLDER_PATH Velocitool.app/Contents/PrivateHeaders    setenv PRODUCT_NAME Velocitool    setenv PRODUCT_SETTINGS_PATH /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/Info.plist    setenv PRODUCT_TYPE com.apple.product-type.application    setenv PROFILING_CODE NO    setenv PROJECT Velocitool    setenv PROJECT_DERIVED_FILE_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/DerivedSources    setenv PROJECT_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv PROJECT_FILE_PATH /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/Velocitool.xcodeproj    setenv PROJECT_NAME Velocitool    setenv PROJECT_TEMP_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build    setenv PUBLIC_HEADERS_FOLDER_PATH Velocitool.app/Contents/Headers    setenv RECURSIVE_SEARCH_PATHS_FOLLOW_SYMLINKS YES    setenv REMOVE_CVS_FROM_RESOURCES YES    setenv REMOVE_SVN_FROM_RESOURCES YES    setenv REZ_COLLECTOR_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/ResourceManagerResources    setenv REZ_OBJECTS_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/ResourceManagerResources/Objects    setenv REZ_SEARCH_PATHS "\"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug\" "    setenv RUN_CLANG_STATIC_ANALYZER NO    setenv SCAN_ALL_SOURCE_FILES_FOR_INCLUDES NO    setenv SCRIPTS_FOLDER_PATH Velocitool.app/Contents/Resources/Scripts    setenv SCRIPT_INPUT_FILE_COUNT 0    setenv SCRIPT_OUTPUT_FILE_COUNT 0    setenv SDKROOT /Developer/SDKs/MacOSX10.5.sdk    setenv SDK_DIR /Developer/SDKs/MacOSX10.5.sdk    setenv SDK_NAME macosx10.5    setenv SED /usr/bin/sed    setenv SEPARATE_STRIP NO    setenv SEPARATE_SYMBOL_EDIT NO    setenv SET_DIR_MODE_OWNER_GROUP YES    setenv SET_FILE_MODE_OWNER_GROUP NO    setenv SHARED_DERIVED_FILE_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/DerivedSources    setenv SHARED_FRAMEWORKS_FOLDER_PATH Velocitool.app/Contents/SharedFrameworks    setenv SHARED_PRECOMPS_DIR /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders    setenv SHARED_SUPPORT_FOLDER_PATH Velocitool.app/Contents/SharedSupport    setenv SKIP_INSTALL NO    setenv SOURCE_ROOT /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv SRCROOT /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv STANDARD_C_PLUS_PLUS_LIBRARY_TYPE dynamic    setenv STRINGS_FILE_OUTPUT_ENCODING UTF-16    setenv STRIP_INSTALLED_PRODUCT YES    setenv STRIP_STYLE all    setenv SYMBOL_REPOSITORY_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/SymbolRepositories    setenv SYMROOT /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build    setenv SYSTEM_ADMIN_APPS_DIR /Applications/Utilities    setenv SYSTEM_APPS_DIR /Applications    setenv SYSTEM_CORE_SERVICES_DIR /System/Library/CoreServices    setenv SYSTEM_DEMOS_DIR /Applications/Extras    setenv SYSTEM_DEVELOPER_APPS_DIR /Developer/Applications    setenv SYSTEM_DEVELOPER_BIN_DIR /Developer/usr/bin    setenv SYSTEM_DEVELOPER_DEMOS_DIR "/Developer/Applications/Utilities/Built Examples"    setenv SYSTEM_DEVELOPER_DIR /Developer    setenv SYSTEM_DEVELOPER_DOC_DIR "/Developer/ADC Reference Library"    setenv SYSTEM_DEVELOPER_GRAPHICS_TOOLS_DIR "/Developer/Applications/Graphics Tools"    setenv SYSTEM_DEVELOPER_JAVA_TOOLS_DIR "/Developer/Applications/Java Tools"    setenv SYSTEM_DEVELOPER_PERFORMANCE_TOOLS_DIR "/Developer/Applications/Performance Tools"    setenv SYSTEM_DEVELOPER_RELEASENOTES_DIR "/Developer/ADC Reference Library/releasenotes"    setenv SYSTEM_DEVELOPER_TOOLS /Developer/Tools    setenv SYSTEM_DEVELOPER_TOOLS_DOC_DIR "/Developer/ADC Reference Library/documentation/DeveloperTools"    setenv SYSTEM_DEVELOPER_TOOLS_RELEASENOTES_DIR "/Developer/ADC Reference Library/releasenotes/DeveloperTools"    setenv SYSTEM_DEVELOPER_USR_DIR /Developer/usr    setenv SYSTEM_DEVELOPER_UTILITIES_DIR /Developer/Applications/Utilities    setenv SYSTEM_DOCUMENTATION_DIR /Library/Documentation    setenv SYSTEM_LIBRARY_DIR /System/Library    setenv TARGETNAME Velocitool    setenv TARGET_BUILD_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug    setenv TARGET_NAME Velocitool    setenv TARGET_TEMP_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build    setenv TEMP_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build    setenv TEMP_FILES_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build    setenv TEMP_FILE_DIR /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build    setenv TEMP_ROOT /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build    setenv UID 501    setenv UNLOCALIZED_RESOURCES_FOLDER_PATH Velocitool.app/Contents/Resources    setenv UNSTRIPPED_PRODUCT NO    setenv USER alec    setenv USER_APPS_DIR /Users/alec/Applications    setenv USER_LIBRARY_DIR /Users/alec/Library    setenv USE_DYNAMIC_NO_PIC YES    setenv USE_HEADERMAP YES    setenv USE_HEADER_SYMLINKS NO    setenv VALID_ARCHS "i386 ppc ppc64 ppc7400 ppc970 x86_64"    setenv VERBOSE_PBXCP NO    setenv VERSIONING_STUB /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/Velocitool_vers.c    setenv VERSIONING_SYSTEM apple-generic    setenv VERSIONPLIST_PATH Velocitool.app/Contents/version.plist    setenv VERSION_INFO_BUILDER alec    setenv VERSION_INFO_FILE Velocitool_vers.c    setenv VERSION_INFO_STRING "\"@(#)PROGRAM:Velocitool  PROJECT:Velocitool-1\""    setenv WRAPPER_EXTENSION app    setenv WRAPPER_NAME Velocitool.app    setenv WRAPPER_SUFFIX .app    setenv XCODE_APP_SUPPORT_DIR /Developer/Library/Xcode    setenv XCODE_VERSION_ACTUAL 0321    setenv XCODE_VERSION_MAJOR 0300    setenv XCODE_VERSION_MINOR 0320    setenv YACC /Developer/usr/bin/yacc    setenv ZERO_LINK NO    /bin/sh -c /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Script-EDFC3F000EF81E0000E1DD2F.sh0#
-
-CProcessInfoPlistFile /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Info.plist Info.plist
-r0
-
-CProcessInfoPlistFile /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Info.plist Info.plist
-s291079025.718805
-e291079025.722379
-r1
-xProcessInfoPlistFile
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Info.plist
-xInfo.plist
-lSLF07#2@18"Process Info.plist291079025#291079025#0(0"0(0#0#75"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/Info.plist4300885448#386"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    builtin-infoPlistUtility Info.plist -genpkginfo /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/PkgInfo -expandbuildsettings -platform macosx -o /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app/Contents/Info.plist0#
-
-CProcessPCH /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch.gch Velocitool_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-s291079026.321601
-e291079029.303080
-r1
-xProcessPCH
-x/var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch.gch
-xVelocitool_Prefix.pch
-xnormal
-xi386
-xobjective-c
-xcom.apple.compilers.gcc.4_2
-lSLF07#2@32"Precompile Velocitool_Prefix.pch291079026#291079029#0(0"0(0#0#86"/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/Velocitool_Prefix.pch4300885448#1500"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x objective-c-header -arch i386 -fmessage-length=0 -pipe -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wmissing-prototypes -Werror-implicit-function-declaration -Wreturn-type -Wmissing-braces -Wparentheses -Wswitch -Wunused-function -Wunused-label -Wunused-variable -Wunused-value -Wunknown-pragmas -Wshadow -Wfour-char-constants -Wsign-compare -Wnewline-eof -Wshorten-64-to-32 -isysroot /Developer/SDKs/MacOSX10.5.sdk -mfix-and-continue -mmacosx-version-min=10.5 -gdwarf-2 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/Velocitool.hmap -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug -F/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/include -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources/i386 -I/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Velocitool.build/Debug/Velocitool.build/DerivedSources -c /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/Velocitool_Prefix.pch -o /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-akrcrvunprhbyjfhkvozajebnfbg/Velocitool_Prefix.pch.gch0#
-
-CProcessPCH /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-bbpubcqyuytngtbxngfziviqzroh/Velocitool_Prefix.pch.gch Velocitool_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CProcessPCH /var/folders/t7/t7umaSq8FO06T33-MfjHxE+++TI/-Caches-/com.apple.Xcode.501/SharedPrecompiledHeaders/Velocitool_Prefix-fxiqyxzhglouqsdnxotyenzpbaqj/Velocitool_Prefix.pch.gch Velocitool_Prefix.pch normal i386 objective-c com.apple.compilers.gcc.4_2
-r0
-
-CTouch /Users/alec/CODE/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app
-r0
-
-CTouch /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app
-s291149524.151063
-e291149524.178771
-r1
-xTouch
-x/Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app
-lSLF07#2@97"Touch /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app291149524#291149524#0(0"0(0#0#0"4300885448#186"    cd /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool    /usr/bin/touch -c /Users/alec/Code/sandbox/command_line_tool/speedtrack/Velocitool/build/Debug/Velocitool.app0#
-
