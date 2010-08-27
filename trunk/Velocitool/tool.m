@@ -15,6 +15,7 @@
 #define LAUNCH_GPSAR_TEST
 
 #import <Cocoa/Cocoa.h>
+
 #import "VTDeviceLoader.h"
 #import "VTDevice.h"
 #import "VTCommand.h"
@@ -32,8 +33,6 @@
 #import "VTGlobals.h"
 #import "VTFirmwareUpdateOperation.h"
 #import "VTXmlDate.h"
-
-#import <Foundation/Foundation.h>
 
 void testFirmwareUpdate(VTDevice *device);
 
