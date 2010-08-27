@@ -57,16 +57,16 @@
 	
 	NSString *description_string;
 	
-	timestamp_description = [[NSString alloc] initWithFormat:@"Timestamp: %@", _timestamp];
+	timestamp_description = [NSString stringWithFormat:@"Timestamp: %@", _timestamp];
 	
-	latitude_description = [[NSString alloc] initWithFormat:@"Latitude: %f", _latitude];
-	longitude_description = [[NSString alloc] initWithFormat:@"Longitude: %f", _longitude];
+	latitude_description = [NSString stringWithFormat:@"Latitude: %f", _latitude];
+	longitude_description = [NSString stringWithFormat:@"Longitude: %f", _longitude];
 	
-	speed_description = [[NSString alloc] initWithFormat:@"Speed: %f", _speed];
-	heading_description = [[NSString alloc] initWithFormat:@"Heading: %f", _heading];
+	speed_description = [NSString stringWithFormat:@"Speed: %f", _speed];
+	heading_description = [NSString stringWithFormat:@"Heading: %f", _heading];
 	
 	
-	description_string = [[NSString alloc] initWithFormat:@"\t%@\n\t%@\n\t%@\n\t%@\n\t%@\n", 
+	description_string = [NSString stringWithFormat:@"\t%@\n\t%@\n\t%@\n\t%@\n\t%@\n", 
 						  timestamp_description, latitude_description, longitude_description, 
 						  speed_description, heading_description]; 
 	
@@ -116,7 +116,7 @@
 
 + (VTReadTrackpointsCommandParameter *)commandParameterFromTimeInverval:(NSDate *)startTime end:(NSDate *)endTime {
 	
-	VTReadTrackpointsCommandParameter *commandParameter = [[self alloc] init];
+	VTReadTrackpointsCommandParameter *commandParameter = [[[self alloc] init] autorelease];
 	
 	[commandParameter set_downloadFrom:startTime];
 	
@@ -225,7 +225,7 @@
 
 
 + (VTPuckSettingsRecord *)recordFromSettingsDictionary:(NSDictionary *)settings {
-    VTPuckSettingsRecord *record = [[self alloc] init];
+    VTPuckSettingsRecord *record = [[[self alloc] init] autorelease];
     if(settings) {
         [record setSettingsDictionary:settings];
     }
@@ -363,11 +363,11 @@
 	
 	NSString *description_string;
 	
-	number_trackpoints_description = [[NSString alloc] initWithFormat:@"Number of trackpoints in log: %d", numTrackpoints];
-	beginning_date_time_description = [[NSString alloc] initWithFormat:@"Log Start: %@", start];
-	ending_date_time_description = [[NSString alloc] initWithFormat:@"Log End: %@", end];
+	number_trackpoints_description = [NSString stringWithFormat:@"Number of trackpoints in log: %d", numTrackpoints];
+	beginning_date_time_description = [NSString stringWithFormat:@"Log Start: %@", start];
+	ending_date_time_description = [NSString stringWithFormat:@"Log End: %@", end];
 	
-	description_string = [[NSString alloc] initWithFormat:@"\t%@\n\t%@\n\t%@\n", number_trackpoints_description, beginning_date_time_description, ending_date_time_description]; 
+	description_string = [NSString stringWithFormat:@"\t%@\n\t%@\n\t%@\n", number_trackpoints_description, beginning_date_time_description, ending_date_time_description]; 
 	
 	return description_string;
 }

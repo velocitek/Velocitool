@@ -608,9 +608,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 
 - (NSDate *)readDate {
 	VTDateTime *dateToConvert = [VTDateTime vtDateWithPicBytes:[self readLength:NUM_BYTES_IN_PIC_DATETIME]];
-	NSDate *result = [[NSDate alloc] init];
-	result = [dateToConvert date];
-    return result;
+	return [dateToConvert date];
 }
 
 - (float)readFloat {

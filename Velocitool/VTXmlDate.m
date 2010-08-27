@@ -60,8 +60,7 @@
 
 + (NSString*)vccNow
 {
-	NSDate *currentTime = [NSDate date];
-	VTXmlDate *xmlDate = [[self alloc] initWithDate:currentTime];
+	VTXmlDate *xmlDate = [[[self alloc] initWithDate:[NSDate date]] autorelease];
 	return [xmlDate vccDateString];
 }
 
@@ -69,8 +68,8 @@
 {
 		
 	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
-	
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+
+	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	
 	//"2010-04-27T20:19:24-10:00"
 	[dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"];
