@@ -25,7 +25,6 @@
 		7023AA2B11ACFA0300975EC0 /* TrackFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7023AA2A11ACFA0300975EC0 /* TrackFileViewController.m */; };
 		7023AA2F11ACFB9B00975EC0 /* TrackFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7023AA2E11ACFB9B00975EC0 /* TrackFileView.xib */; };
 		7080EDF71159AA510013C9C3 /* libftd2xx.0.1.7.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 7080EDF61159AA510013C9C3 /* libftd2xx.0.1.7.dylib */; };
-		7080EDF81159AA510013C9C3 /* libftd2xx.0.1.7.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 7080EDF61159AA510013C9C3 /* libftd2xx.0.1.7.dylib */; };
 		7080EFD5115C35D00013C9C3 /* VTDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080EFD4115C35D00013C9C3 /* VTDateTime.m */; };
 		7080EFD6115C35D00013C9C3 /* VTDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080EFD4115C35D00013C9C3 /* VTDateTime.m */; };
 		7080F18F115D7DA50013C9C3 /* VTFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080F18E115D7DA50013C9C3 /* VTFloat.m */; };
@@ -87,16 +86,6 @@
 		EDFC3EF70EF81CCF00E1DD2F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = EDFC3EF60EF81CCF00E1DD2F /* dsa_pub.pem */; };
 		EDFC3F4E0EF88A5A00E1DD2F /* velocitool.icns in Resources */ = {isa = PBXBuildFile; fileRef = EDFC3F4D0EF88A5A00E1DD2F /* velocitool.icns */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		EDE897E01158CD5C009E8151 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = EDE897D91158CD2D009E8151;
-			remoteInfo = Tool;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		7086E29411F531DB00EEC381 /* CopyFiles */ = {
@@ -199,7 +188,7 @@
 		ED4B99C70F1548A000AF563B /* VTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDevice.m; sourceTree = "<group>"; };
 		ED4B9A570F155F8700AF563B /* VTDeviceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDeviceLoader.h; sourceTree = "<group>"; };
 		ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDeviceLoader.m; sourceTree = "<group>"; };
-		ED6505F90F099EDD0018D068 /* libftd2xx.0.1.7.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; name = libftd2xx.0.1.7.dylib; path = "/Users/alec/Dropbox/Code/sandbox/Velocitek Control Center/speedtrack/English.lproj/libftd2xx.0.1.7.dylib"; sourceTree = "<absolute>"; };
+		ED6505F90F099EDD0018D068 /* libftd2xx.0.1.7.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libftd2xx.0.1.7.dylib; sourceTree = "<group>"; };
 		ED6505FE0F099EFE0018D068 /* ftd2xx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftd2xx.h; sourceTree = "<group>"; };
 		ED6C716F0F09A89D00BF3260 /* WinTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinTypes.h; sourceTree = "<group>"; };
 		ED6C71F20F0AD49400BF3260 /* VTWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTWrapper.h; sourceTree = "<group>"; };
@@ -237,7 +226,6 @@
 			files = (
 				EDE8982E1158D31D009E8151 /* IOKit.framework in Frameworks */,
 				EDE8982F1158D31D009E8151 /* Cocoa.framework in Frameworks */,
-				7080EDF81159AA510013C9C3 /* libftd2xx.0.1.7.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,7 +466,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				EDE897E11158CD5C009E8151 /* PBXTargetDependency */,
 			);
 			name = Velocitool;
 			productInstallPath = "$(HOME)/Applications";
@@ -638,14 +625,6 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		EDE897E11158CD5C009E8151 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = EDE897D91158CD2D009E8151 /* Tool */;
-			targetProxy = EDE897E01158CD5C009E8151 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -720,6 +699,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = Velocitool;
+				SDKROOT = macosx10.6;
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
@@ -770,6 +750,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_NAME = Velocitool;
+				SDKROOT = macosx10.6;
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
@@ -816,7 +797,25 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = NO;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = NO;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = YES;
 				INSTALL_PATH = /usr/local/bin;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -827,6 +826,8 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tool;
+				SDKROOT = macosx10.6;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -845,6 +846,24 @@
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_FIELD_INITIALIZERS = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
+				GCC_WARN_CHECK_SWITCH_STATEMENTS = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_MISSING_PARENTHESES = YES;
+				GCC_WARN_MULTIPLE_DEFINITION_TYPES_FOR_SELECTOR = NO;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = NO;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
+				GCC_WARN_UNUSED_VALUE = YES;
 				INSTALL_PATH = /usr/local/bin;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
@@ -856,8 +875,12 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
+				PREBINDING = YES;
 				PRODUCT_NAME = Tool;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = macosx10.6;
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
 				ZERO_LINK = NO;
 			};
 			name = Release;
