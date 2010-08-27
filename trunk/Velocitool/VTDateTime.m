@@ -72,10 +72,10 @@
 	[dateFormatter setTimeStyle:NSDateFormatterFullStyle];
 	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	
-	dateTimeDescriptionString = [[NSString alloc] initWithFormat:@"Date / Time: %@", [dateFormatter stringFromDate:date]];
-	picRepresentationDescriptionString = [[NSString alloc] initWithFormat:@"Representation on PIC: %@", [picDateRepresentation description]];
+	dateTimeDescriptionString = [NSString stringWithFormat:@"Date / Time: %@", [dateFormatter stringFromDate:date]];
+	picRepresentationDescriptionString = [NSString stringWithFormat:@"Representation on PIC: %@", [picDateRepresentation description]];
 	
-	description_string = [[NSString alloc] initWithFormat:@"%@\n%@\n", dateTimeDescriptionString, picRepresentationDescriptionString];
+	description_string = [NSString stringWithFormat:@"%@\n%@\n", dateTimeDescriptionString, picRepresentationDescriptionString];
 	
 	return description_string;
 	

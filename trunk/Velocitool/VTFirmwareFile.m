@@ -49,14 +49,7 @@
 -(NSMutableArray *)createArrayOfStrings
 {
 	//use componentsSeparatedByString to create an array of lines
-	NSArray *arrayOfStrings = [rawFirmwareString componentsSeparatedByString:@"\n"];
-	NSMutableArray *mutableArrayOfStrings = [[NSMutableArray alloc] init];
-	
-			
-	mutableArrayOfStrings = [arrayOfStrings mutableCopy];
-	
-	return mutableArrayOfStrings;
-	
+	return [[[rawFirmwareString componentsSeparatedByString:@"\n"] mutableCopy] autorelease];	
 }
 
 

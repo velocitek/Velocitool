@@ -117,8 +117,7 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 
 - (void)awakeFromNib
 {
-	NSSortDescriptor *startDescriptor = [[[NSSortDescriptor alloc] initWithKey:@"start"																	 ascending:NO] retain];	
-	NSArray *sortDescriptors = [NSArray arrayWithObject:startDescriptor];
+	NSArray *sortDescriptors = [NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"start" ascending:NO]];
 	
 	[trackpointLogController setSortDescriptors:sortDescriptors];
 }

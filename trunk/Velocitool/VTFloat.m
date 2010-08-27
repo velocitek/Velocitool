@@ -57,10 +57,10 @@
 	NSString *floatDescriptionString;
 	NSString *picRepresentationDescriptionString;
 	
-	floatDescriptionString = [[NSString alloc] initWithFormat:@"Float value: %f", floatingPointNumber];
-	picRepresentationDescriptionString = [[NSString alloc] initWithFormat:@"Representation on PIC: %@", [picFloatRepresentation description]];
+	floatDescriptionString = [NSString stringWithFormat:@"Float value: %f", floatingPointNumber];
+	picRepresentationDescriptionString = [NSString stringWithFormat:@"Representation on PIC: %@", [picFloatRepresentation description]];
 	
-	description_string = [[NSString alloc] initWithFormat:@"%@\n%@\n", floatDescriptionString, picRepresentationDescriptionString];
+	description_string = [NSString stringWithFormat:@"%@\n%@\n", floatDescriptionString, picRepresentationDescriptionString];
 	
 	return description_string;
 	

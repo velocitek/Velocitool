@@ -67,10 +67,10 @@ Methods (private):
 -(NSString *)findElementStringValue:(float)elementFloatValue
 {
 	if (latOrLong == LATITUDE) 
-		return [[NSString alloc] initWithFormat:@"%.15f", extremeValue];		
+		return [NSString stringWithFormat:@"%.15f", extremeValue];		
 	
 	else		
-		return [[NSString alloc] initWithFormat:@"%.14f", extremeValue];		
+		return [NSString stringWithFormat:@"%.14f", extremeValue];		
 	
 }
 

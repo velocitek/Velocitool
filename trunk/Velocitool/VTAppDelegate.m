@@ -46,8 +46,7 @@
     _loader = [VTDeviceLoader loader]; // No need to retain: singleton
 	
 	// Create the main window
-	MainWindowController *mainWindowController = [MainWindowController alloc];	
-	[mainWindowController init];		
+    mainWindowController = [[MainWindowController alloc] init];	
 }
 
 /**

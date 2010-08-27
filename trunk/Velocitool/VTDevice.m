@@ -51,7 +51,7 @@ static NSDictionary *productIDToClass = nil;
     VTConnection *connection;
     
     if (![properties count]) {
-        return [[VTFakeDevice alloc] init];
+        return [[[VTFakeDevice alloc] init] autorelease];
     }
     
     int vendorID = [[properties objectForKey:@kUSBVendorID] intValue];
