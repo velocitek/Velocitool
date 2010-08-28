@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string>velocitool.icns</string>
 	<key>CFBundleIdentifier</key>
-	<string>net.noyau.velocitool</string>
+	<string>com.velocitek.velocitool</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -27,7 +27,7 @@
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
-	<string>http://localhost/~noyau/velocitool/rss.xml</string>
+	<string>http://velocitek.com/assets/files/downloads/vcc/vcc_mac/rss.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 	<key>SUEnableAutomaticChecks</key>

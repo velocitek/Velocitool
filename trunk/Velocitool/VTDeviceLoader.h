@@ -1,11 +1,3 @@
-//
-//  DeviceLoader.h
-//  Velocitool
-//
-//  Created by Eric Noyau on 07/01/2009.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
-
 #import <Cocoa/Cocoa.h>
 
 @class VTDevice;

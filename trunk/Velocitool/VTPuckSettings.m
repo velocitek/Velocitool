@@ -1,11 +1,3 @@
-//
-//  VTPuckSettings.m
-//  Velocitool
-//
-//  Created by Eric Noyau on 08/03/2009.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
-
 #import "VTPuckSettings.h"
 #import "VTGlobals.h"
 
