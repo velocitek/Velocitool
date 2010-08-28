@@ -63,7 +63,7 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
 	[trackFromDevice setCapturedTrackXMLElement:[VTCapturedTrackElement capturedTrackElementWithTrackPointsAndDevice:trackpoints device:device]];
 	
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that the track has finished downloading");
+	//NSLog(@"Sending notification that the track has finished downloading");
 	[notificationCenter postNotificationName:VTTrackFinishedDownloadingNotification object:self];
 
 }

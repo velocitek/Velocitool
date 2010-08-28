@@ -35,7 +35,7 @@
 - (IBAction)fileSave:(id)sender
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that the Save button has been selected by the user.");
+	//NSLog(@"Sending notification that the Save button has been selected by the user.");
 	[notificationCenter postNotificationName:VTSaveButtonSelectedNotification object:self];
 	
 }
@@ -43,7 +43,7 @@
 - (IBAction)fileOpen:(id)sender
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that the Open button has been selected by the user.");
+	//NSLog(@"Sending notification that the Open button has been selected by the user.");
 	[notificationCenter postNotificationName:VTOpenButtonSelectedNotification object:self];
 	
 }
@@ -52,7 +52,7 @@
 - (IBAction)fileClose:(id)sender
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that File > Close has been selected by the user.");
+	//NSLog(@"Sending notification that File > Close has been selected by the user.");
 	[notificationCenter postNotificationName:VTCloseButtonPressedNotification object:self];
 	
 }
@@ -60,7 +60,7 @@
 - (IBAction)fileExportGPX:(id)sender
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that File > Export > GPX has been selected by the user.");
+	//NSLog(@"Sending notification that File > Export > GPX has been selected by the user.");
 	[notificationCenter postNotificationName:VTExportGPXButtonSelectedNotification object:self];
 	
 }
@@ -68,7 +68,7 @@
 - (IBAction)fileExportKML:(id)sender
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that File > Export > KML has been selected by the user.");
+	//NSLog(@"Sending notification that File > Export > KML has been selected by the user.");
 	[notificationCenter postNotificationName:VTExportKMLButtonSelectedNotification object:self];
 	
 }
@@ -82,7 +82,7 @@
 - (IBAction)returnToDeviceView:(id)sender
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that the Return to Device View button has been pressed by the user.");	
+	//NSLog(@"Sending notification that the Return to Device View button has been pressed by the user.");	
 	[notificationCenter postNotificationName:VTCloseButtonPressedNotification object:self];
 }
 
@@ -154,20 +154,20 @@
 - (void)handleFileOpenSelected:(NSNotification*)note
 {
 	
-	NSLog(@"Received notification: %@", [note name]);	
+	//NSLog(@"Received notification: %@", [note name]);	
 	
 }
 - (void)handleFileCloseSelected:(NSNotification*)note
 {
 	
-	NSLog(@"Received notification: %@", [note name]);	
+	//NSLog(@"Received notification: %@", [note name]);	
 	
 }
 
 - (void)handleFileExportGPXSelected:(NSNotification*)note
 {
 	
-	NSLog(@"Received notification: %@", [note name]);
+	//NSLog(@"Received notification: %@", [note name]);
 	[currentFile saveAsGpx];
 	
 }
@@ -175,7 +175,7 @@
 - (void)handleFileExportKMLSelected:(NSNotification*)note
 {
 	
-	NSLog(@"Received notification: %@", [note name]);	
+	//NSLog(@"Received notification: %@", [note name]);	
 	[currentFile saveAsKml];
 	
 }
@@ -184,14 +184,14 @@
 - (void)handleSetupUpdateDeviceFirmwareSelected:(NSNotification*)note
 {
 	
-	NSLog(@"Received notification: %@", [note name]);	
+	//NSLog(@"Received notification: %@", [note name]);	
 	
 }
 
 - (void)handleHelpTutorialVideoSelected:(NSNotification*)note
 {
 	
-	NSLog(@"Received notification: %@", [note name]);	
+	//NSLog(@"Received notification: %@", [note name]);	
 	
 }
 

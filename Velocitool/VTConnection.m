@@ -255,7 +255,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 	}
 	else
 	{
-		NSLog(@"%@",[data description]);
+		//NSLog(@"%@",[data description]);
 		sizedone = [data length];
 	}
 	
@@ -329,7 +329,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     unsigned int toRead = [self waitForResponseLength:10000 timeout:1000];
     
     while(toRead) { // Read all the stuff from the device
-        NSLog(@"reading %d of recovery", toRead);
+        //NSLog(@"reading %d of recovery", toRead);
         [self readLength:toRead timeout:0];
         toRead = [self waitForResponseLength:10000 timeout:1000];
     }
@@ -348,7 +348,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     [self setFlowControl:[command flowControl]];
     
     unsigned char signalChar = [command signal];
-    NSLog(@"signalling command %c", signalChar);
+    //NSLog(@"signalling command %c", signalChar);
 	
     [self writeUnsignedChar:signalChar];
     
@@ -360,13 +360,13 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     }
     
     signalChar = 'X';
-    NSLog(@"signalling args %c", signalChar);
+    //NSLog(@"signalling args %c", signalChar);
     [self writeUnsignedChar:signalChar];
     
     VTRecord *parameter = [command parameter];
     
     if (parameter) {
-        NSLog(@"Writing args %@", parameter);
+        //NSLog(@"Writing args %@", parameter);
         [parameter writeForConnection:self];
     }
 	
@@ -405,7 +405,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
         returnValue = result;
     }
     [self clearRTS];
-    NSLog(@"Done!");
+    //NSLog(@"Done!");
 	
     return returnValue;
 }
@@ -420,7 +420,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     
     //Send the Write Firmware command signal
 	unsigned char signalChar = 'L';
-    NSLog(@"signalling command %c", signalChar);
+    //NSLog(@"signalling command %c", signalChar);
     [self writeUnsignedChar:signalChar];
     
     response = [self readUnsignedChar];
@@ -452,7 +452,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 	[self setFlowControl:YES];
 	
 	unsigned int bytesWritten;
-	NSLog(@"Starting to send firmware data.");
+	//NSLog(@"Starting to send firmware data.");
 	//for each element in firmwareData
 	for (NSData* dataLine in firmwareData) 
 	{
@@ -493,7 +493,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 		
 		if(lineCounter == (numLinesInUpdate - 1))
 		{
-			NSLog(@"Firmware update is now 100 %% complete");
+			//NSLog(@"Firmware update is now 100 %% complete");
 			[self setFlowControl:NO];
 			return FIRMWARE_UPDATE_SUCCEEDED;
 			

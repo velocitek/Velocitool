@@ -527,7 +527,7 @@
 //2010-07-20T20:52:42-07:00 becomes 2010-07-21T03:52:42
 - (NSString *)convertVccDateStringToVccGmtDateString:(NSString *)vccDateString
 {
-	NSLog(@"%@",vccDateString);
+	//NSLog(@"%@",vccDateString);
 	
 	//create a VTXmlDate object using xmlDateWithVccDateString
 	VTXmlDate *dateToConvert = [VTXmlDate xmlDateWithVccDateString:vccDateString]; 

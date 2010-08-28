@@ -98,7 +98,7 @@
 			case EV_ENTRY:
 				
 				[self displayViewController:trackLogViewController];								
-				NSLog(@"Just changed to READY state.");
+				//NSLog(@"Just changed to READY state.");
 				
 				//Wait for the main window to resize and check to see if any Velocitek devices are connected to the Mac			
 				[trackLogViewController performSelector: @selector(lookForAlreadyConnectedDevices) withObject: nil afterDelay: 0.5];					
@@ -134,7 +134,7 @@
 		{
 			case EV_ENTRY:
 				
-				NSLog(@"Just changed to DOWNLOADING TRACK LOGS state.");
+				//NSLog(@"Just changed to DOWNLOADING TRACK LOGS state.");
 				
 				[trackLogsDownloadingProgressIndicator setUsesThreadedAnimation:YES];
 				[trackLogsDownloadingProgressIndicator startAnimation:self];
@@ -166,7 +166,7 @@
 		{
 			case EV_ENTRY:
 				
-				NSLog(@"Just changed to TRACK LOG VIEW state.");
+				//NSLog(@"Just changed to TRACK LOG VIEW state.");
 				
 				break;
 				
@@ -211,7 +211,7 @@
 		{
 			case EV_ENTRY:
 				
-				NSLog(@"Just changed to DOWNLOADING TRACK state.");
+				//NSLog(@"Just changed to DOWNLOADING TRACK state.");
 				
 				[trackFileViewController setDevice:[trackLogViewController firstConnectedDevice]];
 				[trackFileViewController setTrackLogs:[trackLogViewController trackpointLogs]];
@@ -253,7 +253,7 @@
 			case EV_ENTRY:								
 				
 				[self displayViewController:trackFileViewController];
-				NSLog(@"Just changed to TRACK FILE VIEW state.");
+				//NSLog(@"Just changed to TRACK FILE VIEW state.");
 												
 				break;
 				
@@ -353,35 +353,35 @@
 //Convert notifications into events for the state machine to process
 -(void)handleDownloadButtonPress:(NSNotification *)note
 {
-	NSLog(@"Received notification: %@", [note name]);		
+	//NSLog(@"Received notification: %@", [note name]);		
 	[self runStateMachine:EV_DOWNLOAD_BUTTON_PRESSED];
 	
 }
 
 -(void)handleTrackFinishedDownloading:(NSNotification *)note
 {
-	NSLog(@"Received notification: %@", [note name]);	
+	//NSLog(@"Received notification: %@", [note name]);	
 	[self runStateMachine:EV_TRACK_FINISHED_DOWNLOADING];
 
 }
 
 -(void)handleStartedEstablishingConnectionWithDevice:(NSNotification *)note
 {
-	NSLog(@"Received notification: %@", [note name]);
+	//NSLog(@"Received notification: %@", [note name]);
 	[self runStateMachine:EV_STARTED_ESTABLISHING_CONNECTION];
 	
 }
 
 -(void)handleTrackLogsFinishedDownloading:(NSNotification *)note
 {
-	NSLog(@"Received notification: %@", [note name]);
+	//NSLog(@"Received notification: %@", [note name]);
 	[self runStateMachine:EV_TRACKLOGS_FINISHED_DOWNLOADING];
 	
 }
 
 -(void)handleFirstConnectedDeviceRemoved:(NSNotification *)note
 {
-	NSLog(@"Received notification: %@", [note name]);
+	//NSLog(@"Received notification: %@", [note name]);
 	[self runStateMachine:EV_FIRST_DEVICE_REMOVED];
 	
 }
@@ -389,7 +389,7 @@
 - (void)handleFileOpenSelected:(NSNotification*)note
 {
 	
-	NSLog(@"Main window controller received notification: %@", [note name]);
+	//NSLog(@"Main window controller received notification: %@", [note name]);
 	
 	int result;
     NSArray *fileTypes = [NSArray arrayWithObject:@"vcc"];
