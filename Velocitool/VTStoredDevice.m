@@ -1,11 +1,3 @@
-//
-//  VTStoredDevice.m
-//  Velocitool
-//
-//  Created by Eric Noyau on 07/02/2009.
-//  Copyright 2009 __MyCompanyName__. All rights reserved.
-//
-
 #import "VTStoredDevice.h"
 #import "VTDevice.h"
 #import "VTDeviceLoader.h"
