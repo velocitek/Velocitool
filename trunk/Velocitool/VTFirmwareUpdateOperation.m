@@ -34,19 +34,19 @@
 - (void)main 
 {
     
-	NSLog(@"Hello World!");
+	//NSLog(@"Hello World!");
 		
 	//NOTE: Make sure this is the absolute path to where the firmware file is on your machine
 	if([device updateFirmware:@"/Users/alec/Dropbox/Code/Velocitool/Velocitek_SpeedPuck_1-4.hex"])
 	{
 				
-		NSLog(@"Success!");
+		//NSLog(@"Success!");
 		[self setSuccess: YES];
 		
 	}
 	else 
 	{
-		NSLog(@"Failure... boo hoo!");
+		//NSLog(@"Failure... boo hoo!");
 	}
 	 
 	[self setDone:YES];

@@ -149,39 +149,39 @@
 
 - (NSData *)runCommand:(char)command withArgumentsPrefix:(char)argPrefix arguments:(NSData *)arguments responsePrefix:(char)prefix expectedLength:(int)length {
     
-    NSLog(@"set RTS");
+    //NSLog(@"set RTS");
     [self setRTS];
     
-    NSLog(@"setting flow control");
+    //NSLog(@"setting flow control");
     [self setFlowControl:NO];
     
-    NSLog(@"Writing command %c", command);
+    //NSLog(@"Writing command %c", command);
     [self write:[NSData dataWithBytes:&command length:1]];
     
-    NSLog(@"reading command!");
+    //NSLog(@"reading command!");
     NSData *confirmation = [self readLength:1];
     
     if (((char*)[confirmation bytes])[0] != command) {
         [NSException raise:@"VTError" format:@"wrong answer!"];
     }
     
-    NSLog(@"Writing X");
+    //NSLog(@"Writing X");
     [self write:[NSData dataWithBytes:"X" length:1]];
     
     if (arguments) {
-        NSLog(@"Writing args %c%@", argPrefix, arguments);
+        //NSLog(@"Writing args %c%@", argPrefix, arguments);
         [self write:[NSData dataWithBytes:&argPrefix length:1]];
         [self write:arguments];
     }
     
-    NSLog(@"read X!");
+    //NSLog(@"read X!");
     confirmation = [self readLength:1];
     
     if (((char*)[confirmation bytes])[0] != 'X') {
         [NSException raise:@"VTError" format:@"wrong answer X!"];
     }
     
-    NSLog(@"read %c!", prefix);
+    //NSLog(@"read %c!", prefix);
     confirmation = [self readLength:1];
     
     if (((char*)[confirmation bytes])[0] != prefix) {
@@ -191,10 +191,10 @@
     NSData *result = nil;
     
     if (length) {
-        NSLog(@"read data!");
+        //NSLog(@"read data!");
         result = [self readLength:length];
     }
-    NSLog(@"clearRTS!");
+    //NSLog(@"clearRTS!");
     [self clearRTS];
     
     return result;
@@ -284,8 +284,8 @@
     
     NSData *returnValue = [NSData dataWithBytes:buffer length:length];
     
-    NSLog(@"Read %d bytes (%d left)", length, available-length);
-    NSLog(@"Bytes read %@", returnValue);
+    //NSLog(@"Read %d bytes (%d left)", length, available-length);
+    //NSLog(@"Bytes read %@", returnValue);
 
     
     return returnValue;

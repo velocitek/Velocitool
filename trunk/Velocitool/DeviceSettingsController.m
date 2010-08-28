@@ -71,7 +71,7 @@
 
 - (void)windowDidLoad
 {
-	NSLog(@"Device Settings Nib file is loaded");
+	//NSLog(@"Device Settings Nib file is loaded");
 	
 	//Bind the device setting pop-up buttons to the array controllers in the
 	//different VTDeviceSettingMenu objects.	
@@ -332,27 +332,27 @@
 
 -(IBAction)deviceOperationModeButtonSelected:(id)sender
 {
-	NSLog(@"device operation mode changed");
+	//NSLog(@"device operation mode changed");
 	[self chooseWhichMenusToEnable];
 }
 
 
 - (IBAction)closePanelAndSaveDeviceSettings:(id)sender
 {
-	NSLog(@"OK button selected");
+	//NSLog(@"OK button selected");
 	[self updateDeviceSettingsWithMenuSelections];
 	[self close];
 }
 
 - (IBAction)closePanelWithoutSavingDeviceSettings:(id)sender
 {
-	NSLog(@"Cancel button selected");
+	//NSLog(@"Cancel button selected");
 	[self close];
 }
 
 - (IBAction)restoreDefaults:(id)sender
 {
-	NSLog(@"Restore Defaults button selected");
+	//NSLog(@"Restore Defaults button selected");
 		
 		
 	for(NSString *key in menus)

@@ -39,14 +39,14 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 - (IBAction)fileOpen:(id)sender
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that the Open button has been selected by the user.");
+	//NSLog(@"Sending notification that the Open button has been selected by the user.");
 	[notificationCenter postNotificationName:VTOpenButtonSelectedNotification object:self];
 }
 
 - (IBAction)updateDeviceSettings:(id)sender
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that the Updated Device Settings button has been selected by the user.");
+	//NSLog(@"Sending notification that the Updated Device Settings button has been selected by the user.");
 	[notificationCenter postNotificationName:VTUpdateDeviceSettingsButtonSelectedNotification object:self];	
 }
 
@@ -77,14 +77,14 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 - (IBAction)helpTutorialVideo:(id)sender
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that Help>Tutorial Video has been selected by the user.");
+	//NSLog(@"Sending notification that Help>Tutorial Video has been selected by the user.");
 	[notificationCenter postNotificationName:VTHelpTutorialVideoSelectedNotification object:self];
 }
 
 - (IBAction)updateDeviceFirmware:(id)sender
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that Setup > Update Device Firmware has been selected by the user.");
+	//NSLog(@"Sending notification that Setup > Update Device Firmware has been selected by the user.");
 	[notificationCenter postNotificationName:VTSetupUpdateDeviceFirmwareSelectedNotification object:self];
 	
 }
@@ -95,7 +95,7 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 {
 		
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that Download Button was pressed");
+	//NSLog(@"Sending notification that Download Button was pressed");
 	[notificationCenter postNotificationName:VTDownloadButtonPressedNotification object:self];
 	
 }
@@ -163,7 +163,7 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 		}
 		
 		NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-		NSLog(@"Sending notification that a connection with the device has been established.");
+		//NSLog(@"Sending notification that a connection with the device has been established.");
 		[notificationCenter postNotificationName:VTTrackLogsFinishedDownloadingNotification object:self];
 	}	
 }
@@ -171,7 +171,7 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 - (void)setFirstConnectedAndTriggerNotification:(VTDevice *)newDevice
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that a connection with the device has started to be established.");
+	//NSLog(@"Sending notification that a connection with the device has started to be established.");
 	[notificationCenter postNotificationName:VTStartedEstablishingConnectionWithDeviceNotification object:self];
 	
 	//Give the UI a chance to change state in response to the notification before connecting to the device
@@ -190,7 +190,7 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 	[self setFirstConnectedDevice:nil];
 	
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	NSLog(@"Sending notification that the first connected device was removed");
+	//NSLog(@"Sending notification that the first connected device was removed");
 	[notificationCenter postNotificationName:VTFirstConnectedDeviceRemovedNotification object:self];
 	
 }
