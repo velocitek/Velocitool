@@ -311,10 +311,11 @@
 		
 		NSString *tempGpxFilePath = [NSString stringWithFormat:@"%@/%@",curDir,TEMP_GPX_FILENAME];
 		
-		
+        NSString *gpsarPath = [[NSBundle mainBundle] pathForResource:@"gpsar.jar" ofType:@""];
+
 		//launch the gpx file in GPS Action Replay using NSWorkspace	
 		NSArray *arguments = [NSArray arrayWithObjects:@"-jar", 
-							  @"/Applications/gpsar.jar", 
+							  gpsarPath, 
 							  tempGpxFilePath,
 							  nil];
 		
