@@ -344,7 +344,11 @@
 
 	
 	//transform vccGmtXmlDoc with TrackpointsToGpx.xslt to create gpxFormatXmlDoc
-	NSURL *xsltFileLocation = [NSURL fileURLWithPath:@"../../TrackpointsToGpx.xslt"];
+	
+	NSString *trackpointsToGpxPath = [[NSBundle mainBundle] pathForResource:@"TrackpointsToGpx.xslt" 
+																	 ofType:@""];
+	
+	NSURL *xsltFileLocation = [NSURL fileURLWithPath:trackpointsToGpxPath];
 	
 	NSData *gpxTransformation= [NSData dataWithContentsOfURL:xsltFileLocation];
 	
@@ -357,7 +361,10 @@
 - (void)createKmlXmlDoc
 {
 	//transform vccFormatXmlDoc with TrackpointsToKml.xslt to create kmlFormatXmlDoc
-	NSURL *xsltFileLocation = [NSURL fileURLWithPath:@"../../TrackpointsToKml.xslt"];
+	NSString *trackpointsToKmlPath = [[NSBundle mainBundle] pathForResource:@"TrackpointsToKml.xslt" 
+																	 ofType:@""];
+	
+	NSURL *xsltFileLocation = [NSURL fileURLWithPath:trackpointsToKmlPath];
 	
 	NSData *kmlTransformation= [NSData dataWithContentsOfURL:xsltFileLocation];
 	
