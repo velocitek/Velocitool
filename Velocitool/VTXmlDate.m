@@ -88,19 +88,14 @@
 	
 	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
 	
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	
 	[dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
 	
 	//"2010-04-27T20:19:24-10:00"
 	[dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss"];
 	
-	NSString *dateString;
-	
-	dateString = [dateFormatter stringFromDate:date];
-	
-	return dateString;
-	
+	return [dateFormatter stringFromDate:date];
 }
 
 //Converts a vcc date string into the international format
