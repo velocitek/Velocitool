@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -289,7 +291,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {331, 749}}</string>
+							<string>{{0, 925}, {331, 749}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -933,14 +935,12 @@
 							<string>0pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>VTVccFile.m</string>
+								<string>VTConnection.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -948,11 +948,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>VTVccFile.m</string>
+										<string>VTConnection.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>70B4966B1236CD7100C7FA3B</string>
+										<string>70B496AA12396DB000C7FA3B</string>
 										<key>history</key>
 										<array>
 											<string>7080EDFF1159AB200013C9C3</string>
@@ -1029,7 +1029,8 @@
 											<string>7004B220122110E600686DE3</string>
 											<string>7004B41F1221207200686DE3</string>
 											<string>708045DB122877A800DF3139</string>
-											<string>70B4966A1236CD7100C7FA3B</string>
+											<string>70B4967C1236CE6600C7FA3B</string>
+											<string>70B496A212396D9100C7FA3B</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1243,14 +1244,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>70B496751236CD7100C7FA3B</string>
 		<string>70B496761236CD7100C7FA3B</string>
 		<string>70B496771236CD7100C7FA3B</string>
 		<string>1CD10A99069EF8BA00B06720</string>
-		<string>70D9A73911598377009A5B13</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>/Users/alec/Dropbox/Code/Source Control Cleanup/Velocitool/Velocitool.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>/Users/alec/Dropbox/Code/Source Control Cleanup/Velocitool/Velocitool.xcodeproj</string>
+		<string>70D9A73911598377009A5B13</string>
 	</array>
 	<key>WindowString</key>
 	<string>-11 106 1042 808 0 0 1600 978 </string>
@@ -1291,6 +1291,8 @@
 							<string>582pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1343,7 +1345,7 @@
 			<key>WindowToolGUID</key>
 			<string>70D9A73911598377009A5B13</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
