@@ -71,6 +71,7 @@
 {
 	//use vccXmlDocWithCapturedTrack to set the value of the vccFormatXmlDoc member using the capturedTrackXMLElement member of trackFromDevice    
     vccFormatXmlDoc = [VTVccXmlDoc vccXmlDocWithCapturedTrack:[trackFromDevice capturedTrackXMLElement]];
+	[vccFormatXmlDoc retain];
 	
 
 	vccFileWrapper = [[NSFileWrapper alloc] init];
@@ -118,6 +119,12 @@
 	
 	return self;	
 	
+}
+
+- (void)dealloc {
+    
+	[vccFormatXmlDoc release]; vccFormatXmlDoc = nil;
+    [super dealloc];
 }
 
 - (void)setFileWrapperFilenames:(NSString*)fileNameWithoutExtension
