@@ -32,5 +32,10 @@
 	<string>dsa_pub.pem</string>
 	<key>SUEnableAutomaticChecks</key>
 	<string>YES</string>
+	<key>LSEnvironment</key>
+	<dict>
+		<key>MinimumSystemVersion</key>
+		<string>10.6</string>
+	</dict>
 </dict>
 </plist>
