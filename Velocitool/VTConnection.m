@@ -62,7 +62,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 @synthesize progressTracker;
 
 + (void)initialize {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"libftd2xx.0.1.7.dylib" ofType:@""];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"libftd2xx.1.0.4.dylib" ofType:@""];
 	
     void *handle = dlopen([path UTF8String], RTLD_LAZY | RTLD_GLOBAL);
     NSAssert2(handle, @"Can't load the library at %@: %s", path, dlerror());
