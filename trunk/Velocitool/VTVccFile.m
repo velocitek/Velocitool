@@ -307,27 +307,31 @@
 -(void)launchReplayInGpsar
 {
 
-	//create gpx format xml representation of the current file	
+    //create gpx format xml representation of the current file	
 	[self createGpxXmlDoc];
 	
 	NSData *xmlData = [gpxFormatXmlDoc XMLDataWithOptions:NSXMLNodePrettyPrint];
     
-	if([xmlData writeToFile:TEMP_GPX_FILENAME atomically:YES])
-	{
-		NSString *curDir = [[NSFileManager defaultManager] currentDirectoryPath];
-		
-		NSString *tempGpxFilePath = [NSString stringWithFormat:@"%@/%@",curDir,TEMP_GPX_FILENAME];
-		
+    NSString *curDir = @"/tmp";     //[[NSFileManager defaultManager] currentDirectoryPath];
+    
+    NSString *tempGpxFilePath = [NSString stringWithFormat:@"%@/%@",curDir,TEMP_GPX_FILENAME];
+    
+  	//if([xmlData writeToFile:TEMP_GPX_FILENAME atomically:YES])
+	if([xmlData writeToFile:tempGpxFilePath atomically:YES])
+    {
+        //		NSString *curDir = [[NSFileManager defaultManager] currentDirectoryPath];
+        //       
+        //        NSString *tempGpxFilePath = [NSString stringWithFormat:@"%@/%@",curDir,TEMP_GPX_FILENAME];
+        
         NSString *gpsarPath = [[NSBundle mainBundle] pathForResource:@"gpsar.jar" ofType:@""];
-
-		//launch the gpx file in GPS Action Replay using NSWorkspace	
+      	//launch the gpx file in GPS Action Replay using NSWorkspace	
 		NSArray *arguments = [NSArray arrayWithObjects:@"-jar", 
 							  gpsarPath, 
 							  tempGpxFilePath,
 							  nil];
 		
 		NSURL *javaUrl = [NSURL URLWithString:@"/usr/bin/java"];
-		
+        
 		NSDictionary *configuration = [NSDictionary dictionaryWithObjectsAndKeys:
 									   arguments, NSWorkspaceLaunchConfigurationArguments, nil];
 		
@@ -336,9 +340,8 @@
 													  options:NSWorkspaceLaunchDefault | NSWorkspaceLaunchNewInstance
 												configuration:configuration 
 														error:NULL];
-	
 	}
-	    				
+		
 	
 }
 
