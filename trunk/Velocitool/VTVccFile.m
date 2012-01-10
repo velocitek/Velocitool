@@ -303,28 +303,29 @@
 	
 	
 }
-
+- (NSString*) stringWithUUID {
+    CFUUIDRef uuidObj = CFUUIDCreate(nil);//create a new UUID
+    //get the string representation of the UUID
+    NSString *uuidString = (NSString*)CFUUIDCreateString(nil, uuidObj);
+    CFRelease(uuidObj);
+    return [uuidString autorelease];
+}
 -(void)launchReplayInGpsar
 {
-
     //create gpx format xml representation of the current file	
 	[self createGpxXmlDoc];
 	
 	NSData *xmlData = [gpxFormatXmlDoc XMLDataWithOptions:NSXMLNodePrettyPrint];
     
-    NSString *curDir = @"/tmp";     //[[NSFileManager defaultManager] currentDirectoryPath];
-    
-    NSString *tempGpxFilePath = [NSString stringWithFormat:@"%@/%@",curDir,TEMP_GPX_FILENAME];
-    
-  	//if([xmlData writeToFile:TEMP_GPX_FILENAME atomically:YES])
+    NSString *tempDirectory = NSTemporaryDirectory();
+    NSString *uniqueFileName = [[self stringWithUUID] stringByAppendingFormat:TEMP_GPX_FILENAME];
+    NSString *tempGpxFilePath = [NSString pathWithComponents:[NSArray arrayWithObjects:tempDirectory, uniqueFileName, nil]];
+     
 	if([xmlData writeToFile:tempGpxFilePath atomically:YES])
     {
-        //		NSString *curDir = [[NSFileManager defaultManager] currentDirectoryPath];
-        //       
-        //        NSString *tempGpxFilePath = [NSString stringWithFormat:@"%@/%@",curDir,TEMP_GPX_FILENAME];
-        
-        NSString *gpsarPath = [[NSBundle mainBundle] pathForResource:@"gpsar.jar" ofType:@""];
-      	//launch the gpx file in GPS Action Replay using NSWorkspace	
+        NSString *gpsarPath = [[NSBundle mainBundle] pathForResource:@"gpsar" ofType:@"jar"];
+      	
+        //launch the gpx file in GPS Action Replay using NSWorkspace	
 		NSArray *arguments = [NSArray arrayWithObjects:@"-jar", 
 							  gpsarPath, 
 							  tempGpxFilePath,
@@ -342,7 +343,6 @@
 														error:NULL];
 	}
 		
-	
 }
 
 
