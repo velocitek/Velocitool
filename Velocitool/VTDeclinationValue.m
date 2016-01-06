@@ -19,11 +19,10 @@
 + (id)declinationValueWithNumericalValue:(NSNumber *)numVal
 {
 	VTDeclinationValue *declinationValue = [[self alloc] initWithNumericalValue:numVal];
-	[declinationValue autorelease];
 	
+    [declinationValue autorelease];
 	
 	return declinationValue;
-	
 }
 
 - (id)initWithNumericalValue:(NSNumber *)numVal
@@ -36,23 +35,19 @@
 	//Enable the declination slider by default
 	[self setHidden:NO];
 	
-	return self;	
-	
+	return self;
 }
 
 - (void)setSliderValue:(NSNumber *)newValue
-{	
-	
+{
 	[numericalValue autorelease];
-	[sliderValue autorelease];
+	
+    [sliderValue autorelease];
 	
 	sliderValue = [newValue retain];
 	
 	numericalValue = [[NSNumber numberWithInt:([sliderValue intValue] + 128)] retain];
-	
-		
 }
-
 
 - (void)setNumericalValue:(NSNumber *)newValue
 {
@@ -77,8 +72,14 @@
 @end
 
 @implementation DeclinationValueTransformer
-+ (Class)transformedValueClass { return [NSString class]; }
-+ (BOOL)allowsReverseTransformation { return NO; }
++ (Class)transformedValueClass
+{
+    return [NSString class];
+}
++ (BOOL)allowsReverseTransformation
+{
+    return NO;
+}
 
 - (id)transformedValue:(NSNumber *)sliderValue
 {
@@ -86,14 +87,12 @@
 	
 	if(numberToDisplay > 0)
 	{
-		return [NSString stringWithFormat:@"+%d°",numberToDisplay];
-		
+		return [NSString stringWithFormat:@"+%d°", numberToDisplay];
 	}
 	else 
 	{
-		return [NSString stringWithFormat:@"%d°",numberToDisplay];
+		return [NSString stringWithFormat:@"%d°", numberToDisplay];
 	}
-		
 }
 
 @end

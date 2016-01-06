@@ -325,24 +325,33 @@
     {
         NSString *gpsarPath = [[NSBundle mainBundle] pathForResource:@"gpsar" ofType:@"jar"];
       	
+//        NSLog(@"gpsarPath - %@", gpsarPath);
+        
         //launch the gpx file in GPS Action Replay using NSWorkspace	
 		NSArray *arguments = [NSArray arrayWithObjects:@"-jar", 
 							  gpsarPath, 
 							  tempGpxFilePath,
 							  nil];
 		
-		NSURL *javaUrl = [NSURL URLWithString:@"/usr/bin/java"];
+//        NSLog(@"arguments - %@", arguments);
         
-		NSDictionary *configuration = [NSDictionary dictionaryWithObjectsAndKeys:
-									   arguments, NSWorkspaceLaunchConfigurationArguments, nil];
+        // Old method. It worked only for OS 10.9 Mavericks
+//		NSURL *javaUrl = [NSURL URLWithString:@"/usr/bin/java"];
+        
+        // New method. It worked only for OS 10.9 Mavericks
+        NSURL *javaUrl = [NSURL fileURLWithPath:@"/usr/bin/java"];
+//        NSLog(@"javaUrl - %@", javaUrl);
+        
+		NSDictionary *configuration = [NSDictionary dictionaryWithObjectsAndKeys: arguments, NSWorkspaceLaunchConfigurationArguments, nil];
 		
-		
-		[[NSWorkspace sharedWorkspace] launchApplicationAtURL:javaUrl
-													  options:NSWorkspaceLaunchDefault | NSWorkspaceLaunchNewInstance
-												configuration:configuration 
-														error:NULL];
+//		NSLog(@"configuration - %@", configuration);
+        
+        NSError *error = nil;
+        
+		[[NSWorkspace sharedWorkspace] launchApplicationAtURL:javaUrl options:NSWorkspaceLaunchDefault | NSWorkspaceLaunchNewInstance configuration:configuration error:&error];
+        
+//                NSLog(@"error - %@", [error description]);
 	}
-		
 }
 
 
@@ -352,27 +361,22 @@
 	//createVccGmtDoc
 	[self createVccGmtXmlDoc];
 
-	
 	//transform vccGmtXmlDoc with TrackpointsToGpx.xslt to create gpxFormatXmlDoc
 	
-	NSString *trackpointsToGpxPath = [[NSBundle mainBundle] pathForResource:@"TrackpointsToGpx.xslt" 
-																	 ofType:@""];
+	NSString *trackpointsToGpxPath = [[NSBundle mainBundle] pathForResource:@"TrackpointsToGpx.xslt" ofType:@""];
 	
 	NSURL *xsltFileLocation = [NSURL fileURLWithPath:trackpointsToGpxPath];
 	
-	NSData *gpxTransformation= [NSData dataWithContentsOfURL:xsltFileLocation];
+	NSData *gpxTransformation = [NSData dataWithContentsOfURL:xsltFileLocation];
 	
 	gpxFormatXmlDoc = [vccGmtFormatXmlDoc objectByApplyingXSLT:gpxTransformation arguments:nil error:NULL];
-	
-	
 }
 
 
 - (void)createKmlXmlDoc
 {
 	//transform vccFormatXmlDoc with TrackpointsToKml.xslt to create kmlFormatXmlDoc
-	NSString *trackpointsToKmlPath = [[NSBundle mainBundle] pathForResource:@"TrackpointsToKml.xslt" 
-																	 ofType:@""];
+	NSString *trackpointsToKmlPath = [[NSBundle mainBundle] pathForResource:@"TrackpointsToKml.xslt" ofType:@""];
 	
 	NSURL *xsltFileLocation = [NSURL fileURLWithPath:trackpointsToKmlPath];
 	
@@ -383,7 +387,6 @@
 
 - (void)createVccGmtXmlDoc
 {
-
 	//start out by making vccGmtFormatXmlDoc a copy of vccFormatXmlDoc
 	vccGmtFormatXmlDoc = [vccFormatXmlDoc copy];
 	
@@ -397,7 +400,6 @@
 
 - (void)setVccTrackName:(NSString*)trackName
 {
-	
 	//get the root element of vccFormatXmlDoc using its rootElement method
 	NSXMLElement *rootElement = [vccFormatXmlDoc rootElement];
 	
@@ -413,9 +415,8 @@
 	
 }
 
-- (void)setKmlTrackName:(NSString*)trackName
-{		
-	
+- (void)setKmlTrackName:(NSString *)trackName
+{
 	//get the root element of kmlFormatXmlDoc using its rootElement method
 	NSXMLElement *rootElement = [kmlFormatXmlDoc rootElement];
 	
@@ -429,12 +430,10 @@
 	
 	//set the string value of the name element to the desired track name
 	[name setStringValue:trackName];
-	
 }
 
 - (void)setGpxTrackName:(NSString*)trackName
-{	
-	
+{
 	//get the root element of gpxFormatXmlDoc using its rootElement method
 	NSXMLElement *rootElement = [gpxFormatXmlDoc rootElement];
     
@@ -455,7 +454,6 @@
 	
 	//set the string value of the name element to the desired track name
 	[trksNameElement setStringValue:trackName];
-	
 }
 
 
@@ -515,9 +513,7 @@
 		
 		//set the value of the downloadedOn attribute using setStringValue
 		[dateTime setStringValue:vccGmtDateString];
-		
 	}
-	
 }
 
 - (void)fillGpxFileWrapper
@@ -552,9 +548,7 @@
 	
 	//return the result of calling the VTXmlDate object's vccGmtDateString method
 	return [dateToConvert vccGmtDateString];
-	
 }
-
 
 - (void)fillFileWrapper
 {
@@ -563,7 +557,6 @@
 	
 	//use vccFileWrapper's initWithSerializedRepresentation method to put the data in the file wrapper
 	[vccFileWrapper initRegularFileWithContents:xmlData];
-	
 }
 
 // This method parses vccFormatXmlDoc to get the value of the numberTrkpts element of the CapturedTrack element
@@ -582,14 +575,11 @@
     //get the number of trackpoints as a string using the stringValue method of the NSXMLNode
 	//set numTrackpoints equal to this value
 	[self setNumTrackpoints:[numberTrkptsAttribute stringValue]];
-	
-    	
 }
 
 - (NSString *)removeVccExtensionFromFileName:(NSString *)fileNameWithVccExtension
 {
-	return [fileNameWithVccExtension stringByReplacingOccurrencesOfString:@".vcc" 
-															   withString:@""];
+	return [fileNameWithVccExtension stringByReplacingOccurrencesOfString:@".vcc"  withString:@""];
 }
 
 

@@ -14,54 +14,69 @@
 @implementation VTCommand
 
 // Commands returning a single result
-+ commandWithSignal:(unsigned char)signalChar parameter:(VTRecord *)parameter resultClass:(Class)resultClass {
++ commandWithSignal:(unsigned char)signalChar parameter:(VTRecord *)parameter resultClass:(Class)resultClass
+{
     return [[[self alloc] initWithSignal:signalChar parameter:parameter resultClass:resultClass isList:NO] autorelease];
 }
 
 
 // Commands returning a list of results, note the 's' at the end of 'results'.
-+ commandWithSignal:(unsigned char)signalChar parameter:(VTRecord *)parameter resultsClass:(Class)resultClass {
++ commandWithSignal:(unsigned char)signalChar parameter:(VTRecord *)parameter resultsClass:(Class)resultClass
+{
     return [[[self alloc] initWithSignal:signalChar parameter:parameter resultClass:resultClass isList:YES] autorelease];
 }
 
 
-- initWithSignal:(unsigned char)signalChar parameter:(VTRecord *)parameter resultClass:(Class)resultClass isList:(BOOL)flag {
+- initWithSignal:(unsigned char)signalChar parameter:(VTRecord *)parameter resultClass:(Class)resultClass isList:(BOOL)flag
+{
     [super init];
+
     _signal = signalChar;
+    
     _parameter = [parameter retain];
+    
     _resultClass = resultClass;
+    
     _isList = flag;
+    
     return self;
 }
 
 
-- (void)dealloc {
+- (void)dealloc
+{
     [_parameter release]; _parameter = nil;
+
     [super dealloc];
 }
 
 
-- (BOOL)flowControl {
+- (BOOL)flowControl
+{
     return NO;
 }
 
 
-- (unsigned char)signal {
+- (unsigned char)signal
+{
     return _signal;
 }
 
 
-- (VTRecord *)parameter {
+- (VTRecord *)parameter
+{
     return _parameter;
 }
 
 
-- (Class)resultClass {
+- (Class)resultClass
+{
     return _resultClass;
 }
 
 
-- (BOOL)returnsList {
+- (BOOL)returnsList
+{
     return _isList;
 }
 

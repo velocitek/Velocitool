@@ -102,49 +102,66 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
 }
 
 
-- (void)_removeDevice:(io_service_t)usbDevice {
+- (void)_removeDevice:(io_service_t)usbDevice
+{
 	IOReturn result;
     CFMutableDictionaryRef properties;
     
     result = IORegistryEntryCreateCFProperties(usbDevice, &properties,  kCFAllocatorDefault, kNilOptions);
-    if ((result == kIOReturnSuccess) && properties) {
+    
+    if ((result == kIOReturnSuccess) && properties)
+    {
         NSString *location = [(NSDictionary *)properties objectForKey:@"locationID"];
+      
         VTDevice *device = [_devicesByLocation objectForKey:location];
+        
         NSString *serial = [[[device serial] retain] autorelease];
         
         [_devicesByLocation removeObjectForKey:location]; 
-        [_devicesBySerial removeObjectForKey:serial]; 
+        
+        [_devicesBySerial removeObjectForKey:serial];
         
         [[NSNotificationCenter defaultCenter] postNotificationName:VTDeviceRemovedNotification object:self userInfo:[NSDictionary dictionaryWithObject:serial forKey:@"serial"]];
 		
         CFRelease(properties);
-        
     }
 }
 
 
-- init {
+- init
+{
     _devicesByLocation = [[NSMutableDictionary alloc] init];
+
     _devicesBySerial = [[NSMutableDictionary alloc] init];
 	
     CFRunLoopSourceRef      runLoopSource;
+    
     kern_return_t           kr;
+    
     io_iterator_t           rawAddedIter;
+    
     io_iterator_t           rawRemovedIter;
+    
     CFMutableDictionaryRef  matchingDict;
+    
     IONotificationPortRef   notifyPort;
 	
     // Set up matching dictionary for class IOUSBDevice and its subclasses
     matchingDict = IOServiceMatching(kIOUSBDeviceClassName);
-    if (!matchingDict) {
+    
+    if (!matchingDict)
+    {
         NSLog(@"ERR: Couldn’t create a USB matching dictionary");
+    
         return nil;
     }
-    
     // Add the FTDI 232R vendor ID to the matching dictionary.
     SInt32        usbVendor = 0x0403; 
+
     CFNumberRef   vendorID = CFNumberCreate(kCFAllocatorDefault, kCFNumberSInt32Type, &usbVendor);
+    
     CFDictionarySetValue(matchingDict, CFSTR(kUSBVendorID), vendorID);
+    
     CFRelease(vendorID);
 	
     // Add a wild card match for the productID to the matching dictionary.
@@ -154,7 +171,9 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     // To set up asynchronous notifications, create a notification port and
     // add its run loop event source to the program’s run loop
     notifyPort = IONotificationPortCreate(kIOMasterPortDefault);
+    
     runLoopSource = IONotificationPortGetRunLoopSource(notifyPort);
+    
     CFRunLoopAddSource(CFRunLoopGetCurrent(), runLoopSource, kCFRunLoopDefaultMode);
     
     //
@@ -166,6 +185,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     // Notification of first match:  Retain an additional dictionary reference because each call to
     // IOServiceAddMatchingNotification consumes one reference
     matchingDict = (CFMutableDictionaryRef) CFRetain(matchingDict);
+    
     kr = IOServiceAddMatchingNotification(notifyPort, kIOFirstMatchNotification, matchingDict, _RawDeviceAdded, self, &rawAddedIter);
     
     // Iterate over set of matching devices to access already-present devices and to arm the notification
@@ -174,6 +194,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     // Notification of termination: Retain an additional dictionary references because each call to
     // IOServiceAddMatchingNotification consumes one reference
     matchingDict = (CFMutableDictionaryRef) CFRetain(matchingDict);
+    
     kr = IOServiceAddMatchingNotification(notifyPort, kIOTerminatedNotification, matchingDict, _RawDeviceRemoved, self, &rawRemovedIter);
     
     // Iterate over set of matching devices to access already-present devices and to arm the notification

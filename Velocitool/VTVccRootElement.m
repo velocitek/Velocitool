@@ -32,13 +32,14 @@
 + (id)generateVccRootElement
 {
 	VTVccRootElement *rootElement = [[self alloc] initRootElement];
+    
 	[rootElement autorelease];
-	return rootElement;
+	
+    return rootElement;
 }	
 
 - (void)addAttributes
 {
-	
 	//add attribute with name "xmlns:xsi" and value "http://www.w3.org/2001/XMLSchema-instance"
 	[self addAttribute:[NSXMLNode attributeWithName:@"xmlns:xsi" stringValue:@"http://www.w3.org/2001/XMLSchema-instance"]];
 	

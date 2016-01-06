@@ -22,24 +22,27 @@
 @class DeviceSettingsController;
 
 
-@interface MainWindowController : NSWindowController {
-	
+@interface MainWindowController : NSWindowController
+{
 	IBOutlet NSBox *box;
-	IBOutlet NSButton *viewSwitchButton;
-	IBOutlet NSProgressIndicator *trackLogsDownloadingProgressIndicator;
 
+    IBOutlet NSButton *viewSwitchButton;
 	
+    IBOutlet NSProgressIndicator *trackLogsDownloadingProgressIndicator;
+    
 	unsigned int currentState;
 	
 	DeviceSettingsController *deviceSettingsController;
-	TrackLogViewController *trackLogViewController;	
-	TrackFileViewController *trackFileViewController;
 	
-	    
+    TrackLogViewController *trackLogViewController;
+	
+    TrackFileViewController *trackFileViewController;
 }
 
 @property (readwrite) unsigned int currentState;
-@property (readonly) TrackLogViewController *trackLogViewController;	
+
+@property (readonly) TrackLogViewController *trackLogViewController;
+
 @property (readonly) TrackFileViewController *trackFileViewController;
 
 

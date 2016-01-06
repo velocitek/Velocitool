@@ -28,17 +28,15 @@
 + (id)deviceSettingMenuWithPossibleValues:(NSDictionary*)possibleVals
 {
 	VTDeviceSettingMenu *deviceSettingMenu = [[self alloc] initWithPossibleValues:possibleVals];
-	[deviceSettingMenu autorelease];
+    
+    [deviceSettingMenu autorelease];
 		
 	return deviceSettingMenu;
-	
 }
 
 
-- (id)initWithPossibleValues:(NSDictionary*)possibleVals
+- (id)initWithPossibleValues:(NSDictionary *)possibleVals
 {
-	
-	
     //Allocate possible values content array
 	possibleValuesContentArray = [[NSMutableArray alloc] init];
 	
@@ -52,12 +50,10 @@
 	[self setHidden:NO];
     
 	return self;
-	
 }
 
 - (VTDeviceSettingValue *)selectedDeviceSetting
 {
-	
 	NSArray *selectedObjects = [possibleValuesArrayController selectedObjects];
 	
 	return [selectedObjects objectAtIndex:0];
@@ -66,58 +62,47 @@
 - (void)setSelectedDeviceSetting:(VTDeviceSettingValue *)selectedSetting
 {
 	selectedDeviceSetting = selectedSetting;
-	[possibleValuesArrayController setSelectedObjects:[NSArray arrayWithObject:selectedSetting]];	
 
+    [possibleValuesArrayController setSelectedObjects:[NSArray arrayWithObject:selectedSetting]];
 }
 
 - (void)createMenuOptionsFromPossibleValuesDictionary:(NSDictionary*)possibleValues
-{	    
-	
+{
 	NSArray *displayValuesArray = [possibleValues keysSortedByValueUsingSelector:@selector(compare:)];
 	
 	//for each possible value in possibleValues
 	for(NSString *displayValue in displayValuesArray)
-	{			
-        
+	{
 		NSNumber *numVal = [possibleValues objectForKey:displayValue];
 		
-		VTDeviceSettingValue *menuOption = [VTDeviceSettingValue deviceSettingValueWithDisplayAndNumericalValues:displayValue 																								  numericalValue:numVal];																												  
+		VTDeviceSettingValue *menuOption = [VTDeviceSettingValue deviceSettingValueWithDisplayAndNumericalValues:displayValue numericalValue:numVal];
 
         //add possible value to possibleValues array controller
 		[possibleValuesArrayController addObject:menuOption];
-		
 	}
-	
 }
 
--(void)setDefaultValue:(NSString*)displayValueOfDesiredDefault
+- (void)setDefaultValue:(NSString *)displayValueOfDesiredDefault
 {
-	
 	BOOL matchingValueFound = NO;
 	
     //for each device setting value in possibleValuesContentArray
 	for(VTDeviceSettingValue *value in possibleValuesContentArray)
 	{
-		if([displayValueOfDesiredDefault compare:[value displayValue]] == NSOrderedSame)
+		if ([displayValueOfDesiredDefault compare:[value displayValue]] == NSOrderedSame)
 		{            
 			defaultValue = value;
+            
             matchingValueFound = YES;
-			
 		}
-
 	}
 	
 	//if matching value found is still NO
 	if(matchingValueFound == NO)
-	{			
-		
+	{
 		//send error message to terminal 
-		[NSException raise:@"VTError" 
-					format:@"setDefaultValue has been asked to set %@ as the default menu option for a menu.  Unfortunately, %@ is not a valid menu option for this menu",displayValueOfDesiredDefault, displayValueOfDesiredDefault];		
-		
+		[NSException raise:@"VTError"  format:@"setDefaultValue has been asked to set %@ as the default menu option for a menu.  Unfortunately, %@ is not a valid menu option for this menu",displayValueOfDesiredDefault, displayValueOfDesiredDefault];
 	}
-	
-	
 }
 
 - (void)selectDefaultValue
@@ -125,10 +110,8 @@
 	[self setSelectedDeviceSetting:defaultValue];
 }
 
-
-- (void)selectOptionWithMatchingNumericalValue:(NSNumber*)numVal
+- (void)selectOptionWithMatchingNumericalValue:(NSNumber *)numVal
 {
-	
 	BOOL matchingValueFound = NO;
 	
     //for each device setting value in possibleValuesContentArray
@@ -141,26 +124,21 @@
 			[self setSelectedDeviceSetting:value];
 			
             matchingValueFound = YES;
-			
 		}
-					
-		
 	}
 	
 	//NSArray *selectedObjects = [possibleValuesArrayController selectedObjects];
 	//NSLog(@"Selected objects: %@",selectedObjects);
 	
 	//if matching value found is still NO
-	if(matchingValueFound == NO)
-	{			
-						
+	if (matchingValueFound == NO)
+	{
 		//send error message to terminal 
 		NSLog(@"An option with the requested numerical value of %@ could not be found.  Using default value of %@ (%@) instead.",numVal, [defaultValue numericalValue], [defaultValue displayValue]);		
 		 
 		[self setSelectedDeviceSetting:defaultValue];
-		
 	}
-		
 }
+
 
 @end

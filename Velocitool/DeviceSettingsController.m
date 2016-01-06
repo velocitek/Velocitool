@@ -484,8 +484,8 @@
 	
 	int currentlySelectedOperatingMode = [[operatingModeMenu valueForKeyPath:@"selectedDeviceSetting.numericalValue"] intValue];								  
 	
-	switch (currentlySelectedOperatingMode) {
-			
+	switch (currentlySelectedOperatingMode)
+    {
 		case VTPuck1_4ModeNormal:
 			
 			[recordRateMenu setHidden:NO];
