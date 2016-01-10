@@ -124,6 +124,8 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
 
 
 - init {
+  if ((self = [super init])) {
+
     _devicesByLocation = [[NSMutableDictionary alloc] init];
     _devicesBySerial = [[NSMutableDictionary alloc] init];
 	
@@ -184,7 +186,8 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     
     // For debug, add a fake device by default.
     //[self _addDevice:IO_OBJECT_NULL];
-    return self;
+  }
+  return self;
 }
 
 

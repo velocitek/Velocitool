@@ -37,20 +37,19 @@
 	
 }
 
-- (id)initWithTrackpointsAndDevice:(NSMutableArray *)trackpointArray device:(VTDevice *)sourceDevice
-{
-	[super init];
-	
-	[self setTrackpoints:trackpointArray];
-	[self setDevice:sourceDevice];
-	
-	[self initWithKind:NSXMLElementKind];
-	[self setName:@"CapturedTrack"];
-	
-	[self addAttributes];
-	[self addChildren];
-			
-	return self;
+- (id)initWithTrackpointsAndDevice:(NSMutableArray *)trackpointArray
+                            device:(VTDevice *)sourceDevice {
+  if ((self = [super init])) {
+    [self setTrackpoints:trackpointArray];
+    [self setDevice:sourceDevice];
+
+    [self initWithKind:NSXMLElementKind];
+    [self setName:@"CapturedTrack"];
+
+    [self addAttributes];
+    [self addChildren];
+  }
+  return self;
 }
 
 - (void)addChildren

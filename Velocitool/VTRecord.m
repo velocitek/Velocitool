@@ -209,8 +209,8 @@
 
 
 - init {
-    [super init];
-    
+  if ((self = [super init])) {
+
     // load some default values
     _recordRate = VTRecordRateEveryFour;
     _declination = 0;
@@ -220,7 +220,8 @@
     _maxSpeedMode = VTMaxSpeed10Second;
     _barGraphEnabled = YES;
     _deviceOperationOption = VTPuck1_4ModeNormal;
-    return self;
+  }
+  return self;
 }
 
 

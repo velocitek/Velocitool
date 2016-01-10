@@ -13,27 +13,26 @@
 
 @implementation VTVccXmlDoc
 
-- (id)initWithCapturedTrack: (VTCapturedTrackElement*)capturedTrack
-{
-	[super init];
-	
-	//create VCC root element
-	VTVccRootElement *rootElement = [VTVccRootElement generateVccRootElement];
-	
-	//add capturedTrack to rootElement as child
-	[rootElement addChild:capturedTrack];
-	
-	//Convert to canonical for compatibility with xslt transformations
-	NSString *canonicalFormString = [rootElement canonicalXMLStringPreservingComments:YES];
-	    
-    //add VCC root element to self as root element
-	[self initWithXMLString:canonicalFormString options:NSXMLDocumentTidyXML error:NULL];
-	[self setVersion:@"1.0"];
-	[self setCharacterEncoding:@"utf-8"];
-	
-	return self;
-	
-    
+- (id)initWithCapturedTrack:(VTCapturedTrackElement *)capturedTrack {
+  if ((self = [super init])) {
+    // create VCC root element
+    VTVccRootElement *rootElement = [VTVccRootElement generateVccRootElement];
+
+    // add capturedTrack to rootElement as child
+    [rootElement addChild:capturedTrack];
+
+    // Convert to canonical for compatibility with xslt transformations
+    NSString *canonicalFormString =
+        [rootElement canonicalXMLStringPreservingComments:YES];
+
+    // add VCC root element to self as root element
+    [self initWithXMLString:canonicalFormString
+                    options:NSXMLDocumentTidyXML
+                      error:NULL];
+    [self setVersion:@"1.0"];
+    [self setCharacterEncoding:@"utf-8"];
+  }
+  return self;
 }
 
 + (id)vccXmlDocWithCapturedTrack: (VTCapturedTrackElement*) capturedTrack

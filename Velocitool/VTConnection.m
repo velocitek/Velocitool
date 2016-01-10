@@ -92,16 +92,20 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 
 
 - initWithVendorID:(int)vendorID productID:(int)productID serialNumber:(NSString *)serial {
-    [super init];
-	
-	progressTracker = [[VTProgressTracker alloc] init];
+  if ((self = [super init])) {
+
+	  progressTracker = [[VTProgressTracker alloc] init];
     _vendorID = vendorID;
     _productID = productID;
     _serial = [serial copy];
     
     [self open];
-    
-    return _ft_handle ? self: nil;
+    if (!_ft_handle) {
+      [self release];
+      self = nil;
+    }
+  }
+  return self;
 }
 
 

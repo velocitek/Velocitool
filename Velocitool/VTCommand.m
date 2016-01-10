@@ -26,11 +26,12 @@
 
 
 - initWithSignal:(unsigned char)signalChar parameter:(VTRecord *)parameter resultClass:(Class)resultClass isList:(BOOL)flag {
-    [super init];
-    _signal = signalChar;
-    _parameter = [parameter retain];
-    _resultClass = resultClass;
-    _isList = flag;
+    if ((self =[super init])) {
+      _signal = signalChar;
+      _parameter = [parameter retain];
+      _resultClass = resultClass;
+      _isList = flag;
+    }
     return self;
 }
 

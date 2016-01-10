@@ -40,18 +40,17 @@
 
 - (id) init
 {
-	[super init];
-	
-	dateFormatter = [[NSDateFormatter alloc] init];
-	
-	utcTime = [NSTimeZone timeZoneWithAbbreviation: @"UTC"];
-	
-	usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-	[usLocale autorelease];
-	
-	[dateFormatter setLocale:usLocale];
-	[dateFormatter setTimeZone:utcTime];
-	
+  if ((self = [super init])) {
+    dateFormatter = [[NSDateFormatter alloc] init];
+    
+    utcTime = [NSTimeZone timeZoneWithAbbreviation: @"UTC"];
+    
+    usLocale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    [usLocale autorelease];
+    
+    [dateFormatter setLocale:usLocale];
+    [dateFormatter setTimeZone:utcTime];
+  }
 	return self;
 }
 

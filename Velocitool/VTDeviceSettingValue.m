@@ -17,24 +17,22 @@
 
 - (id)initWithDisplayAndNumericalValues:(NSString *)dispVal numericalValue:(NSNumber *)numVal
 {
-	if (![super init])
-		return nil;
-	
-	[self setDisplayValue:dispVal];
-	[self setNumericalValue:numVal];
-	
-	
-	
+	if ((self = [super init])) {
+    [self setDisplayValue:dispVal];
+    [self setNumericalValue:numVal];
+  }
 	return self;
 	
 }
 
-+ (id)deviceSettingValueWithDisplayAndNumericalValues:(NSString *)dispVal numericalValue:(NSNumber *)numVal;
-{
-	VTDeviceSettingValue *deviceSettingValue = [[self alloc] initWithDisplayAndNumericalValues:dispVal numericalValue:numVal];
-	[deviceSettingValue autorelease];
-	
-	return deviceSettingValue;
++ (id)deviceSettingValueWithDisplayAndNumericalValues:(NSString *)dispVal
+                                       numericalValue:(NSNumber *)numVal {
+  VTDeviceSettingValue *deviceSettingValue =
+      [[VTDeviceSettingValue alloc] initWithDisplayAndNumericalValues:dispVal
+                                                       numericalValue:numVal];
+  [deviceSettingValue autorelease];
+
+  return deviceSettingValue;
 }
 
 - (NSString *)description

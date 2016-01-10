@@ -67,58 +67,55 @@
 
 }
 
-- (id)initWithTrackFromDevice:(VTTrackFromDevice *)trackFromDevice
-{
-	//use vccXmlDocWithCapturedTrack to set the value of the vccFormatXmlDoc member using the capturedTrackXMLElement member of trackFromDevice    
-    vccFormatXmlDoc = [VTVccXmlDoc vccXmlDocWithCapturedTrack:[trackFromDevice capturedTrackXMLElement]];
-	[vccFormatXmlDoc retain];
-	
+- (id)initWithTrackFromDevice:(VTTrackFromDevice *)trackFromDevice {
+  if ((self = [super init])) {
+    // use vccXmlDocWithCapturedTrack to set the value of the vccFormatXmlDoc
+    // member using the capturedTrackXMLElement member of trackFromDevice
+    vccFormatXmlDoc = [VTVccXmlDoc
+        vccXmlDocWithCapturedTrack:[trackFromDevice capturedTrackXMLElement]];
+    [vccFormatXmlDoc retain];
 
-	vccFileWrapper = [[NSFileWrapper alloc] init];
-	gpxFileWrapper = [[NSFileWrapper alloc] init];
-	kmlFileWrapper = [[NSFileWrapper alloc] init];
-	
-	
-	[self fillFileWrapper];
-	
-	NSString *fileName = [trackFromDevice valueForKeyPath:@"capturedTrackXMLElement.defaultTrackName"];
-	
-	[self setFileWrapperFilenames:fileName];
-	
-    //use getNumTrackpointsFromXML to define the value of numTrackpoints
-	[self getNumTrackpointsFromXML];
-	
-    //set fileSaved to NO
-	[self setFileSaved:NO];
-	
-	return self;
-		
+    vccFileWrapper = [[NSFileWrapper alloc] init];
+    gpxFileWrapper = [[NSFileWrapper alloc] init];
+    kmlFileWrapper = [[NSFileWrapper alloc] init];
+
+    [self fillFileWrapper];
+
+    NSString *fileName = [trackFromDevice
+        valueForKeyPath:@"capturedTrackXMLElement.defaultTrackName"];
+
+    [self setFileWrapperFilenames:fileName];
+
+    // use getNumTrackpointsFromXML to define the value of numTrackpoints
+    [self getNumTrackpointsFromXML];
+
+    // set fileSaved to NO
+    [self setFileSaved:NO];
+  }
+  return self;
 }
 
+- (id)initWithURL:(NSURL *)fileLocation {
+  if ((self = [super init])) {
+    vccFileWrapper =
+        [[NSFileWrapper alloc] initWithURL:fileLocation
+                                   options:NSFileWrapperReadingImmediate
+                                     error:NULL];
+    gpxFileWrapper = [[NSFileWrapper alloc] init];
+    kmlFileWrapper = [[NSFileWrapper alloc] init];
 
+    NSString *fileNameWithoutExtension =
+        [self removeVccExtensionFromFileName:[vccFileWrapper filename]];
+    [self setFileWrapperFilenames:fileNameWithoutExtension];
 
-
-- (id)initWithURL:(NSURL*)fileLocation
-{
-	vccFileWrapper = [[NSFileWrapper alloc] initWithURL:fileLocation options:NSFileWrapperReadingImmediate error:NULL];
-	
-	gpxFileWrapper = [[NSFileWrapper alloc] init];
-	kmlFileWrapper = [[NSFileWrapper alloc] init];
-	
-	NSString *fileNameWithoutExtension = [self removeVccExtensionFromFileName:[vccFileWrapper filename]];
-	
-	[self setFileWrapperFilenames:fileNameWithoutExtension];
-	
-	
-	vccFormatXmlDoc = [[NSXMLDocument alloc] initWithContentsOfURL:fileLocation options:0 error:NULL];
-	//TODO: create error if file is corrupt
-	
-	[self getNumTrackpointsFromXML];
-	
-	[self setFileSaved:YES];
-	
-	return self;	
-	
+    vccFormatXmlDoc = [[NSXMLDocument alloc] initWithContentsOfURL:fileLocation
+                                                           options:0
+                                                             error:NULL];
+    // TODO: create error if file is corrupt
+    [self getNumTrackpointsFromXML];
+    [self setFileSaved:YES];
+  }
+  return self;
 }
 
 - (void)dealloc {

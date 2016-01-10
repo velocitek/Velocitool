@@ -102,17 +102,13 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 
 
 - (id)init {
-	
-	devices = [[NSMutableArray alloc] init];
-	trackpointLogs = [[NSMutableArray alloc] init];
-	
-	if(![super initWithNibName:@"TrackLogView" bundle: nil])
-		return nil;
-	
-	[self armNotifications];
-			
+  if((self = [super initWithNibName:@"TrackLogView" bundle: nil])) {
+    devices = [[NSMutableArray alloc] init];
+    trackpointLogs = [[NSMutableArray alloc] init];
+
+    [self armNotifications];
+  }
 	return self;
-	
 }
 
 - (void)awakeFromNib
