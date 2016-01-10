@@ -88,7 +88,7 @@
 	[self addAttribute:[NSXMLNode attributeWithName:@"downloadedOn" stringValue:[VTXmlDate vccNow]]];
 	
 	//add numberTrkpts attribute and set its value equal to the size of the trackpoints array
-	NSString *numTrackpoints = [NSString stringWithFormat:@"%d", [trackpoints count]];
+	NSString *numTrackpoints = [NSString stringWithFormat:@"%lu", (unsigned long)[trackpoints count]];
 	[self addAttribute:[NSXMLNode attributeWithName:@"numberTrkpts" stringValue:numTrackpoints]]; 
 }
 
