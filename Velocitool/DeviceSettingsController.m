@@ -285,7 +285,7 @@
 		}
 		else 
 		{
-			if (key != VTDeclinationPref) {
+			if (![key isEqual:VTDeclinationPref]) {
 			
 				//Send error message to terminal
 				//[NSException raise:@"VTError" 
