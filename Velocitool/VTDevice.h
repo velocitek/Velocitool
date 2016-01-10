@@ -13,7 +13,7 @@
     VTConnection *_connection;
 	
 }
-@property (readwrite, retain) VTConnection *_connection;
+@property (nonatomic, readwrite, retain) VTConnection *_connection;
 
 + deviceForProperties:(NSDictionary *)properties;
 

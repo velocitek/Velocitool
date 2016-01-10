@@ -32,11 +32,11 @@
 	
 }
 
-@property(readwrite, retain) NSDate *_timestamp;
-@property(readwrite) float _latitude;
-@property(readwrite) float _longitude;
-@property(readwrite) float _speed;
-@property(readwrite) float _heading;
+@property (nonatomic, readwrite, retain) NSDate *_timestamp;
+@property (nonatomic, readwrite) float _latitude;
+@property (nonatomic, readwrite) float _longitude;
+@property (nonatomic, readwrite) float _speed;
+@property (nonatomic, readwrite) float _heading;
 
 @end
 
@@ -46,8 +46,8 @@
 	NSDate *_downloadTo;
 }
 
-@property(readwrite, retain) NSDate *_downloadFrom;
-@property(readwrite, retain) NSDate *_downloadTo;
+@property (nonatomic, readwrite, retain) NSDate *_downloadFrom;
+@property (nonatomic, readwrite, retain) NSDate *_downloadTo;
 
 + (VTReadTrackpointsCommandParameter *)commandParameterFromTimeInverval:(NSDate *)startTime end:(NSDate *)endTime;
 
@@ -112,9 +112,9 @@
     NSDate *start; 
     NSDate *end;
 }
-@property(readwrite) bool selectedForDownload;
-@property(readonly) NSDate *start;
-@property(readonly) NSDate *end;
-@property(readonly) int numTrackpoints;
+@property (nonatomic, readwrite) bool selectedForDownload;
+@property (nonatomic, readonly) NSDate *start;
+@property (nonatomic, readonly) NSDate *end;
+@property (nonatomic, readonly) int numTrackpoints;
 
 @end

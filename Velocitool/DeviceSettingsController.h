@@ -43,8 +43,8 @@
 
 }
 
-@property (readwrite, retain) VTDeclinationValue *declinationValue;
-@property (readwrite, retain) NSMutableDictionary *menus;
+@property (nonatomic, readwrite, retain) VTDeclinationValue *declinationValue;
+@property (nonatomic, readwrite, retain) NSMutableDictionary *menus;
 
 
 - (IBAction)closePanelAndSaveDeviceSettings:(id)sender;		

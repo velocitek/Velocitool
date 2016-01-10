@@ -18,10 +18,10 @@
 
 - (void)selectDefaultValue;
 
-@property (readwrite, retain) NSNumber *sliderValue;
-@property (readwrite, retain) NSNumber *numericalValue;
+@property (nonatomic, readwrite, retain) NSNumber *sliderValue;
+@property (nonatomic, readwrite, retain) NSNumber *numericalValue;
 
-@property (readwrite) BOOL hidden;
+@property (nonatomic, readwrite) BOOL hidden;
 
 + (id)declinationValueWithNumericalValue:(NSNumber *)numVal;
 - (id)initWithNumericalValue:(NSNumber *)numVal;

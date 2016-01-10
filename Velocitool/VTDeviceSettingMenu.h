@@ -25,12 +25,12 @@
 
 }
 
-@property (readwrite, retain) NSArrayController *possibleValuesArrayController;
-@property (readwrite, retain) NSMutableArray *possibleValuesContentArray;
+@property (nonatomic, readwrite, retain) NSArrayController *possibleValuesArrayController;
+@property (nonatomic, readwrite, retain) NSMutableArray *possibleValuesContentArray;
 
-@property (readwrite, retain) VTDeviceSettingValue *selectedDeviceSetting;
+@property (nonatomic, readwrite, retain) VTDeviceSettingValue *selectedDeviceSetting;
 
-@property (readwrite) BOOL hidden;
+@property (nonatomic, readwrite) BOOL hidden;
 
 + (id)deviceSettingMenuWithPossibleValues:(NSDictionary*)possibleVals;
 - (id)initWithPossibleValues:(NSDictionary*)possibleVals;

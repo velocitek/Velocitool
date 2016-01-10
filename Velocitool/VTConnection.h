@@ -20,7 +20,7 @@
 	VTProgressTracker *progressTracker;
 }
 
-@property(readwrite, retain) VTProgressTracker *progressTracker;
+@property (nonatomic, readwrite, retain) VTProgressTracker *progressTracker;
 
 + connectionWithVendorID:(int)vendorID productID:(int)productID serialNumber:(NSString *)serial;
 

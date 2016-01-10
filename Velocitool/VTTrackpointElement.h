@@ -40,7 +40,7 @@
 	
 }
 
-@property(readonly) VTTrackpointRecord *trackpoint;
+@property (nonatomic, readonly) VTTrackpointRecord *trackpoint;
 
 + (id)trackpointElementWithTrackpointRecord:(VTTrackpointRecord*) trackpointRecord;
 
