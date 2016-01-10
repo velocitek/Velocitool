@@ -7,12 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
-@class VTXmlDoc;
 @class VTTrackFromDevice;
 
 @interface VTVccFile : NSObject {
 
-	VTXmlDoc *vccFormatXmlDoc;
+	NSXMLDocument *vccFormatXmlDoc;
 	
 	NSXMLDocument *vccGmtFormatXmlDoc;
 	NSXMLDocument *gpxFormatXmlDoc;
