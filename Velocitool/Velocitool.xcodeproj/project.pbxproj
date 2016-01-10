@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -63,15 +63,16 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		ED028E5A1236C32E00CCCCF2 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED028E591236C32E00CCCCF2 /* Sparkle.framework */; };
-		ED028E641236C33A00CCCCF2 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = ED028E591236C32E00CCCCF2 /* Sparkle.framework */; };
+		ED028E641236C33A00CCCCF2 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = ED028E591236C32E00CCCCF2 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		ED21C50E0F64438D002BE074 /* FakeStuff.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED21C50D0F64438D002BE074 /* FakeStuff.jpg */; };
 		ED21C5E00F647FAB002BE074 /* VTPuckSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = ED21C5DF0F647FAB002BE074 /* VTPuckSettings.m */; };
 		ED2A01610F339B8F005C0CE0 /* VTConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2A015F0F339B8F005C0CE0 /* VTConnection.m */; };
 		ED2B25030F261CAB00A5EDDB /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
+		ED3976741C427AEB00147C1F /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED3976731C427AEB00147C1F /* README.txt */; settings = {ASSET_TAGS = (); }; };
 		ED4B99C80F1548A000AF563B /* VTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B99C70F1548A000AF563B /* VTDevice.m */; };
 		ED4B9A590F155F8700AF563B /* VTDeviceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */; };
 		ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFC3F690EF8948D00E1DD2F /* IOKit.framework */; };
-		ED4BC626125284A200EC8718 /* SystemVersionCheck in Copy Version Check Executable */ = {isa = PBXBuildFile; fileRef = EDDC88D71252846900055DE7 /* SystemVersionCheck */; };
+		ED4BC626125284A200EC8718 /* SystemVersionCheck in Copy Version Check Executable */ = {isa = PBXBuildFile; fileRef = EDDC88D71252846900055DE7 /* SystemVersionCheck */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
 		EDB756AD1236B8CD00B9A1A4 /* gpsar.jar in Resources */ = {isa = PBXBuildFile; fileRef = 70A3503A1220FB630005E136 /* gpsar.jar */; };
 		EDDC88D81252846900055DE7 /* SystemVersionCheck in Resources */ = {isa = PBXBuildFile; fileRef = EDDC88D71252846900055DE7 /* SystemVersionCheck */; };
@@ -204,6 +205,7 @@
 		ED2B24BA0F25D10C00A5EDDB /* VTConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTConvert.m; sourceTree = "<group>"; };
 		ED2B25000F261CAB00A5EDDB /* VTGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTGlobals.h; sourceTree = "<group>"; };
 		ED2B25010F261CAB00A5EDDB /* VTGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTGlobals.m; sourceTree = "<group>"; };
+		ED3976731C427AEB00147C1F /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		ED4B99C60F1548A000AF563B /* VTDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDevice.h; sourceTree = "<group>"; };
 		ED4B99C70F1548A000AF563B /* VTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDevice.m; sourceTree = "<group>"; };
 		ED4B9A570F155F8700AF563B /* VTDeviceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDeviceLoader.h; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 		29B97314FDCFA39411CA2CEA /* Velocitool */ = {
 			isa = PBXGroup;
 			children = (
+				ED3976731C427AEB00147C1F /* README.txt */,
 				ED2A015D0F339B6A005C0CE0 /* Communication */,
 				708274E211B5CF9B00DD66FF /* XML */,
 				EDE897E21158CD82009E8151 /* CmdLine */,
@@ -522,8 +525,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Velocitool" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -557,6 +563,7 @@
 				EDF726E50F42318F00E503AE /* S10.jpg in Resources */,
 				EDF726E60F42318F00E503AE /* SC1.jpg in Resources */,
 				ED21C50E0F64438D002BE074 /* FakeStuff.jpg in Resources */,
+				ED3976741C427AEB00147C1F /* README.txt in Resources */,
 				7023A9F111ACE36400975EC0 /* TrackLogView.xib in Resources */,
 				7023AA2F11ACFB9B00975EC0 /* TrackFileView.xib in Resources */,
 				709C83BB11AD1CBE00663AFB /* MainWindow.xib in Resources */,
@@ -707,6 +714,7 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 6;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -745,12 +753,14 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitool;
 				PRODUCT_NAME = Velocitool;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
@@ -760,6 +770,7 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -795,12 +806,14 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitool;
 				PRODUCT_NAME = Velocitool;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
@@ -809,25 +822,24 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_TESTABILITY = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -876,7 +888,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tool;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -928,7 +940,7 @@
 				PREBINDING = YES;
 				PRODUCT_NAME = Tool;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				ZERO_LINK = NO;
