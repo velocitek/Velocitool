@@ -391,7 +391,7 @@
 	
 	//NSLog(@"Main window controller received notification: %@", [note name]);
 	
-	int result;
+	NSInteger result;
     NSArray *fileTypes = [NSArray arrayWithObject:@"vcc"];
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
 	
