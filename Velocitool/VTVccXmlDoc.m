@@ -45,7 +45,7 @@
 - (void)saveAsVccFile
 {
 	
-	NSString *fileName = [NSString stringWithString:@"testVCCFile.vcc"];
+	NSString *fileName = @"testVCCFile.vcc";
 	
 	NSData *xmlData = [self XMLDataWithOptions:NSXMLNodePrettyPrint];
     if (![xmlData writeToFile:fileName atomically:YES]) {

@@ -122,20 +122,20 @@ Methods (private):
 	
 	if(minOrMax == MINIMUM)
 	{		
-		firstPartOfName = [NSString stringWithString:@"Min"];
+		firstPartOfName = @"Min";
 	}		
 	else
 	{		
-		firstPartOfName = [NSString stringWithString:@"Max"];
+		firstPartOfName = @"Max";
 	}
 			
     if(latOrLong == LATITUDE)
 	{
-		secondPartOfName = [NSString stringWithString:@"Latitude"];
+		secondPartOfName = @"Latitude";
 	}		
 	else
 	{		
-		secondPartOfName = [NSString stringWithString:@"Longitude"];
+		secondPartOfName = @"Longitude";
 	}					
 	
 	//elementName = concatenation of firstPartOfName and secondPartOfName	
