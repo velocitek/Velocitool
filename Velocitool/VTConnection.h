@@ -15,7 +15,7 @@
     int _productID;
     NSString * _serial;
     
-    unsigned int _available;
+    NSUInteger _available;
 	
 	VTProgressTracker *progressTracker;
 }

@@ -51,9 +51,9 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 - (void)clearRTS;
 
 - (void)setFlowControl:(BOOL)onOff;
-- (int)write:(NSData *)data;
-- (NSData *)readLength:(unsigned int)length timeout:(int)timeOutInMs;
-- (unsigned int)waitForResponseLength:(unsigned int)length timeout:(int)timeOutInMs;
+- (NSUInteger)write:(NSData *)data;
+- (NSData *)readLength:(NSUInteger)length timeout:(int)timeOutInMs;
+- (NSUInteger)waitForResponseLength:(NSUInteger)length timeout:(int)timeOutInMs;
 
 @end
 
@@ -237,7 +237,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 }
 
 
-- (int)write:(NSData *)data 
+- (NSUInteger)write:(NSData *)data
 {
     
 	FT_STATUS ft_error;
@@ -270,7 +270,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 }
 
 
-- (NSData *)readLength:(unsigned int)length timeout:(int)timeOutInMs {
+- (NSData *)readLength:(NSUInteger)length timeout:(int)timeOutInMs {
     FT_STATUS ft_error;
     DWORD sizedone;
     char buffer[length];
@@ -289,7 +289,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     _available -= sizedone;
     
     if (sizedone != length) {
-        NSLog(@"VTError: Call to FT_Read read only %lu of %d", sizedone, length);
+        NSLog(@"VTError: Call to FT_Read read only %lu of %lu", sizedone, (unsigned long)length);
         return nil;
     }
     
@@ -298,7 +298,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     return data;
 }
 
-- (unsigned int)waitForResponseLength:(unsigned int)length timeout:(int)timeOutInMs {
+- (NSUInteger)waitForResponseLength:(NSUInteger)length timeout:(int)timeOutInMs {
     int ii;
     FT_STATUS ft_error;
     useconds_t timeoutInUSeconds = (unsigned int)timeOutInMs * 1000;
@@ -319,14 +319,14 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
         
         usleep(timeoutInUSeconds / 100);
     }
-    NSLog(@"waitForResponseLength timed out after waiting %d ms for %d byte(s)", timeOutInMs, length);
+    NSLog(@"waitForResponseLength timed out after waiting %d ms for %lu byte(s)", timeOutInMs, (unsigned long)length);
     return 0;
 }
 
 
 - (void)recover {
     
-    unsigned int toRead = [self waitForResponseLength:10000 timeout:1000];
+    NSUInteger toRead = [self waitForResponseLength:10000 timeout:1000];
     
     while(toRead) { // Read all the stuff from the device
         //NSLog(@"reading %d of recovery", toRead);
@@ -451,7 +451,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 	FT_STATUS status;
 	[self setFlowControl:YES];
 	
-	unsigned int bytesWritten;
+	NSUInteger bytesWritten;
 	//NSLog(@"Starting to send firmware data.");
 	//for each element in firmwareData
 	for (NSData* dataLine in firmwareData) 
