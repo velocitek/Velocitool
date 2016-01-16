@@ -33,12 +33,9 @@
 }
 
 - (id)initWithTrackpoint:(VTTrackpointRecord *)trackpointRecord {
-  if ((self = [super init])) {
-    trackpoint = [trackpointRecord retain];
-
-    [self initWithKind:NSXMLElementKind];
+  if ((self = [super initWithKind:NSXMLElementKind])) {
     [self setName:@"Trackpoint"];
-
+    trackpoint = [trackpointRecord retain];
     [self addAttributes];
   }
   return self;

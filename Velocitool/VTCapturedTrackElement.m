@@ -39,12 +39,11 @@
 
 - (id)initWithTrackpointsAndDevice:(NSMutableArray *)trackpointArray
                             device:(VTDevice *)sourceDevice {
-  if ((self = [super init])) {
+  if ((self = [super initWithKind:NSXMLElementKind])) {
+    [self setName:@"CapturedTrack"];
+
     [self setTrackpoints:trackpointArray];
     [self setDevice:sourceDevice];
-
-    [self initWithKind:NSXMLElementKind];
-    [self setName:@"CapturedTrack"];
 
     [self addAttributes];
     [self addChildren];

@@ -328,7 +328,7 @@
 							  tempGpxFilePath,
 							  nil];
 		
-		NSURL *javaUrl = [NSURL URLWithString:@"/usr/bin/java"];
+		NSURL *javaUrl = [NSURL fileURLWithPath:@"/usr/bin/java"];
         
 		NSDictionary *configuration = [NSDictionary dictionaryWithObjectsAndKeys:
 									   arguments, NSWorkspaceLaunchConfigurationArguments, nil];

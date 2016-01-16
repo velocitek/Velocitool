@@ -20,8 +20,7 @@
 @implementation VTVccRootElement
 
 - (id)initRootElement {
-  if ((self = [super init])) {
-    [self initWithKind:NSXMLElementKind];
+  if ((self = [super initWithKind:NSXMLElementKind])) {
     [self setName:@"VelocitekControlCenter"];
     [self addAttributes];
   }

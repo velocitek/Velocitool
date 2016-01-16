@@ -165,7 +165,7 @@ void testGpsarLaunch()
 						  nil
 						  ];
 	
-	NSURL *javaUrl = [NSURL URLWithString:@"/usr/bin/java"];
+	NSURL *javaUrl = [NSURL fileURLWithPath:@"/usr/bin/java"];
 	
 	NSDictionary *configuration = [NSDictionary dictionaryWithObjectsAndKeys:
 								   arguments, NSWorkspaceLaunchConfigurationArguments, nil];
@@ -218,7 +218,7 @@ void testXslt()
 	
 	
 	
-	NSXMLDocument *vccDoc = [[NSXMLDocument alloc] initWithContentsOfURL:vccFileLocation options:0 error:NULL];
+	NSXMLDocument *vccDoc = [[[NSXMLDocument alloc] initWithContentsOfURL:vccFileLocation options:0 error:NULL] autorelease];
 	
 	//NSData *kmlTransformation= [NSData dataWithContentsOfURL:xsltFileLocation];
 	NSData *gpxTransformation= [NSData dataWithContentsOfURL:gpxXsltFileLocation];
@@ -242,7 +242,7 @@ void testXslt()
 	
 	
 	//NSFileWrapper *kmlFileWrapper = [[NSFileWrapper alloc] initRegularFileWithContents:kmlData];
-	NSFileWrapper *gpxFileWrapper = [[NSFileWrapper alloc] initRegularFileWithContents:gpxData];
+	NSFileWrapper *gpxFileWrapper = [[[NSFileWrapper alloc] initRegularFileWithContents:gpxData] autorelease];
 	
 	
 	
@@ -264,9 +264,9 @@ void testXslt()
 void testFirmwareUpdate(VTDevice *device)
 {
 
-	NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+	NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
 	
-	VTFirmwareUpdateOperation *firmwareUpdateOperation = [[VTFirmwareUpdateOperation alloc] initWithDevice:device];
+	VTFirmwareUpdateOperation *firmwareUpdateOperation = [[[VTFirmwareUpdateOperation alloc] initWithDevice:device] autorelease];
 	
 	while([firmwareUpdateOperation success] != YES)
 	{
@@ -311,7 +311,7 @@ void testDeviceSettings(VTDevice *device)
 
 void testProgressTracker()
 {
-	VTProgressTracker* progressTracker = [[VTProgressTracker alloc] init];
+	VTProgressTracker* progressTracker = [[[VTProgressTracker alloc] init] autorelease];
 	
 	[progressTracker setCurrentProgress:0];
 	[progressTracker setGoal:500];
