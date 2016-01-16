@@ -1,5 +1,6 @@
 #define MAX_NUM_CHARS_IN_FIRMWARE_FILE 200000
 
+#define ALL_DEVICES
 //#define LOAD_DEVICE
 //#define TRACKPOINT_SAVE
 //#define FIRMWARE_UPDATE
@@ -12,7 +13,7 @@
 //#define DEVICE_SETTINGS
 //#define XSLT_TEST
 //#define DATE_TEST
-#define LAUNCH_GPSAR_TEST
+//#define LAUNCH_GPSAR_TEST
 
 #import <Cocoa/Cocoa.h>
 
@@ -70,8 +71,20 @@ int main (int argc, const char * argv[]) {
 	
 
 	
-	
-	
+#ifdef ALL_DEVICES
+  VTDeviceLoader *loader = [VTDeviceLoader loader];
+
+  for (VTDevice *device in [loader devices]) {
+
+    NSLog(@"%@ (%@ v.%@)\n%@",
+          [device model],
+          [device serial],
+          [device firmwareVersion],
+          [device deviceSettings]
+          );
+  }
+#endif
+
 #ifdef LOAD_DEVICE
 	VTDevice *testDevice;
 	
@@ -289,7 +302,7 @@ void testFirmwareUpdate(VTDevice *device)
 
 void testDeviceSettings(VTDevice *device)
 {
-	NSLog(@"Starting Device Settings Test",[device description]);
+	NSLog(@"Starting Device Settings Test %@",[device description]);
 	
 	NSDictionary *deviceSettings = [device deviceSettings];
 	

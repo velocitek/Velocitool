@@ -62,7 +62,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 @synthesize progressTracker;
 
 + (void)initialize {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"libftd2xx.1.0.4.dylib" ofType:@""];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"libftd2xx.1.2.2.dylib" ofType:@""];
 	
     void *handle = dlopen([path UTF8String], RTLD_LAZY | RTLD_GLOBAL);
     NSAssert2(handle, @"Can't load the library at %@: %s", path, dlerror());
@@ -81,7 +81,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     pFT_ResetDevice            = dlsym(handle, "FT_ResetDevice");            NSAssert(pFT_ResetDevice, @"FT_ResetDevice");
     pFT_Purge                  = dlsym(handle, "FT_Purge");                  NSAssert(pFT_Purge, @"FT_Purge");
     pFT_Close                  = dlsym(handle, "FT_Close");                  NSAssert(pFT_Close, @"FT_Close");
-    pFT_ListDevices			   = dlsym(handle, "FT_ListDevices");			 NSAssert(pFT_ListDevices, @"FT_ListDevices");
+    pFT_ListDevices			       = dlsym(handle, "FT_ListDevices");		      	 NSAssert(pFT_ListDevices, @"FT_ListDevices");
 									   
 }
 
@@ -124,7 +124,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     // Make sure the library can find the device I want
     //
     if ( (ft_error = (*pFT_SetVIDPID)(_vendorID, _productID)) ) {
-        NSLog(@"VTError: Call to FT_SetVIDPID failed with error %lu", ft_error);
+        NSLog(@"VTError: Call to FT_SetVIDPID failed with error %u", ft_error);
         return;
     }					
     
@@ -133,7 +133,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 	const char *serialString = [_serial UTF8String];
 	
     if ( (ft_error = (*pFT_OpenEx)((char*)serialString, FT_OPEN_BY_SERIAL_NUMBER, &ft_handle)) ) {
-        NSLog(@"VTError: Call to FT_OpenEx failed with error %lu", ft_error);
+        NSLog(@"VTError: Call to FT_OpenEx failed with error %u", ft_error);
         return;
     }
 	
@@ -146,7 +146,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     // reset. Is this really necessary?
     //
     if ( (ft_error = (*pFT_ResetDevice)(ft_handle)) ) {
-        NSLog(@"VTError: Call to FT_ResetDevice failed with error %lu", ft_error);
+        NSLog(@"VTError: Call to FT_ResetDevice failed with error %u", ft_error);
         [self close];
         return;
     }
@@ -154,7 +154,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     // purge buffers. Probably not necessary either.
     //
     if ( (ft_error = (*pFT_Purge)(ft_handle, FT_PURGE_RX | FT_PURGE_TX)) ) {
-        NSLog(@"VTError: Call to FT_ResetDevice failed with error %lu", ft_error);
+        NSLog(@"VTError: Call to FT_ResetDevice failed with error %u", ft_error);
         [self close];
         return;
     }
@@ -162,7 +162,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     // Set Baud Rate
     //    
     if ( (ft_error = (*pFT_SetBaudRate)(ft_handle, FT_BAUD_115200)) ){
-        NSLog(@"VTError: Call to FT_SetBaudRate failed with error %lu", ft_error);
+        NSLog(@"VTError: Call to FT_SetBaudRate failed with error %u", ft_error);
         [self close];
         return;
     }
@@ -170,7 +170,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     // Set parameters
     //
     if ( (ft_error = (*pFT_SetDataCharacteristics)(ft_handle, FT_BITS_8, FT_STOP_BITS_1, FT_PARITY_NONE)) ){
-        NSLog(@"VTError: Call to FT_SetDataCharacteristics failed with error %lu", ft_error);
+        NSLog(@"VTError: Call to FT_SetDataCharacteristics failed with error %u", ft_error);
         [self close];
         return;
     }
@@ -178,7 +178,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     // Set timeouts
     //
     if ( (ft_error = (*pFT_SetTimeouts)(ft_handle, 1000, 1000)) ){
-        NSLog(@"VTError: Call to FT_SetTimeouts failed with error %lu", ft_error);
+        NSLog(@"VTError: Call to FT_SetTimeouts failed with error %u", ft_error);
         [self close];
         return;
     }
@@ -191,7 +191,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 - (void)close {
     FT_STATUS ft_error;
     if (_ft_handle && (ft_error = (*pFT_Close)(_ft_handle))) {
-        NSLog(@"VTError: Call to FT_Close failed with error %lu", ft_error);
+        NSLog(@"VTError: Call to FT_Close failed with error %u", ft_error);
     }
     _ft_handle = 0;
     _available = 0;
@@ -208,7 +208,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     FT_STATUS ft_error;
     
     if ( (ft_error = (*pFT_SetRts)(_ft_handle)) ){
-        NSLog(@"VTError: Call to FT_SetRts failed with error %lu", ft_error);
+        NSLog(@"VTError: Call to FT_SetRts failed with error %u", ft_error);
         return;
     }
     usleep(50000); // Give the device 50ms to react...
@@ -219,7 +219,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     FT_STATUS ft_error;
 	
     if ( (ft_error = (*pFT_ClrRts)(_ft_handle)) ){
-        NSLog(@"VTError: Call to FT_ClrRts failed with error %lu", ft_error);
+        NSLog(@"VTError: Call to FT_ClrRts failed with error %u", ft_error);
         return;
     }
     usleep(500000); // Give the device 500ms to react...
@@ -236,7 +236,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     }
     
     if (ft_error) {
-        NSLog(@"VTError: Call to FT_SetFlowControl failed with error %lu", ft_error);
+        NSLog(@"VTError: Call to FT_SetFlowControl failed with error %u", ft_error);
     }
 }
 
@@ -245,16 +245,18 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 {
     
 	FT_STATUS ft_error;
-    DWORD sizedone;
+  NSUInteger sizedone;
     
 	if ([data length] != 0) 
 	{
-		if ( (ft_error = (*pFT_Write)(_ft_handle, (void*)[data bytes], [data length], &sizedone)) ){
-			NSLog(@"VTError: Call to FT_Write failed with error %lu", ft_error);
+    unsigned int returned_lenght = 0;
+		if ( (ft_error = (*pFT_Write)(_ft_handle, (void*)[data bytes], [data length], &returned_lenght)) ){
+			NSLog(@"VTError: Call to FT_Write failed with error %u", ft_error);
 			return 0;
 		}
+    sizedone = returned_lenght;
 		if (sizedone != [data length]) {
-			NSLog(@"VTError: Call to FT_Write failed, wrote only %lu of %lu", sizedone, (unsigned long)[data length] );
+			NSLog(@"VTError: Call to FT_Write failed, wrote only %lu of %lu", (unsigned long)sizedone, (unsigned long)[data length] );
 		}
 	}
 	else
@@ -286,14 +288,14 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     }
     
     if ( (ft_error = (*pFT_Read)(_ft_handle, buffer, length, &sizedone)) ) {
-        NSLog(@"VTError: Call to FT_Read failed with error %lu", ft_error);
+        NSLog(@"VTError: Call to FT_Read failed with error %u", ft_error);
         return nil;
     }
     
     _available -= sizedone;
     
     if (sizedone != length) {
-        NSLog(@"VTError: Call to FT_Read read only %lu of %lu", sizedone, (unsigned long)length);
+        NSLog(@"VTError: Call to FT_Read read only %u of %lu", sizedone, (unsigned long)length);
         return nil;
     }
     
@@ -313,7 +315,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
         DWORD event;
         
         if ( (ft_error = (*pFT_GetStatus)(_ft_handle, &rxQueueLength, &txQueueLength, &event)) ){
-            NSLog(@"VTError: Call to FT_GetStatus failed with error %lu", ft_error);
+            NSLog(@"VTError: Call to FT_GetStatus failed with error %u", ft_error);
             return 0;
         }
         
