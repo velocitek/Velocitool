@@ -71,7 +71,7 @@
 		ED4B99C80F1548A000AF563B /* VTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B99C70F1548A000AF563B /* VTDevice.m */; };
 		ED4B9A590F155F8700AF563B /* VTDeviceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */; };
 		ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFC3F690EF8948D00E1DD2F /* IOKit.framework */; };
-		ED80A45F1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = ED80A45E1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib */; settings = {ASSET_TAGS = (); }; };
+		ED80A45F1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib in Resources */ = {isa = PBXBuildFile; fileRef = ED80A45E1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib */; settings = {ASSET_TAGS = (); }; };
 		EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
 		EDB756AD1236B8CD00B9A1A4 /* gpsar.jar in Resources */ = {isa = PBXBuildFile; fileRef = 70A3503A1220FB630005E136 /* gpsar.jar */; };
 		EDE897E41158CDCF009E8151 /* tool.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE897E31158CDCF009E8151 /* tool.m */; };
@@ -322,7 +322,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				418D478214A9CA0300C20CF6 /* libftd2xx.1.0.4.dylib */,
 				70A3503A1220FB630005E136 /* gpsar.jar */,
 				EDF727250F4234B700E503AE /* images */,
 				7080EDF61159AA510013C9C3 /* libftd2xx.0.1.7.dylib */,
@@ -536,7 +535,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ED80A45F1C4A57A9003DF999 /* libftd2xx.1.1.1.dylib in Resources */,
+				ED80A45F1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib in Resources */,
 				EDB756AD1236B8CD00B9A1A4 /* gpsar.jar in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				77C8C1F90C07829500965286 /* MainMenu.xib in Resources */,
