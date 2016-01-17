@@ -26,7 +26,6 @@ static NSDictionary *productIDToClass = nil;
 
 @interface VTDeviceS10:VTDevice {} @end
 @interface VTDeviceSC1:VTDevice {} @end
-@interface VTFakeDevice:VTDevice {} @end
 
 
 
@@ -49,10 +48,6 @@ static NSDictionary *productIDToClass = nil;
 
 + deviceForProperties:(NSDictionary *)properties {
     VTConnection *connection;
-    
-    if (![properties count]) {
-        return [[[VTFakeDevice alloc] init] autorelease];
-    }
     
     int vendorID = [[properties objectForKey:@kUSBVendorID] intValue];
     int productID = [[properties objectForKey:@kUSBProductID] intValue];
@@ -333,47 +328,4 @@ static NSDictionary *productIDToClass = nil;
 }
 
 @end
-
-
-
-
-@implementation VTFakeDevice
-
-- (BOOL)isPowered {
-    return YES;
-}
-
-
-- (NSString *)model {
-    return @"FakeStuff";
-}
-
-
-- (NSString *)serial {
-    return @"Fake007";
-}
-
-
-- (NSString *)firmwareVersion {
-    return @"3.1415";
-}
-
-
-- (NSDictionary *)deviceSettings {
-    return [[VTPuckSettingsRecord recordFromSettingsDictionary:nil] settingsDictionary];
-}
-
-
-- (void)setDeviceSettings:(NSDictionary *)settings {
-    NSLog(@"set settings %@", settings);
-}
-
-
-- (NSArray *)trackpointLogs {
-    return [NSArray array];
-}
-
-
-@end
-
 
