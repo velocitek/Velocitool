@@ -249,8 +249,13 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     
 	if ([data length] != 0) 
 	{
+    // The API used only support 32 bits on 64 bits arch. Make sure the data is
+    // smaller than that.
+    NSAssert([data length] < (DWORD)-1, @"Unsuported write size.");
+    DWORD passed_length = (DWORD)[data length];
+
     unsigned int returned_lenght = 0;
-		if ( (ft_error = (*pFT_Write)(_ft_handle, (void*)[data bytes], [data length], &returned_lenght)) ){
+		if ( (ft_error = (*pFT_Write)(_ft_handle, (void*)[data bytes], passed_length, &returned_lenght)) ){
 			NSLog(@"VTError: Call to FT_Write failed with error %u", ft_error);
 			return 0;
 		}
@@ -281,13 +286,18 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     DWORD sizedone;
     char buffer[length];
     
-    NSAssert(length > 0, @"WTF? Who's asking to read 0 bytes?");
-    
+  NSAssert(length > 0, @"WTF? Who's asking to read 0 bytes?");
+  NSAssert(length <= (DWORD)-1, @"WTF? Who's asking to write so much data?");
+  // The API used only support 32 bits on 64 bits arch. Make sure the data is
+  // smaller than that.
+  DWORD dword_length = (DWORD)length;
+
+
     if(_available < length) {
         _available = [self waitForResponseLength:length timeout:timeOutInMs];
     }
     
-    if ( (ft_error = (*pFT_Read)(_ft_handle, buffer, length, &sizedone)) ) {
+    if ( (ft_error = (*pFT_Read)(_ft_handle, buffer, dword_length, &sizedone)) ) {
         NSLog(@"VTError: Call to FT_Read failed with error %u", ft_error);
         return nil;
     }
@@ -441,9 +451,9 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 	return [self writeFirmwareFile:firmwareFile];
 }
 
-//This routine writes the bytes of a firmware file to the connection
-//Updating firmware currently does not work because of problems with
-//the reliability of FTDI's mac drivers
+// This routine writes the bytes of a firmware file to the connection
+// Updating firmware currently does not work because of problems with
+// the reliability of FTDI's mac drivers
 - (BOOL)writeFirmwareFile:(VTFirmwareFile*)firmwareFile
 {
 	NSArray *firmwareData = [firmwareFile firmwareData]; 
@@ -463,6 +473,8 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 	for (NSData* dataLine in firmwareData) 
 	{
 		status = (*pFT_GetStatus)(_ft_handle, &numBytesInRXQueue, &numBytesInTXQueue, &event);
+    NSAssert(FT_SUCCESS(status), @"Unexpected status.");
+
 		//NSLog(@"About to write firmware line %d.  %d bytes in RX Queue, %d bytes in TX Queue.", (int)lineCounter, numBytesInRXQueue, numBytesInTXQueue);
 		//write data object to connection
 		

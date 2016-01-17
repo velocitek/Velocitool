@@ -140,6 +140,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     matchingDict = IOServiceMatching(kIOUSBDeviceClassName);
     if (!matchingDict) {
         NSLog(@"ERR: Couldn’t create a USB matching dictionary");
+        [self release];
         return nil;
     }
     
@@ -169,7 +170,8 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     // IOServiceAddMatchingNotification consumes one reference
     matchingDict = (CFMutableDictionaryRef) CFRetain(matchingDict);
     kr = IOServiceAddMatchingNotification(notifyPort, kIOFirstMatchNotification, matchingDict, _RawDeviceAdded, self, &rawAddedIter);
-    
+    NSAssert(kr == KERN_SUCCESS, @"Unable to setup the device match.");
+
     // Iterate over set of matching devices to access already-present devices and to arm the notification
     _RawDeviceAdded(self, rawAddedIter);
     
@@ -177,15 +179,13 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     // IOServiceAddMatchingNotification consumes one reference
     matchingDict = (CFMutableDictionaryRef) CFRetain(matchingDict);
     kr = IOServiceAddMatchingNotification(notifyPort, kIOTerminatedNotification, matchingDict, _RawDeviceRemoved, self, &rawRemovedIter);
-    
+    NSAssert(kr == KERN_SUCCESS, @"Unable to setup the device termination match.");
+
     // Iterate over set of matching devices to access already-present devices and to arm the notification
     _RawDeviceRemoved(self, rawRemovedIter);
     
     // Release the matching dictionary
     CFRelease(matchingDict);
-    
-    // For debug, add a fake device by default.
-    //[self _addDevice:IO_OBJECT_NULL];
   }
   return self;
 }
