@@ -62,21 +62,25 @@ static NSDictionary *productIDToClass = nil;
 }
 
 + deviceForUSBProperties:(NSDictionary *)usbProperties {
-  VTConnection *connection;
-
-  int vendorID = [[usbProperties objectForKey:@kUSBVendorID] intValue];
   int productID = [[usbProperties objectForKey:@kUSBProductID] intValue];
-  NSString *serial = [usbProperties objectForKey:@kUSBSerialNumberString];
+  NSAssert(productID, @"No productID");
   id klass = [productIDToClass objectForKey:[NSNumber numberWithInt:productID]];
-
-  if (vendorID && klass && serial &&
-      (connection = [VTConnection connectionWithVendorID:vendorID
-                                               productID:productID
-                                            serialNumber:serial])) {
-    return [[[klass alloc] initWithConnection:connection
-                                usbProperties:usbProperties] autorelease];
+  if (!klass) {
+    return nil;
   }
-  return nil;
+  int vendorID = [[usbProperties objectForKey:@kUSBVendorID] intValue];
+  NSAssert(vendorID, @"No vendor ID");
+  NSString *serial = [usbProperties objectForKey:@kUSBSerialNumberString];
+  NSAssert(serial, @"No serial number");
+
+  VTConnection *connection = [VTConnection connectionWithVendorID:vendorID
+                                                        productID:productID
+                                                     serialNumber:serial];
+  if (!connection) {
+    return nil;
+  }
+  return [[[klass alloc] initWithConnection:connection
+                              usbProperties:usbProperties] autorelease];
 }
 
 #pragma mark - Init

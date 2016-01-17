@@ -1,9 +1,5 @@
 #import <Cocoa/Cocoa.h>
 
-@class VTConnection;
-@class VTRecord;
-
-
 // This represent a Velocitek device. This class is an abstract superclass,
 // all devices will be concrete subclasses.
 @interface VTDevice : NSObject
