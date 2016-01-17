@@ -3,7 +3,7 @@
 @class VTConnection;
 
 // Abstract class for a record to send or receive from a device.
-@interface VTRecord: NSObject
+@interface VTRecord : NSObject
 // Serialize the record into the connection.
 - (void)writeForConnection:(VTConnection *)connection;
 // Deserialize the record from the connection.
@@ -16,11 +16,11 @@
 
 // Represent a position in a path.
 @interface VTTrackpointRecord : VTRecord
-@property (nonatomic, readwrite, retain) NSDate *timestamp;
-@property (nonatomic, readwrite) float latitude;
-@property (nonatomic, readwrite) float longitude;
-@property (nonatomic, readwrite) float speed;
-@property (nonatomic, readwrite) float heading;
+@property(nonatomic, readwrite, retain) NSDate *timestamp;
+@property(nonatomic, readwrite) float latitude;
+@property(nonatomic, readwrite) float longitude;
+@property(nonatomic, readwrite) float speed;
+@property(nonatomic, readwrite) float heading;
 @end
 
 // A simple record to encode two dates to retrieve trackpoints.
@@ -40,52 +40,26 @@ commandParameterFromDate:(NSDate *)startTime
 @end
 
 // An empty record announcing results.
-@interface VTCommandResultRecord: VTRecordWithHeader
+@interface VTCommandResultRecord : VTRecordWithHeader
 @end
 
-
-@interface VTPuckSettingsRecord : VTRecordWithHeader {
-    unsigned char _recordRate;
-    unsigned char _declination;
-    unsigned char _speedUnitOfMeasurement;
-    unsigned char _speedDamping;
-    unsigned char _headingDamping;
-    unsigned char _maxSpeedMode;
-    BOOL _barGraphEnabled;
-    unsigned char _deviceOperationOption;
-}
-
+// Record for the SpeedPuck settings.
+@interface VTPuckSettingsRecord : VTRecordWithHeader
+@property(nonatomic, readwrite, assign) NSDictionary *settingsDictionary;
 + (VTPuckSettingsRecord *)recordFromSettingsDictionary:(NSDictionary *)settings;
-- (NSDictionary *)settingsDictionary;
-- (void)setSettingsDictionary:(NSDictionary *)settings;
-
 @end
 
-
-@interface VTFirmwareVersionRecord : VTRecordWithHeader {
-    NSString *_version;
-}
-
-- (NSString *)version;
+// Used to retrieve the firmware version.
+@interface VTFirmwareVersionRecord : VTRecordWithHeader
+@property(nonatomic, readonly) NSString *version;
 @end
 
-
-
-
-
-
-@interface VTTrackpointLogRecord : VTRecordWithHeader 
-{
-	
-    bool selectedForDownload;
-	char logIndex;
-    int numTrackpoints;
-    NSDate *start; 
-    NSDate *end;
-}
-@property (nonatomic, readwrite) bool selectedForDownload;
-@property (nonatomic, readonly) NSDate *start;
-@property (nonatomic, readonly) NSDate *end;
-@property (nonatomic, readonly) int numTrackpoints;
-
+@interface VTTrackpointLogRecord : VTRecordWithHeader
+// Used from the UI to select which logs to download. Whatever uses this should
+// probably use the logIndex instead.
+@property(nonatomic, readwrite) bool selectedForDownload;
+@property(nonatomic, readonly) char logIndex;
+@property(nonatomic, readonly) NSDate *start;
+@property(nonatomic, readonly) NSDate *end;
+@property(nonatomic, readonly) int numTrackpoints;
 @end
