@@ -87,7 +87,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     
     if ((result == kIOReturnSuccess) && properties) {
         
-        VTDevice *device = [VTDevice deviceForProperties:(NSDictionary *)properties];
+        VTDevice *device = [VTDevice deviceForUSBProperties:(NSDictionary *)properties];
 		
         if (device) {
             // The locationID uniquely identifies the device and will remain the same, even across
