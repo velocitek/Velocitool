@@ -1,8 +1,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-extern void VTRaiseAbstractMethodException(id object, SEL _cmd, Class abstractClass);
-
+extern void VTRaiseAbstractMethodException(id object, SEL _cmd,
+                                           Class abstractClass);
 
 #define VTDeclinationPref    @"declination"
 
