@@ -7,6 +7,7 @@
 #import "VTFirmwareFile.h"
 #import "VTFloat.h"
 #import "VTRecord.h"
+#import "VTProgressTracker.h"
 
 #import <dlfcn.h>
 #import "ftd2xx.h"
@@ -85,6 +86,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 @end
 
 @implementation VTConnection
+@synthesize progressTracker = _progressTracker;
 
 + (void)initialize {
   if (self != [VTConnection self]) {
@@ -147,7 +149,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     _vendorID = vendorID;
     _productID = productID;
     _serial = [serial copy];
-
+    _progressTracker = [[VTProgressTracker alloc] init];
     [self open];
     if (!_ft_handle) {
       [self release];
@@ -161,6 +163,8 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
   [self close];
   [_serial release];
   _serial = nil;
+  [_progressTracker release];
+  _progressTracker = nil;
   [super dealloc];
 }
 
@@ -221,6 +225,10 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 
       [result readFromConnection:self];
       [results addObject:result];
+      [self.progressTracker
+          performSelectorOnMainThread:@selector(incrementProgress)
+                           withObject:nil
+                        waitUntilDone:YES];
     }
     returnValue = [[results copy] autorelease];
 

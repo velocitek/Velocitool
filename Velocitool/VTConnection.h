@@ -3,9 +3,12 @@
 @class VTCommand;
 @class VTRecord;
 @class VTFirmwareFile;
+@class VTProgressTracker;
 
 // This is the abstract representation of a connection to a USB device.
 @interface VTConnection : NSObject
+// Tracks what is happening during a communication.
+@property(nonatomic, readonly) VTProgressTracker *progressTracker;
 
 // Connect to the device identified by the vendorID, productID, and serial
 // number.
