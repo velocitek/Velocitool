@@ -1,75 +1,46 @@
-//
-//  VTRecord.h
-//  Velocitool
-//
-//  Created by Alec Stewart on 3/29/10.
-//  Copyright 2010 Velocitek. All rights reserved.
-//
-#define NUM_EMPTY_TRACKPOINT_BYTES 9
 #import <Cocoa/Cocoa.h>
 
 @class VTConnection;
 
-@interface VTRecord: NSObject {
-}
+// Abstract class for a record to send or receive from a device.
+@interface VTRecord: NSObject
+// Serialize the record into the connection.
+- (void)writeForConnection:(VTConnection *)connection;
+// Deserialize the record from the connection.
+- (void)readFromConnection:(VTConnection *)connection;
 
+// For subclasses to implement.
 - (void)writeDeviceDataForConnection:(VTConnection *)connection;
 - (void)readDeviceDataFromConnection:(VTConnection *)connection;
-- (void)writeForConnection:(VTConnection *)connection;
-- (void)readFromConnection:(VTConnection *)connection;
-
 @end
 
-
-@interface VTTrackpointRecord : VTRecord {
-    
-	
-	float _latitude;
-	float _longitude;
-	float _speed;
-	float _heading;
-	NSDate *_timestamp;
-	
-}
-
-@property (nonatomic, readwrite, retain) NSDate *_timestamp;
-@property (nonatomic, readwrite) float _latitude;
-@property (nonatomic, readwrite) float _longitude;
-@property (nonatomic, readwrite) float _speed;
-@property (nonatomic, readwrite) float _heading;
-
+// Represent a position in a path.
+@interface VTTrackpointRecord : VTRecord
+@property (nonatomic, readwrite, retain) NSDate *timestamp;
+@property (nonatomic, readwrite) float latitude;
+@property (nonatomic, readwrite) float longitude;
+@property (nonatomic, readwrite) float speed;
+@property (nonatomic, readwrite) float heading;
 @end
 
+// A simple record to encode two dates to retrieve trackpoints.
 @interface VTReadTrackpointsCommandParameter : VTRecord
-{
-	NSDate *_downloadFrom;
-	NSDate *_downloadTo;
-}
+@property(nonatomic, readonly, retain) NSDate *downloadFrom;
+@property(nonatomic, readonly, retain) NSDate *downloadTo;
 
-@property (nonatomic, readwrite, retain) NSDate *_downloadFrom;
-@property (nonatomic, readwrite, retain) NSDate *_downloadTo;
-
-+ (VTReadTrackpointsCommandParameter *)commandParameterFromTimeInverval:(NSDate *)startTime end:(NSDate *)endTime;
-
-- (void)writeDeviceDataForConnection:(VTConnection *)connection;
-
++ (VTReadTrackpointsCommandParameter *)
+commandParameterFromDate:(NSDate *)startTime
+                  toDate:(NSDate *)endTime;
 @end
 
+// Records with the type encoded at the beginning.
 @interface VTRecordWithHeader : VTRecord
-{
-	
-}
-
+// For subclassed to implement.
 + (unsigned char)recordHeader;
-- (void)readFromConnection:(VTConnection *)connection;
-- (void)writeForConnection:(VTConnection *)connection;
-
 @end
 
-
-@interface VTCommandResultRecord: VTRecordWithHeader {
-}
-
+// An empty record announcing results.
+@interface VTCommandResultRecord: VTRecordWithHeader
 @end
 
 

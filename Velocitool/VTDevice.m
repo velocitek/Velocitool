@@ -259,7 +259,7 @@ static NSDictionary *productIDToClass = nil;
 
 - (NSArray *)trackpoints:(NSDate *)downloadFrom endTime:(NSDate *)downloadTo {
 
-	VTReadTrackpointsCommandParameter *commandParameter = [VTReadTrackpointsCommandParameter commandParameterFromTimeInverval:downloadFrom end:downloadTo];
+	VTReadTrackpointsCommandParameter *commandParameter = [VTReadTrackpointsCommandParameter commandParameterFromDate:downloadFrom toDate:downloadTo];
 	
 	VTCommand *command = [VTCommand commandWithSignal:'T' 
 											parameter:commandParameter

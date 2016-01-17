@@ -61,17 +61,17 @@
 - (void)findAttributeStringValues
 {
 	[self findDateTimeStringValue];
-	headingString = [[NSString alloc] initWithFormat:@"%.2f", [trackpoint _heading]];
-	speedString = [[NSString alloc] initWithFormat:@"%.3f", [trackpoint _speed]];
-	latString = [[NSString alloc] initWithFormat:@"%.15f", [trackpoint _latitude]];
-	longString = [[NSString alloc] initWithFormat:@"%.14f", [trackpoint _longitude]];
+	headingString = [[NSString alloc] initWithFormat:@"%.2f", trackpoint.heading];
+	speedString = [[NSString alloc] initWithFormat:@"%.3f", trackpoint.speed];
+	latString = [[NSString alloc] initWithFormat:@"%.15f", trackpoint.latitude];
+	longString = [[NSString alloc] initWithFormat:@"%.14f", trackpoint.longitude];
 	
 }
 
 - (void)findDateTimeStringValue
 {
 
-	VTXmlDate *vccDate = [VTXmlDate xmlDateWithDate:[trackpoint _timestamp]];
+	VTXmlDate *vccDate = [VTXmlDate xmlDateWithDate:trackpoint.timestamp];
 	
 	dateString = [vccDate vccDateString];
 }

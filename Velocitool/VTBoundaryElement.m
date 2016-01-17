@@ -103,10 +103,9 @@ Methods (private):
 			
 		
 	if (latOrLong == LATITUDE) 
-		extremeValue = [trackpointContainingExtremeValue _latitude];
-		
+		extremeValue = trackpointContainingExtremeValue.latitude;
 	else 
-		extremeValue = [trackpointContainingExtremeValue _longitude];
+		extremeValue = trackpointContainingExtremeValue.longitude;
 	
 			
 }
