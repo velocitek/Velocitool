@@ -55,5 +55,4 @@
 - (BOOL)writeFirmwareFile:(VTFirmwareFile *)firmwareFile;
 - (BOOL)readFirmwareUpdateFlowControlChars;
 
-
 @end
