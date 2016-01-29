@@ -11,17 +11,17 @@
 @interface VTStoredDevice (CoreDataGeneratedAccessors)
 
 // Stuff stored in the DB
-@property (retain) NSString *name;
-@property (retain) NSString *serial;
-@property (retain) NSSet *tracklogs;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *serial;
+@property (nonatomic, retain) NSSet *tracklogs;
 
 // Derived value for display purpose. Read only.
-@property (retain) NSString *identity;
-@property (retain) NSString *imagePath;
+@property (nonatomic, retain) NSString *identity;
+@property (nonatomic, retain) NSString *imagePath;
 
 // Stuff from the USB communication
-@property (retain) NSDictionary *deviceInfo;
-@property (retain) NSString *currentAction;
+@property (nonatomic, retain) NSDictionary *deviceInfo;
+@property (nonatomic, retain) NSString *currentAction;
 
 
 - (void)addTracklogsObject:(NSManagedObject *)value;

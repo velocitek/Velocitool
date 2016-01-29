@@ -88,11 +88,9 @@
 
 - (id)init {
 	
-	if(![super initWithNibName:@"TrackFileView" bundle:nil])
-		return nil;
-	
-	[self registerForNotifications];
-	
+	if((self = [super initWithNibName:@"TrackFileView" bundle:nil])) {
+    [self registerForNotifications];
+  }
 	return self;
 	
 }
@@ -198,7 +196,7 @@
 
 - (void)downloadTrackFromDevice
 {
-	[self setTrackFromDevice:[[VTTrackFromDevice alloc] initWithDeviceAndTrackLogs:device trackLogs:trackLogs]];		
+	[self setTrackFromDevice:[[[VTTrackFromDevice alloc] initWithDeviceAndTrackLogs:device trackLogs:trackLogs] autorelease]];
 }
 
 - (void)initializeCurrentFileFromTrack

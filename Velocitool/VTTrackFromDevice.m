@@ -34,19 +34,17 @@
 
 - (id)initWithDeviceAndTrackLogs:(VTDevice *)deviceToDownloadFrom trackLogs:(NSMutableArray *)trackLogs
 {
-	if (![super init]) {
-		return nil;
-	}
-	
-	trackpoints = [[NSMutableArray alloc] init];
-	
-	device = [deviceToDownloadFrom retain];	
-	selectedTrackLogs = [trackLogs retain];
-	
-	[self removeUnselectedTrackLogs];
-	
-	[self downloadTrack];	
-	
+	if ((self = [super init])) {
+
+    trackpoints = [[NSMutableArray alloc] init];
+    
+    device = [deviceToDownloadFrom retain];	
+    selectedTrackLogs = [trackLogs retain];
+    
+    [self removeUnselectedTrackLogs];
+    
+    [self downloadTrack];	
+  }
 	return self;
 	
 }

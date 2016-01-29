@@ -38,12 +38,6 @@
 	 
 }
 
-- (id) init
-{
-	[super init];	
-	return self;
-}
-
 - (void)dealloc
 {
 	

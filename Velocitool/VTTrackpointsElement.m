@@ -20,29 +20,22 @@
 
 }
 
-- (id)initWithTrackpointsArray: (NSMutableArray*) trackpoints{
-	
-	
-	//create a new element named "Trackpoints"
-	[super init];	
-	
-	[self initWithKind:NSXMLElementKind];
-	[self setName:@"Trackpoints"];
-	
-	//for each trackpoint object in the array
-	for(VTTrackpointRecord *trackpoint in trackpoints)
-	{
-		//make a trackpoint element from the trackpoint object
-		VTTrackpointElement *trackpointElement = [VTTrackpointElement trackpointElementWithTrackpointRecord:trackpoint];
-		
-		//add the trackpoint element as a child of the trackpoints element
-		[self addChild:trackpointElement];
-		
-	}
-	
-	
-	return self;
-				
+- (id)initWithTrackpointsArray:(NSMutableArray *)trackpoints {
+  if ((self = [super initWithKind:NSXMLElementKind])) {
+    // create a new element named "Trackpoints"
+    [self setName:@"Trackpoints"];
+
+    // for each trackpoint object in the array
+    for (VTTrackpointRecord *trackpoint in trackpoints) {
+      // make a trackpoint element from the trackpoint object
+      VTTrackpointElement *trackpointElement = [VTTrackpointElement
+          trackpointElementWithTrackpointRecord:trackpoint];
+
+      // add the trackpoint element as a child of the trackpoints element
+      [self addChild:trackpointElement];
+    }
+  }
+  return self;
 }
 
 @end

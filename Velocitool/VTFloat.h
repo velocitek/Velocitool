@@ -17,8 +17,8 @@
 
 }
 
-@property(readwrite, assign) float floatingPointNumber;
-@property(readwrite, retain) NSData *picFloatRepresentation;
+@property (nonatomic, readwrite, assign) float floatingPointNumber;
+@property (nonatomic, readwrite, retain) NSData *picFloatRepresentation;
 
 + (id)vtFloatWithPicBytes:(NSData *)bytes;
 + (id)vtFloatWithFloat:(float)f;

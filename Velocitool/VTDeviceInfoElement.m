@@ -19,20 +19,14 @@
 	
 }
 
-- initWithDevice:(VTDevice *) device
-{
-	
-	[super init];
-			
-	[self initWithKind:NSXMLElementKind];
-	[self setName:@"DeviceInfo"];
-			
-	[self addAttribute:[NSXMLNode attributeWithName:@"ftdiSerialNumber" stringValue:[device serial]]];	
-	
-	return self;
-	
+- initWithDevice:(VTDevice *)device {
+  if ((self = [super initWithKind:NSXMLElementKind])) {
+    [self setName:@"DeviceInfo"];
+
+    [self addAttribute:[NSXMLNode attributeWithName:@"ftdiSerialNumber"
+                                        stringValue:[device serial]]];
+  }
+  return self;
 }
-
-
 
 @end

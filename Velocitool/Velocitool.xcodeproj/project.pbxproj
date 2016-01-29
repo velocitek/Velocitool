@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 45;
+	objectVersion = 46;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		418D478414A9CA1000C20CF6 /* libftd2xx.1.0.4.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 418D478214A9CA0300C20CF6 /* libftd2xx.1.0.4.dylib */; };
 		7009C76A11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
 		7009C76B11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
 		70135D3611D082A50046A8BF /* DeviceSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70135D3511D082A50046A8BF /* DeviceSettingsController.m */; };
@@ -63,18 +62,18 @@
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		ED028E5A1236C32E00CCCCF2 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED028E591236C32E00CCCCF2 /* Sparkle.framework */; };
-		ED028E641236C33A00CCCCF2 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = ED028E591236C32E00CCCCF2 /* Sparkle.framework */; };
+		ED028E641236C33A00CCCCF2 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = ED028E591236C32E00CCCCF2 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		ED21C50E0F64438D002BE074 /* FakeStuff.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED21C50D0F64438D002BE074 /* FakeStuff.jpg */; };
 		ED21C5E00F647FAB002BE074 /* VTPuckSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = ED21C5DF0F647FAB002BE074 /* VTPuckSettings.m */; };
 		ED2A01610F339B8F005C0CE0 /* VTConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2A015F0F339B8F005C0CE0 /* VTConnection.m */; };
 		ED2B25030F261CAB00A5EDDB /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
+		ED3976741C427AEB00147C1F /* README.txt in Resources */ = {isa = PBXBuildFile; fileRef = ED3976731C427AEB00147C1F /* README.txt */; settings = {ASSET_TAGS = (); }; };
 		ED4B99C80F1548A000AF563B /* VTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B99C70F1548A000AF563B /* VTDevice.m */; };
 		ED4B9A590F155F8700AF563B /* VTDeviceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */; };
 		ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFC3F690EF8948D00E1DD2F /* IOKit.framework */; };
-		ED4BC626125284A200EC8718 /* SystemVersionCheck in Copy Version Check Executable */ = {isa = PBXBuildFile; fileRef = EDDC88D71252846900055DE7 /* SystemVersionCheck */; };
+		ED80A45F1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib in Resources */ = {isa = PBXBuildFile; fileRef = ED80A45E1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib */; settings = {ASSET_TAGS = (); }; };
 		EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
 		EDB756AD1236B8CD00B9A1A4 /* gpsar.jar in Resources */ = {isa = PBXBuildFile; fileRef = 70A3503A1220FB630005E136 /* gpsar.jar */; };
-		EDDC88D81252846900055DE7 /* SystemVersionCheck in Resources */ = {isa = PBXBuildFile; fileRef = EDDC88D71252846900055DE7 /* SystemVersionCheck */; };
 		EDE897E41158CDCF009E8151 /* tool.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE897E31158CDCF009E8151 /* tool.m */; };
 		EDE897E61158CE3A009E8151 /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
 		EDE897E81158CE3A009E8151 /* VTConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2A015F0F339B8F005C0CE0 /* VTConnection.m */; };
@@ -113,17 +112,6 @@
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		EDDC887D12521C1C00055DE7 /* Copy Version Check Executable */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 6;
-			files = (
-				ED4BC626125284A200EC8718 /* SystemVersionCheck in Copy Version Check Executable */,
-			);
-			name = "Copy Version Check Executable";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -134,7 +122,6 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Velocitool_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Velocitool_Prefix.pch; sourceTree = "<group>"; };
-		418D478214A9CA0300C20CF6 /* libftd2xx.1.0.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libftd2xx.1.0.4.dylib; sourceTree = "<group>"; };
 		7009C76811BF52FF0076DB4D /* VTProgressTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTProgressTracker.h; sourceTree = "<group>"; };
 		7009C76911BF52FF0076DB4D /* VTProgressTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTProgressTracker.m; sourceTree = "<group>"; };
 		70135D3411D082A50046A8BF /* DeviceSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSettingsController.h; sourceTree = "<group>"; };
@@ -204,6 +191,7 @@
 		ED2B24BA0F25D10C00A5EDDB /* VTConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTConvert.m; sourceTree = "<group>"; };
 		ED2B25000F261CAB00A5EDDB /* VTGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTGlobals.h; sourceTree = "<group>"; };
 		ED2B25010F261CAB00A5EDDB /* VTGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTGlobals.m; sourceTree = "<group>"; };
+		ED3976731C427AEB00147C1F /* README.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
 		ED4B99C60F1548A000AF563B /* VTDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDevice.h; sourceTree = "<group>"; };
 		ED4B99C70F1548A000AF563B /* VTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDevice.m; sourceTree = "<group>"; };
 		ED4B9A570F155F8700AF563B /* VTDeviceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDeviceLoader.h; sourceTree = "<group>"; };
@@ -213,9 +201,9 @@
 		ED6C716F0F09A89D00BF3260 /* WinTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinTypes.h; sourceTree = "<group>"; };
 		ED6C71F20F0AD49400BF3260 /* VTWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTWrapper.h; sourceTree = "<group>"; };
 		ED6C71F30F0AD49400BF3260 /* VTWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTWrapper.m; sourceTree = "<group>"; };
+		ED80A45E1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libftd2xx.1.2.2.dylib; sourceTree = "<group>"; };
 		EDA9F3FF0F16B638004112D5 /* VTCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTCommand.h; sourceTree = "<group>"; };
 		EDA9F4000F16B638004112D5 /* VTCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTCommand.m; sourceTree = "<group>"; };
-		EDDC88D71252846900055DE7 /* SystemVersionCheck */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = SystemVersionCheck; sourceTree = "<group>"; };
 		EDE897DA1158CD2D009E8151 /* Tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE897E31158CDCF009E8151 /* tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tool.m; sourceTree = "<group>"; };
 		EDF725540F3E069700E503AE /* VTStoredDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTStoredDevice.h; sourceTree = "<group>"; };
@@ -300,6 +288,7 @@
 		29B97314FDCFA39411CA2CEA /* Velocitool */ = {
 			isa = PBXGroup;
 			children = (
+				ED3976731C427AEB00147C1F /* README.txt */,
 				ED2A015D0F339B6A005C0CE0 /* Communication */,
 				708274E211B5CF9B00DD66FF /* XML */,
 				EDE897E21158CD82009E8151 /* CmdLine */,
@@ -333,9 +322,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				418D478214A9CA0300C20CF6 /* libftd2xx.1.0.4.dylib */,
 				70A3503A1220FB630005E136 /* gpsar.jar */,
-				EDDC88D71252846900055DE7 /* SystemVersionCheck */,
 				EDF727250F4234B700E503AE /* images */,
 				7080EDF61159AA510013C9C3 /* libftd2xx.0.1.7.dylib */,
 				EDFC3F4D0EF88A5A00E1DD2F /* velocitool.icns */,
@@ -486,8 +473,6 @@
 				EDB756F11236BCD700B9A1A4 /* Copy Frameworks */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				EDDC887D12521C1C00055DE7 /* Copy Version Check Executable */,
-				EDDC889F12521DA800055DE7 /* Swap VersionCheck */,
 				EDFC3F000EF81E0000E1DD2F /* Build DMG */,
 			);
 			buildRules = (
@@ -522,8 +507,11 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Velocitool" */;
-			compatibilityVersion = "Xcode 3.1";
+			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -547,7 +535,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				418D478414A9CA1000C20CF6 /* libftd2xx.1.0.4.dylib in Resources */,
+				ED80A45F1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib in Resources */,
 				EDB756AD1236B8CD00B9A1A4 /* gpsar.jar in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				77C8C1F90C07829500965286 /* MainMenu.xib in Resources */,
@@ -557,33 +545,19 @@
 				EDF726E50F42318F00E503AE /* S10.jpg in Resources */,
 				EDF726E60F42318F00E503AE /* SC1.jpg in Resources */,
 				ED21C50E0F64438D002BE074 /* FakeStuff.jpg in Resources */,
+				ED3976741C427AEB00147C1F /* README.txt in Resources */,
 				7023A9F111ACE36400975EC0 /* TrackLogView.xib in Resources */,
 				7023AA2F11ACFB9B00975EC0 /* TrackFileView.xib in Resources */,
 				709C83BB11AD1CBE00663AFB /* MainWindow.xib in Resources */,
 				70135D3D11D0832C0046A8BF /* DeviceSettings.xib in Resources */,
 				7086DAB111EE89FB00EEC381 /* TrackpointsToKml.xslt in Resources */,
 				7086DABE11EF96AF00EEC381 /* TrackpointsToGpx.xslt in Resources */,
-				EDDC88D81252846900055DE7 /* SystemVersionCheck in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		EDDC889F12521DA800055DE7 /* Swap VersionCheck */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Swap VersionCheck";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if [ $BUILD_STYLE = Release ]; then\n\n    executable=${BUILT_PRODUCTS_DIR}/${EXECUTABLE_FOLDER_PATH}/${PRODUCT_NAME}\n    versioncheck=${BUILT_PRODUCTS_DIR}/${EXECUTABLE_FOLDER_PATH}/SystemVersionCheck\n\n    rm -f ${executable}.real\n    mv ${executable} ${executable}.real\n    mv ${versioncheck} ${executable}\n\nfi\n";
-		};
 		EDFC3F000EF81E0000E1DD2F /* Build DMG */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -596,7 +570,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "if [ $BUILD_STYLE = Release ]; then\n\nPUBLISH_DMG=~/Sites/velocitool/\nPUBLISH_RSS=~/Sites/velocitool/rss.xml\n\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME/Contents/Info\" CFBundleVersion)\nMARKETING_VERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME/Contents/Info\" CFBundleShortVersionString)\nPUBLISH_URL=$(defaults read \"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME/Contents/Info\" SUFeedURL)\nDOWNLOAD_BASE_URL=\"http://velocitek.com/assets/files/downloads/vcc/vcc_mac\"\nRELEASENOTES_URL=\"http://velocitek.com/assets/files/downloads/release-notes.html#version-$MARKETING_VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME $MARKETING_VERSION($VERSION).dmg\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"Velocitool private key\"\nDISK_DIR=\"$TEMP_FILES_DIR/disk\"\n\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -rf \"$ARCHIVE_FILENAME\" \"$DISK_DIR\"\n\nmkdir -p \"$DISK_DIR\"\ncp -R \"$WRAPPER_NAME\" \"$DISK_DIR\"\n\nhdiutil create -srcfolder \"$DISK_DIR\" -volname \"$PROJECT_NAME\" \"$ARCHIVE_FILENAME\"\nhdiutil internet-enable -yes \"$ARCHIVE_FILENAME\"\nrm -rf \"$DISK_DIR\"\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\n\topenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n\t| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /\"(.+)\"/; s/\\\\012/\\n/g') \\\n\t| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\nmkdir -p ${PUBLISH_DMG}\ncat  > \"${PUBLISH_RSS}\" <<EOF\n<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<rss version=\"2.0\" xmlns:sparkle=\"http://www.andymatuschak.org/xml-namespaces/sparkle\"  xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n   <channel>\n      <title>Velocitool Changelog</title>\n      <link>${PUBLISH_URL}</link>\n      <description>Most recent changes with links to updates.</description>\n      <language>en</language>\n\t\t<item>\n\t\t\t<title>Version $VERSION</title>\n\t\t\t<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n\t\t\t<pubDate>$PUBDATE</pubDate>\n\t\t\t<enclosure\n\t\t\t\turl=\"$DOWNLOAD_URL\"\n\t\t\t\tsparkle:version=\"$VERSION\"\n\t\t\t\tsparkle:shortVersionString=\"$MARKETING_VERSION\"\n\t\t\t\ttype=\"application/octet-stream\"\n\t\t\t\tlength=\"$SIZE\"\n\t\t\t\tsparkle:dsaSignature=\"$SIGNATURE\"\n\t\t\t/>\n\t\t</item>\n   </channel>\n</rss>\nEOF\n\ncp -f \"${ARCHIVE_FILENAME}\" \"${PUBLISH_DMG}\"\n\nfi\n";
+			shellScript = "if [ $CONFIGURATION = Release ]; then\n\nPUBLISH_DMG=~/Sites/velocitool/\nPUBLISH_RSS=~/Sites/velocitool/rss.xml\n\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME/Contents/Info\" CFBundleVersion)\nMARKETING_VERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME/Contents/Info\" CFBundleShortVersionString)\nPUBLISH_URL=$(defaults read \"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME/Contents/Info\" SUFeedURL)\nDOWNLOAD_BASE_URL=\"http://velocitek.com/assets/files/downloads/vcc/vcc_mac\"\nRELEASENOTES_URL=\"http://velocitek.com/assets/files/downloads/release-notes.html#version-$MARKETING_VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME $MARKETING_VERSION($VERSION).dmg\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"Velocitool private key\"\nDISK_DIR=\"$TEMP_FILES_DIR/disk\"\n\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -rf \"$ARCHIVE_FILENAME\" \"$DISK_DIR\"\n\nmkdir -p \"$DISK_DIR\"\ncp -R \"$WRAPPER_NAME\" \"$DISK_DIR\"\n\nhdiutil create -srcfolder \"$DISK_DIR\" -volname \"$PROJECT_NAME\" \"$ARCHIVE_FILENAME\"\nhdiutil internet-enable -yes \"$ARCHIVE_FILENAME\"\nrm -rf \"$DISK_DIR\"\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\n\topenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n\t| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /\"(.+)\"/; s/\\\\012/\\n/g') \\\n\t| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\nmkdir -p ${PUBLISH_DMG}\ncat  > \"${PUBLISH_RSS}\" <<EOF\n<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<rss version=\"2.0\" xmlns:sparkle=\"http://www.andymatuschak.org/xml-namespaces/sparkle\"  xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n   <channel>\n      <title>Velocitool Changelog</title>\n      <link>${PUBLISH_URL}</link>\n      <description>Most recent changes with links to updates.</description>\n      <language>en</language>\n\t\t<item>\n\t\t\t<title>Version $VERSION</title>\n\t\t\t<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n\t\t\t<pubDate>$PUBDATE</pubDate>\n\t\t\t<enclosure\n\t\t\t\turl=\"$DOWNLOAD_URL\"\n\t\t\t\tsparkle:version=\"$VERSION\"\n\t\t\t\tsparkle:shortVersionString=\"$MARKETING_VERSION\"\n\t\t\t\ttype=\"application/octet-stream\"\n\t\t\t\tlength=\"$SIZE\"\n\t\t\t\tsparkle:dsaSignature=\"$SIGNATURE\"\n\t\t\t/>\n\t\t</item>\n   </channel>\n</rss>\nEOF\n\ncp -f \"${ARCHIVE_FILENAME}\" \"${PUBLISH_DMG}\"\n\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -707,6 +681,7 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 6;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -745,12 +720,14 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitool;
 				PRODUCT_NAME = Velocitool;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 				ZERO_LINK = YES;
@@ -760,6 +737,7 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 6;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -795,12 +773,14 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitool;
 				PRODUCT_NAME = Velocitool;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
 			};
@@ -809,25 +789,24 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ENABLE_TESTABILITY = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.5;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PREBINDING = NO;
-				SDKROOT = macosx10.5;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
@@ -876,7 +855,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = Tool;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -928,7 +907,7 @@
 				PREBINDING = YES;
 				PRODUCT_NAME = Tool;
 				RUN_CLANG_STATIC_ANALYZER = YES;
-				SDKROOT = macosx10.6;
+				SDKROOT = macosx;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				ZERO_LINK = NO;

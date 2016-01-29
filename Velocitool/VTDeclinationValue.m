@@ -26,18 +26,14 @@
 	
 }
 
-- (id)initWithNumericalValue:(NSNumber *)numVal
-{
-	if (![super init])
-		return nil;
-	
-	[self setNumericalValue:numVal];
-	
-	//Enable the declination slider by default
-	[self setHidden:NO];
-	
-	return self;	
-	
+- (id)initWithNumericalValue:(NSNumber *)numVal {
+  if ((self = [super init])) {
+    [self setNumericalValue:numVal];
+
+    // Enable the declination slider by default
+    [self setHidden:NO];
+  }
+  return self;
 }
 
 - (void)setSliderValue:(NSNumber *)newValue

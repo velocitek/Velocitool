@@ -19,14 +19,12 @@
 
 @implementation VTVccRootElement
 
-- (id)initRootElement
-{		
-	[super init];
-	
-	[self initWithKind:NSXMLElementKind];	
-	[self setName:@"VelocitekControlCenter"];
-	[self addAttributes];
-	return self;
+- (id)initRootElement {
+  if ((self = [super initWithKind:NSXMLElementKind])) {
+    [self setName:@"VelocitekControlCenter"];
+    [self addAttributes];
+  }
+  return self;
 }
 
 + (id)generateVccRootElement

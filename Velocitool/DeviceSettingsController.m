@@ -15,12 +15,15 @@
 
 @interface DeviceSettingsController (private)
 
-- (void)bindPopUpButtonAndLabelToMenu:(NSPopUpButton *)button labelText:(NSTextField *)label menuTobind:(VTDeviceSettingMenu *)menu;
+- (void)bindPopUpButtonAndLabelToMenu:(NSPopUpButton *)button
+                            labelText:(NSTextField *)label
+                           menuTobind:(VTDeviceSettingMenu *)menu;
 - (void)bindPopupButtonsAndLabelsToMenus;
 
-- (void)addMenuToDictionaryAndSetDefaultValue:(NSDictionary*)possibleValuesDictionary 
-								 defaultValue:(NSString*)defaultVal
-							menuDictionaryKey:(NSString*)dictKey;
+- (void)addMenuToDictionaryAndSetDefaultValue:
+            (NSDictionary *)possibleValuesDictionary
+                                 defaultValue:(NSString *)defaultVal
+                            menuDictionaryKey:(NSString *)dictKey;
 
 - (void)addOperatingModeMenuToMenuDictionary;
 
@@ -36,43 +39,40 @@
 
 @end
 
-
-
 @implementation DeviceSettingsController
 
 @synthesize declinationValue;
 @synthesize menus;
 
+- (instancetype)initWithDevice:(VTDevice *)deviceToUpdate {
+  if ((self = [super initWithWindowNibName:@"DeviceSettings"])) {
+    device = [deviceToUpdate retain];
 
-- (id)initWithDevice:(VTDevice*)deviceToUpdate
-{
-	if (![super initWithWindowNibName:@"DeviceSettings"])
-		return nil;
-	
-	device = deviceToUpdate;
-	
-	menus = [[NSMutableDictionary alloc] init];			
-	
-	[self addOperatingModeMenuToMenuDictionary];
-	
-	[self addRecordRateMenuToMenuDictionary];
-	[self addSpeedUnitOfMeasurementMenuToMenuDictionary];
-	[self addMaxSpeedModeMenuToMenuDictionary];
-	[self addSpeedDampingMenuToMenuDictionary];
-	[self addCompassDampingMenuToMenuDictionary];
-	[self addBarGraphMenuToMenuDictionary];
-			
-	[self updateMenusWithSettingsFromDevice];
-	
-	
-	
-	return self;
+    menus = [[NSMutableDictionary alloc] init];
+
+    [self addOperatingModeMenuToMenuDictionary];
+
+    [self addRecordRateMenuToMenuDictionary];
+    [self addSpeedUnitOfMeasurementMenuToMenuDictionary];
+    [self addMaxSpeedModeMenuToMenuDictionary];
+    [self addSpeedDampingMenuToMenuDictionary];
+    [self addCompassDampingMenuToMenuDictionary];
+    [self addBarGraphMenuToMenuDictionary];
+
+    [self updateMenusWithSettingsFromDevice];
+  }
+  return self;
+}
+
+- (void)dealloc {
+  [device release];
+  [declinationValue release];
+  [menus release];
+  [super dealloc];
 }
 
 - (void)windowDidLoad
 {
-	//NSLog(@"Device Settings Nib file is loaded");
-	
 	//Bind the device setting pop-up buttons to the array controllers in the
 	//different VTDeviceSettingMenu objects.	
 	[self bindPopupButtonsAndLabelsToMenus];
@@ -264,7 +264,7 @@
 - (void)updateMenusWithSettingsFromDevice
 {
 	//settingsFromDevice = result of call to device's deviceSettings method
-	settingsFromDevice = [device deviceSettings];
+	settingsFromDevice = [[device deviceSettings] retain];
 	
 	VTDeclinationValue *declinationFromDevice = [VTDeclinationValue declinationValueWithNumericalValue:[settingsFromDevice valueForKey:@"declination"]];
 	
@@ -285,7 +285,7 @@
 		}
 		else 
 		{
-			if (key != VTDeclinationPref) {
+			if (![key isEqual:VTDeclinationPref]) {
 			
 				//Send error message to terminal
 				//[NSException raise:@"VTError" 
@@ -304,7 +304,7 @@
 - (void) updateDeviceSettingsWithMenuSelections
 {
 	
-	settingsToSendDevice = [[NSMutableDictionary alloc] initWithDictionary:settingsFromDevice];
+		NSMutableDictionary *settingsToSendDevice = [[settingsFromDevice mutableCopy] autorelease];
 	
 	[settingsToSendDevice removeObjectForKey:@"declination"];	
 	[settingsToSendDevice setObject:[declinationValue numericalValue] forKey:@"declination"];
@@ -391,14 +391,14 @@
 
 - (void)chooseWhichMenusToEnable
 {
-	VTDeviceSettingMenu *operatingModeMenu = [menus objectForKey:VTPuckModePref];
+	VTDeviceSettingMenu *operatingModeMenu = [self.menus objectForKey:VTPuckModePref];
 	
-	VTDeviceSettingMenu *recordRateMenu = [menus objectForKey:VTRecordRatePref];
-	VTDeviceSettingMenu *speedUnitMenu = [menus objectForKey:VTSpeedUnitPref];
-	VTDeviceSettingMenu *maxSpeedMenu = [menus objectForKey:VTMaxSpeedPref];
-	VTDeviceSettingMenu *speedDampingMenu = [menus objectForKey:VTSpeedDampingPref];
-	VTDeviceSettingMenu *compassDampingMenu = [menus objectForKey:VTHeadingDampingPref];
-	VTDeviceSettingMenu *barGraphMenu = [menus objectForKey:VTBarGraphPref];
+	VTDeviceSettingMenu *recordRateMenu = [self.menus objectForKey:VTRecordRatePref];
+	VTDeviceSettingMenu *speedUnitMenu = [self.menus objectForKey:VTSpeedUnitPref];
+	VTDeviceSettingMenu *maxSpeedMenu = [self.menus objectForKey:VTMaxSpeedPref];
+	VTDeviceSettingMenu *speedDampingMenu = [self.menus objectForKey:VTSpeedDampingPref];
+	VTDeviceSettingMenu *compassDampingMenu = [self.menus objectForKey:VTHeadingDampingPref];
+	VTDeviceSettingMenu *barGraphMenu = [self.menus objectForKey:VTBarGraphPref];
 	
 	VTDeclinationValue *declination = [self declinationValue];
 	
@@ -471,14 +471,14 @@
 
 - (void)chooseWhichMenusToEnable
 {
-	VTDeviceSettingMenu *operatingModeMenu = [menus objectForKey:VTPuckModePref];
+	VTDeviceSettingMenu *operatingModeMenu = [self.menus objectForKey:VTPuckModePref];
 	
-	VTDeviceSettingMenu *recordRateMenu = [menus objectForKey:VTRecordRatePref];
-	VTDeviceSettingMenu *speedUnitMenu = [menus objectForKey:VTSpeedUnitPref];
-	VTDeviceSettingMenu *maxSpeedMenu = [menus objectForKey:VTMaxSpeedPref];
-	VTDeviceSettingMenu *speedDampingMenu = [menus objectForKey:VTSpeedDampingPref];
-	VTDeviceSettingMenu *compassDampingMenu = [menus objectForKey:VTHeadingDampingPref];
-	VTDeviceSettingMenu *barGraphMenu = [menus objectForKey:VTBarGraphPref];
+	VTDeviceSettingMenu *recordRateMenu = [self.menus objectForKey:VTRecordRatePref];
+	VTDeviceSettingMenu *speedUnitMenu = [self.menus objectForKey:VTSpeedUnitPref];
+	VTDeviceSettingMenu *maxSpeedMenu = [self.menus objectForKey:VTMaxSpeedPref];
+	VTDeviceSettingMenu *speedDampingMenu = [self.menus objectForKey:VTSpeedDampingPref];
+	VTDeviceSettingMenu *compassDampingMenu = [self.menus objectForKey:VTHeadingDampingPref];
+	VTDeviceSettingMenu *barGraphMenu = [self.menus objectForKey:VTBarGraphPref];
 	
 	VTDeclinationValue *declination = [self declinationValue];
 	

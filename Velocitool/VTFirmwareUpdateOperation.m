@@ -15,21 +15,15 @@
 @synthesize done;
 @synthesize success;
 
-- (id)initWithDevice:(VTDevice*)deviceToUpdate
-{
-	
-	if (![super init]) return nil;
-	
-	device = [deviceToUpdate retain];
-	
-	[self setDone: NO];
-	[self setSuccess: NO];
-	
-	return self;
-	
-}
+- (id)initWithDevice:(VTDevice*)deviceToUpdate {
+  if ((self = [super init])) {
+    device = [deviceToUpdate retain];
 
- 
+    [self setDone:NO];
+    [self setSuccess:NO];
+  }
+  return self;
+}
 
 - (void)main 
 {

@@ -38,9 +38,9 @@
 	    
 }
 
-@property (readwrite) unsigned int currentState;
-@property (readonly) TrackLogViewController *trackLogViewController;	
-@property (readonly) TrackFileViewController *trackFileViewController;
+@property (nonatomic, readwrite) unsigned int currentState;
+@property (nonatomic, readonly) TrackLogViewController *trackLogViewController;	
+@property (nonatomic, readonly) TrackFileViewController *trackFileViewController;
 
 
 - (IBAction)switchViews:(id)sender;

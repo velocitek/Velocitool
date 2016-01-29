@@ -37,25 +37,23 @@
 	    
 }
 
+- (id)initWithVccDateString:(NSString *)vccDateString {
+  if ((self = [super init])) {
+    // convert the vcc date string to international format
+    NSString *internationalString =
+        [self convertVccDateStringToInternationalFormat:vccDateString];
 
-- (id)initWithVccDateString:(NSString*) vccDateString
-{
-	[super init];
-	
-	//convert the vcc date string to international format
-	NSString *internationalString = 
-	[self convertVccDateStringToInternationalFormat:vccDateString];
-	
-	date = [NSDate dateWithString:internationalString];
-		
-	return self;
+    date = [NSDate dateWithString:internationalString];
+  }
+  return self;
 }
 
-- (id)initWithDate:(NSDate*) dateTime;
+- (id)initWithDate:(NSDate *)dateTime;
 {
-	[super init];
-	date = dateTime;
-	return self;
+  if ((self = [super init])) {
+    date = dateTime;
+  }
+  return self;
 }
 
 + (NSString*)vccNow

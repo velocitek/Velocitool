@@ -130,13 +130,11 @@
 
 - (id)initWithFilePath:(NSString *)filePath
 {
-	if (![super init])
-		return nil;
-	
-	rawFirmwareString = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:NULL];
-	
-	[self createFirmwareDataArray];
-	
+  if ((self = [super init])) {
+    rawFirmwareString = [NSString stringWithContentsOfFile:filePath encoding:NSASCIIStringEncoding error:NULL];
+    
+    [self createFirmwareDataArray];
+  }
 	return self;
 	
 }

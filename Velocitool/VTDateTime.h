@@ -22,8 +22,8 @@
 	
 }
 
-@property(readwrite, retain) NSDate *date;
-@property(readwrite, retain) NSData *picDateRepresentation;
+@property (nonatomic, readwrite, retain) NSDate *date;
+@property (nonatomic, readwrite, retain) NSData *picDateRepresentation;
 
 + (id)vtDateWithPicBytes:(NSData *)bytes;
 + (id)vtDateWithDate:(NSDate *)bytes;

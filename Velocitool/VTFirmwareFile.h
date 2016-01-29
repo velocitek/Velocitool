@@ -19,7 +19,7 @@
 	
 }
 
-@property(readonly) NSMutableArray *firmwareData;
+@property (nonatomic, readonly) NSMutableArray *firmwareData;
 
 + (id)vtFirmwareFileWithFilePath:(NSString *)filePath;
 

@@ -36,24 +36,21 @@ Methods (private):
 	
 }
 
-- initWithTrackpointArray:(NSMutableArray *)trackpointArray whichBoundary:(BOOL)minMax whichCoord:(BOOL)latLong
-{
-	minOrMax = minMax;
-	latOrLong = latLong;
-	trackpoints = [trackpointArray retain];
-	
-	//initialize a new element
-	[super init];		
-	[self initWithKind:NSXMLElementKind];
-	
-	//set the element name
-	[self setElementName];
-		
-	//set the element value
-	[self setElementValue];
-			
-	return self;
+- initWithTrackpointArray:(NSMutableArray *)trackpointArray
+            whichBoundary:(BOOL)minMax
+               whichCoord:(BOOL)latLong {
+  if ((self = [super initWithKind:NSXMLElementKind])) {
+    minOrMax = minMax;
+    latOrLong = latLong;
+    trackpoints = [trackpointArray retain];
 
+    // set the element name
+    [self setElementName];
+
+    // set the element value
+    [self setElementValue];
+  }
+  return self;
 }
 
 -(void)setElementValue
@@ -122,20 +119,20 @@ Methods (private):
 	
 	if(minOrMax == MINIMUM)
 	{		
-		firstPartOfName = [NSString stringWithString:@"Min"];
+		firstPartOfName = @"Min";
 	}		
 	else
 	{		
-		firstPartOfName = [NSString stringWithString:@"Max"];
+		firstPartOfName = @"Max";
 	}
 			
     if(latOrLong == LATITUDE)
 	{
-		secondPartOfName = [NSString stringWithString:@"Latitude"];
+		secondPartOfName = @"Latitude";
 	}		
 	else
 	{		
-		secondPartOfName = [NSString stringWithString:@"Longitude"];
+		secondPartOfName = @"Longitude";
 	}					
 	
 	//elementName = concatenation of firstPartOfName and secondPartOfName	

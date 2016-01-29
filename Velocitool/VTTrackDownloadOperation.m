@@ -24,19 +24,17 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
 
 @implementation VTTrackDownloadOperation
 
-- (id)initWithTrackObject:(VTTrackFromDevice*)track;
+- (id)initWithTrackObject:(VTTrackFromDevice *)track;
 {
-    if (![super init]) return nil;
-    
-	trackpoints = [[NSMutableArray alloc] init];
-	
-	trackFromDevice = track;
-	device = [track device];
-	selectedTrackLogs = [track selectedTrackLogs];
-			
-    return self;
-}
+  if ((self = [super init])) {
+    trackpoints = [[NSMutableArray alloc] init];
 
+    trackFromDevice = track;
+    device = [track device];
+    selectedTrackLogs = [track selectedTrackLogs];
+  }
+  return self;
+}
 
 - (void)main {
     

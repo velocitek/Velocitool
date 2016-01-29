@@ -1,5 +1,6 @@
 #define MAX_NUM_CHARS_IN_FIRMWARE_FILE 200000
 
+#define ALL_DEVICES
 //#define LOAD_DEVICE
 //#define TRACKPOINT_SAVE
 //#define FIRMWARE_UPDATE
@@ -12,7 +13,7 @@
 //#define DEVICE_SETTINGS
 //#define XSLT_TEST
 //#define DATE_TEST
-#define LAUNCH_GPSAR_TEST
+//#define LAUNCH_GPSAR_TEST
 
 #import <Cocoa/Cocoa.h>
 
@@ -70,8 +71,20 @@ int main (int argc, const char * argv[]) {
 	
 
 	
-	
-	
+#ifdef ALL_DEVICES
+  VTDeviceLoader *loader = [VTDeviceLoader loader];
+
+  for (VTDevice *device in [loader devices]) {
+
+    NSLog(@"%@ (%@ v.%@)\n%@",
+          [device model],
+          [device serial],
+          [device firmwareVersion],
+          [device deviceSettings]
+          );
+  }
+#endif
+
 #ifdef LOAD_DEVICE
 	VTDevice *testDevice;
 	
@@ -165,7 +178,7 @@ void testGpsarLaunch()
 						  nil
 						  ];
 	
-	NSURL *javaUrl = [NSURL URLWithString:@"/usr/bin/java"];
+	NSURL *javaUrl = [NSURL fileURLWithPath:@"/usr/bin/java"];
 	
 	NSDictionary *configuration = [NSDictionary dictionaryWithObjectsAndKeys:
 								   arguments, NSWorkspaceLaunchConfigurationArguments, nil];
@@ -218,7 +231,7 @@ void testXslt()
 	
 	
 	
-	NSXMLDocument *vccDoc = [[NSXMLDocument alloc] initWithContentsOfURL:vccFileLocation options:0 error:NULL];
+	NSXMLDocument *vccDoc = [[[NSXMLDocument alloc] initWithContentsOfURL:vccFileLocation options:0 error:NULL] autorelease];
 	
 	//NSData *kmlTransformation= [NSData dataWithContentsOfURL:xsltFileLocation];
 	NSData *gpxTransformation= [NSData dataWithContentsOfURL:gpxXsltFileLocation];
@@ -242,7 +255,7 @@ void testXslt()
 	
 	
 	//NSFileWrapper *kmlFileWrapper = [[NSFileWrapper alloc] initRegularFileWithContents:kmlData];
-	NSFileWrapper *gpxFileWrapper = [[NSFileWrapper alloc] initRegularFileWithContents:gpxData];
+	NSFileWrapper *gpxFileWrapper = [[[NSFileWrapper alloc] initRegularFileWithContents:gpxData] autorelease];
 	
 	
 	
@@ -264,9 +277,9 @@ void testXslt()
 void testFirmwareUpdate(VTDevice *device)
 {
 
-	NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+	NSOperationQueue *queue = [[[NSOperationQueue alloc] init] autorelease];
 	
-	VTFirmwareUpdateOperation *firmwareUpdateOperation = [[VTFirmwareUpdateOperation alloc] initWithDevice:device];
+	VTFirmwareUpdateOperation *firmwareUpdateOperation = [[[VTFirmwareUpdateOperation alloc] initWithDevice:device] autorelease];
 	
 	while([firmwareUpdateOperation success] != YES)
 	{
@@ -289,7 +302,7 @@ void testFirmwareUpdate(VTDevice *device)
 
 void testDeviceSettings(VTDevice *device)
 {
-	NSLog(@"Starting Device Settings Test",[device description]);
+	NSLog(@"Starting Device Settings Test %@",[device description]);
 	
 	NSDictionary *deviceSettings = [device deviceSettings];
 	
@@ -311,7 +324,7 @@ void testDeviceSettings(VTDevice *device)
 
 void testProgressTracker()
 {
-	VTProgressTracker* progressTracker = [[VTProgressTracker alloc] init];
+	VTProgressTracker* progressTracker = [[[VTProgressTracker alloc] init] autorelease];
 	
 	[progressTracker setCurrentProgress:0];
 	[progressTracker setGoal:500];

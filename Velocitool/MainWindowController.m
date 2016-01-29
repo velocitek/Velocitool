@@ -61,18 +61,18 @@
 -(id)init
 {
 	
-	if(![super initWithWindowNibName:@"MainWindow"])
-		return nil;
-	
-	[self registerForNotifications];
-	
-	trackLogViewController = [[TrackLogViewController alloc] init];			
-	trackFileViewController = [[TrackFileViewController alloc] init];
-	
-	[self showWindow:nil];
-		
-	[self setCurrentState:READY];
-	[self runStateMachine:EV_ENTRY];
+	if((self = [super initWithWindowNibName:@"MainWindow"])) {
+
+    [self registerForNotifications];
+    
+    trackLogViewController = [[TrackLogViewController alloc] init];			
+    trackFileViewController = [[TrackFileViewController alloc] init];
+    
+    [self showWindow:nil];
+      
+    [self setCurrentState:READY];
+    [self runStateMachine:EV_ENTRY];
+  }
 		
 	return self;
 }
@@ -391,7 +391,7 @@
 	
 	//NSLog(@"Main window controller received notification: %@", [note name]);
 	
-	int result;
+	NSInteger result;
     NSArray *fileTypes = [NSArray arrayWithObject:@"vcc"];
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
 	

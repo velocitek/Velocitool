@@ -18,18 +18,18 @@
 	VTDevice *device;
 	NSMutableArray *selectedTrackLogs;
 	NSMutableArray *trackpoints;
-	int numTrackpoints;
+	NSUInteger numTrackpoints;
 	VTCapturedTrackElement *capturedTrackXMLElement;
 		
 	NSOperationQueue *queue;
 
 }
 
-@property(readonly) VTDevice *device;
-@property(readonly) NSMutableArray *selectedTrackLogs;
-@property(readwrite, retain) NSMutableArray *trackpoints;
-@property(readwrite) int numTrackpoints;
-@property(readwrite, retain) VTCapturedTrackElement *capturedTrackXMLElement;
+@property (nonatomic, readonly) VTDevice *device;
+@property (nonatomic, readonly) NSMutableArray *selectedTrackLogs;
+@property (nonatomic, readwrite, retain) NSMutableArray *trackpoints;
+@property (nonatomic, readwrite) NSUInteger numTrackpoints;
+@property (nonatomic, readwrite, retain) VTCapturedTrackElement *capturedTrackXMLElement;
 
 - (id)initWithDeviceAndTrackLogs:(VTDevice *)device trackLogs:(NSMutableArray *)trackLogs;
 

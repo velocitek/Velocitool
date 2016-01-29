@@ -34,25 +34,25 @@
 	
 }
 
+- (id)initWithPossibleValues:(NSDictionary *)possibleVals {
+  if ((self = [super init])) {
+    // Allocate possible values content array
+    possibleValuesContentArray = [[NSMutableArray alloc] init];
 
-- (id)initWithPossibleValues:(NSDictionary*)possibleVals
-{
-	
-	
-    //Allocate possible values content array
-	possibleValuesContentArray = [[NSMutableArray alloc] init];
-	
-	possibleValuesArrayController = [[NSArrayController alloc] initWithContent:nil];
-	
-	[possibleValuesArrayController bind:@"contentArray" toObject:self withKeyPath:@"possibleValuesContentArray" options:nil];
-	
-	[self createMenuOptionsFromPossibleValuesDictionary:possibleVals];
-	
-	//Enable the menu by default
-	[self setHidden:NO];
-    
-	return self;
-	
+    possibleValuesArrayController =
+        [[NSArrayController alloc] initWithContent:nil];
+
+    [possibleValuesArrayController bind:@"contentArray"
+                               toObject:self
+                            withKeyPath:@"possibleValuesContentArray"
+                                options:nil];
+
+    [self createMenuOptionsFromPossibleValuesDictionary:possibleVals];
+
+    // Enable the menu by default
+    [self setHidden:NO];
+  }
+  return self;
 }
 
 - (VTDeviceSettingValue *)selectedDeviceSetting

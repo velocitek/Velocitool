@@ -17,10 +17,10 @@
 	float goal;
 
 }
-@property (readwrite, retain) NSString *progressPercentageToDisplay;
-@property (readwrite) float progressPercentage;
-@property (readwrite) float currentProgress;
-@property (readwrite) float goal;
+@property (nonatomic, readwrite, retain) NSString *progressPercentageToDisplay;
+@property (nonatomic, readwrite) float progressPercentage;
+@property (nonatomic, readwrite) float currentProgress;
+@property (nonatomic, readwrite) float goal;
 
 - (void)incrementProgress;
 
