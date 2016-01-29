@@ -1,32 +1,14 @@
-//
-//  VTDateTime.h
-//  Velocitool
-//
-//  Created by Alec Stewart on 3/25/10.
-//  Copyright 2010 Velocitek. All rights reserved.
-//
-
-#define NUM_BYTES_IN_PIC_DATETIME 7
-
 #import <Cocoa/Cocoa.h>
-@class NSDate;
 
-@interface VTDateTime : NSObject {
-	
-	NSDate *date;
-	NSData *picDateRepresentation;
-	
-	NSDateFormatter *dateFormatter;
-	NSTimeZone *utcTime;
-	NSLocale *usLocale;
-	
-}
+@interface VTDateTime : NSObject
 
-@property (nonatomic, readwrite, retain) NSDate *date;
-@property (nonatomic, readwrite, retain) NSData *picDateRepresentation;
+@property (nonatomic, readonly) NSDate *date;
+@property (nonatomic, readonly) NSData *picDateRepresentation;
+
+// Length, in bytes, of the microcontroller format.
++ (unsigned int)picRepresentationSize;
 
 + (id)vtDateWithPicBytes:(NSData *)bytes;
 + (id)vtDateWithDate:(NSDate *)bytes;
-
 
 @end

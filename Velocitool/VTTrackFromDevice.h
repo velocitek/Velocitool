@@ -1,14 +1,3 @@
-//
-//  VTTrackFromDevice.h
-//  Velocitool
-//
-//  Created by Alec Stewart on 5/27/10.
-//  Copyright 2010 Velocitek. All rights reserved.
-//
-
-
-
-
 #import <Cocoa/Cocoa.h>
 @class VTDevice;
 @class VTCapturedTrackElement;

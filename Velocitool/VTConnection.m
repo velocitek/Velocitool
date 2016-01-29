@@ -299,15 +299,14 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 
 - (NSDate *)readDate {
   VTDateTime *dateToConvert = [VTDateTime
-      vtDateWithPicBytes:[self readLength:NUM_BYTES_IN_PIC_DATETIME]];
+      vtDateWithPicBytes:[self readLength:[VTDateTime picRepresentationSize]]];
   return [dateToConvert date];
 }
 
 - (float)readFloat {
   VTFloat *floatToConvert =
-      [VTFloat vtFloatWithPicBytes:[self readLength:NUM_BYTES_IN_PIC_FLOAT]];
-  float result = [floatToConvert floatingPointNumber];
-  return result;
+      [VTFloat vtFloatWithPicBytes:[self readLength:[VTFloat picRepresentationSize]]];
+  return [floatToConvert floatingPointNumber];
 }
 
 - (NSData *)readLength:(unsigned int)length {
