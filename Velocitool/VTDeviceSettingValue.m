@@ -21,17 +21,18 @@
 		return nil;
 	
 	[self setDisplayValue:dispVal];
+	[self setNumericalValue:numVal];
 	
-    [self setNumericalValue:numVal];
 	
-    return self;
+	
+	return self;
+	
 }
 
 + (id)deviceSettingValueWithDisplayAndNumericalValues:(NSString *)dispVal numericalValue:(NSNumber *)numVal;
 {
 	VTDeviceSettingValue *deviceSettingValue = [[self alloc] initWithDisplayAndNumericalValues:dispVal numericalValue:numVal];
-
-    [deviceSettingValue autorelease];
+	[deviceSettingValue autorelease];
 	
 	return deviceSettingValue;
 }
@@ -44,10 +45,9 @@
 - (void)dealloc
 {
 	[numericalValue release];
+	[displayValue release];
+	[super dealloc];
 	
-    [displayValue release];
-	
-    [super dealloc];
 }
 
 

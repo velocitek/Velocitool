@@ -64,9 +64,13 @@ NSString* createXMLDateString(NSDate *date);
 NSString* removeGMTFromDateString(NSString *dateString);
 
 
-int main (int argc, const char * argv[])
-{
+int main (int argc, const char * argv[]) {
+    
 	NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
+	
+
+	
+	
 	
 #ifdef LOAD_DEVICE
 	VTDevice *testDevice;
@@ -152,13 +156,26 @@ int main (int argc, const char * argv[])
 
 void testGpsarLaunch()
 {
-	NSArray *arguments = [NSArray arrayWithObjects:@"-jar", @"/Users/alec/Desktop/distributionGPSAR/gpsar.jar", @"/Users/alec/Dropbox/Code/Test VCC File Output/around_the_block_gpx.gpx", nil];
+	
+	
+
+	NSArray *arguments = [NSArray arrayWithObjects:@"-jar", 
+						  @"/Users/alec/Desktop/distributionGPSAR/gpsar.jar", 
+						  @"/Users/alec/Dropbox/Code/Test VCC File Output/around_the_block_gpx.gpx",
+						  nil
+						  ];
 	
 	NSURL *javaUrl = [NSURL URLWithString:@"/usr/bin/java"];
 	
-	NSDictionary *configuration = [NSDictionary dictionaryWithObjectsAndKeys:arguments, NSWorkspaceLaunchConfigurationArguments, nil];
+	NSDictionary *configuration = [NSDictionary dictionaryWithObjectsAndKeys:
+								   arguments, NSWorkspaceLaunchConfigurationArguments, nil];
 	
-	[[NSWorkspace sharedWorkspace] launchApplicationAtURL:javaUrl options:NSWorkspaceLaunchDefault configuration:configuration error:NULL];
+	[[NSWorkspace sharedWorkspace] launchApplicationAtURL:javaUrl
+												  options:NSWorkspaceLaunchDefault 
+											configuration:configuration 
+													error:NULL];
+	
+	
 }
 
 void testDate()
@@ -178,10 +195,14 @@ void testDate()
 	VTXmlDate *xmlNow = [VTXmlDate xmlDateWithVccDateString:@"2010-07-20T20:52:42-07:00"];
 	
 
+	
 	NSString *nowInVccGmtFormat = [xmlNow vccGmtDateString];
 	
-	NSLog(@"current date time in vcc gmt format is: %@", nowInVccGmtFormat);
+	NSLog(@"current date time in vcc gmt format is: %@",nowInVccGmtFormat);
+	
+	
 }
+
 
 void testXslt()
 {
@@ -206,16 +227,24 @@ void testXslt()
 	
 	//NSXMLDocument *kmlDocument = [vccDoc objectByApplyingXSLT:kmlTransformation arguments:nil error:NULL];
 	NSXMLDocument *gpxDocument = [vccDoc objectByApplyingXSLT:gpxTransformation arguments:nil error:NULL];
-
+	
+	
 	
 	NSLog(@"%@",gpxDocument);
+	
+	
 	
 	
 	//NSData *kmlData = [kmlDocument XMLDataWithOptions:NSXMLNodePrettyPrint];
 	NSData *gpxData = [gpxDocument XMLDataWithOptions:NSXMLNodePrettyPrint];
 	
+	
+	
+	
 	//NSFileWrapper *kmlFileWrapper = [[NSFileWrapper alloc] initRegularFileWithContents:kmlData];
 	NSFileWrapper *gpxFileWrapper = [[NSFileWrapper alloc] initRegularFileWithContents:gpxData];
+	
+	
 	
 	
 	/*[kmlFileWrapper writeToURL:kmlFileLocation
@@ -224,17 +253,24 @@ void testXslt()
 						  error:NULL];
 	 */
 	
-	[gpxFileWrapper writeToURL:gpxFileLocation options:NSFileWrapperWritingWithNameUpdating originalContentsURL:nil error:NULL];
+	
+	[gpxFileWrapper writeToURL:gpxFileLocation
+					   options:NSFileWrapperWritingWithNameUpdating 
+		   originalContentsURL:nil 
+						 error:NULL];
+	 		
 }
 
 void testFirmwareUpdate(VTDevice *device)
 {
+
 	NSOperationQueue *queue = [[NSOperationQueue alloc] init];
 	
 	VTFirmwareUpdateOperation *firmwareUpdateOperation = [[VTFirmwareUpdateOperation alloc] initWithDevice:device];
 	
 	while([firmwareUpdateOperation success] != YES)
 	{
+		
 		[firmwareUpdateOperation setDone:NO];
 		
 		[queue addOperation:firmwareUpdateOperation];		
@@ -243,8 +279,12 @@ void testFirmwareUpdate(VTDevice *device)
 		{
 			
 		}
+	
 	}
+		
 	[firmwareUpdateOperation release];
+			
+	
 }
 
 void testDeviceSettings(VTDevice *device)
@@ -259,13 +299,14 @@ void testDeviceSettings(VTDevice *device)
 	
 	[mutableSettings setObject:[NSNumber numberWithInt:129] forKey:VTDeclinationPref];
 	
-	NSLog(@"mutableSettings: %@", [mutableSettings description]);
+	NSLog(@"mutableSettings: %@",[mutableSettings description]);
 	
 	[device setDeviceSettings:(NSDictionary *)mutableSettings]; 
 	
 	NSDictionary *newDeviceSettings = [device deviceSettings];
 	
-	NSLog(@"%@", [newDeviceSettings description]);
+	
+	NSLog(@"%@",[newDeviceSettings description]);
 }
 
 void testProgressTracker()
@@ -273,54 +314,46 @@ void testProgressTracker()
 	VTProgressTracker* progressTracker = [[VTProgressTracker alloc] init];
 	
 	[progressTracker setCurrentProgress:0];
-
-    [progressTracker setGoal:500];
+	[progressTracker setGoal:500];
 	
 	int i;
-	
-    for (i = 0; i < 500; i++)
+	for(i = 0; i < 500; i++)
 	{
 		[progressTracker incrementProgress];
-		
-        NSLog(@"%@", [progressTracker progressPercentageToDisplay]);
+		NSLog(@"%@",[progressTracker progressPercentageToDisplay]);
 	}
+		
 }
+
 
 void testTrackpointSave(VTDevice* device)
 {
+	
 	VTTrackpointRecord *testTrackpoint = [[VTTrackpointRecord alloc] init];
 	
 	NSDate *timeStamp = [NSDate dateWithString:@"2010-04-27 17:30:50 -1000"];
 
 	[testTrackpoint set_timestamp:timeStamp];
-
-    [testTrackpoint set_latitude:20.917650];
-	
-    [testTrackpoint set_longitude:-156.1234567890123456];
-	
-    [testTrackpoint set_speed: 2.5];
-	
-    [testTrackpoint set_heading:180.0];
+	[testTrackpoint set_latitude:20.917650];
+	[testTrackpoint set_longitude:-156.1234567890123456];
+	[testTrackpoint set_speed: 2.5];
+	[testTrackpoint set_heading:180.0];
 	
 	VTTrackpointRecord *testTrackpoint2 = [[VTTrackpointRecord alloc] init];
 	
 	NSDate *timeStamp2 = [NSDate dateWithString:@"2010-04-27 17:30:52 -1000"];
 	
 	[testTrackpoint2 set_timestamp:timeStamp2];
+	[testTrackpoint2 set_latitude:20.1234];
+	[testTrackpoint2 set_longitude:-156.54321];
+	[testTrackpoint2 set_speed: 2.8];
+	[testTrackpoint2 set_heading:175.0];
 	
-    [testTrackpoint2 set_latitude:20.1234];
-	
-    [testTrackpoint2 set_longitude:-156.54321];
-	
-    [testTrackpoint2 set_speed: 2.8];
-	
-    [testTrackpoint2 set_heading:175.0];
 	
 	NSMutableArray *trackpoints = [[NSMutableArray alloc] init];
 	
 	[trackpoints addObject:testTrackpoint];
-
-    [trackpoints addObject:testTrackpoint2];
+	[trackpoints addObject:testTrackpoint2];
 	
 		
 	VTCapturedTrackElement *capturedTrackElement = [VTCapturedTrackElement capturedTrackElementWithTrackPointsAndDevice:trackpoints device:device];
@@ -330,12 +363,15 @@ void testTrackpointSave(VTDevice* device)
 	//[rootElement addChild:capturedTrackElement];
 	
 	//capturedTrackElementWithTrackPointsAndDevice:trackpoints device:device];
-				
+	
+		
+			
 	//VTVccXmlDoc *xmlDoc = [[NSXMLDocument alloc] initWithRootElement:rootElement];
 	
 	VTVccXmlDoc *xmlDoc = [VTVccXmlDoc vccXmlDocWithCapturedTrack:capturedTrackElement];
 	
 	[xmlDoc saveAsVccFile];
+			
 }
 
 
@@ -347,7 +383,8 @@ void testFirmwareFileRead(NSString *filePath)
 	VTFirmwareFile *firmwareFile = [VTFirmwareFile vtFirmwareFileWithFilePath:filePath];
 	
 	NSLog(@"%@", [[firmwareFile firmwareData] description] );
-
+ 
+	
 }
 
 
@@ -432,6 +469,7 @@ void testVTFloatClass(void)
 
 void testVTDateTimeClass(void)
 {
+	
 	NSDate *now = [NSDate date];
 	
 	VTDateTime *velocitekDate = [VTDateTime vtDateWithDate:now];		
@@ -449,33 +487,39 @@ void testVTDateTimeClass(void)
 	[velocitekDate setDate:[dateFromPicData date]];
 	
 	NSLog(@"Velocitek Date is now: %@", velocitekDate);
+	
 }
+
 
 void testSerialNumberRead(VTDevice *testDevice)
 {
+	
 	NSLog(@"\n-------------------------------------------\nBeginning Serial Number Reading Test\n");
 	
 	NSString *testDeviceSerialNumber;
 	
 	testDeviceSerialNumber = [testDevice serial];
-	
-    NSLog(@"Test Unit Serial Number is: %@",testDeviceSerialNumber);
+	NSLog(@"Test Unit Serial Number is: %@",testDeviceSerialNumber);
 	
 	NSLog(@"Finished Serial Number Reading Test\n-------------------------------------------\n");
+	
 }
 
 void testFirmwareVersionRead(VTDevice *testDevice)
 {
+	
 	NSLog(@"\n-------------------------------------------\nBeginning Firmware Version Reading Test\n");
 	
 	NSString *testDeviceFirmwareVersion;
 	
 	testDeviceFirmwareVersion = [testDevice firmwareVersion];	
-	
-    NSLog(@"Test Unit Firmware Version is: %@",testDeviceFirmwareVersion);
+	NSLog(@"Test Unit Firmware Version is: %@",testDeviceFirmwareVersion);
 	
 	NSLog(@"Finished Firmware Version Reading Test\n-------------------------------------------\n");
+	
 }
+
+
 
 void testTrackpointLogRead(VTDevice *testDevice)
 {
@@ -485,12 +529,19 @@ void testTrackpointLogRead(VTDevice *testDevice)
 	
 	for (VTTrackpointLogRecord *trackpointLog in [testDevice trackpointLogs])
 	{
+				
 		NSLog(@"\n\nTrackpoint Log Number %d:\n%@\n", i, [trackpointLog description]);
-
-        i++;
+		i++;
+		
 	}
+	
 	NSLog(@"Finished Trackpoint Log Reading Test\n-------------------------------------------\n");
+
 }
+
+
+
+
 
 
 /*

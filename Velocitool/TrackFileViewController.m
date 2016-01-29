@@ -174,15 +174,17 @@
 
 - (void)handleFileExportKMLSelected:(NSNotification*)note
 {
+	
 	//NSLog(@"Received notification: %@", [note name]);	
 	[currentFile saveAsKml];
+	
 }
 
 
 - (void)handleSetupUpdateDeviceFirmwareSelected:(NSNotification*)note
 {
 	
-	//NSLog(@"Received notification: %@", [note name]);
+	//NSLog(@"Received notification: %@", [note name]);	
 	
 }
 
@@ -201,7 +203,9 @@
 
 - (void)initializeCurrentFileFromTrack
 {		
-	[self setCurrentFile:[VTVccFile vccFileWithTrackFromDevice:trackFromDevice]];
+		
+	[self setCurrentFile:[VTVccFile vccFileWithTrackFromDevice:trackFromDevice]];	
+	
 }
 
 - (void)initializeCurrentFileFromURL:(NSURL*)url

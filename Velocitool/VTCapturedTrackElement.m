@@ -31,10 +31,10 @@
 + (id)capturedTrackElementWithTrackPointsAndDevice:(NSMutableArray *)trackpointArray device:(VTDevice *)sourceDevice
 {
 	VTCapturedTrackElement *capturedTrackElement = [[self alloc] initWithTrackpointsAndDevice:trackpointArray device:sourceDevice];
-
-    [capturedTrackElement autorelease];
+	[capturedTrackElement autorelease];
+	return capturedTrackElement;
 	
-    return capturedTrackElement;
+	
 }
 
 - (id)initWithTrackpointsAndDevice:(NSMutableArray *)trackpointArray device:(VTDevice *)sourceDevice
@@ -42,22 +42,20 @@
 	[super init];
 	
 	[self setTrackpoints:trackpointArray];
-	
-    [self setDevice:sourceDevice];
+	[self setDevice:sourceDevice];
 	
 	[self initWithKind:NSXMLElementKind];
-
-    [self setName:@"CapturedTrack"];
+	[self setName:@"CapturedTrack"];
 	
 	[self addAttributes];
-	
-    [self addChildren];
+	[self addChildren];
 			
 	return self;
 }
 
 - (void)addChildren
 {
+	
 	//use boundaryElement class to create a MinLatitude element	    
     //add the MinLatitude element to self as a child node
 	[self addChild:[VTBoundaryElement boundaryElementWithTrackPointArray:trackpoints whichBoundary:MINIMUM whichCoord:LATITUDE]];
@@ -77,6 +75,7 @@
 	
 	//Trackpoints
 	[self addChild:[VTTrackpointsElement trackpointsElementWithTrackpointsArray:trackpoints]];
+	
 }
 
 - (void)addAttributes
@@ -101,6 +100,7 @@
 	//get the timestamp from the trackpoint
 	NSDate *trackStartTime = [firstTrackpoint _timestamp];
 	
+    
 	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];	
 	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
 	
@@ -108,7 +108,6 @@
 	[dateFormatter setDateFormat:@"MMMdd_yyyy_hmma"];
 	
 	[self setDefaultTrackName:[dateFormatter stringFromDate:trackStartTime]];
+	
 }
-
-
 @end

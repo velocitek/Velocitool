@@ -10,23 +10,22 @@
 @class VTDeviceSettingValue;
 
 
-@interface VTDeviceSettingMenu : NSObject
-{
+@interface VTDeviceSettingMenu : NSObject {
+		
 	int indexOfDefaultValue;
 	
 	NSArrayController *possibleValuesArrayController;
-
-    NSMutableArray *possibleValuesContentArray;
+	NSMutableArray *possibleValuesContentArray;
 	
 	VTDeviceSettingValue *defaultValue;
 	
 	VTDeviceSettingValue *selectedDeviceSetting;
 	
 	BOOL hidden;
+
 }
 
 @property (readwrite, retain) NSArrayController *possibleValuesArrayController;
-
 @property (readwrite, retain) NSMutableArray *possibleValuesContentArray;
 
 @property (readwrite, retain) VTDeviceSettingValue *selectedDeviceSetting;

@@ -11,26 +11,28 @@
 
 @implementation VTDeviceInfoElement
 
-+ deviceInfoElementWithDevice:(VTDevice *) device
++deviceInfoElementWithDevice:(VTDevice *) device
 {
 	VTDeviceInfoElement *deviceInfoElement = [[self alloc] initWithDevice:device];
-
-    [deviceInfoElement autorelease];
+	[deviceInfoElement autorelease];
+	return deviceInfoElement;
 	
-    return deviceInfoElement;
 }
 
 - initWithDevice:(VTDevice *) device
 {
+	
 	[super init];
 			
 	[self initWithKind:NSXMLElementKind];
-
-    [self setName:@"DeviceInfo"];
+	[self setName:@"DeviceInfo"];
 			
 	[self addAttribute:[NSXMLNode attributeWithName:@"ftdiSerialNumber" stringValue:[device serial]]];	
 	
 	return self;
+	
 }
+
+
 
 @end

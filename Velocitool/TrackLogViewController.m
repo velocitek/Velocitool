@@ -33,7 +33,7 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 @synthesize firstConnectedDevice;
 
 
-// vpceb24en
+
 
 
 - (IBAction)fileOpen:(id)sender
@@ -93,12 +93,7 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 
 - (IBAction)downloadDataFromDevice:(id)sender
 {
-    [deviceSettingsButton setEnabled:NO];
-    
-    [eraseAllButton setEnabled:NO];
-    
-    [openButton setEnabled:NO];
-    
+		
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
 	//NSLog(@"Sending notification that Download Button was pressed");
 	[notificationCenter postNotificationName:VTDownloadButtonPressedNotification object:self];
@@ -130,6 +125,7 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 
 - (void)armNotifications
 {
+	
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_deviceAdded:) name:VTDeviceAddedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_deviceRemoved:) name:VTDeviceRemovedNotification object:nil];
 	
@@ -146,12 +142,6 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 	
 	[self removeFirstConnectedDevice];
 	
-    [deviceSettingsButton setEnabled:YES];
-    
-    [eraseAllButton setEnabled:YES];
-    
-    [openButton setEnabled:YES];
-    
 }
 
 - (void)setFirstConnectedDevice:(VTDevice *)newDevice
@@ -246,16 +236,19 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 		if ([devices count] == 1)
 			[self setFirstConnectedAndTriggerNotification:newDevice];
 		
+		
     }
+	
+	
 }
 
 - (void)_deviceRemoved:(NSNotification *)note {
     NSString *serial = [[note userInfo] objectForKey:@"serial"];
     
-    if (serial)
-    {
-		for (VTDevice *device in [deviceController arrangedObjects])
-        {
+    if(serial) {
+		
+		for (VTDevice *device in [deviceController arrangedObjects]) {
+			
             if ([[device serial] isEqual:serial]) 
 			{                
 				[deviceController removeObject:device];
@@ -266,7 +259,8 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 				
 				break;
             }
-        }
+        }		
+		
     }
 }
 

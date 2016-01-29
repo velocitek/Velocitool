@@ -237,8 +237,8 @@ static NSDictionary *productIDToClass = nil;
 }
 
 
-- (NSDictionary *)deviceSettings
-{
+- (NSDictionary *)deviceSettings {
+    
 	// For subclassers to implement
     VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
     return nil;

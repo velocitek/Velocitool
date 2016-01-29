@@ -233,8 +233,7 @@
 }
 
 
-- (void)writeDeviceDataForConnection:(VTConnection *)connection
-{
+- (void)writeDeviceDataForConnection:(VTConnection *)connection {
     [connection writeUnsignedChar:_recordRate];
     [connection writeUnsignedChar:_declination];
     [connection writeUnsignedChar:_speedUnitOfMeasurement];
@@ -248,8 +247,7 @@
 
 
 
-- (void)readDeviceDataFromConnection:(VTConnection *)connection
-{
+- (void)readDeviceDataFromConnection:(VTConnection *)connection {
     _recordRate = [connection readUnsignedChar];
     _declination = [connection readUnsignedChar];
     _speedUnitOfMeasurement = [connection readUnsignedChar];
@@ -261,8 +259,7 @@
 }
 
 
-- (NSDictionary *)settingsDictionary
-{
+- (NSDictionary *)settingsDictionary {
     NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
                           [NSNumber numberWithUnsignedChar:_recordRate], VTRecordRatePref,
                           [NSNumber numberWithUnsignedChar:_declination], VTDeclinationPref,
@@ -278,40 +275,31 @@
 }
 
 
-- (void)setSettingsDictionary:(NSDictionary *)settings
-{
+- (void)setSettingsDictionary:(NSDictionary *)settings {
     id value = nil;
     
-    if ((value = [settings objectForKey:VTRecordRatePref]))
-    {
+    if( (value = [settings objectForKey:VTRecordRatePref]) ) {
         _recordRate = [value unsignedCharValue];
     }
-    if ((value = [settings objectForKey:VTDeclinationPref]))
-    {
+    if( (value = [settings objectForKey:VTDeclinationPref]) ) {
         _declination = [value unsignedCharValue];
     }
-    if ((value = [settings objectForKey:VTSpeedUnitPref]))
-    {
+    if( (value = [settings objectForKey:VTSpeedUnitPref]) ) {
         _speedUnitOfMeasurement = [value unsignedCharValue];
     }
-    if ((value = [settings objectForKey:VTSpeedDampingPref]))
-    {
+    if( (value = [settings objectForKey:VTSpeedDampingPref]) ) {
         _speedDamping = [value unsignedCharValue];
     }
-    if ((value = [settings objectForKey:VTHeadingDampingPref]))
-    {
+    if( (value = [settings objectForKey:VTHeadingDampingPref]) ) {
         _headingDamping = [value unsignedCharValue];
     }
-    if ((value = [settings objectForKey:VTMaxSpeedPref]))
-    {
+    if( (value = [settings objectForKey:VTMaxSpeedPref]) ) {
         _maxSpeedMode = [value unsignedCharValue];
     }
-    if ((value = [settings objectForKey:VTBarGraphPref]))
-    {
+    if( (value = [settings objectForKey:VTBarGraphPref]) ) {
         _deviceOperationOption = [value boolValue];
     }
-    if ((value = [settings objectForKey:VTPuckModePref]))
-    {
+    if( (value = [settings objectForKey:VTPuckModePref]) ) {
         _deviceOperationOption = [value unsignedCharValue];
     }
 }

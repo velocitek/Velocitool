@@ -28,37 +28,36 @@
 	    
     //add VCC root element to self as root element
 	[self initWithXMLString:canonicalFormString options:NSXMLDocumentTidyXML error:NULL];
-
-    [self setVersion:@"1.0"];
-	
-    [self setCharacterEncoding:@"utf-8"];
+	[self setVersion:@"1.0"];
+	[self setCharacterEncoding:@"utf-8"];
 	
 	return self;
+	
+    
 }
 
 + (id)vccXmlDocWithCapturedTrack: (VTCapturedTrackElement*) capturedTrack
 {
 	VTVccXmlDoc *xmlDoc = [[[self alloc] initWithCapturedTrack:capturedTrack] autorelease];
-	
-    return xmlDoc;
+	return xmlDoc;
 }
 
 - (void)saveAsVccFile
 {
+	
 	NSString *fileName = [NSString stringWithString:@"testVCCFile.vcc"];
 	
 	NSData *xmlData = [self XMLDataWithOptions:NSXMLNodePrettyPrint];
- 
-    if (![xmlData writeToFile:fileName atomically:YES])
-    {
+    if (![xmlData writeToFile:fileName atomically:YES]) {
         NSBeep();
-    
         NSLog(@"Could not write document out...");
+        
     }
-	else
-    {
+	else{
 		 NSLog(@"Saved VCC file");
 	}
+    
+
 }
 
 @end

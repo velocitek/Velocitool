@@ -83,7 +83,7 @@
 	return dateString;
 }
 
-- (NSString *)vccGmtDateString
+- (NSString*)vccGmtDateString
 {
 	
 	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
