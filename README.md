@@ -24,7 +24,7 @@ Then move in the app directory
 Install Sparkle
 ---------------
 
-Go to the [Sparkle web site][http://sparkle-project.org/] and download the latest version of Sparkle. Unpack it somewhere, then copy Sparkle.framework in speedtrack/Velocitool.
+Go to the [Sparkle web site](http://sparkle-project.org/) and download the latest version of Sparkle. Unpack it somewhere, then copy Sparkle.framework in speedtrack/Velocitool.
 
 Bump versions
 -------------
@@ -37,10 +37,10 @@ Bump the version number (if this doesn't work the developer tools are not proper
 
     /usr/bin/agvtool bump
     git diff
-<Verify the version bumped properly>
+Verify the version bumped properly
     git commit -m "Bumped version to XX"
     git push
-<Check on github that your version number made it there>
+Check on github that your version number made it there
 
 
 Do the build
@@ -54,7 +54,7 @@ During the build, toward the end, a popup is going to show up asking you for the
 
 Once the code is build two files should be present in ~/Sites/velocitool:
 
-* Velocitool <marketingversion>(<buildversion>).dmg
+* Velocitool $marketingversion($buildversion).dmg
 * rss.xml
 
 Copy those files, plus a release note (see the xml for the expected name of the files), at the right place on the servers (See the xml again, to see the expected URLs).
