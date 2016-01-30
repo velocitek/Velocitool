@@ -37,10 +37,13 @@ Bump the version number (if this doesn't work the developer tools are not proper
 
     /usr/bin/agvtool bump
     git diff
+
 Verify the version bumped properly
+
     git commit -m "Bumped version to XX"
     git push
-Check on github that your version number made it there
+
+Check on github that your version number made it there.
 
 
 Do the build
