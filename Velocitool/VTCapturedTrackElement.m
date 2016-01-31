@@ -96,7 +96,7 @@
 	VTTrackpointRecord *firstTrackpoint = [trackpoints objectAtIndex:0];
 	
 	//get the timestamp from the trackpoint
-	NSDate *trackStartTime = [firstTrackpoint _timestamp];
+	NSDate *trackStartTime = firstTrackpoint.timestamp;
 	
     
 	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];	

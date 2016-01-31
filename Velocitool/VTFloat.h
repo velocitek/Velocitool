@@ -1,26 +1,16 @@
-//
-//  VTFloat.h
-//  Velocitool
-//
-//  Created by Alec Stewart on 3/26/10.
-//  Copyright 2010 Velocitek. All rights reserved.
-//
-
-#define NUM_BYTES_IN_PIC_FLOAT 4
-
 #import <Cocoa/Cocoa.h>
 
-@interface VTFloat : NSObject {
-	
-	float floatingPointNumber;
-	NSData *picFloatRepresentation;
+@interface VTFloat : NSObject
+// The value of the float, as a float.
+@property(nonatomic, readonly) float floatingPointNumber;
+// The value of the float, in microcontroller format
+@property(nonatomic, readonly) NSData *picFloatRepresentation;
 
-}
+// Length, in bytes, of the microcontroller format.
++ (unsigned int)picRepresentationSize;
 
-@property (nonatomic, readwrite, assign) float floatingPointNumber;
-@property (nonatomic, readwrite, retain) NSData *picFloatRepresentation;
-
-+ (id)vtFloatWithPicBytes:(NSData *)bytes;
-+ (id)vtFloatWithFloat:(float)f;
+// Initializing with either format.
++ (instancetype)vtFloatWithPicBytes:(NSData *)bytes;
++ (instancetype)vtFloatWithFloat:(float)f;
 
 @end

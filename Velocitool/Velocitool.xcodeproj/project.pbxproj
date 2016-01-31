@@ -63,8 +63,6 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		ED028E5A1236C32E00CCCCF2 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED028E591236C32E00CCCCF2 /* Sparkle.framework */; };
 		ED028E641236C33A00CCCCF2 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = ED028E591236C32E00CCCCF2 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		ED21C50E0F64438D002BE074 /* FakeStuff.jpg in Resources */ = {isa = PBXBuildFile; fileRef = ED21C50D0F64438D002BE074 /* FakeStuff.jpg */; };
-		ED21C5E00F647FAB002BE074 /* VTPuckSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = ED21C5DF0F647FAB002BE074 /* VTPuckSettings.m */; };
 		ED2A01610F339B8F005C0CE0 /* VTConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2A015F0F339B8F005C0CE0 /* VTConnection.m */; };
 		ED2B25030F261CAB00A5EDDB /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
 		ED3976741C427AEB00147C1F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED3976731C427AEB00147C1F /* README.md */; settings = {ASSET_TAGS = (); }; };
@@ -82,7 +80,6 @@
 		EDE897EE1158CE3A009E8151 /* VTDeviceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */; };
 		EDE8982E1158D31D009E8151 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFC3F690EF8948D00E1DD2F /* IOKit.framework */; };
 		EDE8982F1158D31D009E8151 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		EDF725560F3E069700E503AE /* VTStoredDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF725550F3E069700E503AE /* VTStoredDevice.m */; };
 		EDF7261E0F3E274E00E503AE /* VTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF7261D0F3E274E00E503AE /* VTAppDelegate.m */; };
 		EDF726C20F422E1D00E503AE /* SpeedPuck.icns in Resources */ = {isa = PBXBuildFile; fileRef = EDF726C10F422E1D00E503AE /* SpeedPuck.icns */; };
 		EDF726E50F42318F00E503AE /* S10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EDF726E30F42318F00E503AE /* S10.jpg */; };
@@ -182,13 +179,8 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Velocitool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Velocitool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED028E591236C32E00CCCCF2 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
-		ED21C50D0F64438D002BE074 /* FakeStuff.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = FakeStuff.jpg; sourceTree = "<group>"; };
-		ED21C5DE0F647FAB002BE074 /* VTPuckSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTPuckSettings.h; sourceTree = "<group>"; };
-		ED21C5DF0F647FAB002BE074 /* VTPuckSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTPuckSettings.m; sourceTree = "<group>"; };
 		ED2A015E0F339B8F005C0CE0 /* VTConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTConnection.h; sourceTree = "<group>"; };
 		ED2A015F0F339B8F005C0CE0 /* VTConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTConnection.m; sourceTree = "<group>"; };
-		ED2B24B90F25D10C00A5EDDB /* VTConvert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTConvert.h; sourceTree = "<group>"; };
-		ED2B24BA0F25D10C00A5EDDB /* VTConvert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTConvert.m; sourceTree = "<group>"; };
 		ED2B25000F261CAB00A5EDDB /* VTGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTGlobals.h; sourceTree = "<group>"; };
 		ED2B25010F261CAB00A5EDDB /* VTGlobals.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTGlobals.m; sourceTree = "<group>"; };
 		ED3976731C427AEB00147C1F /* README.md */ = {isa = PBXFileReference; explicitFileType = net.daringfireball.markdown; fileEncoding = 4; name = README.md; path = ../README.md; sourceTree = SOURCE_ROOT; };
@@ -199,15 +191,11 @@
 		ED6505F90F099EDD0018D068 /* libftd2xx.0.1.7.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libftd2xx.0.1.7.dylib; sourceTree = "<group>"; };
 		ED6505FE0F099EFE0018D068 /* ftd2xx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftd2xx.h; sourceTree = "<group>"; };
 		ED6C716F0F09A89D00BF3260 /* WinTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinTypes.h; sourceTree = "<group>"; };
-		ED6C71F20F0AD49400BF3260 /* VTWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTWrapper.h; sourceTree = "<group>"; };
-		ED6C71F30F0AD49400BF3260 /* VTWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTWrapper.m; sourceTree = "<group>"; };
 		ED80A45E1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libftd2xx.1.2.2.dylib; sourceTree = "<group>"; };
 		EDA9F3FF0F16B638004112D5 /* VTCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTCommand.h; sourceTree = "<group>"; };
 		EDA9F4000F16B638004112D5 /* VTCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTCommand.m; sourceTree = "<group>"; };
 		EDE897DA1158CD2D009E8151 /* Tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tool; sourceTree = BUILT_PRODUCTS_DIR; };
 		EDE897E31158CDCF009E8151 /* tool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tool.m; sourceTree = "<group>"; };
-		EDF725540F3E069700E503AE /* VTStoredDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTStoredDevice.h; sourceTree = "<group>"; };
-		EDF725550F3E069700E503AE /* VTStoredDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTStoredDevice.m; sourceTree = "<group>"; };
 		EDF7261C0F3E274E00E503AE /* VTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTAppDelegate.h; sourceTree = "<group>"; };
 		EDF7261D0F3E274E00E503AE /* VTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTAppDelegate.m; sourceTree = "<group>"; };
 		EDF726C10F422E1D00E503AE /* SpeedPuck.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SpeedPuck.icns; sourceTree = "<group>"; };
@@ -242,18 +230,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		080E96DDFE201D6D7F000001 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				EDDC83D81143B80E00E1C809 /* Obsolete */,
-				EDF725540F3E069700E503AE /* VTStoredDevice.h */,
-				EDF725550F3E069700E503AE /* VTStoredDevice.m */,
-				ED21C5DE0F647FAB002BE074 /* VTPuckSettings.h */,
-				ED21C5DF0F647FAB002BE074 /* VTPuckSettings.m */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,7 +268,6 @@
 				ED2A015D0F339B6A005C0CE0 /* Communication */,
 				708274E211B5CF9B00DD66FF /* XML */,
 				EDE897E21158CD82009E8151 /* CmdLine */,
-				080E96DDFE201D6D7F000001 /* Model */,
 				ED21C5D30F64779E002BE074 /* View */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -432,17 +407,6 @@
 			name = ftd2xx;
 			sourceTree = "<group>";
 		};
-		EDDC83D81143B80E00E1C809 /* Obsolete */ = {
-			isa = PBXGroup;
-			children = (
-				ED6C71F20F0AD49400BF3260 /* VTWrapper.h */,
-				ED6C71F30F0AD49400BF3260 /* VTWrapper.m */,
-				ED2B24B90F25D10C00A5EDDB /* VTConvert.h */,
-				ED2B24BA0F25D10C00A5EDDB /* VTConvert.m */,
-			);
-			name = Obsolete;
-			sourceTree = "<group>";
-		};
 		EDE897E21158CD82009E8151 /* CmdLine */ = {
 			isa = PBXGroup;
 			children = (
@@ -454,7 +418,6 @@
 		EDF727250F4234B700E503AE /* images */ = {
 			isa = PBXGroup;
 			children = (
-				ED21C50D0F64438D002BE074 /* FakeStuff.jpg */,
 				EDF726C10F422E1D00E503AE /* SpeedPuck.icns */,
 				EDF726E40F42318F00E503AE /* SC1.jpg */,
 				EDF726E30F42318F00E503AE /* S10.jpg */,
@@ -544,7 +507,6 @@
 				EDF726C20F422E1D00E503AE /* SpeedPuck.icns in Resources */,
 				EDF726E50F42318F00E503AE /* S10.jpg in Resources */,
 				EDF726E60F42318F00E503AE /* SC1.jpg in Resources */,
-				ED21C50E0F64438D002BE074 /* FakeStuff.jpg in Resources */,
 				ED3976741C427AEB00147C1F /* README.md in Resources */,
 				7023A9F111ACE36400975EC0 /* TrackLogView.xib in Resources */,
 				7023AA2F11ACFB9B00975EC0 /* TrackFileView.xib in Resources */,
@@ -585,9 +547,7 @@
 				EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */,
 				ED2B25030F261CAB00A5EDDB /* VTGlobals.m in Sources */,
 				ED2A01610F339B8F005C0CE0 /* VTConnection.m in Sources */,
-				EDF725560F3E069700E503AE /* VTStoredDevice.m in Sources */,
 				EDF7261E0F3E274E00E503AE /* VTAppDelegate.m in Sources */,
-				ED21C5E00F647FAB002BE074 /* VTPuckSettings.m in Sources */,
 				7080EFD6115C35D00013C9C3 /* VTDateTime.m in Sources */,
 				7080F18F115D7DA50013C9C3 /* VTFloat.m in Sources */,
 				70FBA0C41161A477005BE3B4 /* VTRecord.m in Sources */,

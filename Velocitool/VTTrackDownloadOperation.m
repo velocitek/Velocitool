@@ -1,12 +1,3 @@
-//
-//  VTTrackDownloadOperation.m
-//  Velocitool
-//
-//  Created by Alec Stewart on 6/12/10.
-//  Copyright 2010 Velocitek. All rights reserved.
-//
-
-
 #import "VTTrackDownloadOperation.h"
 #import "VTTrackFromDevice.h"
 #import "VTDevice.h"
