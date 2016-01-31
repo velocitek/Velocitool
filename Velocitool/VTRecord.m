@@ -1,6 +1,6 @@
-#import "VTRecord.h"
 #import "VTConnection.h"
 #import "VTGlobals.h"
+#import "VTRecord.h"
 
 @implementation VTRecord : NSObject
 - (void)readFromConnection:(VTConnection *)connection {
@@ -108,13 +108,13 @@ commandParameterFromDate:(NSDate *)startTime
 }
 
 - (void)writeDeviceDataForConnection:(VTConnection *)connection {
-  [connection writeDate:_downloadFrom];
-  [connection writeDate:_downloadTo];
+  [connection writeDate:self.downloadFrom];
+  [connection writeDate:self.downloadTo];
 }
 
 - (NSString *)description {
-  NSString *fromDescription = [_downloadFrom description];
-  NSString *toDescription = [_downloadTo description];
+  NSString *fromDescription = [self.downloadFrom description];
+  NSString *toDescription = [self.downloadTo description];
 
   NSString *descriptionString = [NSString
       stringWithFormat:@"\nReadTrackpointsCommandParameter From: %@\nTo: %@",
@@ -228,18 +228,16 @@ commandParameterFromDate:(NSDate *)startTime
 }
 
 - (NSDictionary *)settingsDictionary {
-  NSDictionary *dict = [NSDictionary
-      dictionaryWithObjectsAndKeys:
-          [NSNumber numberWithUnsignedChar:_recordRate], VTRecordRatePref,
-          [NSNumber numberWithUnsignedChar:_declination], VTDeclinationPref,
-          [NSNumber numberWithUnsignedChar:_speedUnitOfMeasurement],
-          VTSpeedUnitPref, [NSNumber numberWithUnsignedChar:_speedDamping],
-          VTSpeedDampingPref, [NSNumber numberWithUnsignedChar:_headingDamping],
-          VTHeadingDampingPref, [NSNumber numberWithUnsignedChar:_maxSpeedMode],
-          VTMaxSpeedPref, [NSNumber numberWithBool:_barGraphEnabled],
-          VTBarGraphPref,
-          [NSNumber numberWithUnsignedChar:_deviceOperationOption],
-          VTPuckModePref, nil];
+  NSDictionary *dict = @{
+    VTRecordRatePref : @(_recordRate),
+    VTDeclinationPref : @(_declination),
+    VTSpeedUnitPref : @(_speedUnitOfMeasurement),
+    VTSpeedDampingPref : @(_speedDamping),
+    VTHeadingDampingPref : @(_headingDamping),
+    VTMaxSpeedPref : @(_maxSpeedMode),
+    VTBarGraphPref : @(_barGraphEnabled),
+    VTPuckModePref : @(_deviceOperationOption)
+  };
   return dict;
 }
 
@@ -308,24 +306,24 @@ commandParameterFromDate:(NSDate *)startTime
 @synthesize numTrackpoints = _numTrackpoints;
 
 + (unsigned char)recordHeader {
-    return 'l';
+  return 'l';
 }
 
 - (void)dealloc {
-	[_start release];
+  [_start release];
   _start = nil;
-	[_end release];
+  [_end release];
   _end = nil;
   [super dealloc];
 }
 
 - (void)readDeviceDataFromConnection:(VTConnection *)connection {
-    _logIndex = [connection readUnsignedChar];
-    _numTrackpoints = [connection readInt32];
-    [_start release];
-    _start = [[connection readDate] retain];
-    [_end release];
-    _end = [[connection readDate] retain];
+  _logIndex = [connection readUnsignedChar];
+  _numTrackpoints = [connection readInt32];
+  [_start release];
+  _start = [[connection readDate] retain];
+  [_end release];
+  _end = [[connection readDate] retain];
 }
 
 - (NSString *)description {
@@ -336,17 +334,17 @@ commandParameterFromDate:(NSDate *)startTime
   NSString *description_string;
 
   number_trackpoints_description =
-  [NSString stringWithFormat:@"Number of trackpoints in log: %d",
-   self.numTrackpoints];
+      [NSString stringWithFormat:@"Number of trackpoints in log: %d",
+                                 self.numTrackpoints];
   beginning_date_time_description =
-  [NSString stringWithFormat:@"Log Start: %@", self.start];
+      [NSString stringWithFormat:@"Log Start: %@", self.start];
   ending_date_time_description =
-  [NSString stringWithFormat:@"Log End: %@", self.end];
+      [NSString stringWithFormat:@"Log End: %@", self.end];
 
   description_string = [NSString
-                        stringWithFormat:@"\t%@\n\t%@\n\t%@\n", number_trackpoints_description,
-                        beginning_date_time_description,
-                        ending_date_time_description];
+      stringWithFormat:@"\t%@\n\t%@\n\t%@\n", number_trackpoints_description,
+                       beginning_date_time_description,
+                       ending_date_time_description];
 
   return description_string;
 }

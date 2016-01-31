@@ -57,7 +57,7 @@
   [super dealloc];
 }
 
-# pragma mark - Public methods
+#pragma mark - Public methods
 
 - (BOOL)flowControl {
   return NO;

@@ -9,15 +9,15 @@
 @interface VTCommand : NSObject
 
 // True if flow control should be on for this command. No by default.
-@property (nonatomic, readonly) BOOL flowControl;
+@property(nonatomic, readonly) BOOL flowControl;
 // The character used for the command.
-@property (nonatomic, readonly) unsigned char signal;
+@property(nonatomic, readonly) unsigned char signal;
 // The record describing the parameters to the command.
-@property (nonatomic, readonly) VTRecord * parameter;
+@property(nonatomic, readonly) VTRecord *parameter;
 // The class capturing and decoding the results.
-@property (nonatomic, readonly) Class resultClass;
+@property(nonatomic, readonly) Class resultClass;
 // If the result is a list.
-@property (nonatomic, readonly) BOOL returnsList;
+@property(nonatomic, readonly) BOOL returnsList;
 
 // Creates a command returning a single value. resultClass should be a subclass
 // of VTRecord.

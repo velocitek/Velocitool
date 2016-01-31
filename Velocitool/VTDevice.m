@@ -50,15 +50,12 @@ static NSDictionary *productIDToClass = nil;
     return;
   }
 
-  productIDToClass = [[NSDictionary alloc]
-      initWithObjectsAndKeys:[VTDeviceSpeedPuck class],
-                             [NSNumber numberWithInt:0xb709],
-                             [VTDeviceProStart class],
-                             [NSNumber numberWithInt:0xb70a],
-                             [VTDeviceS10 class],
-                             [NSNumber numberWithInt:0x6001],
-                             [VTDeviceSC1 class],
-                             [NSNumber numberWithInt:0xb708], nil];
+  productIDToClass = [@{
+    @(0xb709) : [VTDeviceSpeedPuck class],
+    @(0xb70a) : [VTDeviceProStart class],
+    @(0x6001) : [VTDeviceS10 class],
+    @(0xb708) : [VTDeviceSC1 class],
+  } retain];
 }
 
 + deviceForUSBProperties:(NSDictionary *)usbProperties {

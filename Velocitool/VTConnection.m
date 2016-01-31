@@ -73,10 +73,10 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 - (void)setRTS;
 - (void)clearRTS;
 
-// Use flow control
+// Use flow control.
 - (void)setFlowControl:(BOOL)onOff;
 
-// Send data to the device
+// Send data to the device.
 - (NSUInteger)write:(NSData *)data;
 // Wait for the length of data to read back.
 - (NSUInteger)waitForResponseLength:(NSUInteger)length timeout:(int)timeOutInMs;

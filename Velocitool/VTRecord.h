@@ -35,7 +35,7 @@ commandParameterFromDate:(NSDate *)startTime
 
 // Records with the type encoded at the beginning.
 @interface VTRecordWithHeader : VTRecord
-// For subclassed to implement.
+// For subclasses to implement.
 + (unsigned char)recordHeader;
 @end
 
