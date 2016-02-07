@@ -29,6 +29,8 @@ Go to the [Sparkle web site](http://sparkle-project.org/) and download the lates
 Bump versions
 -------------
 
+Change your working directory to speedtrack/Velocitool
+
 (optional)bump the marketing version number. It is currently 1.1, you can change it to whatever is desired:
 
     /usr/bin/agvtool new-marketing-version 42.51
@@ -40,7 +42,7 @@ Bump the version number (if this doesn't work the developer tools are not proper
 
 Verify the version bumped properly
 
-    git commit -m "Bumped version to XX"
+    git commit -a -m "Bumped version to XX"
     git push
 
 Check on github that your version number made it there.
