@@ -1,6 +1,6 @@
 #define MAX_NUM_CHARS_IN_FIRMWARE_FILE 200000
 
-#define ALL_DEVICES
+//#define ALL_DEVICES
 //#define LOAD_DEVICE
 //#define TRACKPOINT_SAVE
 //#define FIRMWARE_UPDATE
@@ -12,7 +12,7 @@
 //#define PROGRESS_TRACKER
 //#define DEVICE_SETTINGS
 //#define XSLT_TEST
-//#define DATE_TEST
+#define DATE_TEST
 //#define LAUNCH_GPSAR_TEST
 
 #import <Cocoa/Cocoa.h>
@@ -193,25 +193,22 @@ void testGpsarLaunch()
 
 void testDate()
 {
-	//NSLog(@"hello world");
+	NSLog(@"hello world");
 	
-	//NSDate *rightNow = [NSDate date];
+	NSDate *rightNow = [NSDate date];
 	
-	//NSLog(@"current date time is: %@",rightNow);
+	NSLog(@"current date time is: %@",rightNow);
 	
-	//VTXmlDate *xmlNow;
 	
-	NSString *now = [VTXmlDate vccNow];
+	VTXmlDate *now = [VTXmlDate xmlDateWithDate:rightNow];
+	NSLog(@"current date time in vcc format is: %@", [now vccDateString]);
 	
-	NSLog(@"current date time in vcc format is: %@",now);
 	
-	VTXmlDate *xmlNow = [VTXmlDate xmlDateWithVccDateString:@"2010-07-20T20:52:42-07:00"];
-	
-
-	
-	NSString *nowInVccGmtFormat = [xmlNow vccGmtDateString];
-	
+	NSString *nowInVccGmtFormat = [now vccGmtDateString];
 	NSLog(@"current date time in vcc gmt format is: %@",nowInVccGmtFormat);
+    
+    VTXmlDate *testDate = [VTXmlDate xmlDateWithVccDateString:@"2010-07-20T20:52:42"];
+    NSLog(@"test date time in vcc format is: %@", [testDate vccDateString]);
 	
 	
 }

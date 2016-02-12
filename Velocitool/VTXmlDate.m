@@ -101,20 +101,59 @@
 //2010-06-16T21:44:00-10:00 becomes 2010-06-16 21:44:00 -1000
 -(NSString*)convertVccDateStringToInternationalFormat:(NSString*)vccDateString
 {
-	NSString *stringWithSpaceInsteadOfTBetweenDateAndTime = 
-	[vccDateString stringByReplacingOccurrencesOfString:@"T" withString:@" "];
-	
-	NSString *stringWithSpaceInFrontOfTimezone =
-	[self putSpaceBetweenTimeAndTimezone:stringWithSpaceInsteadOfTBetweenDateAndTime];
-	
-		
-	NSString *stringWithoutColon = 
-	[self removeTimezoneColonFromDateString:
-	 stringWithSpaceInFrontOfTimezone];
-	
-	return stringWithoutColon;
-	 
+    
+    NSString *stringGuaranteedToHaveTimezone;
+    if (![self checkIfVccDateTimeStringIncludesTimezone:vccDateString])
+    {
+        stringGuaranteedToHaveTimezone = [self appendZeroTimezoneToVccDateString:vccDateString];
+    }
+    else
+    {
+        stringGuaranteedToHaveTimezone = vccDateString;
+    }
+    
+    NSString *stringWithSpaceInsteadOfTBetweenDateAndTime =
+	[stringGuaranteedToHaveTimezone stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+    
+    NSString *stringWithSpaceInFrontOfTimezone =
+    [self putSpaceBetweenTimeAndTimezone:stringWithSpaceInsteadOfTBetweenDateAndTime];
+    
+    NSString *stringWithoutColon =
+    [self removeTimezoneColonFromDateString:
+     stringWithSpaceInFrontOfTimezone];
+    
+    return stringWithoutColon;
+   
 }
+
+-(NSString*)appendZeroTimezoneToVccDateString:(NSString*)vccDateString
+{
+    NSString *stringWithZeroTimezoneAppended = [vccDateString stringByAppendingString:@"+00:00"];
+    return stringWithZeroTimezoneAppended;
+}
+
+
+-(BOOL)checkIfVccDateTimeStringIncludesTimezone:(NSString*) vccDateTimeString
+{
+    NSInteger const numberOfColonsWithoutTimezone = 2;
+    if([self countColons:vccDateTimeString] > numberOfColonsWithoutTimezone)
+    {
+        return YES;
+    }
+    else
+    {
+        return NO;
+    }
+}
+
+-(NSUInteger)countColons:(NSString*) stringWithColons
+{
+    NSUInteger numberOfColons = [[stringWithColons componentsSeparatedByString:@":"] count] - 1;
+    return numberOfColons;
+}
+
+
+
 
 //Puts a space between the time and timezone (used during the conversion
 //of a vcc date string to the international format
@@ -174,7 +213,7 @@
 
 
 //Removes the letters "GMT" from the timezone listing on a Unicode date string 
-//e.g. "2010-04-27T20:19:24-GMT10:00" becomes 
+//e.g. "2010-04-27T20:19:24-GMT10:00" becomes "2010-04-27T20:19:24-10:00"
 - (NSString *)removeGMTFromDateString:(NSString *)dateStringToModify
 {				
 	return [dateStringToModify stringByReplacingOccurrencesOfString:@"GMT" withString:@""];
