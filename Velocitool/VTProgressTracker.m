@@ -22,6 +22,8 @@
 
 - (void)setGoal:(float)newGoal
 {
+    NSLog(@"VTLOG: [VTProgressTracker, setGoal = %f]", newGoal);  // VTLOG for debugging
+    
 	goal = newGoal;
 	[self updatePercentage];
 }

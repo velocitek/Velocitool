@@ -309,6 +309,8 @@
 }
 -(void)launchReplayInGpsar
 {
+    NSLog(@"VTLOG: [VTVccFile, launchReplayInGpsar]");  // VTLOG for debugging
+    
     //create gpx format xml representation of the current file	
 	[self createGpxXmlDoc];
 	

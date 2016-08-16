@@ -2,7 +2,7 @@
 #import "VTDeviceLoader.h"
 #import "MainWindowController.h"
 #import "DeviceSettingsController.h"
-
+#import "VTDefines.h"
 
 @implementation VTAppDelegate
 
@@ -37,6 +37,26 @@
 }
 
 - (void)applicationDidFinishLaunching:sender {
+    
+    // Checking operating system version...
+    NSOperatingSystemVersion systemVersion = [[NSProcessInfo processInfo] operatingSystemVersion];
+    NSLog (@"Current OSx Version = %ld.%ld.%ld", (long)systemVersion.majorVersion, (long)systemVersion.minorVersion, (long)systemVersion.patchVersion);
+    
+    if ( systemVersion.majorVersion < 10 || ( systemVersion.majorVersion == 10 && systemVersion.minorVersion < 7 ) ) {
+        NSString * sMessage = [NSString stringWithFormat:@"%@ It is compatible with 10.7.0 and later.", kErrorIncompatibleMessage];
+        NSAlert *eraseAllAlert = [NSAlert alertWithMessageText:sMessage
+                                                 defaultButton:@"OK"
+                                               alternateButton:nil
+                                                   otherButton:nil
+                                     informativeTextWithFormat:@""];
+        
+        NSInteger alertResult = [eraseAllAlert runModal];
+        
+        if (alertResult == NSAlertAlternateReturn)
+        {
+            abort();
+        }
+    }
     
 	// If fast user switching is used I need to release the USB devices. Or at least stop talking to them...
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(_switchHandler:) name:NSWorkspaceSessionDidBecomeActiveNotification object:nil];

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		095982001D624BE000B9D190 /* VTDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 095981FF1D624BE000B9D190 /* VTDefines.m */; };
+		09C4D9511D26E89100FDED65 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED781FE61C5E51F000AD2660 /* Sparkle.framework */; };
 		7009C76A11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
 		7009C76B11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
 		70135D3611D082A50046A8BF /* DeviceSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70135D3511D082A50046A8BF /* DeviceSettingsController.m */; };
@@ -63,13 +65,12 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		ED2A01610F339B8F005C0CE0 /* VTConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2A015F0F339B8F005C0CE0 /* VTConnection.m */; };
 		ED2B25030F261CAB00A5EDDB /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
-		ED3976741C427AEB00147C1F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED3976731C427AEB00147C1F /* README.md */; settings = {ASSET_TAGS = (); }; };
+		ED3976741C427AEB00147C1F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED3976731C427AEB00147C1F /* README.md */; };
 		ED4B99C80F1548A000AF563B /* VTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B99C70F1548A000AF563B /* VTDevice.m */; };
 		ED4B9A590F155F8700AF563B /* VTDeviceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */; };
 		ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFC3F690EF8948D00E1DD2F /* IOKit.framework */; };
-		ED781FE71C5E51F000AD2660 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED781FE61C5E51F000AD2660 /* Sparkle.framework */; settings = {ASSET_TAGS = (); }; };
 		ED781FE81C5E520F00AD2660 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = ED781FE61C5E51F000AD2660 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		ED80A45F1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib in Resources */ = {isa = PBXBuildFile; fileRef = ED80A45E1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib */; settings = {ASSET_TAGS = (); }; };
+		ED80A45F1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib in Resources */ = {isa = PBXBuildFile; fileRef = ED80A45E1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib */; };
 		EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
 		EDB756AD1236B8CD00B9A1A4 /* gpsar.jar in Resources */ = {isa = PBXBuildFile; fileRef = 70A3503A1220FB630005E136 /* gpsar.jar */; };
 		EDE897E41158CDCF009E8151 /* tool.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE897E31158CDCF009E8151 /* tool.m */; };
@@ -113,6 +114,8 @@
 
 /* Begin PBXFileReference section */
 		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		095981FE1D624BE000B9D190 /* VTDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDefines.h; sourceTree = "<group>"; };
+		095981FF1D624BE000B9D190 /* VTDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDefines.m; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -177,7 +180,7 @@
 		77631A260C06C501005415CB /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = /System/Library/Frameworks/Python.framework; sourceTree = "<absolute>"; };
 		77C8C1F80C07829500965286 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8D1107320486CEB800E47090 /* Velocitool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Velocitool.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8D1107320486CEB800E47090 /* Velocitek Control Center.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Velocitek Control Center.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED2A015E0F339B8F005C0CE0 /* VTConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTConnection.h; sourceTree = "<group>"; };
 		ED2A015F0F339B8F005C0CE0 /* VTConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTConnection.m; sourceTree = "<group>"; };
 		ED2B25000F261CAB00A5EDDB /* VTGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTGlobals.h; sourceTree = "<group>"; };
@@ -212,8 +215,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09C4D9511D26E89100FDED65 /* Sparkle.framework in Frameworks */,
 				ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */,
-				ED781FE71C5E51F000AD2660 /* Sparkle.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,7 +258,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8D1107320486CEB800E47090 /* Velocitool.app */,
+				8D1107320486CEB800E47090 /* Velocitek Control Center.app */,
 				EDE897DA1158CD2D009E8151 /* Tool */,
 			);
 			name = Products;
@@ -282,14 +285,6 @@
 			children = (
 				32CA4F630368D1EE00C91783 /* Velocitool_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
-				7009C76811BF52FF0076DB4D /* VTProgressTracker.h */,
-				7009C76911BF52FF0076DB4D /* VTProgressTracker.m */,
-				7080F18D115D7DA50013C9C3 /* VTFloat.h */,
-				7080F18E115D7DA50013C9C3 /* VTFloat.m */,
-				7080EFD3115C35D00013C9C3 /* VTDateTime.h */,
-				7080EFD4115C35D00013C9C3 /* VTDateTime.m */,
-				70FB5CF21171ADE6009E2E8C /* VTFirmwareFile.h */,
-				70FB5CF31171ADE6009E2E8C /* VTFirmwareFile.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -394,6 +389,16 @@
 				70A6B83D11C4658200662C55 /* VTTrackDownloadOperation.m */,
 				701363AA11D9D4030046A8BF /* VTFirmwareUpdateOperation.h */,
 				701363AB11D9D4030046A8BF /* VTFirmwareUpdateOperation.m */,
+				7009C76811BF52FF0076DB4D /* VTProgressTracker.h */,
+				7009C76911BF52FF0076DB4D /* VTProgressTracker.m */,
+				7080F18D115D7DA50013C9C3 /* VTFloat.h */,
+				7080F18E115D7DA50013C9C3 /* VTFloat.m */,
+				7080EFD3115C35D00013C9C3 /* VTDateTime.h */,
+				7080EFD4115C35D00013C9C3 /* VTDateTime.m */,
+				70FB5CF21171ADE6009E2E8C /* VTFirmwareFile.h */,
+				70FB5CF31171ADE6009E2E8C /* VTFirmwareFile.m */,
+				095981FE1D624BE000B9D190 /* VTDefines.h */,
+				095981FF1D624BE000B9D190 /* VTDefines.m */,
 			);
 			name = Communication;
 			sourceTree = "<group>";
@@ -445,7 +450,7 @@
 			name = Velocitool;
 			productInstallPath = "$(HOME)/Applications";
 			productName = Velocitool;
-			productReference = 8D1107320486CEB800E47090 /* Velocitool.app */;
+			productReference = 8D1107320486CEB800E47090 /* Velocitek Control Center.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EDE897D91158CD2D009E8151 /* Tool */ = {
@@ -555,6 +560,7 @@
 				7023A9ED11ACE1CC00975EC0 /* TrackLogViewController.m in Sources */,
 				7023AA2B11ACFA0300975EC0 /* TrackFileViewController.m in Sources */,
 				709C839C11AD1A4100663AFB /* MainWindowController.m in Sources */,
+				095982001D624BE000B9D190 /* VTDefines.m in Sources */,
 				709C86B811AF73C100663AFB /* VTTrackFromDevice.m in Sources */,
 				708274F111B5D01300DD66FF /* VTTrackpointElement.m in Sources */,
 				7082773511B8B88000DD66FF /* VTTrackpointsElement.m in Sources */,
@@ -687,7 +693,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitool;
-				PRODUCT_NAME = Velocitool;
+				PRODUCT_NAME = "Velocitek Control Center";
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
@@ -741,7 +747,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitool;
-				PRODUCT_NAME = Velocitool;
+				PRODUCT_NAME = "Velocitek Control Center";
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;

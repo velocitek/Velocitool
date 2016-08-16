@@ -33,6 +33,8 @@
 }
 
 - (id)initWithTrackpoint:(VTTrackpointRecord *)trackpointRecord {
+    NSLog(@"VTLOG: [VTTrackpoint, initWithTrackpoint](record = %@)", trackpointRecord);  // VTLOG for debugging
+    
   if ((self = [super initWithKind:NSXMLElementKind])) {
     [self setName:@"Trackpoint"];
     trackpoint = [trackpointRecord retain];

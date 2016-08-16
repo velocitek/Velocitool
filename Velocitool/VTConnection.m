@@ -305,7 +305,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 
 - (float)readFloat {
   VTFloat *floatToConvert =
-      [VTFloat vtFloatWithPicBytes:[self readLength:[VTFloat picRepresentationSize]]];
+      [VTFloat vtFloatWithPicBytes:[self readLength:[VTFloat picRepresentationSize] /*timeout:1000*/]];   // Fix app crashing when download tracks
   return [floatToConvert floatingPointNumber];
 }
 
@@ -611,6 +611,8 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 }
 
 - (NSData *)readLength:(NSUInteger)length timeout:(int)timeOutInMs {
+    NSLog(@"VTLOG: [VTConnection, readLength = %d timeout = %d]", length, timeOutInMs);  // VTLOG for debugging
+    
   FT_STATUS ft_error;
   DWORD sizedone;
   char buffer[length];
@@ -635,6 +637,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
   if (sizedone != length) {
     NSLog(@"VTError: Call to FT_Read read only %u of %lu", sizedone,
           (unsigned long)length);
+      
     return nil;
   }
   return [NSData dataWithBytes:buffer length:length];

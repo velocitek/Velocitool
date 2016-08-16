@@ -18,10 +18,14 @@
 }
 
 + (id)vtDateWithPicBytes:(NSData *)bytes {
+    NSLog(@"VTLOG: [VTDateTime, vtDateWithPicBytes = %@]", bytes);  // VTLOG for debugging
+    
         return [[[self alloc] initWithPicDateRepresentation:bytes] autorelease];
 }
 
 + (id)vtDateWithDate:(NSDate *)dateObject {
+    NSLog(@"VTLOG: [VTDateTime, vtDateWithDate = %@]", dateObject);  // VTLOG for debugging
+    
   return [[[self alloc] initWithDate:dateObject] autorelease];
 }
 

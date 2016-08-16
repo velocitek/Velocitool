@@ -15,5 +15,5 @@ extern NSString *VTTrackFinishedDownloadingNotification;
 
 - (id)initWithTrackObject:(VTTrackFromDevice*)track;
 
-
 @end
+

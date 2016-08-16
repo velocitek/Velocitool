@@ -19,6 +19,7 @@
 
 - (void)main 
 {
+    NSLog(@"VTLOG: [VTFirmwareUpdateOperation, testMain]");  // VTLOG for debugging
     
 	//NSLog(@"Hello World!");
 		

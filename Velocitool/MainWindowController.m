@@ -96,6 +96,7 @@
 		{
 				
 			case EV_ENTRY:
+                NSLog(@"VTLOG: READY, EV_ENTRY");  // VTLOG for debugging
 				
 				[self displayViewController:trackLogViewController];								
 				//NSLog(@"Just changed to READY state.");
@@ -107,6 +108,7 @@
 				
 				
 			case EV_STARTED_ESTABLISHING_CONNECTION:
+                NSLog(@"VTLOG: READY, EV_STARTED_ESTABLISHING_CONNECTION");  // VTLOG for debugging
 				
 				nextState = DOWNLOADING_TRACK_LOGS;//Decide what the next state will be
 				makeTransition = TRUE; //mark that we are taking a transition
@@ -114,6 +116,7 @@
 				break;
 				
 			case EV_FILE_OPENED:
+                NSLog(@"VTLOG: READY, EV_FILE_OPENED");  // VTLOG for debugging
 				
 				nextState = FILE_VIEW;//Decide what the next state will be
 				makeTransition = TRUE; //mark that we are taking a transition
@@ -121,6 +124,7 @@
 				break;
 				
 			case EV_EXIT:
+//                NSLog(@"VTLOG: READY, EV_EXIT");  // VTLOG for debugging
 				
 				break;
 				
@@ -133,7 +137,8 @@
 			switch (currentEvent)
 		{
 			case EV_ENTRY:
-				
+				NSLog(@"VTLOG: DOWNLOADING_TRACK_LOGS, EV_ENTRY");  // VTLOG for debugging
+                
 				//NSLog(@"Just changed to DOWNLOADING TRACK LOGS state.");
 				
 				[trackLogsDownloadingProgressIndicator setUsesThreadedAnimation:YES];
@@ -142,12 +147,14 @@
 				break; 
 				
 			case EV_TRACKLOGS_FINISHED_DOWNLOADING:
+                NSLog(@"VTLOG: DOWNLOADING_TRACK_LOGS, EV_TRACKLOGS_FINISHED_DOWNLOADING");  // VTLOG for debugging
 				
 				nextState = TRACK_LOG_VIEW;//Decide what the next state will be
 				makeTransition = TRUE; //mark that we are taking a transition
 				break;
 				
 			case EV_CONNECTION_INTERRUPTED:
+                NSLog(@"VTLOG: DOWNLOADING_TRACK_LOGS, EV_CONNECTION_INTERRUPTED");  // VTLOG for debugging
 				
 				nextState = READY;//Decide what the next state will be
 				makeTransition = TRUE; //mark that we are taking a transition
@@ -165,12 +172,14 @@
 			switch (currentEvent)
 		{
 			case EV_ENTRY:
+                NSLog(@"VTLOG: TRACK_LOG_VIEW, EV_ENTRY");  // VTLOG for debugging
 				
 				//NSLog(@"Just changed to TRACK LOG VIEW state.");
 				
 				break;
 				
 			case EV_DOWNLOAD_BUTTON_PRESSED:
+                NSLog(@"VTLOG: TRACK_LOG_VIEW, EV_DOWNLOAD_BUTTON_PRESSED");  // VTLOG for debugging
 				
 				nextState = DOWNLOADING_TRACK;//Decide what the next state will be
 				makeTransition = TRUE; //mark that we are taking a transition
@@ -178,6 +187,7 @@
 				break;
 				
 			case EV_FIRST_DEVICE_REMOVED:
+                NSLog(@"VTLOG: TRACK_LOG_VIEW, EV_FIRST_DEVICE_REMOVED");  // VTLOG for debugging
 				
 				nextState = READY;//Decide what the next state will be
 				makeTransition = TRUE; //mark that we are taking a transition
@@ -185,6 +195,7 @@
 				break;
 				
 			case EV_ERASE_ALL_CONFIRMED:
+                NSLog(@"VTLOG: TRACK_LOG_VIEW, EV_ERASE_ALL_CONFIRMED");  // VTLOG for debugging
 				
 				nextState = READY;//Decide what the next state will be
 				makeTransition = TRUE; //mark that we are taking a transition
@@ -192,6 +203,7 @@
 				break;
 				
 			case EV_FILE_OPENED:
+                NSLog(@"VTLOG: TRACK_LOG_VIEW, EV_FILE_OPENED");  // VTLOG for debugging
 				
 				nextState = FILE_VIEW;//Decide what the next state will be
 				makeTransition = TRUE; //mark that we are taking a transition
@@ -210,6 +222,7 @@
 			switch (currentEvent)
 		{
 			case EV_ENTRY:
+                NSLog(@"VTLOG: DOWNLOADING_TRACK, EV_ENTRY");  // VTLOG for debugging
 				
 				//NSLog(@"Just changed to DOWNLOADING TRACK state.");
 				
@@ -221,6 +234,7 @@
 				break;
 				
 			case EV_TRACK_FINISHED_DOWNLOADING:
+                NSLog(@"VTLOG: DOWNLOADING_TRACK, EV_TRACK_FINISHED_DOWNLOADING");  // VTLOG for debugging
 				
 				nextState = FILE_VIEW;//Decide what the next state will be
 				makeTransition = TRUE; //mark that we are taking a transition
@@ -234,6 +248,7 @@
 				break;
 				
 			case EV_CONNECTION_INTERRUPTED:
+                NSLog(@"VTLOG: DOWNLOADING_TRACK, EV_CONNECTION_INTERRUPTED");  // VTLOG for debugging
 				
 				nextState = READY;//Decide what the next state will be
 				makeTransition = TRUE; //mark that we are taking a transition
@@ -250,19 +265,23 @@
 			
 			switch (currentEvent)
 		{
-			case EV_ENTRY:								
+			case EV_ENTRY:
+                NSLog(@"VTLOG: FILE_VIEW, EV_ENTRY");  // VTLOG for debugging
 				
 				[self displayViewController:trackFileViewController];
 				//NSLog(@"Just changed to TRACK FILE VIEW state.");
 												
 				break;
 				
-			case EV_FILE_OPENED:								
+			case EV_FILE_OPENED:
+                NSLog(@"VTLOG: FILE_VIEW, EV_FILE_OPENED");  // VTLOG for debugging
 				
 				
 				break;
 				
 			case EV_FILE_CLOSED:
+                NSLog(@"VTLOG: FILE_VIEW, EV_FILE_CLOSED");  // VTLOG for debugging
+                
 				nextState = READY;//Decide what the next state will be
 				makeTransition = TRUE; //mark that we are taking a transition
 				break;

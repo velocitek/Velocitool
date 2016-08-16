@@ -19,12 +19,78 @@
   return 4;
 }
 
+/*  // Debug
+ 
+ 2016-07-28 00:12:55.630 Velocitool[33130:329322] *** Assertion failure in +[VTFloat vtFloatWithPicBytes:], Project/Velocitool/Velocitool/VTFloat.m:23
+ 2016-07-28 00:12:55.711 Velocitool[33130:329322] An uncaught exception was raised
+ 2016-07-28 00:12:55.711 Velocitool[33130:329322] Invalid input
+ 2016-07-28 00:12:55.711 Velocitool[33130:329322] (
+	0   CoreFoundation                      0x00007fff99b644f2 __exceptionPreprocess + 178
+	1   libobjc.A.dylib                     0x00007fff939c673c objc_exception_throw + 48
+	2   CoreFoundation                      0x00007fff99b691ca +[NSException raise:format:arguments:] + 106
+	3   Foundation                          0x00007fff97277856 -[NSAssertionHandler handleFailureInMethod:object:file:lineNumber:description:] + 198
+	4   Velocitool                          0x0000000100007c46 +[VTFloat vtFloatWithPicBytes:] + 246
+	5   Velocitool                          0x0000000100005ac7 -[VTConnection readFloat] + 103
+	6   Velocitool                          0x0000000100008492 -[VTTrackpointRecord readDeviceDataFromConnection:] + 242
+	7   Velocitool                          0x000000010000823e -[VTRecord readFromConnection:] + 62
+	8   Velocitool                          0x0000000100005495 -[VTConnection runCommand:] + 677
+	9   Velocitool                          0x0000000100002adf -[VTDeviceGeneration3 trackpoints:endTime:] + 191
+	10  Velocitool                          0x000000010000ff9b -[VTTrackDownloadOperation main] + 459
+	11  Foundation                          0x00007fff971cbc7a -[__NSOperationInternal _start:] + 654
+	12  Foundation                          0x00007fff971c7c64 __NSOQSchedule_f + 194
+	13  libdispatch.dylib                   0x00000001000e6cc5 _dispatch_client_callout + 8
+	14  libdispatch.dylib                   0x00000001000ec112 _dispatch_queue_drain + 351
+	15  libdispatch.dylib                   0x00000001000f3e24 _dispatch_queue_invoke + 557
+	16  libdispatch.dylib                   0x00000001000eadab _dispatch_root_queue_drain + 1226
+	17  libdispatch.dylib                   0x00000001000ea8a5 _dispatch_worker_thread3 + 106
+	18  libsystem_pthread.dylib             0x0000000100149336 _pthread_wqthread + 1129
+	19  libsystem_pthread.dylib             0x0000000100146f91 start_wqthread + 13
+ )
+ 2016-07-28 00:12:55.712 Velocitool[33130:329322] *** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'Invalid input'
+ *** First throw call stack:
+ (
+	0   CoreFoundation                      0x00007fff99b644f2 __exceptionPreprocess + 178
+	1   libobjc.A.dylib                     0x00007fff939c673c objc_exception_throw + 48
+	2   CoreFoundation                      0x00007fff99b691ca +[NSException raise:format:arguments:] + 106
+	3   Foundation                          0x00007fff97277856 -[NSAssertionHandler handleFailureInMethod:object:file:lineNumber:description:] + 198
+	4   Velocitool                          0x0000000100007c46 +[VTFloat vtFloatWithPicBytes:] + 246
+	5   Velocitool                          0x0000000100005ac7 -[VTConnection readFloat] + 103
+	6   Velocitool                          0x0000000100008492 -[VTTrackpointRecord readDeviceDataFromConnection:] + 242
+	7   Velocitool                          0x000000010000823e -[VTRecord readFromConnection:] + 62
+	8   Velocitool                          0x0000000100005495 -[VTConnection runCommand:] + 677
+	9   Velocitool                          0x0000000100002adf -[VTDeviceGeneration3 trackpoints:endTime:] + 191
+	10  Velocitool                          0x000000010000ff9b -[VTTrackDownloadOperation main] + 459
+	11  Foundation                          0x00007fff971cbc7a -[__NSOperationInternal _start:] + 654
+	12  Foundation                          0x00007fff971c7c64 __NSOQSchedule_f + 194
+	13  libdispatch.dylib                   0x00000001000e6cc5 _dispatch_client_callout + 8
+	14  libdispatch.dylib                   0x00000001000ec112 _dispatch_queue_drain + 351
+	15  libdispatch.dylib                   0x00000001000f3e24 _dispatch_queue_invoke + 557
+	16  libdispatch.dylib                   0x00000001000eadab _dispatch_root_queue_drain + 1226
+	17  libdispatch.dylib                   0x00000001000ea8a5 _dispatch_worker_thread3 + 106
+	18  libsystem_pthread.dylib             0x0000000100149336 _pthread_wqthread + 1129
+	19  libsystem_pthread.dylib             0x0000000100146f91 start_wqthread + 13
+ )
+ libc++abi.dylib: terminating with uncaught exception of type NSException
+ 
+ 
+ */
+
 + (id)vtFloatWithPicBytes:(NSData *)bytes {
-  NSAssert([bytes length] == [self picRepresentationSize], @"Invalid input");
+//  NSAssert([bytes length] == [self picRepresentationSize], @"Invalid input");
+    
+    if ( !bytes )  // if bytes is null
+    {
+        NSLog(@"VTLOG: [VTFloat, vtFloatWithPicBytes = %@]", bytes);  // VTLOG for debugging
+        
+        return [[[self alloc] initWithFloat:0.0f] autorelease];
+    }
+    
   return [[[self alloc] initWithPicBytes:bytes] autorelease];
 }
 
 + (id)vtFloatWithFloat:(float)f {
+    NSLog(@"VTLOG: [VTFloat, vtFloatWithFloat = %f]", f);  // VTLOG for debugging
+    
   return [[[self alloc] initWithFloat:f] autorelease];
 }
 
