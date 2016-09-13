@@ -19,7 +19,10 @@
         mainclassname="GPSAR"
         executableName="universalJavaApplicationStub"
         >
-        <classpath file="../gpsar.jar"/>
+
+        <classpath file="gpsar.jar"/>
+        <classpath file="comm.jar"/>
+
     </appbundler>
 
   </target>
@@ -41,7 +44,10 @@
         mainclassname="GPSAR"
         executableName="universalJavaApplicationStub"
         >
-        <classpath file="../gpsar.jar"/>
+
+        <classpath file="gpsar.jar"/>
+        <classpath file="comm.jar"/>
+
         <runtime dir="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home" />
 
     </appbundler>
