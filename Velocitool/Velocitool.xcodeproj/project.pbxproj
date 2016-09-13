@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		095982001D624BE000B9D190 /* VTDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 095981FF1D624BE000B9D190 /* VTDefines.m */; };
-		09C4D9511D26E89100FDED65 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED781FE61C5E51F000AD2660 /* Sparkle.framework */; };
 		7009C76A11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
 		7009C76B11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
 		70135D3611D082A50046A8BF /* DeviceSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70135D3511D082A50046A8BF /* DeviceSettingsController.m */; };
@@ -69,7 +68,6 @@
 		ED4B99C80F1548A000AF563B /* VTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B99C70F1548A000AF563B /* VTDevice.m */; };
 		ED4B9A590F155F8700AF563B /* VTDeviceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */; };
 		ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFC3F690EF8948D00E1DD2F /* IOKit.framework */; };
-		ED781FE81C5E520F00AD2660 /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = ED781FE61C5E51F000AD2660 /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		ED80A45F1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib in Resources */ = {isa = PBXBuildFile; fileRef = ED80A45E1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib */; };
 		EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
 		EDB756AD1236B8CD00B9A1A4 /* gpsar.jar in Resources */ = {isa = PBXBuildFile; fileRef = 70A3503A1220FB630005E136 /* gpsar.jar */; };
@@ -105,7 +103,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				ED781FE81C5E520F00AD2660 /* Sparkle.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -193,7 +190,6 @@
 		ED6505F90F099EDD0018D068 /* libftd2xx.0.1.7.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libftd2xx.0.1.7.dylib; sourceTree = "<group>"; };
 		ED6505FE0F099EFE0018D068 /* ftd2xx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftd2xx.h; sourceTree = "<group>"; };
 		ED6C716F0F09A89D00BF3260 /* WinTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinTypes.h; sourceTree = "<group>"; };
-		ED781FE61C5E51F000AD2660 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		ED80A45E1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libftd2xx.1.2.2.dylib; sourceTree = "<group>"; };
 		EDA9F3FF0F16B638004112D5 /* VTCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTCommand.h; sourceTree = "<group>"; };
 		EDA9F4000F16B638004112D5 /* VTCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTCommand.m; sourceTree = "<group>"; };
@@ -215,7 +211,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				09C4D9511D26E89100FDED65 /* Sparkle.framework in Frameworks */,
 				ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 			);
@@ -236,7 +231,6 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				ED781FE61C5E51F000AD2660 /* Sparkle.framework */,
 				77631A260C06C501005415CB /* Python.framework */,
 				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
 			);
