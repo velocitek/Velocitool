@@ -67,7 +67,7 @@ Copy those files, plus a release note (see the xml for the expected name of the 
 GPS Action Replay / App Builder
 -------------------------------
 
-The app-builder subdirectory contains an ant script (build.xml) that can be used to build an app bundle from the gpsar.jar file. To run this script, ant must be installed on your machine.
+The app-builder subdirectory contains an ant script (build.xml) that can be used to build an app bundle from the gpsar.jar file. The product, build/GPS-Action-Replay.app, is linked to as a resource in the XCode project. To run this script, ant must be installed on your machine.
 
 From within the "app-builder" you can either run "ant", which will build the bundle app without the embedded JRE. Or you can run "ant bundleWithJre", which will build the app bundle with the JRE installed.
 
@@ -85,7 +85,7 @@ A universal application stub was used to help ensure that the distribution would
 
 The GPS Action Replay app is very old and unsupported. It appears to have been originally built for Java 1.4, and was last updated in 2007, around the time Java 1.6 was released.
 
-The comm.jar library is added to the app classpath when it is bundled. This appeared to improve a couple stability issues. 
+The comm.jar library is added to the app classpath when it is bundled. This appeared to improve a couple stability issues.
 
 See:
 * [Packaging a Java App for Distribution on a Mac](http://docs.oracle.com/javase/7/docs/technotes/guides/jweb/packagingAppsForMac.html)
