@@ -83,6 +83,10 @@ The appbundler-1.0ea.jar is InfiniteKind's build of the Oracle app-bundler.
 
 A universal application stub was used to help ensure that the distribution would work on any Java JRE/JDK. However, since Mac OSX > 10.7.5 doesn't come with Java installed, I've bundled the 1.7 JRE with the app. This should make the app run on any machine.
 
+The GPS Action Replay app is very old and unsupported. It appears to have been originally built for Java 1.4, and was last updated in 2007, around the time Java 1.6 was released.
+
+The comm.jar library is added to the app classpath when it is bundled. This appeared to improve a couple stability issues. 
+
 See:
 * [Packaging a Java App for Distribution on a Mac](http://docs.oracle.com/javase/7/docs/technotes/guides/jweb/packagingAppsForMac.html)
 * [InfiniteKind appbundler](https://bitbucket.org/infinitekind/appbundler)
