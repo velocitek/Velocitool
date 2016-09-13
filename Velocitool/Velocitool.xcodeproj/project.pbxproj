@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		095982001D624BE000B9D190 /* VTDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 095981FF1D624BE000B9D190 /* VTDefines.m */; };
+		47FD75671D88944C00DEEE0E /* GPS-Action-Replay.app in Resources */ = {isa = PBXBuildFile; fileRef = 47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */; };
 		7009C76A11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
 		7009C76B11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
 		70135D3611D082A50046A8BF /* DeviceSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70135D3511D082A50046A8BF /* DeviceSettingsController.m */; };
@@ -70,7 +71,6 @@
 		ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFC3F690EF8948D00E1DD2F /* IOKit.framework */; };
 		ED80A45F1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib in Resources */ = {isa = PBXBuildFile; fileRef = ED80A45E1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib */; };
 		EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
-		EDB756AD1236B8CD00B9A1A4 /* gpsar.jar in Resources */ = {isa = PBXBuildFile; fileRef = 70A3503A1220FB630005E136 /* gpsar.jar */; };
 		EDE897E41158CDCF009E8151 /* tool.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE897E31158CDCF009E8151 /* tool.m */; };
 		EDE897E61158CE3A009E8151 /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
 		EDE897E81158CE3A009E8151 /* VTConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2A015F0F339B8F005C0CE0 /* VTConnection.m */; };
@@ -119,6 +119,7 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Velocitool_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Velocitool_Prefix.pch; sourceTree = "<group>"; };
+		47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "GPS-Action-Replay.app"; path = "../app-bundler/build/GPS-Action-Replay.app"; sourceTree = "<group>"; };
 		7009C76811BF52FF0076DB4D /* VTProgressTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTProgressTracker.h; sourceTree = "<group>"; };
 		7009C76911BF52FF0076DB4D /* VTProgressTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTProgressTracker.m; sourceTree = "<group>"; };
 		70135D3411D082A50046A8BF /* DeviceSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSettingsController.h; sourceTree = "<group>"; };
@@ -165,7 +166,6 @@
 		709C83BA11AD1CBE00663AFB /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		709C86B611AF73C100663AFB /* VTTrackFromDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTTrackFromDevice.h; sourceTree = "<group>"; };
 		709C86B711AF73C100663AFB /* VTTrackFromDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTTrackFromDevice.m; sourceTree = "<group>"; };
-		70A3503A1220FB630005E136 /* gpsar.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; path = gpsar.jar; sourceTree = "<group>"; };
 		70A6B83C11C4658200662C55 /* VTTrackDownloadOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTTrackDownloadOperation.h; sourceTree = "<group>"; };
 		70A6B83D11C4658200662C55 /* VTTrackDownloadOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTTrackDownloadOperation.m; sourceTree = "<group>"; };
 		70DDE80E11C9ADFC00762CE2 /* VTVccFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTVccFile.h; sourceTree = "<group>"; };
@@ -286,7 +286,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				70A3503A1220FB630005E136 /* gpsar.jar */,
+				47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */,
 				EDF727250F4234B700E503AE /* images */,
 				7080EDF61159AA510013C9C3 /* libftd2xx.0.1.7.dylib */,
 				EDFC3F4D0EF88A5A00E1DD2F /* velocitool.icns */,
@@ -498,10 +498,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED80A45F1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib in Resources */,
-				EDB756AD1236B8CD00B9A1A4 /* gpsar.jar in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				77C8C1F90C07829500965286 /* MainMenu.xib in Resources */,
 				EDFC3EF70EF81CCF00E1DD2F /* dsa_pub.pem in Resources */,
+				47FD75671D88944C00DEEE0E /* GPS-Action-Replay.app in Resources */,
 				EDFC3F4E0EF88A5A00E1DD2F /* velocitool.icns in Resources */,
 				EDF726C20F422E1D00E503AE /* SpeedPuck.icns in Resources */,
 				EDF726E50F42318F00E503AE /* S10.jpg in Resources */,

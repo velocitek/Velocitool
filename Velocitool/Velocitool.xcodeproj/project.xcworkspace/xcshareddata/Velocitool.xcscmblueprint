@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "28A203D7C9410F309E1022BBA79EC488AC5B94C5",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D03469F87A1473536F267B05F7EB4B2F41A22ED2" : 0,
+    "28A203D7C9410F309E1022BBA79EC488AC5B94C5" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "66567485-0F16-466B-8377-44605B90419F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D03469F87A1473536F267B05F7EB4B2F41A22ED2" : "Java%20AppBundler\/",
+    "28A203D7C9410F309E1022BBA79EC488AC5B94C5" : "Velocitool\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Velocitool",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Velocitool\/Velocitool.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:velocitek\/Velocitool.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "28A203D7C9410F309E1022BBA79EC488AC5B94C5"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:moksamedia\/velocitek-gpsar-java-appbundler.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D03469F87A1473536F267B05F7EB4B2F41A22ED2"
+    }
+  ]
+}

@@ -13,9 +13,9 @@
     <appbundler
         jvmrequired="1.5+"
         outputdirectory="./build"
-        name="GPS Action Replay"
+        name="GPS-Action-Replay"
         displayname="GPS Action Replay"
-        identifier="com.velocitek.gpsar"
+        identifier= "com.velocitek.gpsar"
         mainclassname="GPSAR"
         executableName="universalJavaApplicationStub"
         >
@@ -38,7 +38,7 @@
     <appbundler
         jvmrequired="1.5+"
         outputdirectory="./build"
-        name="GPS Action Replay"
+        name="GPS-Action-Replay"
         displayname="GPS Action Replay"
         identifier="com.velocitek.gpsar"
         mainclassname="GPSAR"

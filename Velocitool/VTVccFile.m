@@ -322,21 +322,18 @@
      
 	if([xmlData writeToFile:tempGpxFilePath atomically:YES])
     {
-        NSString *gpsarPath = [[NSBundle mainBundle] pathForResource:@"gpsar" ofType:@"jar"];
-      	
+        NSString *gpsarPath = [[NSBundle mainBundle] pathForResource:@"GPS-Action-Replay" ofType:@"app"];
+        NSURL *gpsarUrl = [NSURL fileURLWithPath:gpsarPath];
+
         //launch the gpx file in GPS Action Replay using NSWorkspace	
-		NSArray *arguments = [NSArray arrayWithObjects:@"-jar", 
-							  gpsarPath, 
-							  tempGpxFilePath,
-							  nil];
+		NSArray *arguments = [NSArray arrayWithObjects:tempGpxFilePath,nil];
 		
-		NSURL *javaUrl = [NSURL fileURLWithPath:@"/usr/bin/java"];
         
 		NSDictionary *configuration = [NSDictionary dictionaryWithObjectsAndKeys:
 									   arguments, NSWorkspaceLaunchConfigurationArguments, nil];
 		
 		
-		[[NSWorkspace sharedWorkspace] launchApplicationAtURL:javaUrl
+		[[NSWorkspace sharedWorkspace] launchApplicationAtURL:gpsarUrl
 													  options:NSWorkspaceLaunchDefault | NSWorkspaceLaunchNewInstance
 												configuration:configuration 
 														error:NULL];
