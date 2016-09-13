@@ -64,11 +64,26 @@ Once the code is build two files should be present in ~/Sites/velocitool:
 
 Copy those files, plus a release note (see the xml for the expected name of the files), at the right place on the servers (See the xml again, to see the expected URLs).
 
+GPS Action Replay / App Builder
+-------------------------------
 
+The app-builder subdirectory contains an ant script (build.xml) that can be used to build an app bundle from the gpsar.jar file. To run this script, ant must be installed on your machine.
 
+From within the "app-builder" you can either run "ant", which will build the bundle app without the embedded JRE. Or you can run "ant bundleWithJre", which will build the app bundle with the JRE installed.
 
+If you want to bundle the JRE, the location of the used JRE/JDK is set by this line (in build.xml):
 
+`<runtime dir="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home" />`
 
+It could be set to the current JAVA_HOME of the machine by replacing that line with this:
 
+`<runtime dir="${env.JAVA_HOME}" />`
 
+The appbundler-1.0ea.jar is InfiniteKind's build of the Oracle app-bundler.
 
+A universal application stub was used to help ensure that the distribution would work on any Java JRE/JDK. However, since Mac OSX > 10.7.5 doesn't come with Java installed, I've bundled the 1.7 JRE with the app. This should make the app run on any machine.
+
+See:
+* [Packaging a Java App for Distribution on a Mac](http://docs.oracle.com/javase/7/docs/technotes/guides/jweb/packagingAppsForMac.html)
+* [InfiniteKind appbundler](https://bitbucket.org/infinitekind/appbundler)
+* [Universal Java Application Stub](https://github.com/tofi86/universalJavaApplicationStub)
