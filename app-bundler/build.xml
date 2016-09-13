@@ -1,0 +1,51 @@
+<project name="GSPAR" default="bundle" basedir=".">
+
+  <property environment="env" />
+
+  <!-- Creates a bundle using InfiniteKind appbundler (based on Oracle's app bundler) -->
+
+  <target name="bundle">
+
+    <taskdef name="appbundler"
+      classpath="appbundler-1.0ea.jar"
+      classname="com.oracle.appbundler.AppBundlerTask"/>
+
+    <appbundler
+        jvmrequired="1.5+"
+        outputdirectory="./build"
+        name="GPS Action Replay"
+        displayname="GPS Action Replay"
+        identifier="com.velocitek.gpsar"
+        mainclassname="GPSAR"
+        executableName="universalJavaApplicationStub"
+        >
+        <classpath file="../gpsar.jar"/>
+    </appbundler>
+
+  </target>
+
+  <!-- Creates a bundle with embedded JRE using current system JRE -->
+
+  <target name="bundleWithJre">
+
+    <taskdef name="appbundler"
+      classpath="appbundler-1.0ea.jar"
+      classname="com.oracle.appbundler.AppBundlerTask"/>
+
+    <appbundler
+        jvmrequired="1.5+"
+        outputdirectory="./build"
+        name="GPS Action Replay"
+        displayname="GPS Action Replay"
+        identifier="com.velocitek.gpsar"
+        mainclassname="GPSAR"
+        executableName="universalJavaApplicationStub"
+        >
+        <classpath file="../gpsar.jar"/>
+        <runtime dir="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home" />
+
+    </appbundler>
+
+  </target>
+
+</project>
