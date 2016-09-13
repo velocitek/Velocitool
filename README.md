@@ -21,10 +21,6 @@ Then move in the app directory
 
     cd speedtrack/Velocitool
 
-Install Sparkle
----------------
-
-Go to the [Sparkle web site](http://sparkle-project.org/) and download the latest version of Sparkle. Unpack it somewhere, then copy Sparkle.framework in speedtrack/Velocitool.
 
 Bump versions
 -------------
