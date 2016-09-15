@@ -1,57 +1,98 @@
-<project name="GSPAR" default="bundle" basedir=".">
+<project name="GSPAR" default="bundleWithJre" basedir=".">
 
-  <property environment="env" />
+    <property environment="env"/>
 
-  <!-- Creates a bundle using InfiniteKind appbundler (based on Oracle's app bundler) -->
+    <property name="excecutableFileName" value="GPS-Action-Replay"/>
+    <property name="appDisplayName" value="GPS Action Replay"/>
+    <property name="pathToJdk" value="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home"/>
+    <property name="jdkVersion" value="1.7.0_79"/>
+    <property name="developerIdApplicationCertCommonName" value="Developer ID Application: Andrew Hughes (4RQWHVTUNE)"/>
 
-  <target name="bundle">
+    <!-- Creates a bundle using InfiniteKind appbundler (based on Oracle's app bundler) -->
 
-    <taskdef name="appbundler"
-      classpath="appbundler-1.0ea.jar"
-      classname="com.oracle.appbundler.AppBundlerTask"/>
+    <target name="bundleWithoutJre">
 
-    <appbundler
-        jvmrequired="1.5+"
-        outputdirectory="./build"
-        name="GPS-Action-Replay"
-        displayname="GPS Action Replay"
-        identifier= "com.velocitek.gpsar"
-        mainclassname="GPSAR"
-        executableName="universalJavaApplicationStub"
-        >
+      <echo message="Building ${excecutableFileName}.app WITHOUT bundled JRE/JDK"/>
 
-        <classpath file="gpsar.jar"/>
-        <classpath file="comm.jar"/>
+        <taskdef name="appbundler" classpath="appbundler-1.0ea.jar" classname="com.oracle.appbundler.AppBundlerTask"/>
 
-    </appbundler>
+        <appbundler jvmrequired="1.5+" outputdirectory="./build" name="${excecutableFileName}" displayname="${appDisplayName}" identifier="com.velocitek.gpsar" mainclassname="GPSAR" executableName="universalJavaApplicationStub">
 
-  </target>
+            <classpath file="gpsar.jar"/>
+            <classpath file="comm.jar"/>
 
-  <!-- Creates a bundle with embedded JRE using current system JRE -->
+        </appbundler>
 
-  <target name="bundleWithJre">
+    </target>
 
-    <taskdef name="appbundler"
-      classpath="appbundler-1.0ea.jar"
-      classname="com.oracle.appbundler.AppBundlerTask"/>
+    <target name="codesignWithoutJre">
 
-    <appbundler
-        jvmrequired="1.5+"
-        outputdirectory="./build"
-        name="GPS-Action-Replay"
-        displayname="GPS Action Replay"
-        identifier="com.velocitek.gpsar"
-        mainclassname="GPSAR"
-        executableName="universalJavaApplicationStub"
-        >
+      <echo message="Signing ${excecutableFileName}.app WITHOUT bundled JRE ${jdkVersion}"/>
+      <echo message="Using signing cert with Common Name = ${developerIdApplicationCertCommonName}"/>
 
-        <classpath file="gpsar.jar"/>
-        <classpath file="comm.jar"/>
+        <exec executable="/usr/bin/codesign" dir="." failonerror="true">
 
-        <runtime dir="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home" />
+            <arg value="--deep"/>
+            <arg value="-s"/>
+            <arg value="${developerIdApplicationCertCommonName}"/>
+            <arg value="build/${excecutableFileName}.app"/>
+        </exec>
 
-    </appbundler>
+    </target>
 
-  </target>
+    <!-- Creates a bundle with embedded JRE using current system JRE -->
+
+    <target name="bundleWithJre">
+
+        <echo message="Building ${excecutableFileName}.app WITH bundled JRE/JDK ${jdkVersion}"/>
+        <echo message="Using JDK at ${pathToJdk}"/>
+
+        <taskdef name="appbundler" classpath="appbundler-1.0ea.jar" classname="com.oracle.appbundler.AppBundlerTask"/>
+
+        <appbundler jvmrequired="1.5+" outputdirectory="./build" name="${excecutableFileName}" displayname="${appDisplayName}" identifier="com.velocitek.gpsar" mainclassname="GPSAR" executableName="universalJavaApplicationStub">
+
+            <classpath file="gpsar.jar"/>
+            <classpath file="comm.jar"/>
+
+            <runtime dir="${pathToJdk}"/>
+
+        </appbundler>
+
+    </target>
+
+    <target name="codesignWithJre">
+
+        <echo message="Signing ${excecutableFileName}.app WITH bundled JRE ${jdkVersion}"/>
+        <echo message="Using signing cert with Common Name = ${developerIdApplicationCertCommonName}"/>
+
+        <echo message="Removing symlink"/>
+
+        <symlink action="delete" link="./build/GPS-Action-Replay.app/Contents/PlugIns/jdk${jdkVersion}.jdk/Contents/MacOS/libjli.dylib"/>
+
+        <echo message="Copying libjli.dylib in place of symlink"/>
+
+        <copy file="./build/GPS-Action-Replay.app/Contents/PlugIns/jdk${jdkVersion}.jdk/Contents/Home/jre/lib/jli/libjli.dylib" tofile="./build/GPS-Action-Replay.app/Contents/PlugIns/jdk${jdkVersion}.jdk/Contents/MacOS/libjli.dylib"/>
+
+        <echo message="Signing code"/>
+
+        <exec executable="/usr/bin/codesign" dir="." failonerror="true">
+
+            <arg value="--deep"/>
+            <arg value="-s"/>
+            <arg value="${developerIdApplicationCertCommonName}"/>
+            <arg value="build/${excecutableFileName}.app"/>
+        </exec>
+
+    </target>
+
+    <target name="bundleAndSignWithBundledJre">
+        <antcall target="bundleWithJre"/>
+        <antcall target="codesignWithJre"/>
+    </target>
+
+    <target name="bundleAndSignWithoutBundledJre">
+        <antcall target="bundleWithoutJre"/>
+        <antcall target="codesignWithoutJre"/>
+    </target>
 
 </project>
