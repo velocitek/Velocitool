@@ -65,6 +65,8 @@
         <echo message="Signing ${excecutableFileName}.app WITH bundled JRE ${jdkVersion}"/>
         <echo message="Using signing cert with Common Name = ${developerIdApplicationCertCommonName}"/>
 
+        <!-- codesign will not work on executables with symlinks in them, had to replace with actual file -->
+
         <echo message="Removing symlink"/>
 
         <symlink action="delete" link="./build/GPS-Action-Replay.app/Contents/PlugIns/jdk${jdkVersion}.jdk/Contents/MacOS/libjli.dylib"/>
@@ -73,14 +75,47 @@
 
         <copy file="./build/GPS-Action-Replay.app/Contents/PlugIns/jdk${jdkVersion}.jdk/Contents/Home/jre/lib/jli/libjli.dylib" tofile="./build/GPS-Action-Replay.app/Contents/PlugIns/jdk${jdkVersion}.jdk/Contents/MacOS/libjli.dylib"/>
 
+        <!-- code sign -->
+
         <echo message="Signing code"/>
 
-        <exec executable="/usr/bin/codesign" dir="." failonerror="true">
+        <exec executable="chmod">
+            <arg line="-R a+w build/${excecutableFileName}.app/Contents/PlugIns/jdk${jdkVersion}.jdk"/>
+        </exec>
 
-            <arg value="--deep"/>
-            <arg value="-s"/>
-            <arg value="${developerIdApplicationCertCommonName}"/>
-            <arg value="build/${excecutableFileName}.app"/>
+        <echo message="Signing jars"/>
+
+        <apply executable="codesign"> <!-- note: this loops through the contents of dir -->
+            <arg line="-f --deep -s '${developerIdApplicationCertCommonName}'"/>
+            <fileset dir="build/${excecutableFileName}.app/Contents/Java" />
+        </apply>
+
+        <echo message="Signing embedded jdk"/>
+
+        <exec executable="codesign" dir="./build">
+            <arg line="-f --deep -s '${developerIdApplicationCertCommonName}' ${excecutableFileName}.app/Contents/PlugIns/jdk${jdkVersion}.jdk"/>
+        </exec>
+
+        <echo message="Signing main app"/>
+
+        <exec executable="codesign" dir="./build">
+            <arg line="-f --deep -s '${developerIdApplicationCertCommonName}' ${excecutableFileName}.app"/>
+        </exec>
+
+        <!-- verify codesign -->
+
+        <echo message="Verifying codesign"/>
+
+        <exec executable="codesign" dir="./build" failonerror="true">
+            <arg line="-vv ${excecutableFileName}.app"/>
+        </exec>
+
+        <!-- verify gatekeeper -->
+
+        <echo message="Verifying gatekeeper"/>
+
+        <exec executable="spctl" dir="./build" failonerror="true">
+            <arg line="-vvvv --assess --type execute ${excecutableFileName}.app"/>
         </exec>
 
     </target>
