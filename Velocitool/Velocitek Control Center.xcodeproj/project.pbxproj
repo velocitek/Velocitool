@@ -427,9 +427,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8D1107260486CEB800E47090 /* Velocitool */ = {
+		8D1107260486CEB800E47090 /* Velocitek Control Center */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Velocitool" */;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Velocitek Control Center" */;
 			buildPhases = (
 				8D1107290486CEB800E47090 /* Resources */,
 				EDB756F11236BCD700B9A1A4 /* Copy Frameworks */,
@@ -441,7 +441,7 @@
 			);
 			dependencies = (
 			);
-			name = Velocitool;
+			name = "Velocitek Control Center";
 			productInstallPath = "$(HOME)/Applications";
 			productName = Velocitool;
 			productReference = 8D1107320486CEB800E47090 /* Velocitek Control Center.app */;
@@ -471,6 +471,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0700;
+				TargetAttributes = {
+					8D1107260486CEB800E47090 = {
+						DevelopmentTeam = 4RQWHVTUNE;
+					};
+				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Velocitek Control Center" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -486,7 +491,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8D1107260486CEB800E47090 /* Velocitool */,
+				8D1107260486CEB800E47090 /* Velocitek Control Center */,
 				EDE897D91158CD2D009E8151 /* Tool */,
 			);
 		};
@@ -641,6 +646,7 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 15;
@@ -686,7 +692,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitool;
+				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitekcontrolcenter;
 				PRODUCT_NAME = "Velocitek Control Center";
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -698,6 +704,7 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 15;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -740,7 +747,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitool;
+				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitekcontrolcenter;
 				PRODUCT_NAME = "Velocitek Control Center";
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -879,7 +886,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Velocitool" */ = {
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Velocitek Control Center" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
