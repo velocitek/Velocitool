@@ -49,7 +49,7 @@ Do the build
 
 Just run the following command:
 
-   xcodebuild -project Velocitool.xcodeproj -target Velocitool -configuration Release
+    xcodebuild -project Velocitek\ Control\ Center.xcodeproj -target Velocitek\ Control\ Center -configuration Release`
 
 During the build, toward the end, a popup is going to show up asking you for the keychain password in order to sign the dmg.
 
@@ -69,11 +69,11 @@ From within the "app-builder" you can either run "ant", which will build the bun
 
 If you want to bundle the JRE, the location of the used JRE/JDK is set by this line (in build.xml):
 
-`<runtime dir="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home" />`
+    <runtime dir="/Library/Java/JavaVirtualMachines/jdk1.7.0_79.jdk/Contents/Home" />
 
 It could be set to the current JAVA_HOME of the machine by replacing that line with this:
 
-`<runtime dir="${env.JAVA_HOME}" />`
+    <runtime dir="${env.JAVA_HOME}" />
 
 The appbundler-1.0ea.jar is InfiniteKind's build of the Oracle app-bundler.
 
