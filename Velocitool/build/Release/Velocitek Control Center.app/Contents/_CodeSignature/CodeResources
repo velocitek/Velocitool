@@ -40,7 +40,7 @@
 		</data>
 		<key>Resources/GPS-Action-Replay.app/Contents/MacOS/universalJavaApplicationStub</key>
 		<data>
-		Y+IkXf9cm6iDVmKK4G995z2VDLg=
+		JIcD32txdYxVmTKMAPQEe1wa36M=
 		</data>
 		<key>Resources/GPS-Action-Replay.app/Contents/PkgInfo</key>
 		<data>
@@ -2174,6 +2174,14 @@
 		<data>
 		/HMBCBNy9sLQ7j2eRwH8b2bF118=
 		</data>
+		<key>Resources/GPS-Action-Replay.app/Contents/PlugIns/jdk1.7.0_79.jdk/Contents/MacOS/libjli.dylib</key>
+		<data>
+		zKM2pw1Kio5lwV+t3oT+w8wU1wQ=
+		</data>
+		<key>Resources/GPS-Action-Replay.app/Contents/PlugIns/jdk1.7.0_79.jdk/Contents/_CodeSignature/CodeResources</key>
+		<data>
+		yPWa10N6APRFnpp24jaDPBJLfMA=
+		</data>
 		<key>Resources/GPS-Action-Replay.app/Contents/Resources/GenericApp.icns</key>
 		<data>
 		JSdo4DmEePX4aeDj/Km0dZpwYVk=
@@ -2205,6 +2213,10 @@
 			<key>optional</key>
 			<true/>
 		</dict>
+		<key>Resources/GPS-Action-Replay.app/Contents/_CodeSignature/CodeResources</key>
+		<data>
+		K4aCHnHDvXy2z+QRL+Dz+t6YIS4=
+		</data>
 		<key>Resources/MainWindow.nib</key>
 		<data>
 		6et7OLwIsJRB0WVoi6ReIR20iDk=
@@ -2330,11 +2342,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Y+IkXf9cm6iDVmKK4G995z2VDLg=
+			JIcD32txdYxVmTKMAPQEe1wa36M=
 			</data>
 			<key>hash2</key>
 			<data>
-			axIJlbIj+B1jYWIv6xO/9NNYhzE77NGKy2eXafaEg4E=
+			Fjky7Bc20Q7nUY5TEArLJdsGv5jZg7T7wYxKWQunKYY=
 			</data>
 		</dict>
 		<key>Resources/GPS-Action-Replay.app/Contents/PkgInfo</key>
@@ -8202,8 +8214,25 @@
 		</dict>
 		<key>Resources/GPS-Action-Replay.app/Contents/PlugIns/jdk1.7.0_79.jdk/Contents/MacOS/libjli.dylib</key>
 		<dict>
-			<key>symlink</key>
-			<string>../Home/jre/lib/jli/libjli.dylib</string>
+			<key>hash</key>
+			<data>
+			zKM2pw1Kio5lwV+t3oT+w8wU1wQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			t9DsMgb2ZP4V0cIBky7dW8WFj23Sj3gfXXRPIEKQ6XY=
+			</data>
+		</dict>
+		<key>Resources/GPS-Action-Replay.app/Contents/PlugIns/jdk1.7.0_79.jdk/Contents/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			yPWa10N6APRFnpp24jaDPBJLfMA=
+			</data>
+			<key>hash2</key>
+			<data>
+			0i8C8yTFavQB8cxRLO5ncIWu0cqYuV5jafvRsLXp+5c=
+			</data>
 		</dict>
 		<key>Resources/GPS-Action-Replay.app/Contents/Resources/GenericApp.icns</key>
 		<dict>
@@ -8254,6 +8283,17 @@
 			</data>
 			<key>optional</key>
 			<true/>
+		</dict>
+		<key>Resources/GPS-Action-Replay.app/Contents/_CodeSignature/CodeResources</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			K4aCHnHDvXy2z+QRL+Dz+t6YIS4=
+			</data>
+			<key>hash2</key>
+			<data>
+			ZrcpWGDKS1tkJ8kycr4La7MCl6Y7iNRp7LNU9mbKsOQ=
+			</data>
 		</dict>
 		<key>Resources/MainWindow.nib</key>
 		<dict>
