@@ -1,0 +1,19 @@
+{
+  "name": "dmg-maker",
+  "version": "1.0.0",
+  "description": "Used to build a pretty installer DMG",
+  "main": "index.js",
+  "dependencies": {
+    "appdmg": "^0.4.5",
+    "rimraf": "^2.5.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "buildDmg": "rimraf build/Velocitek-Control-Center-Installer.dmg && appdmg settings.json  build/Velocitek-Control-Center-Installer.dmg",
+    "codesign": "codesign -v -s \"Developer ID Application: Andrew Hughes (4RQWHVTUNE)\" build/Velocitek-Control-Center-Installer.dmg",
+    "verifyCodesign": "spctl -a -t open --context context:primary-signature -v build/Velocitek-Control-Center-Installer.dmg",
+    "buildAndSign": "npm run buildDmg && npm run codesign && npm run verifyCodesign"
+  },
+  "author": "",
+  "license": "ISC"
+}

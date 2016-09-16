@@ -1,0 +1,16 @@
+{
+  "title": "Velocitek Control Center",
+  "icon": "../Velocitool/SpeedPuck.icns",
+  "background": "./velocitek-installer-background3.png",
+  "icon-size": 90,
+  "contents": [
+    { "x": 440, "y": 200, "type": "link", "path": "/Applications" },
+    { "x": 130, "y": 200, "type": "file", "path": "../Velocitool/build/release/Velocitek Control Center.app" }
+  ],
+  "window" : {
+    "size": {
+      "height": 460,
+      "width": 576
+    }
+  }
+}
