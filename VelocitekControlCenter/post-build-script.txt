@@ -1,0 +1,12 @@
+//
+//  post-build-script
+//  Text
+//  ----------------------------------
+//  Developed with embedXcode
+//
+//  Project 	Velocitek Control Center
+//  Created by 	Andrew Hughes on 9/19/16
+//  Copyright 	© 2016 __MyCompanyName__
+//  License	<#license#>
+//
+
