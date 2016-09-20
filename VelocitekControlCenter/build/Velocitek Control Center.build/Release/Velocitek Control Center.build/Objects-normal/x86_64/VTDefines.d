@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTDefines.m \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTDefines.h
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTDefines.m \
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTDefines.h

@@ -1,2 +1,2 @@
 dependencies: \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/main.m
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/main.m

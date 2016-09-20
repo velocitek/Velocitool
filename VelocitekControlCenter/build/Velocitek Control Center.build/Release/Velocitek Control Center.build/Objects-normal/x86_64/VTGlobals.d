@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTGlobals.m \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTGlobals.h
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTGlobals.m \
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTGlobals.h

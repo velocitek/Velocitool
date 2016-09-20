@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTProgressTracker.m \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTProgressTracker.h
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTProgressTracker.m \
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTProgressTracker.h

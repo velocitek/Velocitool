@@ -1,8 +1,8 @@
 dependencies: \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTTrackDownloadOperation.m \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTTrackDownloadOperation.h \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTTrackFromDevice.h \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTDevice.h \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTRecord.h \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTProgressTracker.h \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTCapturedTrackElement.h
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTTrackDownloadOperation.m \
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTTrackDownloadOperation.h \
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTTrackFromDevice.h \
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTDevice.h \
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTRecord.h \
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTProgressTracker.h \
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTCapturedTrackElement.h

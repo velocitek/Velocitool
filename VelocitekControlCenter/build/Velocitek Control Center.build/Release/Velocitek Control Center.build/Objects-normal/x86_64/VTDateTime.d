@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTDateTime.m \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTDateTime.h
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTDateTime.m \
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTDateTime.h

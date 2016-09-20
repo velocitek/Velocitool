@@ -49,7 +49,7 @@ Do the build
 
 Just run the following command:
 
-    xcodebuild -project Velocitek\ Control\ Center.xcodeproj -target Velocitek\ Control\ Center -configuration Release`
+    xcodebuild -project "Velocitek Control Center.xcodeproj" -target "Velocitek Control Center" -configuration Release
 
 During the build, toward the end, a popup is going to show up asking you for the keychain password in order to sign the dmg.
 

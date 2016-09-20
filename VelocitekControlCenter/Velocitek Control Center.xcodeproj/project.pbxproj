@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		095982001D624BE000B9D190 /* VTDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 095981FF1D624BE000B9D190 /* VTDefines.m */; };
+		47535E861D90987D00512DF3 /* post-build-script.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47535E851D90987D00512DF3 /* post-build-script.txt */; };
 		47FD75671D88944C00DEEE0E /* GPS-Action-Replay.app in Resources */ = {isa = PBXBuildFile; fileRef = 47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */; };
 		7009C76A11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
 		7009C76B11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
@@ -119,6 +120,7 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Velocitool_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Velocitool_Prefix.pch; sourceTree = "<group>"; };
+		47535E851D90987D00512DF3 /* post-build-script.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "post-build-script.txt"; sourceTree = "<group>"; };
 		47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "GPS-Action-Replay.app"; path = "../app-bundler/build/GPS-Action-Replay.app"; sourceTree = "<group>"; };
 		7009C76811BF52FF0076DB4D /* VTProgressTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTProgressTracker.h; sourceTree = "<group>"; };
 		7009C76911BF52FF0076DB4D /* VTProgressTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTProgressTracker.m; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 		29B97314FDCFA39411CA2CEA /* Velocitool */ = {
 			isa = PBXGroup;
 			children = (
+				47535E851D90987D00512DF3 /* post-build-script.txt */,
 				ED3976731C427AEB00147C1F /* README.md */,
 				ED2A015D0F339B6A005C0CE0 /* Communication */,
 				708274E211B5CF9B00DD66FF /* XML */,
@@ -435,7 +438,6 @@
 				EDB756F11236BCD700B9A1A4 /* Copy Frameworks */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				EDFC3F000EF81E0000E1DD2F /* Build DMG */,
 			);
 			buildRules = (
 			);
@@ -516,29 +518,13 @@
 				7023AA2F11ACFB9B00975EC0 /* TrackFileView.xib in Resources */,
 				709C83BB11AD1CBE00663AFB /* MainWindow.xib in Resources */,
 				70135D3D11D0832C0046A8BF /* DeviceSettings.xib in Resources */,
+				47535E861D90987D00512DF3 /* post-build-script.txt in Resources */,
 				7086DAB111EE89FB00EEC381 /* TrackpointsToKml.xslt in Resources */,
 				7086DABE11EF96AF00EEC381 /* TrackpointsToGpx.xslt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		EDFC3F000EF81E0000E1DD2F /* Build DMG */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Build DMG";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "if [ $CONFIGURATION = Release ]; then\n\nPUBLISH_DMG=~/Sites/velocitool/\nPUBLISH_RSS=~/Sites/velocitool/rss.xml\n\nVERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME/Contents/Info\" CFBundleVersion)\nMARKETING_VERSION=$(defaults read \"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME/Contents/Info\" CFBundleShortVersionString)\nPUBLISH_URL=$(defaults read \"$BUILT_PRODUCTS_DIR/$WRAPPER_NAME/Contents/Info\" SUFeedURL)\nDOWNLOAD_BASE_URL=\"http://velocitek.com/assets/files/downloads/vcc/vcc_mac\"\nRELEASENOTES_URL=\"http://velocitek.com/assets/files/downloads/release-notes.html#version-$MARKETING_VERSION\"\n\nARCHIVE_FILENAME=\"$PROJECT_NAME $MARKETING_VERSION($VERSION).dmg\"\nDOWNLOAD_URL=\"$DOWNLOAD_BASE_URL/$ARCHIVE_FILENAME\"\nKEYCHAIN_PRIVKEY_NAME=\"Velocitool private key\"\nDISK_DIR=\"$TEMP_FILES_DIR/disk\"\n\ncd \"$BUILT_PRODUCTS_DIR\"\nrm -rf \"$ARCHIVE_FILENAME\" \"$DISK_DIR\"\n\nmkdir -p \"$DISK_DIR\"\ncp -R \"$WRAPPER_NAME\" \"$DISK_DIR\"\n\nhdiutil create -srcfolder \"$DISK_DIR\" -volname \"$PROJECT_NAME\" \"$ARCHIVE_FILENAME\"\nhdiutil internet-enable -yes \"$ARCHIVE_FILENAME\"\nrm -rf \"$DISK_DIR\"\n\nSIZE=$(stat -f %z \"$ARCHIVE_FILENAME\")\nPUBDATE=$(date +\"%a, %d %b %G %T %z\")\nSIGNATURE=$(\n\topenssl dgst -sha1 -binary < \"$ARCHIVE_FILENAME\" \\\n\t| openssl dgst -dss1 -sign <(security find-generic-password -g -s \"$KEYCHAIN_PRIVKEY_NAME\" 2>&1 1>/dev/null | perl -pe '($_) = /\"(.+)\"/; s/\\\\012/\\n/g') \\\n\t| openssl enc -base64\n)\n\n[ $SIGNATURE ] || { echo Unable to load signing private key with name \"'$KEYCHAIN_PRIVKEY_NAME'\" from keychain; false; }\n\nmkdir -p ${PUBLISH_DMG}\ncat  > \"${PUBLISH_RSS}\" <<EOF\n<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<rss version=\"2.0\" xmlns:sparkle=\"http://www.andymatuschak.org/xml-namespaces/sparkle\"  xmlns:dc=\"http://purl.org/dc/elements/1.1/\">\n   <channel>\n      <title>Velocitool Changelog</title>\n      <link>${PUBLISH_URL}</link>\n      <description>Most recent changes with links to updates.</description>\n      <language>en</language>\n\t\t<item>\n\t\t\t<title>Version $VERSION</title>\n\t\t\t<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>\n\t\t\t<pubDate>$PUBDATE</pubDate>\n\t\t\t<enclosure\n\t\t\t\turl=\"$DOWNLOAD_URL\"\n\t\t\t\tsparkle:version=\"$VERSION\"\n\t\t\t\tsparkle:shortVersionString=\"$MARKETING_VERSION\"\n\t\t\t\ttype=\"application/octet-stream\"\n\t\t\t\tlength=\"$SIZE\"\n\t\t\t\tsparkle:dsaSignature=\"$SIGNATURE\"\n\t\t\t/>\n\t\t</item>\n   </channel>\n</rss>\nEOF\n\ncp -f \"${ARCHIVE_FILENAME}\" \"${PUBLISH_DMG}\"\n\nfi\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {
@@ -692,6 +678,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitekcontrolcenter;
 				PRODUCT_NAME = "Velocitek Control Center";
 				SDKROOT = macosx;
@@ -747,6 +734,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitekcontrolcenter;
 				PRODUCT_NAME = "Velocitek Control Center";
 				SDKROOT = macosx;

@@ -1,5 +1,5 @@
 dependencies: \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTVccRootElement.m \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTVccRootElement.h \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTCapturedTrackElement.h \
-  /Users/cantgetnosleep/development/toptal/Velocitool/Velocitool/VTXmlDate.h
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTVccRootElement.m \
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTVccRootElement.h \
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTCapturedTrackElement.h \
+  /Users/cantgetnosleep/development/toptal/Velocitool/VelocitekControlCenter/VTXmlDate.h
