@@ -3,6 +3,7 @@
   "icon": "../VelocitekControlCenter/SpeedPuck.icns",
   "background": "./velocitek-installer-background3.png",
   "icon-size": 90,
+  "format": "UDRO",
   "contents": [
     { "x": 440, "y": 200, "type": "link", "path": "/Applications" },
     { "x": 130, "y": 200, "type": "file", "path": "../VelocitekControlCenter/build/release/Velocitek Control Center.app" }

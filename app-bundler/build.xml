@@ -74,6 +74,9 @@
         <echo message="Copying libjli.dylib in place of symlink"/>
 
         <copy file="./build/GPS-Action-Replay.app/Contents/PlugIns/jdk${jdkVersion}.jdk/Contents/Home/jre/lib/jli/libjli.dylib" tofile="./build/GPS-Action-Replay.app/Contents/PlugIns/jdk${jdkVersion}.jdk/Contents/MacOS/libjli.dylib"/>
+        <exec executable="chmod">
+            <arg line="+x ./build/GPS-Action-Replay.app/Contents/PlugIns/jdk${jdkVersion}.jdk/Contents/MacOS/libjli.dylib"/>
+        </exec>
 
         <!-- code sign -->
 
@@ -90,7 +93,12 @@
             <fileset dir="build/${excecutableFileName}.app/Contents/Java" />
         </apply>
 
-        <echo message="Signing embedded jdk"/>
+        <echo message="Signing embedded jdk (this might take a while)"/>
+
+        <apply executable="codesign"> <!-- note: this loops through the contents of dir -->
+            <arg line="-f --deep -s '${developerIdApplicationCertCommonName}'"/>
+            <fileset dir="build/${excecutableFileName}.app/Contents/PlugIns/jdk${jdkVersion}.jdk/Contents/Home/jre/lib" />
+        </apply>
 
         <exec executable="codesign" dir="./build">
             <arg line="-f --deep -s '${developerIdApplicationCertCommonName}' ${excecutableFileName}.app/Contents/PlugIns/jdk${jdkVersion}.jdk"/>

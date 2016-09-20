@@ -9,9 +9,9 @@
   },
   "devDependencies": {},
   "scripts": {
-    "buildDmg": "rimraf build/Velocitek-Control-Center-Installer.dmg && appdmg settings.json  build/Velocitek-Control-Center-Installer.dmg",
-    "codesign": "codesign -v -s \"Developer ID Application: Andrew Hughes (4RQWHVTUNE)\" build/Velocitek-Control-Center-Installer.dmg",
-    "verifyCodesign": "spctl -a -t open --context context:primary-signature -v build/Velocitek-Control-Center-Installer.dmg",
+    "buildDmg": "rimraf ../distribution/Velocitek-Control-Center-Installer.dmg && appdmg settings.json  ../distribution/Velocitek-Control-Center-Installer.dmg",
+    "codesign": "codesign -v -s \"Developer ID Application: Andrew Hughes (4RQWHVTUNE)\" ../distribution/Velocitek-Control-Center-Installer.dmg",
+    "verifyCodesign": "codesign --display --verbose=4 --verify ../distribution/Velocitek-Control-Center-Installer.dmg",
     "buildAndSign": "npm run buildDmg && npm run codesign && npm run verifyCodesign"
   },
   "author": "",

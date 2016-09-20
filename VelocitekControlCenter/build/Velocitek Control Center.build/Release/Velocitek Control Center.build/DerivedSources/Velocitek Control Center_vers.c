@@ -1,1 +1,0 @@
- const unsigned char Velocitek_Control_CenterVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:Velocitek Control Center  PROJECT:Velocitek Control Center-15" "\n"; const double Velocitek_Control_CenterVersionNumber __attribute__ ((used)) = (double)15.;
