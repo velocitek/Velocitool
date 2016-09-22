@@ -454,21 +454,41 @@
 		if ([firmwareVersion compare:@"1.3"] == NSOrderedSame) {
 			
 				deviceSettingsController = [[SpeedPuck1_3DeviceSettingsController alloc] initWithDevice:[trackLogViewController firstConnectedDevice]];
-		
+            [deviceSettingsController showWindow:self];
+
 		}
 		
-		else if([firmwareVersion compare:@"1.4"] == NSOrderedSame) {
+		else if([firmwareVersion compare:@"1.4"] == NSOrderedSame || [firmwareVersion compare:@"1.5"] == NSOrderedSame) {
 		
-			
 			deviceSettingsController = [[SpeedPuck1_4DeviceSettingsController alloc] initWithDevice:[trackLogViewController firstConnectedDevice]];
-			
+            [deviceSettingsController showWindow:self];
+
 		}
+        else {
+            NSString * message = [NSString stringWithFormat:@"I'm sorry the SpeedPuck is running an unsupported firmware version: %@", firmwareVersion];
+            NSAlert * alert = [self getAlertWithMessage:message informativeText:@"Supported versions: 1.3, 1.4, 1.5."];
+            [alert runModal];
+            [alert release];
+        }
 	
-		[deviceSettingsController showWindow:self];
 		
 	}
-	
-	
+    else {
+        NSString * message = [NSString stringWithFormat:@"Unrecognized device model: %@", model];
+        NSAlert * alert = [self getAlertWithMessage:message informativeText:NULL];
+        [alert runModal];
+        [alert release];
+    }
+
+}
+
+- (NSAlert*) getAlertWithMessage:(NSString*)message informativeText:(NSString*) informativeText {
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"OK"];
+    [alert setMessageText:message];
+    if (informativeText != NULL) [alert setInformativeText:informativeText];
+    [alert setAlertStyle:NSWarningAlertStyle];
+    return alert;
 }
 
 

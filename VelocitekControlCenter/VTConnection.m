@@ -146,6 +146,8 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
                        productID:(int)productID
                     serialNumber:(NSString *)serial {
   if ((self = [super init])) {
+      
+      NSLog(@"VTLog: Initialized with Vendor ID = %d, Product ID = %d, Serial Number = %@", vendorID, productID, serial);
     _vendorID = vendorID;
     _productID = productID;
     _serial = [serial copy];
@@ -310,7 +312,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 }
 
 - (NSData *)readLength:(unsigned int)length {
-  return [self readLength:length timeout:5000];
+    return [self readLength:length timeout:5000];
 }
 
 - (void)recover {
@@ -481,7 +483,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
   }
 
   // Set Baud Rate.
-  if ((ft_error = (*pFT_SetBaudRate)(ft_handle, FT_BAUD_115200))) {
+  if ((ft_error = (*pFT_SetBaudRate)(ft_handle, FT_BAUD_115200))) { // decreased baud rate from (FT_BAUD_115200) to try and fix download problems
     NSLog(@"VTError: Call to FT_SetBaudRate failed with error %u", ft_error);
     [self close];
     return;
@@ -593,8 +595,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     DWORD txQueueLength;
     DWORD event;
 
-    if ((ft_error = (*pFT_GetStatus)(_ft_handle, &rxQueueLength, &txQueueLength,
-                                     &event))) {
+    if ((ft_error = (*pFT_GetStatus)(_ft_handle, &rxQueueLength, &txQueueLength,  &event))) {
       NSLog(@"VTError: Call to FT_GetStatus failed with error %u", ft_error);
       return 0;
     }
@@ -603,15 +604,17 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
       return rxQueueLength;
     }
 
-    usleep(timeoutInUSeconds / 100);
+    usleep(timeoutInUSeconds/100);
   }
-  NSLog(@"waitForResponseLength timed out after waiting %d ms for %lu byte(s)",
-        timeOutInMs, (unsigned long)length);
+    
+  NSLog(@"waitForResponseLength timed out after waiting %d ms for %lu byte(s)", timeOutInMs, (unsigned long)length);
+    NSLog(@"%@",[NSThread callStackSymbols]);
   return 0;
+    
 }
 
 - (NSData *)readLength:(NSUInteger)length timeout:(int)timeOutInMs {
-    NSLog(@"VTLOG: [VTConnection, readLength = %d timeout = %d]", length, timeOutInMs);  // VTLOG for debugging
+    NSLog(@"VTLOG: [VTConnection, readLength = %lu timeout = %d]", (unsigned long)length, timeOutInMs);  // VTLOG for debugging
     
   FT_STATUS ft_error;
   DWORD sizedone;
@@ -635,11 +638,12 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
   _available -= sizedone;
 
   if (sizedone != length) {
-    NSLog(@"VTError: Call to FT_Read read only %u of %lu", sizedone,
-          (unsigned long)length);
-      
+    NSLog(@"VTError: Call to FT_Read read only %u of %lu", sizedone, (unsigned long)length);
     return nil;
   }
+    
+    NSLog(@"Returning bytes of length: %d", (int)length);
+    
   return [NSData dataWithBytes:buffer length:length];
 }
 

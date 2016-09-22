@@ -44,6 +44,6 @@
 
 
 - (IBAction)switchViews:(id)sender;
-
+- (NSAlert*) getAlertWithMessage:(NSString*)message informativeText:(NSString*) informativeText;
 
 @end

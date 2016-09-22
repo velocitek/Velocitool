@@ -19,7 +19,6 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
 {
   if ((self = [super init])) {
     trackpoints = [[NSMutableArray alloc] init];
-
     trackFromDevice = track;
     device = [track device];
     selectedTrackLogs = [track selectedTrackLogs];
@@ -39,10 +38,16 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
 	{
 		
 		start = [trackpointLog start];
-		end = [trackpointLog end];				
+		end = [trackpointLog end];
 		
-		newTrackpoints = [device trackpoints:start endTime:end];
-		
+        NSLog(@"Downloading trackpoints. Start = %@, End = %@", [start description], [end description]);
+        
+        int expectedNumTrackpoints = trackpointLog.numTrackpoints;
+        
+        NSLog(@"Expecting %d trackpoints.", expectedNumTrackpoints);
+        
+        newTrackpoints = [self trackpointsHelper:nil expectedNumTrackpoint:expectedNumTrackpoints start:start end:end];
+        
 		[trackpoints addObjectsFromArray:newTrackpoints];
 		
 	}
@@ -55,6 +60,37 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
 	//NSLog(@"Sending notification that the track has finished downloading");
 	[notificationCenter postNotificationName:VTTrackFinishedDownloadingNotification object:self];
 
+}
+
+- (NSMutableArray*) trackpointsHelper:(NSMutableArray*)acc expectedNumTrackpoint:(unsigned long)expectedNumTrackpoints start:(NSDate*)start end:(NSDate*)end {
+    
+    if (acc == nil) acc = [[[NSMutableArray alloc] init] autorelease];
+    
+    NSArray * newTrackpoints = [device trackpoints:start endTime:end];
+
+    [acc addObjectsFromArray:newTrackpoints];
+    
+    if ([acc count] < expectedNumTrackpoints) {
+        
+        // get last trackpoint
+        VTTrackpointRecord *lastTrackpoint = [acc lastObject];
+        
+        // get date of last trackpoint
+        NSDate *dateOfLastTrackpoint = lastTrackpoint.timestamp;
+        
+        // increment by 1 ms
+        NSDate *datePlusOne =[NSDate dateWithTimeIntervalSinceReferenceDate:[dateOfLastTrackpoint timeIntervalSinceReferenceDate] + 1];
+        
+        // rest
+        [NSThread sleepForTimeInterval:1.0f];
+
+        // call helper again
+        return [self trackpointsHelper:acc expectedNumTrackpoint:expectedNumTrackpoints start:datePlusOne end:end];
+        
+    }
+    
+    return acc;
+    
 }
 
 - (void)initializeProgressTracker
