@@ -64,13 +64,26 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
 
 - (NSMutableArray*) trackpointsHelper:(NSMutableArray*)acc expectedNumTrackpoint:(unsigned long)expectedNumTrackpoints start:(NSDate*)start end:(NSDate*)end {
     
+    NSLog(@"#tpts=%lul", expectedNumTrackpoints);
+    NSLog(@"start=%fl", [start timeIntervalSinceReferenceDate]);
+    NSLog(@"end  =%fl", [end timeIntervalSinceReferenceDate]);
+    
+    
     if (acc == nil) acc = [[[NSMutableArray alloc] init] autorelease];
     
     NSArray * newTrackpoints = [device trackpoints:start endTime:end];
-
+    
+    NSLog(@"#downloaded = %lu", [newTrackpoints count]);
+    
     [acc addObjectsFromArray:newTrackpoints];
     
+    NSLog(@"#totak = %lu", [acc count]);
+
     if ([acc count] < expectedNumTrackpoints) {
+        
+        NSLog(@"#tpts=%lul", expectedNumTrackpoints);
+        NSLog(@"start=%fl", [start timeIntervalSinceReferenceDate]);
+        NSLog(@"end  =%fl", [end timeIntervalSinceReferenceDate]);
         
         // get last trackpoint
         VTTrackpointRecord *lastTrackpoint = [acc lastObject];
@@ -79,7 +92,12 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
         NSDate *dateOfLastTrackpoint = lastTrackpoint.timestamp;
         
         // increment by 1 ms
-        NSDate *datePlusOne =[NSDate dateWithTimeIntervalSinceReferenceDate:[dateOfLastTrackpoint timeIntervalSinceReferenceDate] + 1];
+        NSTimeInterval timeOfLastTrackpoint = [dateOfLastTrackpoint timeIntervalSinceReferenceDate];
+        NSLog(@"last =%fl", timeOfLastTrackpoint);
+
+        NSTimeInterval newTimeInterval = timeOfLastTrackpoint + 1.0;
+        NSLog(@"newl =%fl",newTimeInterval);
+        NSDate *datePlusOne =[NSDate dateWithTimeIntervalSinceReferenceDate:newTimeInterval];
         
         // rest
         [NSThread sleepForTimeInterval:1.0f];

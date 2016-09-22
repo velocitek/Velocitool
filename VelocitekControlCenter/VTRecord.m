@@ -28,6 +28,15 @@
 @synthesize speed = _speed;
 @synthesize heading = _heading;
 
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _timestamp = nil;
+    }
+    return self;
+}
+
 - (void)dealloc {
   [_timestamp release];
   [super dealloc];

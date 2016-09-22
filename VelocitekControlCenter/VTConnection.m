@@ -225,7 +225,11 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     while ([self waitForResponseLength:1 timeout:500]) {
       VTRecord *result = [[[resultClass alloc] init] autorelease];
 
+        
       [result readFromConnection:self];
+        
+        NSLog(@"%@", [result description]);
+
       [results addObject:result];
       [self.progressTracker
           performSelectorOnMainThread:@selector(incrementProgress)
@@ -300,8 +304,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 }
 
 - (NSDate *)readDate {
-  VTDateTime *dateToConvert = [VTDateTime
-      vtDateWithPicBytes:[self readLength:[VTDateTime picRepresentationSize]]];
+  VTDateTime *dateToConvert = [VTDateTime vtDateWithPicBytes:[self readLength:[VTDateTime picRepresentationSize]]];
   return [dateToConvert date];
 }
 
@@ -632,6 +635,11 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 
   if ((ft_error = (*pFT_Read)(_ft_handle, buffer, dword_length, &sizedone))) {
     NSLog(@"VTError: Call to FT_Read failed with error %u", ft_error);
+      NSException *e = [NSException
+                        exceptionWithName:@"FT_Read failed"
+                        reason:[NSString stringWithFormat:@"Call to FT_Read failed with error %u", ft_error]
+                        userInfo:nil];
+      @throw e;
     return nil;
   }
 
@@ -639,6 +647,11 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 
   if (sizedone != length) {
     NSLog(@"VTError: Call to FT_Read read only %u of %lu", sizedone, (unsigned long)length);
+      NSException *e = [NSException
+                        exceptionWithName:@"FT_Read failed"
+                        reason:[NSString stringWithFormat:@"Call to FT_Read read only %u of %lu", sizedone, (unsigned long)length]
+                        userInfo:nil];
+      @throw e;
     return nil;
   }
     

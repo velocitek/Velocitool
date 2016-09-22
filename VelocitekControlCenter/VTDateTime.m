@@ -18,13 +18,13 @@
 }
 
 + (id)vtDateWithPicBytes:(NSData *)bytes {
-    NSLog(@"VTLOG: [VTDateTime, vtDateWithPicBytes = %@]", bytes);  // VTLOG for debugging
+    //NSLog(@"VTLOG: [VTDateTime, vtDateWithPicBytes = %@]", bytes);  // VTLOG for debugging
     
         return [[[self alloc] initWithPicDateRepresentation:bytes] autorelease];
 }
 
 + (id)vtDateWithDate:(NSDate *)dateObject {
-    NSLog(@"VTLOG: [VTDateTime, vtDateWithDate = %@]", dateObject);  // VTLOG for debugging
+    //NSLog(@"VTLOG: [VTDateTime, vtDateWithDate = %@]", dateObject);  // VTLOG for debugging
     
   return [[[self alloc] initWithDate:dateObject] autorelease];
 }
@@ -98,6 +98,8 @@
 - (instancetype)initWithPicDateRepresentation:(NSData *)bytes {
   if ((self = [super init])) {
     _picDateRepresentation = [bytes retain];
+      
+      NSLog(@"%@", [_picDateRepresentation description]);
 
     unsigned char picBytes[[VTDateTime picRepresentationSize]];
     [_picDateRepresentation getBytes:picBytes length:[VTDateTime picRepresentationSize]];
