@@ -9,57 +9,38 @@
 /* Begin PBXBuildFile section */
 		095982001D624BE000B9D190 /* VTDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 095981FF1D624BE000B9D190 /* VTDefines.m */; };
 		47535E861D90987D00512DF3 /* post-build-script.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47535E851D90987D00512DF3 /* post-build-script.txt */; };
+		478CE9861D99AB1900DAD61A /* VTDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080EFD4115C35D00013C9C3 /* VTDateTime.m */; };
 		47FD75671D88944C00DEEE0E /* GPS-Action-Replay.app in Resources */ = {isa = PBXBuildFile; fileRef = 47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */; };
-		7009C76A11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
 		7009C76B11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
-		70135D3611D082A50046A8BF /* DeviceSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70135D3511D082A50046A8BF /* DeviceSettingsController.m */; };
 		70135D3711D082A50046A8BF /* DeviceSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70135D3511D082A50046A8BF /* DeviceSettingsController.m */; };
 		70135D3D11D0832C0046A8BF /* DeviceSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70135D3C11D0832C0046A8BF /* DeviceSettings.xib */; };
 		70135ED111D825D90046A8BF /* VTDeviceSettingValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 70135ED011D825D90046A8BF /* VTDeviceSettingValue.m */; };
-		70135ED211D825D90046A8BF /* VTDeviceSettingValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 70135ED011D825D90046A8BF /* VTDeviceSettingValue.m */; };
 		70135EE511D8359F0046A8BF /* VTDeclinationValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 70135EE411D8359F0046A8BF /* VTDeclinationValue.m */; };
-		70135EE611D8359F0046A8BF /* VTDeclinationValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 70135EE411D8359F0046A8BF /* VTDeclinationValue.m */; };
 		701360A811D930C90046A8BF /* VTDeviceSettingMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 701360A711D930C90046A8BF /* VTDeviceSettingMenu.m */; };
-		701360A911D930C90046A8BF /* VTDeviceSettingMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 701360A711D930C90046A8BF /* VTDeviceSettingMenu.m */; };
-		701363AC11D9D4030046A8BF /* VTFirmwareUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 701363AB11D9D4030046A8BF /* VTFirmwareUpdateOperation.m */; };
 		701363AD11D9D4030046A8BF /* VTFirmwareUpdateOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 701363AB11D9D4030046A8BF /* VTFirmwareUpdateOperation.m */; };
 		7023A9ED11ACE1CC00975EC0 /* TrackLogViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7023A9EC11ACE1CC00975EC0 /* TrackLogViewController.m */; };
 		7023A9F111ACE36400975EC0 /* TrackLogView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7023A9F011ACE36400975EC0 /* TrackLogView.xib */; };
 		7023AA2B11ACFA0300975EC0 /* TrackFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7023AA2A11ACFA0300975EC0 /* TrackFileViewController.m */; };
 		7023AA2F11ACFB9B00975EC0 /* TrackFileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7023AA2E11ACFB9B00975EC0 /* TrackFileView.xib */; };
-		7080EFD5115C35D00013C9C3 /* VTDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080EFD4115C35D00013C9C3 /* VTDateTime.m */; };
 		7080EFD6115C35D00013C9C3 /* VTDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080EFD4115C35D00013C9C3 /* VTDateTime.m */; };
 		7080F18F115D7DA50013C9C3 /* VTFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080F18E115D7DA50013C9C3 /* VTFloat.m */; };
-		7080F190115D7DA50013C9C3 /* VTFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080F18E115D7DA50013C9C3 /* VTFloat.m */; };
 		708274F111B5D01300DD66FF /* VTTrackpointElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 708274F011B5D01300DD66FF /* VTTrackpointElement.m */; };
-		708275C811B78DE900DD66FF /* VTTrackpointElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 708274F011B5D01300DD66FF /* VTTrackpointElement.m */; };
 		7082773511B8B88000DD66FF /* VTTrackpointsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7082773411B8B88000DD66FF /* VTTrackpointsElement.m */; };
-		7082776411B8C08100DD66FF /* VTTrackpointsElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7082773411B8B88000DD66FF /* VTTrackpointsElement.m */; };
-		7082777711B8EDF100DD66FF /* VTBoundaryElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7082777611B8EDF100DD66FF /* VTBoundaryElement.m */; };
 		7082777811B8EDF100DD66FF /* VTBoundaryElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7082777611B8EDF100DD66FF /* VTBoundaryElement.m */; };
-		7082782D11BAF81D00DD66FF /* VTDeviceInfoElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7082782C11BAF81D00DD66FF /* VTDeviceInfoElement.m */; };
 		7082782E11BAF81D00DD66FF /* VTDeviceInfoElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7082782C11BAF81D00DD66FF /* VTDeviceInfoElement.m */; };
-		7082784A11BB01D400DD66FF /* VTXmlDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7082784911BB01D400DD66FF /* VTXmlDate.m */; };
 		7082784B11BB01D400DD66FF /* VTXmlDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7082784911BB01D400DD66FF /* VTXmlDate.m */; };
-		708278C311BB513E00DD66FF /* VTCapturedTrackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 708278C211BB513E00DD66FF /* VTCapturedTrackElement.m */; };
 		708278C411BB513E00DD66FF /* VTCapturedTrackElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 708278C211BB513E00DD66FF /* VTCapturedTrackElement.m */; };
-		7082796E11BC5D2200DD66FF /* VTVccXmlDoc.m in Sources */ = {isa = PBXBuildFile; fileRef = 7082796D11BC5D2200DD66FF /* VTVccXmlDoc.m */; };
 		7082796F11BC5D2200DD66FF /* VTVccXmlDoc.m in Sources */ = {isa = PBXBuildFile; fileRef = 7082796D11BC5D2200DD66FF /* VTVccXmlDoc.m */; };
-		7082797411BC5E4800DD66FF /* VTVccRootElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7082797311BC5E4800DD66FF /* VTVccRootElement.m */; };
 		7082797511BC5E4800DD66FF /* VTVccRootElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 7082797311BC5E4800DD66FF /* VTVccRootElement.m */; };
 		7086DAB111EE89FB00EEC381 /* TrackpointsToKml.xslt in Resources */ = {isa = PBXBuildFile; fileRef = 7086DAAF11EE89FB00EEC381 /* TrackpointsToKml.xslt */; };
 		7086DABE11EF96AF00EEC381 /* TrackpointsToGpx.xslt in Resources */ = {isa = PBXBuildFile; fileRef = 7086DAB011EE89FB00EEC381 /* TrackpointsToGpx.xslt */; };
 		709C839C11AD1A4100663AFB /* MainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 709C839B11AD1A4100663AFB /* MainWindowController.m */; };
 		709C83BB11AD1CBE00663AFB /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709C83BA11AD1CBE00663AFB /* MainWindow.xib */; };
 		709C86B811AF73C100663AFB /* VTTrackFromDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 709C86B711AF73C100663AFB /* VTTrackFromDevice.m */; };
-		70A6B83E11C4658200662C55 /* VTTrackDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A6B83D11C4658200662C55 /* VTTrackDownloadOperation.m */; };
 		70A6B83F11C4658200662C55 /* VTTrackDownloadOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 70A6B83D11C4658200662C55 /* VTTrackDownloadOperation.m */; };
-		70DDE81011C9ADFC00762CE2 /* VTVccFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DDE80F11C9ADFC00762CE2 /* VTVccFile.m */; };
 		70DDE81111C9ADFC00762CE2 /* VTVccFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 70DDE80F11C9ADFC00762CE2 /* VTVccFile.m */; };
 		70FB5CF41171ADE6009E2E8C /* VTFirmwareFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB5CF31171ADE6009E2E8C /* VTFirmwareFile.m */; };
-		70FB5CF51171ADE6009E2E8C /* VTFirmwareFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FB5CF31171ADE6009E2E8C /* VTFirmwareFile.m */; };
 		70FBA0C41161A477005BE3B4 /* VTRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FBA0C31161A477005BE3B4 /* VTRecord.m */; };
-		70FBA0C51161A477005BE3B4 /* VTRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 70FBA0C31161A477005BE3B4 /* VTRecord.m */; };
 		77C8C1F90C07829500965286 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 77C8C1F70C07829500965286 /* MainMenu.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
@@ -74,10 +55,6 @@
 		EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
 		EDE897E41158CDCF009E8151 /* tool.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE897E31158CDCF009E8151 /* tool.m */; };
 		EDE897E61158CE3A009E8151 /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
-		EDE897E81158CE3A009E8151 /* VTConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2A015F0F339B8F005C0CE0 /* VTConnection.m */; };
-		EDE897EA1158CE3A009E8151 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
-		EDE897EC1158CE3A009E8151 /* VTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B99C70F1548A000AF563B /* VTDevice.m */; };
-		EDE897EE1158CE3A009E8151 /* VTDeviceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */; };
 		EDE8982E1158D31D009E8151 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFC3F690EF8948D00E1DD2F /* IOKit.framework */; };
 		EDE8982F1158D31D009E8151 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		EDF7261E0F3E274E00E503AE /* VTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EDF7261D0F3E274E00E503AE /* VTAppDelegate.m */; };
@@ -570,32 +547,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EDE897E41158CDCF009E8151 /* tool.m in Sources */,
+				478CE9861D99AB1900DAD61A /* VTDateTime.m in Sources */,
 				EDE897E61158CE3A009E8151 /* VTGlobals.m in Sources */,
-				EDE897E81158CE3A009E8151 /* VTConnection.m in Sources */,
-				EDE897EA1158CE3A009E8151 /* VTCommand.m in Sources */,
-				EDE897EC1158CE3A009E8151 /* VTDevice.m in Sources */,
-				EDE897EE1158CE3A009E8151 /* VTDeviceLoader.m in Sources */,
-				7080EFD5115C35D00013C9C3 /* VTDateTime.m in Sources */,
-				7080F190115D7DA50013C9C3 /* VTFloat.m in Sources */,
-				70FBA0C51161A477005BE3B4 /* VTRecord.m in Sources */,
-				70FB5CF51171ADE6009E2E8C /* VTFirmwareFile.m in Sources */,
-				708275C811B78DE900DD66FF /* VTTrackpointElement.m in Sources */,
-				7082776411B8C08100DD66FF /* VTTrackpointsElement.m in Sources */,
-				7082777711B8EDF100DD66FF /* VTBoundaryElement.m in Sources */,
-				7082782D11BAF81D00DD66FF /* VTDeviceInfoElement.m in Sources */,
-				7082784A11BB01D400DD66FF /* VTXmlDate.m in Sources */,
-				708278C311BB513E00DD66FF /* VTCapturedTrackElement.m in Sources */,
-				7082796E11BC5D2200DD66FF /* VTVccXmlDoc.m in Sources */,
-				7082797411BC5E4800DD66FF /* VTVccRootElement.m in Sources */,
-				7009C76A11BF52FF0076DB4D /* VTProgressTracker.m in Sources */,
-				70A6B83E11C4658200662C55 /* VTTrackDownloadOperation.m in Sources */,
-				70DDE81011C9ADFC00762CE2 /* VTVccFile.m in Sources */,
-				70135D3611D082A50046A8BF /* DeviceSettingsController.m in Sources */,
-				70135ED211D825D90046A8BF /* VTDeviceSettingValue.m in Sources */,
-				70135EE611D8359F0046A8BF /* VTDeclinationValue.m in Sources */,
-				701360A911D930C90046A8BF /* VTDeviceSettingMenu.m in Sources */,
-				701363AC11D9D4030046A8BF /* VTFirmwareUpdateOperation.m in Sources */,
+				EDE897E41158CDCF009E8151 /* tool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

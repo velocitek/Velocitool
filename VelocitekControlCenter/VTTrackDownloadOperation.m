@@ -79,6 +79,9 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
         }
     }
     
+    NSLog(@"Discarding %d overlapping track points.", i);
+    
+    
     [newPointsMutable removeObjectsInRange:NSMakeRange(0, i)];
     
     [acc addObjectsFromArray:newPointsMutable];
@@ -88,26 +91,26 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
 
 - (NSMutableArray*) trackpointsHelper:(NSMutableArray*)acc expectedNumTrackpoint:(unsigned long)expectedNumTrackpoints start:(NSDate*)start end:(NSDate*)end {
     
-    NSLog(@"#tpts=%lul", expectedNumTrackpoints);
-    NSLog(@"start=%fl", [start timeIntervalSinceReferenceDate]);
-    NSLog(@"end  =%fl", [end timeIntervalSinceReferenceDate]);
+    NSLog(@"expected num trackpoint =%lu", expectedNumTrackpoints);
+    NSLog(@"start=%fl - %@", [start timeIntervalSinceReferenceDate], [start description]);
+    NSLog(@"end  =%fl - %@", [end timeIntervalSinceReferenceDate], [end description]);
     
     
     if (acc == nil) acc = [[NSMutableArray alloc] init];
     
     NSArray * newTrackpoints = [device trackpoints:start endTime:end];
     
-    NSLog(@"#downloaded = %lu", [newTrackpoints count]);
+    NSLog(@"#new downloaded = %lu", [newTrackpoints count]);
     
     //[acc addObjectsFromArray:newTrackpoints];
     
     acc = [self addObjectsWithoutOverlap:acc toAdd:newTrackpoints];
     
-    NSLog(@"#totak = %lu", [acc count]);
+    NSLog(@"#total in accumulator = %lu", [acc count]);
 
     if ([acc count] < expectedNumTrackpoints) {
         
-        NSLog(@"#tpts=%lul", expectedNumTrackpoints);
+        NSLog(@"#tpts=%lu", expectedNumTrackpoints);
         NSLog(@"start=%fl", [start timeIntervalSinceReferenceDate]);
         NSLog(@"end  =%fl", [end timeIntervalSinceReferenceDate]);
         
@@ -119,16 +122,19 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
         
         // increment by 1 ms
         NSTimeInterval timeOfLastTrackpoint = [dateOfLastTrackpoint timeIntervalSinceReferenceDate];
-        NSLog(@"last =%fl", timeOfLastTrackpoint);
+        NSLog(@"timeOfLastTrackpoint =%fl", timeOfLastTrackpoint);
 
         NSTimeInterval newTimeInterval = timeOfLastTrackpoint + 1.0;
-        NSLog(@"newl =%fl",newTimeInterval);
+        NSLog(@"timeOfLastTrackpoint+1 =%fl",newTimeInterval);
         NSDate *datePlusOne =[NSDate dateWithTimeIntervalSinceReferenceDate:newTimeInterval];
         
+        // This reads any lingering data from the connection and resets it by opening and closing the connection
         [device recoverDeviceConnection];
         
         // rest
         [NSThread sleepForTimeInterval:1.0f];
+        
+        if ([datePlusOne timeIntervalSinceReferenceDate] >= [end timeIntervalSinceReferenceDate]) return acc;
 
         // call helper again
         return [self trackpointsHelper:acc expectedNumTrackpoint:expectedNumTrackpoints start:datePlusOne end:end];
