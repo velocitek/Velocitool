@@ -20,23 +20,18 @@
 + (id)vtDateWithPicBytes:(NSData *)bytes {
     //NSLog(@"VTLOG: [VTDateTime, vtDateWithPicBytes = %@]", bytes);  // VTLOG for debugging
     
-        return [[[self alloc] initWithPicDateRepresentation:bytes] autorelease];
+        return [[self alloc] initWithPicDateRepresentation:bytes];
 }
 
 + (id)vtDateWithDate:(NSDate *)dateObject {
     //NSLog(@"VTLOG: [VTDateTime, vtDateWithDate = %@]", dateObject);  // VTLOG for debugging
     
-  return [[[self alloc] initWithDate:dateObject] autorelease];
+  return [[self alloc] initWithDate:dateObject];
 }
 
-- (void)dealloc {
-  [_date release];
-  [_picDateRepresentation release];
-  [super dealloc];
-}
 
 - (NSDateFormatter *)dateFormatter {
-  NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
   NSTimeZone *utcTime = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
   NSLocale *usLocale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
 
@@ -47,7 +42,7 @@
 
 - (instancetype)initWithDate:(NSDate *)date {
   if ((self = [super init])) {
-    _date = [date retain];
+    _date = date;
 
     NSDateFormatter *dateFormatter = [self dateFormatter];
 
@@ -89,15 +84,14 @@
     picBytes[6] = hundredthSeconds;
 
     _picDateRepresentation =
-        [[NSData dataWithBytes:picBytes length:[VTDateTime picRepresentationSize]]
-            retain];
+        [NSData dataWithBytes:picBytes length:[VTDateTime picRepresentationSize]];
   }
   return self;
 }
 
 - (instancetype)initWithPicDateRepresentation:(NSData *)bytes {
   if ((self = [super init])) {
-    _picDateRepresentation = [bytes retain];
+    _picDateRepresentation = bytes;
       
       NSLog(@"%@", [_picDateRepresentation description]);
 

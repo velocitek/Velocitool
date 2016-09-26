@@ -55,14 +55,12 @@
 + (id)vccFileWithTrackFromDevice:(VTTrackFromDevice*)trackFromDevice
 {
 	VTVccFile *vccFile = [[self alloc] initWithTrackFromDevice:trackFromDevice];
-	[vccFile autorelease];
 	return vccFile;	
 }
 
 + (id)vccFileWithURL:(NSURL*)fileLocation
 {
 	VTVccFile *vccFile = [[self alloc] initWithURL:fileLocation];
-	[vccFile autorelease];
 	return vccFile;	
 
 }
@@ -73,7 +71,6 @@
     // member using the capturedTrackXMLElement member of trackFromDevice
     vccFormatXmlDoc = [VTVccXmlDoc
         vccXmlDocWithCapturedTrack:[trackFromDevice capturedTrackXMLElement]];
-    [vccFormatXmlDoc retain];
 
     vccFileWrapper = [[NSFileWrapper alloc] init];
     gpxFileWrapper = [[NSFileWrapper alloc] init];
@@ -120,8 +117,7 @@
 
 - (void)dealloc {
     
-	[vccFormatXmlDoc release]; vccFormatXmlDoc = nil;
-    [super dealloc];
+	 vccFormatXmlDoc = nil;
 }
 
 - (void)setFileWrapperFilenames:(NSString*)fileNameWithoutExtension
@@ -303,9 +299,9 @@
 - (NSString*) stringWithUUID {
     CFUUIDRef uuidObj = CFUUIDCreate(nil);//create a new UUID
     //get the string representation of the UUID
-    NSString *uuidString = (NSString*)CFUUIDCreateString(nil, uuidObj);
+    NSString *uuidString = (NSString*)CFBridgingRelease(CFUUIDCreateString(nil, uuidObj));
     CFRelease(uuidObj);
-    return [uuidString autorelease];
+    return uuidString;
 }
 -(void)launchReplayInGpsar
 {

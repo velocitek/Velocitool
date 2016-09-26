@@ -31,10 +31,10 @@
 		
 }
 
-@property (nonatomic, readwrite, retain) NSMutableArray *trackLogs;
-@property (nonatomic, readwrite, retain) VTDevice *device;
-@property (nonatomic, readwrite, retain) VTTrackFromDevice *trackFromDevice;
-@property (nonatomic, readwrite, retain) VTVccFile *currentFile;
+@property (nonatomic, readwrite, strong) NSMutableArray *trackLogs;
+@property (nonatomic, readwrite, strong) VTDevice *device;
+@property (nonatomic, readwrite, strong) VTTrackFromDevice *trackFromDevice;
+@property (nonatomic, readwrite, strong) VTVccFile *currentFile;
 
 - (void)downloadTrackFromDevice;
 - (void)initializeCurrentFileFromTrack;

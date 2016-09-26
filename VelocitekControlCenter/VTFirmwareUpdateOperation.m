@@ -9,7 +9,7 @@
 
 - (id)initWithDevice:(VTDevice*)deviceToUpdate {
   if ((self = [super init])) {
-    device = [deviceToUpdate retain];
+    device = deviceToUpdate;
 
     [self setDone:NO];
     [self setSuccess:NO];

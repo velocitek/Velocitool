@@ -30,7 +30,6 @@
   VTDeviceSettingValue *deviceSettingValue =
       [[VTDeviceSettingValue alloc] initWithDisplayAndNumericalValues:dispVal
                                                        numericalValue:numVal];
-  [deviceSettingValue autorelease];
 
   return deviceSettingValue;
 }
@@ -40,13 +39,6 @@
 	return displayValue;
 }
 
-- (void)dealloc
-{
-	[numericalValue release];
-	[displayValue release];
-	[super dealloc];
-	
-}
 
 
 @end

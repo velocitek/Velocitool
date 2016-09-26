@@ -142,8 +142,6 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 
 - (void)setFirstConnectedDevice:(VTDevice *)newDevice
 {
-	[newDevice retain];
-	[firstConnectedDevice release];
 	firstConnectedDevice = newDevice;
 	
 	if (firstConnectedDevice)

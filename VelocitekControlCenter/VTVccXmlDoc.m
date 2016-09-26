@@ -34,7 +34,7 @@
 
 + (id)vccXmlDocWithCapturedTrack: (VTCapturedTrackElement*) capturedTrack
 {
-	VTVccXmlDoc *xmlDoc = [[[self alloc] initWithCapturedTrack:capturedTrack] autorelease];
+	VTVccXmlDoc *xmlDoc = [[self alloc] initWithCapturedTrack:capturedTrack];
 	return xmlDoc;
 }
 

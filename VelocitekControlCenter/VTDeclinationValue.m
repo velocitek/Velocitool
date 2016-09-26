@@ -19,7 +19,6 @@
 + (id)declinationValueWithNumericalValue:(NSNumber *)numVal
 {
 	VTDeclinationValue *declinationValue = [[self alloc] initWithNumericalValue:numVal];
-	[declinationValue autorelease];
 	
 	
 	return declinationValue;
@@ -39,12 +38,12 @@
 - (void)setSliderValue:(NSNumber *)newValue
 {	
 	
-	[numericalValue autorelease];
-	[sliderValue autorelease];
+	//[numericalValue autorelease];
+	//[sliderValue autorelease];
 	
-	sliderValue = [newValue retain];
+	sliderValue = newValue;
 	
-	numericalValue = [[NSNumber numberWithInt:([sliderValue intValue] + 128)] retain];
+	numericalValue = [NSNumber numberWithInt:([sliderValue intValue] + 128)];
 	
 		
 }
@@ -53,11 +52,11 @@
 - (void)setNumericalValue:(NSNumber *)newValue
 {
 	
-	[numericalValue autorelease];
-	[sliderValue autorelease];
+	//[numericalValue autorelease];
+	//[sliderValue autorelease];
 	
-	numericalValue = [newValue retain];	
-	sliderValue = [[NSNumber numberWithInt:([numericalValue intValue] - 128)] retain];
+	numericalValue = newValue;	
+	sliderValue = [NSNumber numberWithInt:([numericalValue intValue] - 128)];
 }
 
 - (void)selectDefaultValue

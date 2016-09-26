@@ -82,22 +82,18 @@
     {
         NSLog(@"VTLOG: [VTFloat, vtFloatWithPicBytes = %@]", bytes);  // VTLOG for debugging
         
-        return [[[self alloc] initWithFloat:0.0f] autorelease];
+        return [[self alloc] initWithFloat:0.0f];
     }
     
-  return [[[self alloc] initWithPicBytes:bytes] autorelease];
+  return [[self alloc] initWithPicBytes:bytes];
 }
 
 + (id)vtFloatWithFloat:(float)f {
     NSLog(@"VTLOG: [VTFloat, vtFloatWithFloat = %f]", f);  // VTLOG for debugging
     
-  return [[[self alloc] initWithFloat:f] autorelease];
+  return [[self alloc] initWithFloat:f];
 }
 
-- (void)dealloc {
-  [_picFloatRepresentation release];
-  [super dealloc];
-}
 
 - (NSString *)description {
   NSString *description_string;
@@ -137,8 +133,8 @@
     result[3] = floatAsBytes[0];
 
     _picFloatRepresentation =
-        [[NSData dataWithBytes:result
-                        length:[VTFloat picRepresentationSize]] retain];
+        [NSData dataWithBytes:result
+                        length:[VTFloat picRepresentationSize]];
   }
   return self;
 }
@@ -146,7 +142,7 @@
 - (instancetype)initWithPicBytes:(NSData *)bytes;
 {
   if ((self = [super init])) {
-    _picFloatRepresentation = [bytes retain];
+    _picFloatRepresentation = bytes;
 
     // Now adjust the floatingPointNumber property to match this new
     // picFloatRepresentation

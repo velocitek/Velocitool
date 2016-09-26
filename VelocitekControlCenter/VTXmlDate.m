@@ -22,13 +22,11 @@
 
 + (id)xmlDateWithDate:(NSDate *)dateTime {
   VTXmlDate *xmlDate = [[self alloc] initWithDate:dateTime];
-  [xmlDate autorelease];
   return xmlDate;
 }
 
 + (id)xmlDateWithVccDateString:(NSString *)vccDateString {
   VTXmlDate *xmlDate = [[self alloc] initWithVccDateString:vccDateString];
-  [xmlDate autorelease];
   return xmlDate;
 }
 
@@ -52,14 +50,14 @@
 }
 
 + (NSString *)vccNow {
-  VTXmlDate *xmlDate = [[[self alloc] initWithDate:[NSDate date]] autorelease];
+  VTXmlDate *xmlDate = [[self alloc] initWithDate:[NSDate date]];
   return [xmlDate vccDateString];
 }
 
 - (NSString *)vccDateString {
   [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
 
-  NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 
   //"2010-04-27T20:19:24-10:00"
   [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZ"];
@@ -76,7 +74,7 @@
 - (NSString *)vccGmtDateString {
   [NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];
 
-  NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+  NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 
   [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
 

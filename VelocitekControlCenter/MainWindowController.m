@@ -468,7 +468,6 @@
             NSString * message = [NSString stringWithFormat:@"I'm sorry the SpeedPuck is running an unsupported firmware version: %@", firmwareVersion];
             NSAlert * alert = [self getAlertWithMessage:message informativeText:@"Supported versions: 1.3, 1.4, 1.5."];
             [alert runModal];
-            [alert release];
         }
 	
 		
@@ -477,7 +476,6 @@
         NSString * message = [NSString stringWithFormat:@"Unrecognized device model: %@", model];
         NSAlert * alert = [self getAlertWithMessage:message informativeText:NULL];
         [alert runModal];
-        [alert release];
     }
 
 }
@@ -526,13 +524,10 @@
 -(void)dealloc
 {
 	
-	[trackLogViewController release];
-	[trackFileViewController release];
 	
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	[nc removeObserver:self];
 	
-	[super dealloc];
 	
 }
 

@@ -62,6 +62,30 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
 
 }
 
+- (NSMutableArray*) addObjectsWithoutOverlap: (NSMutableArray*) acc toAdd:(NSArray*) newPoints {
+    
+    VTTrackpointRecord * last = [acc lastObject];
+    NSTimeInterval lastTimestamp = last.timestamp.timeIntervalSinceReferenceDate;
+    
+    NSMutableArray * newPointsMutable = [newPoints mutableCopy];
+    
+    VTTrackpointRecord * currentRecord;
+    
+    int i;
+    for (i=0;i<(int)newPoints.count;i++) {
+        currentRecord = [newPoints objectAtIndex:i];
+        if (currentRecord.timestamp.timeIntervalSinceReferenceDate > lastTimestamp) {
+            break;
+        }
+    }
+    
+    [newPointsMutable removeObjectsInRange:NSMakeRange(0, i)];
+    
+    [acc addObjectsFromArray:newPointsMutable];
+    
+    return acc;
+}
+
 - (NSMutableArray*) trackpointsHelper:(NSMutableArray*)acc expectedNumTrackpoint:(unsigned long)expectedNumTrackpoints start:(NSDate*)start end:(NSDate*)end {
     
     NSLog(@"#tpts=%lul", expectedNumTrackpoints);
@@ -69,13 +93,15 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
     NSLog(@"end  =%fl", [end timeIntervalSinceReferenceDate]);
     
     
-    if (acc == nil) acc = [[[NSMutableArray alloc] init] autorelease];
+    if (acc == nil) acc = [[NSMutableArray alloc] init];
     
     NSArray * newTrackpoints = [device trackpoints:start endTime:end];
     
     NSLog(@"#downloaded = %lu", [newTrackpoints count]);
     
-    [acc addObjectsFromArray:newTrackpoints];
+    //[acc addObjectsFromArray:newTrackpoints];
+    
+    acc = [self addObjectsWithoutOverlap:acc toAdd:newTrackpoints];
     
     NSLog(@"#totak = %lu", [acc count]);
 
@@ -98,6 +124,8 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
         NSTimeInterval newTimeInterval = timeOfLastTrackpoint + 1.0;
         NSLog(@"newl =%fl",newTimeInterval);
         NSDate *datePlusOne =[NSDate dateWithTimeIntervalSinceReferenceDate:newTimeInterval];
+        
+        [device recoverDeviceConnection];
         
         // rest
         [NSThread sleepForTimeInterval:1.0f];

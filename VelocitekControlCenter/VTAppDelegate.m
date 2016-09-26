@@ -86,7 +86,6 @@
     
     _loader = nil;
     
-    [super dealloc];
 }
 
 

@@ -16,7 +16,7 @@
 
 // Represent a position in a path.
 @interface VTTrackpointRecord : VTRecord
-@property(nonatomic, readwrite, retain) NSDate *timestamp;
+@property(nonatomic, readwrite, strong) NSDate *timestamp;
 @property(nonatomic, readwrite) float latitude;
 @property(nonatomic, readwrite) float longitude;
 @property(nonatomic, readwrite) float speed;
@@ -25,8 +25,8 @@
 
 // A simple record to encode two dates to retrieve trackpoints.
 @interface VTReadTrackpointsCommandParameter : VTRecord
-@property(nonatomic, readonly, retain) NSDate *downloadFrom;
-@property(nonatomic, readonly, retain) NSDate *downloadTo;
+@property(nonatomic, readonly, strong) NSDate *downloadFrom;
+@property(nonatomic, readonly, strong) NSDate *downloadTo;
 
 + (VTReadTrackpointsCommandParameter *)
 commandParameterFromDate:(NSDate *)startTime
@@ -45,7 +45,7 @@ commandParameterFromDate:(NSDate *)startTime
 
 // Record for the SpeedPuck settings.
 @interface VTPuckSettingsRecord : VTRecordWithHeader
-@property(nonatomic, readwrite, assign) NSDictionary *settingsDictionary;
+@property(nonatomic, readwrite, weak) NSDictionary *settingsDictionary;
 + (VTPuckSettingsRecord *)recordFromSettingsDictionary:(NSDictionary *)settings;
 @end
 

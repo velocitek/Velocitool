@@ -17,8 +17,8 @@
 
 }
 
-@property (nonatomic, readwrite, retain) NSString *displayValue;
-@property (nonatomic, readwrite, retain) NSNumber *numericalValue;
+@property (nonatomic, readwrite, strong) NSString *displayValue;
+@property (nonatomic, readwrite, strong) NSNumber *numericalValue;
 
 - (id)initWithDisplayAndNumericalValues:(NSString *)dispVal numericalValue:(NSNumber *)numVal;
 + (id)deviceSettingValueWithDisplayAndNumericalValues:(NSString *)dispVal numericalValue:(NSNumber *)numVal;

@@ -36,8 +36,8 @@
   NSDictionary *settingsFromDevice;
 }
 
-@property(nonatomic, readwrite, retain) VTDeclinationValue *declinationValue;
-@property(nonatomic, readwrite, retain) NSMutableDictionary *menus;
+@property(nonatomic, readwrite, strong) VTDeclinationValue *declinationValue;
+@property(nonatomic, readwrite, strong) NSMutableDictionary *menus;
 
 - (instancetype)initWithDevice:(VTDevice *)deviceToUpdate;
 

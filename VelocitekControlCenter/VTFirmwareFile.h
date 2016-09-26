@@ -7,11 +7,11 @@
 @interface VTFirmwareFile : NSObject {
 	
 	@protected NSString *rawFirmwareString;
-	NSMutableArray *firmwareData;
+	NSMutableArray *__weak firmwareData;
 	
 }
 
-@property (nonatomic, readonly) NSMutableArray *firmwareData;
+@property (weak, nonatomic, readonly) NSMutableArray *firmwareData;
 
 + (id)vtFirmwareFileWithFilePath:(NSString *)filePath;
 

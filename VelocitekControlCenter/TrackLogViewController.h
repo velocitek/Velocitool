@@ -34,9 +34,9 @@ extern NSString *VTFirstConnectedDeviceRemovedNotification;
 	
 }
 
-@property (nonatomic, readwrite, retain) NSMutableArray *devices;
-@property (nonatomic, readwrite, retain) NSMutableArray *trackpointLogs;
-@property (nonatomic, readwrite, retain) VTDevice *firstConnectedDevice;
+@property (nonatomic, readwrite, strong) NSMutableArray *devices;
+@property (nonatomic, readwrite, strong) NSMutableArray *trackpointLogs;
+@property (nonatomic, readwrite, strong) VTDevice *firstConnectedDevice;
 
 - (IBAction)fileOpen:(id)sender;
 - (IBAction)updateDeviceSettings:(id)sender;

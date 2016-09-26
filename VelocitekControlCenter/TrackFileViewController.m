@@ -196,7 +196,7 @@
 
 - (void)downloadTrackFromDevice
 {
-	[self setTrackFromDevice:[[[VTTrackFromDevice alloc] initWithDeviceAndTrackLogs:device trackLogs:trackLogs] autorelease]];
+	[self setTrackFromDevice:[[VTTrackFromDevice alloc] initWithDeviceAndTrackLogs:device trackLogs:trackLogs]];
 }
 
 - (void)initializeCurrentFileFromTrack
@@ -213,10 +213,5 @@
 	 
 }
 
-- (void)dealloc
-{
-	
-	[super dealloc];
-}
    
 @end

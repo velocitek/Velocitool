@@ -26,11 +26,11 @@
 	BOOL fileSaved;	
 }
 
-@property (nonatomic, readwrite, retain) NSFileWrapper *vccFileWrapper;
-@property (nonatomic, readwrite, retain) NSFileWrapper *kmlFileWrapper;
-@property (nonatomic, readwrite, retain) NSFileWrapper *gpxFileWrapper;
+@property (nonatomic, readwrite, strong) NSFileWrapper *vccFileWrapper;
+@property (nonatomic, readwrite, strong) NSFileWrapper *kmlFileWrapper;
+@property (nonatomic, readwrite, strong) NSFileWrapper *gpxFileWrapper;
 
-@property (nonatomic, readwrite, retain) NSString *numTrackpoints;
+@property (nonatomic, readwrite, strong) NSString *numTrackpoints;
 @property (nonatomic, readwrite) BOOL fileSaved;	
 
 + (id)vccFileWithTrackFromDevice:(VTTrackFromDevice*)trackFromDevice;

@@ -25,10 +25,10 @@
 
 }
 
-@property (nonatomic, readwrite, retain) NSArrayController *possibleValuesArrayController;
-@property (nonatomic, readwrite, retain) NSMutableArray *possibleValuesContentArray;
+@property (nonatomic, readwrite, strong) NSArrayController *possibleValuesArrayController;
+@property (nonatomic, readwrite, strong) NSMutableArray *possibleValuesContentArray;
 
-@property (nonatomic, readwrite, retain) VTDeviceSettingValue *selectedDeviceSetting;
+@property (nonatomic, readwrite, strong) VTDeviceSettingValue *selectedDeviceSetting;
 
 @property (nonatomic, readwrite) BOOL hidden;
 

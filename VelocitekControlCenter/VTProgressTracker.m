@@ -58,11 +58,6 @@
 	progressPercentage	= x;
 }
 
-- (void)dealloc
-{
-	[progressPercentageToDisplay release];
-	[super dealloc];
-}
 
 
 

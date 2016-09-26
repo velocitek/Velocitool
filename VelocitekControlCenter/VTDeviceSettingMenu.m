@@ -28,7 +28,6 @@
 + (id)deviceSettingMenuWithPossibleValues:(NSDictionary*)possibleVals
 {
 	VTDeviceSettingMenu *deviceSettingMenu = [[self alloc] initWithPossibleValues:possibleVals];
-	[deviceSettingMenu autorelease];
 		
 	return deviceSettingMenu;
 	

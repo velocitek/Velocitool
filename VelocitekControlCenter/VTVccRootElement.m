@@ -30,7 +30,6 @@
 + (id)generateVccRootElement
 {
 	VTVccRootElement *rootElement = [[self alloc] initRootElement];
-	[rootElement autorelease];
 	return rootElement;
 }	
 

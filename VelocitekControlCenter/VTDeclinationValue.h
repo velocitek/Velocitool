@@ -18,8 +18,8 @@
 
 - (void)selectDefaultValue;
 
-@property (nonatomic, readwrite, retain) NSNumber *sliderValue;
-@property (nonatomic, readwrite, retain) NSNumber *numericalValue;
+@property (nonatomic, readwrite, strong) NSNumber *sliderValue;
+@property (nonatomic, readwrite, strong) NSNumber *numericalValue;
 
 @property (nonatomic, readwrite) BOOL hidden;
 

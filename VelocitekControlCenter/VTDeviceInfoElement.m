@@ -14,7 +14,6 @@
 +deviceInfoElementWithDevice:(VTDevice *) device
 {
 	VTDeviceInfoElement *deviceInfoElement = [[self alloc] initWithDevice:device];
-	[deviceInfoElement autorelease];
 	return deviceInfoElement;
 	
 }

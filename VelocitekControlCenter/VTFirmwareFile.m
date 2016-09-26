@@ -41,7 +41,7 @@
 -(NSMutableArray *)createArrayOfStrings
 {
 	//use componentsSeparatedByString to create an array of lines
-	return [[[rawFirmwareString componentsSeparatedByString:@"\n"] mutableCopy] autorelease];	
+	return [[rawFirmwareString componentsSeparatedByString:@"\n"] mutableCopy];	
 }
 
 
@@ -144,7 +144,6 @@
 {
 	VTFirmwareFile *firmwareFile = [[self alloc] initWithFilePath:filePath];
 	
-	[firmwareFile autorelease];
 	
 	return firmwareFile;
 	

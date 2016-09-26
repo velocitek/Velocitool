@@ -12,7 +12,7 @@
   NSDictionary *_usbProperties;
 }
 // The open connection to the device.
-@property(nonatomic, readonly, retain) VTConnection *connection;
+@property(nonatomic, readonly, strong) VTConnection *connection;
 
 // Private designated initializer.
 - (instancetype)initWithConnection:(VTConnection *)connection
@@ -50,12 +50,12 @@ static NSDictionary *productIDToClass = nil;
     return;
   }
 
-  productIDToClass = [@{
+  productIDToClass = @{
     @(0xb709) : [VTDeviceSpeedPuck class],
     @(0xb70a) : [VTDeviceProStart class],
     @(0x6001) : [VTDeviceS10 class],
     @(0xb708) : [VTDeviceSC1 class],
-  } retain];
+  };
 }
 
 + deviceForUSBProperties:(NSDictionary *)usbProperties {
@@ -76,26 +76,22 @@ static NSDictionary *productIDToClass = nil;
   if (!connection) {
     return nil;
   }
-  return [[[klass alloc] initWithConnection:connection
-                              usbProperties:usbProperties] autorelease];
+  return [[klass alloc] initWithConnection:connection
+                              usbProperties:usbProperties];
 }
 
 #pragma mark - Init
 
 - (instancetype)initWithConnection:(VTConnection *)connection
                      usbProperties:(NSDictionary *)usbProperties {
-  _connection = [connection retain];
+  _connection = connection;
   _usbProperties = [usbProperties copy];
 
   return self;
 }
 
 - (void)dealloc {
-  [_connection release];
-  _connection = nil;
-  [_usbProperties release];
   _usbProperties = nil;
-  [super dealloc];
 }
 
 #pragma mark - Public methods
@@ -125,6 +121,11 @@ static NSDictionary *productIDToClass = nil;
 - (void)setDeviceSettings:(NSDictionary *)settings {
   // For subclassers to implement
   VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+}
+
+- (void)recoverDeviceConnection {
+    // For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
 }
 
 - (NSArray *)trackpointLogs {
@@ -193,11 +194,8 @@ static NSDictionary *productIDToClass = nil;
 @implementation VTDeviceGeneration3
 
 - (void)dealloc {
-  [_firmwareVersion release];
   _firmwareVersion = nil;
-  [_deviceSettings release];
   _deviceSettings = nil;
-  [super dealloc];
 }
 
 - (NSString *)firmwareVersion {
@@ -253,6 +251,10 @@ static NSDictionary *productIDToClass = nil;
   return [self.connection runFirmwareUpdate:firmwareFile];
 }
 
+- (void)recoverDeviceConnection {
+    [self.connection recover];
+}
+
 @end
 
 @implementation VTDeviceSpeedPuck
@@ -281,7 +283,6 @@ static NSDictionary *productIDToClass = nil;
                                                       settings]
                                   resultClass:[VTCommandResultRecord class]]];
 
-  [_deviceSettings release];
   _deviceSettings = nil;
 }
 

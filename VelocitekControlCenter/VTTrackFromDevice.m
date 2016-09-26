@@ -30,8 +30,8 @@
 
     trackpoints = [[NSMutableArray alloc] init];
     
-    device = [deviceToDownloadFrom retain];	
-    selectedTrackLogs = [trackLogs retain];
+    device = deviceToDownloadFrom;	
+    selectedTrackLogs = trackLogs;
     
     [self removeUnselectedTrackLogs];
     
@@ -70,16 +70,12 @@
 	
 	[queue addOperation:trackDownloadOperation];
 	
-	[trackDownloadOperation release];
 			
 }
 
 - (void)dealloc
 {
-	[device release];
-	[selectedTrackLogs release];
-	[queue release], queue = nil;
-	[super dealloc];
+	queue = nil;
 }
 
 @end

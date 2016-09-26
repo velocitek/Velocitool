@@ -21,19 +21,19 @@
 + commandWithSignal:(unsigned char)signalChar
           parameter:(VTRecord *)parameter
         resultClass:(Class)resultClass {
-  return [[[self alloc] initWithSignal:signalChar
+  return [[self alloc] initWithSignal:signalChar
                              parameter:parameter
                            resultClass:resultClass
-                                isList:NO] autorelease];
+                                isList:NO];
 }
 
 + commandWithSignal:(unsigned char)signalChar
           parameter:(VTRecord *)parameter
        resultsClass:(Class)resultClass {
-  return [[[self alloc] initWithSignal:signalChar
+  return [[self alloc] initWithSignal:signalChar
                              parameter:parameter
                            resultClass:resultClass
-                                isList:YES] autorelease];
+                                isList:YES];
 }
 
 #pragma mark - Init methods.
@@ -44,18 +44,13 @@
                         isList:(BOOL)flag {
   if ((self = [super init])) {
     _signal = signalChar;
-    _parameter = [parameter retain];
+    _parameter = parameter;
     _resultClass = resultClass;
     _returnsList = flag;
   }
   return self;
 }
 
-- (void)dealloc {
-  [_parameter release];
-  _parameter = nil;
-  [super dealloc];
-}
 
 #pragma mark - Public methods
 

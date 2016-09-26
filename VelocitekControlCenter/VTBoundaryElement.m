@@ -31,7 +31,6 @@ Methods (private):
 +boundaryElementWithTrackPointArray:(NSMutableArray *)trackpointArray whichBoundary:(BOOL)minMax whichCoord:(BOOL)latLong
 {
 	VTBoundaryElement *boundaryElement = [[self alloc] initWithTrackpointArray:trackpointArray whichBoundary:minMax whichCoord:latLong];
-	[boundaryElement autorelease];
 	return boundaryElement;
 	
 }
@@ -42,7 +41,7 @@ Methods (private):
   if ((self = [super initWithKind:NSXMLElementKind])) {
     minOrMax = minMax;
     latOrLong = latLong;
-    trackpoints = [trackpointArray retain];
+    trackpoints = trackpointArray;
 
     // set the element name
     [self setElementName];

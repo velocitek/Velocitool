@@ -31,7 +31,6 @@
 + (id)capturedTrackElementWithTrackPointsAndDevice:(NSMutableArray *)trackpointArray device:(VTDevice *)sourceDevice
 {
 	VTCapturedTrackElement *capturedTrackElement = [[self alloc] initWithTrackpointsAndDevice:trackpointArray device:sourceDevice];
-	[capturedTrackElement autorelease];
 	return capturedTrackElement;
 	
 	
@@ -100,7 +99,7 @@
 	
     
 	[NSDateFormatter setDefaultFormatterBehavior:NSDateFormatterBehavior10_4];	
-	NSDateFormatter *dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	
 	//format the string like this example for April 2, 2010, 6:46pm and 55 second: 100427_184655
 	[dateFormatter setDateFormat:@"MMMdd_yyyy_hmma"];

@@ -16,9 +16,9 @@
 
 @property (nonatomic, readonly) VTDevice *device;
 @property (nonatomic, readonly) NSMutableArray *selectedTrackLogs;
-@property (nonatomic, readwrite, retain) NSMutableArray *trackpoints;
+@property (nonatomic, readwrite, strong) NSMutableArray *trackpoints;
 @property (nonatomic, readwrite) NSUInteger numTrackpoints;
-@property (nonatomic, readwrite, retain) VTCapturedTrackElement *capturedTrackXMLElement;
+@property (nonatomic, readwrite, strong) VTCapturedTrackElement *capturedTrackXMLElement;
 
 - (id)initWithDeviceAndTrackLogs:(VTDevice *)device trackLogs:(NSMutableArray *)trackLogs;
 

@@ -46,7 +46,7 @@
 
 - (instancetype)initWithDevice:(VTDevice *)deviceToUpdate {
   if ((self = [super initWithWindowNibName:@"DeviceSettings"])) {
-    device = [deviceToUpdate retain];
+    device = deviceToUpdate;
 
     menus = [[NSMutableDictionary alloc] init];
 
@@ -64,12 +64,6 @@
   return self;
 }
 
-- (void)dealloc {
-  [device release];
-  [declinationValue release];
-  [menus release];
-  [super dealloc];
-}
 
 - (void)windowDidLoad
 {
@@ -264,7 +258,7 @@
 - (void)updateMenusWithSettingsFromDevice
 {
 	//settingsFromDevice = result of call to device's deviceSettings method
-	settingsFromDevice = [[device deviceSettings] retain];
+	settingsFromDevice = [device deviceSettings];
 	
 	VTDeclinationValue *declinationFromDevice = [VTDeclinationValue declinationValueWithNumericalValue:[settingsFromDevice valueForKey:@"declination"]];
 	
@@ -304,7 +298,7 @@
 - (void) updateDeviceSettingsWithMenuSelections
 {
 	
-		NSMutableDictionary *settingsToSendDevice = [[settingsFromDevice mutableCopy] autorelease];
+		NSMutableDictionary *settingsToSendDevice = [settingsFromDevice mutableCopy];
 	
 	[settingsToSendDevice removeObjectForKey:@"declination"];	
 	[settingsToSendDevice setObject:[declinationValue numericalValue] forKey:@"declination"];

@@ -15,7 +15,6 @@
 + (id)trackpointsElementWithTrackpointsArray:(NSMutableArray*) trackpoints{
 	
 	VTTrackpointsElement *trackpointsElement = [[self alloc] initWithTrackpointsArray:trackpoints];
-	[trackpointsElement autorelease];
 	return trackpointsElement;
 
 }

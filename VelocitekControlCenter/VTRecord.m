@@ -37,10 +37,6 @@
     return self;
 }
 
-- (void)dealloc {
-  [_timestamp release];
-  [super dealloc];
-}
 
 - (void)readDeviceDataFromConnection:(VTConnection *)connection {
   self.timestamp = [connection readDate];
@@ -109,10 +105,10 @@
 commandParameterFromDate:(NSDate *)startTime
                   toDate:(NSDate *)endTime {
   VTReadTrackpointsCommandParameter *commandParameter =
-      [[[self alloc] init] autorelease];
+      [[self alloc] init];
 
-  commandParameter->_downloadFrom = [startTime retain];
-  commandParameter->_downloadTo = [endTime retain];
+  commandParameter->_downloadFrom = startTime;
+  commandParameter->_downloadTo = endTime;
   return commandParameter;
 }
 
@@ -207,7 +203,7 @@ commandParameterFromDate:(NSDate *)startTime
 
 + (VTPuckSettingsRecord *)recordFromSettingsDictionary:
     (NSDictionary *)settings {
-  VTPuckSettingsRecord *record = [[[self alloc] init] autorelease];
+  VTPuckSettingsRecord *record = [[self alloc] init];
   if (settings) {
     [record setSettingsDictionary:settings];
   }
@@ -288,11 +284,6 @@ commandParameterFromDate:(NSDate *)startTime
   return 'v';
 }
 
-- (void)dealloc {
-  [_version release];
-  _version = nil;
-  [super dealloc];
-}
 
 - (void)readDeviceDataFromConnection:(VTConnection *)connection {
   unsigned char major = [connection readUnsignedChar];
@@ -318,21 +309,12 @@ commandParameterFromDate:(NSDate *)startTime
   return 'l';
 }
 
-- (void)dealloc {
-  [_start release];
-  _start = nil;
-  [_end release];
-  _end = nil;
-  [super dealloc];
-}
 
 - (void)readDeviceDataFromConnection:(VTConnection *)connection {
   _logIndex = [connection readUnsignedChar];
   _numTrackpoints = [connection readInt32];
-  [_start release];
-  _start = [[connection readDate] retain];
-  [_end release];
-  _end = [[connection readDate] retain];
+  _start = [connection readDate];
+  _end = [connection readDate];
 }
 
 - (NSString *)description {

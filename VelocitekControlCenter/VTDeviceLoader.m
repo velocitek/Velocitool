@@ -19,7 +19,7 @@ NSString *VTDeviceRemovedNotification = @"VTDeviceRemovedNotification";
 @end
 
 static void _RawDeviceAdded(void *loader_ptr, io_iterator_t iterator) {
-  VTDeviceLoader *loader = (VTDeviceLoader *)loader_ptr;
+  VTDeviceLoader *loader = (__bridge VTDeviceLoader *)loader_ptr;
   io_service_t usbDevice;
 
   while ((usbDevice = IOIteratorNext(iterator))) {
@@ -29,7 +29,7 @@ static void _RawDeviceAdded(void *loader_ptr, io_iterator_t iterator) {
 }
 
 static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
-  VTDeviceLoader *loader = (VTDeviceLoader *)loader_ptr;
+  VTDeviceLoader *loader = (__bridge VTDeviceLoader *)loader_ptr;
   io_service_t usbDevice;
 
   while ((usbDevice = IOIteratorNext(iterator))) {
@@ -64,7 +64,6 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     matchingDict = IOServiceMatching(kIOUSBDeviceClassName);
     if (!matchingDict) {
       NSLog(@"ERR: Couldn’t create a USB matching dictionary");
-      [self release];
       return nil;
     }
 
@@ -96,27 +95,27 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     // reference
     matchingDict = (CFMutableDictionaryRef)CFRetain(matchingDict);
     kr = IOServiceAddMatchingNotification(notifyPort, kIOFirstMatchNotification,
-                                          matchingDict, _RawDeviceAdded, self,
+                                          matchingDict, _RawDeviceAdded, (__bridge void *)(self),
                                           &rawAddedIter);
     NSAssert(kr == KERN_SUCCESS, @"Unable to setup the device match.");
 
     // Iterate over set of matching devices to access already-present devices
     // and to arm the notification
-    _RawDeviceAdded(self, rawAddedIter);
+    _RawDeviceAdded((__bridge void *)(self), rawAddedIter);
 
     // Notification of termination: Retain an additional dictionary references
     // because each call to IOServiceAddMatchingNotification consumes one
     // reference
     matchingDict = (CFMutableDictionaryRef)CFRetain(matchingDict);
     kr = IOServiceAddMatchingNotification(notifyPort, kIOTerminatedNotification,
-                                          matchingDict, _RawDeviceRemoved, self,
+                                          matchingDict, _RawDeviceRemoved, (__bridge void *)(self),
                                           &rawRemovedIter);
     NSAssert(kr == KERN_SUCCESS,
              @"Unable to setup the device termination match.");
 
     // Iterate over set of matching devices to access already-present devices
     // and to arm the notification
-    _RawDeviceRemoved(self, rawRemovedIter);
+    _RawDeviceRemoved((__bridge void *)(self), rawRemovedIter);
 
     // Release the matching dictionary
     CFRelease(matchingDict);
@@ -125,11 +124,8 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
 }
 
 - (void)dealloc {
-  [_devicesByLocation release];
   _devicesByLocation = nil;
-  [_devicesBySerial release];
   _devicesBySerial = nil;
-  [super dealloc];
 }
 
 - (NSArray *)devices {
@@ -150,13 +146,13 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
 
   if (properties) {
     VTDevice *device =
-        [VTDevice deviceForUSBProperties:(NSDictionary *)properties];
+        [VTDevice deviceForUSBProperties:(__bridge NSDictionary *)properties];
 
     if (device) {
       // The locationID uniquely identifies the device and will remain the same,
       // even across reboots, so long as the bus topology doesn't change.
       NSString *location =
-          [(NSDictionary *)properties objectForKey:@"locationID"];
+          [(__bridge NSDictionary *)properties objectForKey:@"locationID"];
       NSString *serial = [device serial];
       if (location && serial) {
         [_devicesByLocation setObject:device forKey:location];
@@ -184,7 +180,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
 
   if (properties) {
     NSString *location =
-        [(NSDictionary *)properties objectForKey:@"locationID"];
+        [(__bridge NSDictionary *)properties objectForKey:@"locationID"];
     NSAssert(location, @"Inable to extract location from properties");
 
     VTDevice *device = [_devicesByLocation objectForKey:location];
@@ -192,7 +188,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
       NSLog(@"Removal of a device not properly registered.");
     } else {
       // Retain the serial as the device is likely to be deallocated.
-      NSString *serial = [[[device serial] retain] autorelease];
+      NSString *serial = [device serial];
 
       [_devicesByLocation removeObjectForKey:location];
       [_devicesBySerial removeObjectForKey:serial];

@@ -17,9 +17,9 @@
 
 }
 
-@property (nonatomic, readwrite, retain) NSString *defaultTrackName;
-@property (nonatomic, readwrite, retain) NSMutableArray *trackpoints;
-@property (nonatomic, readwrite, retain) VTDevice *device;
+@property (nonatomic, readwrite, strong) NSString *defaultTrackName;
+@property (nonatomic, readwrite, strong) NSMutableArray *trackpoints;
+@property (nonatomic, readwrite, strong) VTDevice *device;
 
 + (id)capturedTrackElementWithTrackPointsAndDevice:(NSMutableArray *)trackpointArray device:(VTDevice *)sourceDevice;
 - (id)initWithTrackpointsAndDevice:(NSMutableArray *)trackpointArray device:(VTDevice *)sourceDevice;

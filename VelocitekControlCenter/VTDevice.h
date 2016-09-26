@@ -36,4 +36,6 @@
 // Not working. Do not use for now.
 - (BOOL)updateFirmware:(NSString *)filePath;
 
+- (void) recoverDeviceConnection;
+
 @end
