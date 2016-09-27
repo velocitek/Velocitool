@@ -18,14 +18,12 @@
 }
 
 + (id)vtDateWithPicBytes:(NSData *)bytes {
-    NSLog(@"VTLOG: [VTDateTime, vtDateWithPicBytes = %@]", bytes);  // VTLOG for debugging
-    
+    //NSLog(@"VTLOG: [VTDateTime, vtDateWithPicBytes = %@]", bytes);  // VTLOG for debugging
     return [[self alloc] initWithPicDateRepresentation:bytes];
 }
 
 + (id)vtDateWithDate:(NSDate *)dateObject {
-    NSLog(@"VTLOG: [VTDateTime, vtDateWithDate = %@]", dateObject);  // VTLOG for debugging
-    
+    //NSLog(@"VTLOG: [VTDateTime, vtDateWithDate = %@]", dateObject);  // VTLOG for debugging
     return [[self alloc] initWithDate:dateObject];
 }
 
@@ -41,6 +39,7 @@
 }
 
 - (instancetype)initWithDate:(NSDate *)date {
+    
     if ((self = [super init])) {
         _date = date;
         NSCalendarUnit componentsToGet = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitNanosecond;
@@ -50,35 +49,21 @@
         NSDateComponents *components = [calendar components:componentsToGet fromDate:date];
         
         int yearInt = (int)components.year - 2000;
-        unsigned char year = (unsigned char) yearInt;
-        
         int monthInt = (int)components.month;
-        unsigned char month = (unsigned char) monthInt;
-        
         int dayInt = (int)components.day;
-        unsigned char day = (unsigned char) dayInt;
-        
         int hourInt = (int)components.hour;
-        unsigned char hour = (unsigned char) hourInt;
-        
         int minInt = (int)components.minute;
-        unsigned char minute = (unsigned char) minInt;
-        
         int secondInt = (int)components.second;
-        unsigned char second = (unsigned char) secondInt;
-        
         int hundrethsInt = (int)round(components.nanosecond * 0.0000001);
-        unsigned char hundredthSeconds = (unsigned char)hundrethsInt;
         
         unsigned char picBytes[[VTDateTime picRepresentationSize]];
-        picBytes[0] = year;
-        picBytes[1] = month;
-        picBytes[2] = day;
-        picBytes[3] = hour;
-        picBytes[4] = minute;
-        picBytes[5] = second;
-        picBytes[6] = hundredthSeconds;
-        
+        picBytes[0] = (unsigned char) yearInt;
+        picBytes[1] = (unsigned char) monthInt;
+        picBytes[2] = (unsigned char) dayInt;
+        picBytes[3] = (unsigned char) hourInt;
+        picBytes[4] = (unsigned char) minInt;
+        picBytes[5] = (unsigned char) secondInt;
+        picBytes[6] = (unsigned char)hundrethsInt;
         
         _picDateRepresentation = [NSData dataWithBytes:picBytes length:[VTDateTime picRepresentationSize]];
         
@@ -86,11 +71,13 @@
         NSLog(@"Date created with bytes: %@\nAnd string: %@\nFor original date: %@", [_picDateRepresentation description], [test description], [date description]);
         
     }
+    
     return self;
 }
 
 - (instancetype)initWithPicDateRepresentation:(NSData *)bytes {
     if ((self = [super init])) {
+        
         _picDateRepresentation = bytes;
         
         //NSLog(@"%@", [_picDateRepresentation description]);
@@ -109,15 +96,11 @@
         // Can't find a NSDate constructor precise to the hundredth of a second for
         // some reason...
         NSDate *dateWithoutHundredths;
-        dateWithoutHundredths = [NSDate
-                                 dateWithString:[NSString stringWithFormat:
-                                                 @"%04u-%02u-%02u %02u:%02u:%02u +0000",
-                                                 year, month, day, hour, minutes, seconds]];
+        dateWithoutHundredths = [NSDate dateWithString:[NSString stringWithFormat:@"%04u-%02u-%02u %02u:%02u:%02u +0000", year, month, day, hour, minutes, seconds]];
         
         NSTimeInterval hundredthsToAdd = (double)(hundredth / 100.0);
         
-        _date = [[NSDate alloc] initWithTimeInterval:hundredthsToAdd
-                                           sinceDate:dateWithoutHundredths];
+        _date = [[NSDate alloc] initWithTimeInterval:hundredthsToAdd sinceDate:dateWithoutHundredths];
     }
     return self;
 }

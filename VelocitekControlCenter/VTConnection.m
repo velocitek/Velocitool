@@ -12,6 +12,9 @@
 #import <dlfcn.h>
 #import "ftd2xx.h"
 
+#define DRIVER_READ_TIMEOUT 1000 // in milliseconds
+#define DRIVER_WRITE_TIMEOUT 1000
+
 //
 // This is really fugly, but unfortunately the device driver for the hardware
 // Velocitek uses is only available in binary form, as a dyld file to be
@@ -167,7 +170,15 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 
 #pragma mark - Public methods
 
-- runCommand:(VTCommand *)command {
+/**
+ *  Moved the track download command to it's own method bc of the logic to detect
+ *  bad data by checking for jumps in the datetime (after which we abort the download,
+ *  and return the good data back to the VTTrackDownload:trackpointsHelper, where we
+ *  reset the connection and attempt to restart the download from the place where the
+ *  bad data began.
+ */
+- runCommandTrackDownload:(VTCommand *)command {
+    
     // Signal to the device the intention to talk to it.
     [self setRTS];
     
@@ -215,9 +226,8 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     id returnValue = nil;
     
     // Kinda hacky, but used to detect jump in dates when downloading tracks
-    double badDataJumpThreshold = 3155695.2; // 1 year in seconds
+    double badDataJumpThreshold = 3600; // 1 year in seconds
     VTTrackpointRecord * previous;
-    BOOL shouldCheckForJump = (resultClass == NSClassFromString(@"VTTrackpointRecord"));;
     
     if (returnsList) {
         NSMutableArray *results = [NSMutableArray array];
@@ -233,29 +243,104 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
             ////////////////////////////////////////////////////////////////////////////////////////////////////
             // Hack to detect bad data in down
             
-            // Are we downloading a track?
-            if (shouldCheckForJump) {
+            // Cast the current result to the VTTrackpointRecord type so we can get the datetime
+            VTTrackpointRecord * current = (VTTrackpointRecord*)result;
+            // Check for the jump, and if it is greater than the threshold, return what we've downloaded so far
+            // The recovery algorithm should start off where we stopped
             
-                // Cast the current result to the VTTrackpointRecord type so we can get the datetime
-                VTTrackpointRecord * current = (VTTrackpointRecord*)result;
-                // Check for the jump, and if it is greater than the threshold, return what we've downloaded so far
-                // The recovery algorithm should start off where we stopped
-                
-                NSTimeInterval previousTimestamp = previous.timestamp.timeIntervalSinceReferenceDate;
-                NSTimeInterval currentTimestamp = current.timestamp.timeIntervalSinceReferenceDate;
-                
-                NSLog(@"%f", currentTimestamp);
-
-                if (previous != nil && fabs(currentTimestamp - previousTimestamp) > badDataJumpThreshold) {
-                    NSLog(@"VTError: bad data detected! Previous datetime: (%f) %@, Current timestamp: (%f) %@", previousTimestamp, [previous.timestamp description], currentTimestamp, [current.timestamp description]);
-                    return [results copy];
-                }
-                
-                previous = (VTTrackpointRecord*)result;
-
+            NSTimeInterval previousTimestamp = previous.timestamp.timeIntervalSinceReferenceDate;
+            NSTimeInterval currentTimestamp = current.timestamp.timeIntervalSinceReferenceDate;
+            
+            //NSLog(@"%f", currentTimestamp);
+            
+            if (previous != nil && fabs(currentTimestamp - previousTimestamp) > badDataJumpThreshold) {
+                NSLog(@"VTError: bad data detected! Previous datetime: (%f) %@, Current timestamp: (%f) %@", previousTimestamp, [previous.timestamp description], currentTimestamp, [current.timestamp description]);
+                return [results copy];
             }
             
+            previous = (VTTrackpointRecord*)result;
+            
+            ////////////////////////////////////////////////////////////////////////////////////////////////////
+
             [results addObject:result];
+            
+            [self.progressTracker performSelectorOnMainThread:@selector(incrementProgress) withObject:nil waitUntilDone:YES];
+            
+        }
+        returnValue = [results copy];
+        
+    }
+    else {
+        VTRecord *result = [[resultClass alloc] init];
+        [result readFromConnection:self];
+        returnValue = result;
+    }
+    
+    [self clearRTS];
+    
+    return returnValue;
+}
+
+- runCommand:(VTCommand *)command {
+    // Signal to the device the intention to talk to it.
+    [self setRTS];
+    
+    // Adopt the flow control requested by the command.
+    [self setFlowControl:[command flowControl]];
+    
+    // Send the command, which is a single character.
+    unsigned char signalChar = [command signal];
+    [self writeUnsignedChar:signalChar];
+    
+    // Read the response, which should be an echo of the command.
+    unsigned char response = [self readUnsignedChar];
+    if (response != signalChar) {
+        NSLog(@"VTError: Wrong response %c to signal %c. Aborting.", response,
+              signalChar);
+        [self recover];
+        return nil;
+    }
+    
+    // Confirm the command, send additional parameters.
+    signalChar = 'X';
+    [self writeUnsignedChar:signalChar];
+    
+    VTRecord *parameter = [command parameter];
+    
+    if (parameter) {
+        [parameter writeForConnection:self];
+    }
+    
+    // Read the response signal , which should be 'X' again confirming the
+    // parameters reception.
+    response = [self readUnsignedChar];
+    if (response != signalChar) {
+        NSLog(@"VTError: Wrong response %c to signal %c. Aborting.", response,
+              signalChar);
+        [self recover];
+        return nil;
+    }
+    
+    // Decode the result. This is done by a VTRecord subclass. Depending on the
+    // command this could be one single record or a series of records all of the
+    // same type.
+    BOOL returnsList = [command returnsList];
+    Class resultClass = [command resultClass];
+    id returnValue = nil;
+    
+    if (returnsList) {
+        NSMutableArray *results = [NSMutableArray array];
+        
+        while ([self waitForResponseLength:1 timeout:500]) {
+            VTRecord *result = [[resultClass alloc] init];
+            
+            
+            [result readFromConnection:self];
+            
+            //NSLog(@"%@", [result description]);
+            
+            [results addObject:result];
+            
             [self.progressTracker
              performSelectorOnMainThread:@selector(incrementProgress)
              withObject:nil
@@ -332,13 +417,13 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 - (NSDate *)readDate {
     VTDateTime *dateToConvert = [VTDateTime vtDateWithPicBytes:[self readLength:[VTDateTime picRepresentationSize]]];
     NSDate * date = [dateToConvert date];
-    NSLog(@"Date read: %@", [date description]);
+    //NSLog(@"Date read: %@", [date description]);
     return date;
 }
 
 - (float)readFloat {
     VTFloat *floatToConvert =
-    [VTFloat vtFloatWithPicBytes:[self readLength:[VTFloat picRepresentationSize] /*timeout:1000*/]];   // Fix app crashing when download tracks
+    [VTFloat vtFloatWithPicBytes:[self readLength:[VTFloat picRepresentationSize] /*timeout:1000*/]];
     return [floatToConvert floatingPointNumber];
 }
 
@@ -531,7 +616,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     
     // Set timeouts
     //
-    if ((ft_error = (*pFT_SetTimeouts)(ft_handle, 1000, 1000))) {
+    if ((ft_error = (*pFT_SetTimeouts)(ft_handle, DRIVER_READ_TIMEOUT, DRIVER_WRITE_TIMEOUT))) {
         NSLog(@"VTError: Call to FT_SetTimeouts failed with error %u", ft_error);
         [self close];
         return;

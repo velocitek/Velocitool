@@ -12,6 +12,7 @@
 #define TRACK_LOG_VIEW 2
 #define DOWNLOADING_TRACK 3
 #define FILE_VIEW 4
+#define NO_STATE_CHANGE 5
 
 
 

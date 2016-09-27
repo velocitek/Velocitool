@@ -9,7 +9,7 @@
 #include <IOKit/usb/IOUSBLib.h>
 
 @interface VTDevice () {
-  NSDictionary *_usbProperties;
+    NSDictionary *_usbProperties;
 }
 // The open connection to the device.
 @property(nonatomic, readonly, strong) VTConnection *connection;
@@ -20,8 +20,8 @@
 @end
 
 @interface VTDeviceGeneration3 : VTDevice {
-  NSString *_firmwareVersion;
-  NSDictionary *_deviceSettings;
+    NSString *_firmwareVersion;
+    NSDictionary *_deviceSettings;
 }
 @end
 
@@ -46,81 +46,81 @@ static NSDictionary *productIDToClass = nil;
 
 #pragma mark - Class methods
 + (void)initialize {
-  if (self != [VTDevice self]) {
-    return;
-  }
-
-  productIDToClass = @{
-    @(0xb709) : [VTDeviceSpeedPuck class],
-    @(0xb70a) : [VTDeviceProStart class],
-    @(0x6001) : [VTDeviceS10 class],
-    @(0xb708) : [VTDeviceSC1 class],
-  };
+    if (self != [VTDevice self]) {
+        return;
+    }
+    
+    productIDToClass = @{
+                         @(0xb709) : [VTDeviceSpeedPuck class],
+                         @(0xb70a) : [VTDeviceProStart class],
+                         @(0x6001) : [VTDeviceS10 class],
+                         @(0xb708) : [VTDeviceSC1 class],
+                         };
 }
 
 + deviceForUSBProperties:(NSDictionary *)usbProperties {
-  int productID = [[usbProperties objectForKey:@kUSBProductID] intValue];
-  NSAssert(productID, @"No productID");
-  id klass = [productIDToClass objectForKey:[NSNumber numberWithInt:productID]];
-  if (!klass) {
-    return nil;
-  }
-  int vendorID = [[usbProperties objectForKey:@kUSBVendorID] intValue];
-  NSAssert(vendorID, @"No vendor ID");
-  NSString *serial = [usbProperties objectForKey:@kUSBSerialNumberString];
-  NSAssert(serial, @"No serial number");
-
-  VTConnection *connection = [VTConnection connectionWithVendorID:vendorID
-                                                        productID:productID
-                                                     serialNumber:serial];
-  if (!connection) {
-    return nil;
-  }
-  return [[klass alloc] initWithConnection:connection
-                              usbProperties:usbProperties];
+    int productID = [[usbProperties objectForKey:@kUSBProductID] intValue];
+    NSAssert(productID, @"No productID");
+    id klass = [productIDToClass objectForKey:[NSNumber numberWithInt:productID]];
+    if (!klass) {
+        return nil;
+    }
+    int vendorID = [[usbProperties objectForKey:@kUSBVendorID] intValue];
+    NSAssert(vendorID, @"No vendor ID");
+    NSString *serial = [usbProperties objectForKey:@kUSBSerialNumberString];
+    NSAssert(serial, @"No serial number");
+    
+    VTConnection *connection = [VTConnection connectionWithVendorID:vendorID
+                                                          productID:productID
+                                                       serialNumber:serial];
+    if (!connection) {
+        return nil;
+    }
+    return [[klass alloc] initWithConnection:connection
+                               usbProperties:usbProperties];
 }
 
 #pragma mark - Init
 
 - (instancetype)initWithConnection:(VTConnection *)connection
                      usbProperties:(NSDictionary *)usbProperties {
-  _connection = connection;
-  _usbProperties = [usbProperties copy];
-
-  return self;
+    _connection = connection;
+    _usbProperties = [usbProperties copy];
+    
+    return self;
 }
 
 - (void)dealloc {
-  _usbProperties = nil;
+    _usbProperties = nil;
 }
 
 #pragma mark - Public methods
 
 - (NSString *)serial {
-  return [_usbProperties objectForKey:@kUSBSerialNumberString];
+    return [_usbProperties objectForKey:@kUSBSerialNumberString];
 }
 
 - (NSString *)model {
-  // For subclassers to implement
-  VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
-  return nil;
+    // For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+    return nil;
 }
 
 - (NSString *)firmwareVersion {
-  // For subclassers to implement
-  VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
-  return nil;
+    // For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+    return nil;
 }
 
 - (NSDictionary *)deviceSettings {
-  // For subclassers to implement
-  VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
-  return nil;
+    // For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+    return nil;
 }
 
 - (void)setDeviceSettings:(NSDictionary *)settings {
-  // For subclassers to implement
-  VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+    // For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
 }
 
 - (void)recoverDeviceConnection {
@@ -129,35 +129,35 @@ static NSDictionary *productIDToClass = nil;
 }
 
 - (NSArray *)trackpointLogs {
-  // For subclassers to implement
-  VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
-  return nil;
+    // For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+    return nil;
 }
 
 - (NSArray *)trackpoints:(NSDate *)downloadFrom endTime:(NSDate *)downloadTo {
-  // For subclassers to implement
-  VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
-  return nil;
+    // For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+    return nil;
 }
 
 - (BOOL)updateFirmware:(NSString *)filePath {
-  // For subclassers to implement
-  VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
-
-  return FIRMWARE_UPDATE_FAILED;
+    // For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+    
+    return FIRMWARE_UPDATE_FAILED;
 }
 
 - (void)eraseAll {
-  // For subclassers to implement
-  VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+    // For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
 }
 
 - (NSString *)description {
-  NSString *sd = [super description];
-  NSString *s = [self serial];
-  NSString *fv = [self firmwareVersion];
-
-  return [NSString stringWithFormat:@"%@ (%@, %@)", sd, s, fv];
+    NSString *sd = [super description];
+    NSString *s = [self serial];
+    NSString *fv = [self firmwareVersion];
+    
+    return [NSString stringWithFormat:@"%@ (%@, %@)", sd, s, fv];
 }
 
 @end
@@ -165,13 +165,13 @@ static NSDictionary *productIDToClass = nil;
 @implementation VTDeviceS10
 
 - (NSString *)model {
-  return @"S10";
+    return @"S10";
 }
 
 - (NSString *)firmwareVersion {
-  // There is no way to get the firmware version of the S10. Just return the
-  // known version
-  return @"1.1";
+    // There is no way to get the firmware version of the S10. Just return the
+    // known version
+    return @"1.1";
 }
 
 @end
@@ -185,7 +185,7 @@ static NSDictionary *productIDToClass = nil;
 // The new method is a simple command, as used on the puck.
 //
 - (NSString *)model {
-  return @"SC1";
+    return @"SC1";
 }
 
 @end
@@ -194,61 +194,58 @@ static NSDictionary *productIDToClass = nil;
 @implementation VTDeviceGeneration3
 
 - (void)dealloc {
-  _firmwareVersion = nil;
-  _deviceSettings = nil;
+    _firmwareVersion = nil;
+    _deviceSettings = nil;
 }
 
 - (NSString *)firmwareVersion {
-  if (!_firmwareVersion) {
-    VTCommand *firmwareVersionCommand =
+    if (!_firmwareVersion) {
+        VTCommand *firmwareVersionCommand =
         [VTCommand commandWithSignal:'V'
                            parameter:nil
                          resultClass:[VTFirmwareVersionRecord class]];
-    VTFirmwareVersionRecord *result =
+        VTFirmwareVersionRecord *result =
         (VTFirmwareVersionRecord *)[self.connection
-            runCommand:firmwareVersionCommand];
-
-    _firmwareVersion = [[result version] copy];
-  }
-  return _firmwareVersion;
+                                    runCommand:firmwareVersionCommand];
+        
+        _firmwareVersion = [[result version] copy];
+    }
+    return _firmwareVersion;
 }
 
 - (NSArray *)trackpointLogs {
-  VTCommand *trackpointLogsCommand =
-      [VTCommand commandWithSignal:'O'
-                         parameter:nil
-                      resultsClass:[VTTrackpointLogRecord class]];
-  NSArray *records =
-      (NSArray *)[self.connection runCommand:trackpointLogsCommand];
-  return records;
+    
+    VTCommand *trackpointLogsCommand = [VTCommand commandWithSignal:'O'
+                                                          parameter:nil
+                                                       resultsClass:[VTTrackpointLogRecord class]];
+    
+    return [self.connection runCommand:trackpointLogsCommand];
 }
 
 - (NSArray *)trackpoints:(NSDate *)downloadFrom endTime:(NSDate *)downloadTo {
-  VTReadTrackpointsCommandParameter *commandParameter =
-      [VTReadTrackpointsCommandParameter commandParameterFromDate:downloadFrom
-                                                           toDate:downloadTo];
-
-  VTCommand *command = [VTCommand commandWithSignal:'T'
-                                          parameter:commandParameter
-                                       resultsClass:[VTTrackpointRecord class]];
-
-  NSArray *records = (NSArray *)[self.connection runCommand:command];
-  return records;
+    
+    VTReadTrackpointsCommandParameter *commandParameter = [VTReadTrackpointsCommandParameter commandParameterFromDate:downloadFrom
+                                                                                                               toDate:downloadTo];
+    
+    VTCommand *command = [VTCommand commandWithSignal:'T'
+                                            parameter:commandParameter
+                                         resultsClass:[VTTrackpointRecord class]];
+    
+    // Notice that we're using the special track download specific command
+    // that includes the error detection
+    return (NSArray *)[self.connection runCommandTrackDownload:command];
 }
 
 - (void)eraseAll {
-  [self.connection
-      runCommand:[VTCommand commandWithSignal:'E'
-                                    parameter:nil
-                                  resultClass:[VTCommandResultRecord class]]];
+    [self.connection runCommand:[VTCommand commandWithSignal:'E' parameter:nil resultClass:[VTCommandResultRecord class]]];
 }
 
 - (BOOL)updateFirmware:(NSString *)filePath {
     NSLog(@"VTLOG: [VTDevice, updateFirmware = %@]", filePath);  // VTLOG for debugging
     
-  VTFirmwareFile *firmwareFile =
-      [VTFirmwareFile vtFirmwareFileWithFilePath:filePath];
-  return [self.connection runFirmwareUpdate:firmwareFile];
+    VTFirmwareFile *firmwareFile =
+    [VTFirmwareFile vtFirmwareFileWithFilePath:filePath];
+    return [self.connection runFirmwareUpdate:firmwareFile];
 }
 
 - (void)recoverDeviceConnection {
@@ -260,36 +257,36 @@ static NSDictionary *productIDToClass = nil;
 @implementation VTDeviceSpeedPuck
 
 - (NSString *)model {
-  return @"SpeedPuck";
+    return @"SpeedPuck";
 }
 
 - (NSDictionary *)deviceSettings {
-  if (!_deviceSettings) {
-    VTPuckSettingsRecord *result = (VTPuckSettingsRecord *)[self.connection
-        runCommand:[VTCommand commandWithSignal:'S'
-                                      parameter:nil
-                                    resultClass:[VTPuckSettingsRecord class]]];
-
-    _deviceSettings = [[result settingsDictionary] copy];
-  }
-  return _deviceSettings;
+    if (!_deviceSettings) {
+        VTPuckSettingsRecord *result = (VTPuckSettingsRecord *)[self.connection
+                                                                runCommand:[VTCommand commandWithSignal:'S'
+                                                                                              parameter:nil
+                                                                                            resultClass:[VTPuckSettingsRecord class]]];
+        
+        _deviceSettings = [[result settingsDictionary] copy];
+    }
+    return _deviceSettings;
 }
 
 - (void)setDeviceSettings:(NSDictionary *)settings {
-  [self.connection
-      runCommand:[VTCommand commandWithSignal:'D'
-                                    parameter:[VTPuckSettingsRecord
-                                                  recordFromSettingsDictionary:
-                                                      settings]
-                                  resultClass:[VTCommandResultRecord class]]];
-
-  _deviceSettings = nil;
+    [self.connection
+     runCommand:[VTCommand commandWithSignal:'D'
+                                   parameter:[VTPuckSettingsRecord
+                                              recordFromSettingsDictionary:
+                                              settings]
+                                 resultClass:[VTCommandResultRecord class]]];
+    
+    _deviceSettings = nil;
 }
 
 @end
 
 @implementation VTDeviceProStart
 - (NSString *)model {
-  return @"ProStart";
+    return @"ProStart";
 }
 @end

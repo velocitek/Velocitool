@@ -19,6 +19,9 @@
 // Run the given command.
 - runCommand:(VTCommand *)command;
 
+// Separate command for track download with some error checking
+- runCommandTrackDownload:(VTCommand *)command;
+
 // Send the corresponding data to the device.
 - (void)writeChar:(char)c;
 - (void)writeUnsignedChar:(unsigned char)c;
