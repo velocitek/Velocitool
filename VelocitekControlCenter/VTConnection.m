@@ -233,8 +233,8 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
         NSMutableArray *results = [NSMutableArray array];
         
         while ([self waitForResponseLength:1 timeout:500]) {
-            VTRecord *result = [[resultClass alloc] init];
             
+            VTRecord *result = [[resultClass alloc] init];
             
             [result readFromConnection:self];
             
@@ -255,6 +255,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
             
             if (previous != nil && fabs(currentTimestamp - previousTimestamp) > badDataJumpThreshold) {
                 NSLog(@"VTError: bad data detected! Previous datetime: (%f) %@, Current timestamp: (%f) %@", previousTimestamp, [previous.timestamp description], currentTimestamp, [current.timestamp description]);
+                [self clearRTS];
                 return [results copy];
             }
             

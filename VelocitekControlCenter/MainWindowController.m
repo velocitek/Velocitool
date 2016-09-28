@@ -88,7 +88,8 @@
         case EV_ENTRY:
             NSLog(@"VTLOG: READY, EV_ENTRY");  // VTLOG for debugging
             
-            [self displayViewController:trackLogViewController];
+            [self performSelectorOnMainThread:@selector(displayViewController:) withObject:trackLogViewController waitUntilDone:YES];
+            //[self displayViewController:trackLogViewController];
             //NSLog(@"Just changed to READY state.");
             
             //Wait for the main window to resize and check to see if any Velocitek devices are connected to the Mac
@@ -240,7 +241,8 @@
     {
         case EV_ENTRY:
             NSLog(@"VTLOG: FILE_VIEW, EV_ENTRY");  // VTLOG for debugging
-            [self displayViewController:trackFileViewController];
+            [self performSelectorOnMainThread:@selector(displayViewController:) withObject:trackFileViewController waitUntilDone:YES];
+            //[self displayViewController:trackFileViewController];
             //NSLog(@"Just changed to TRACK FILE VIEW state.");
             break;
             
@@ -486,11 +488,14 @@
 {
     //Try to end editing
     NSWindow *w = [box window];
+    
     BOOL ended = [w makeFirstResponder:w];
+    
     if(!ended) {
         NSBeep();
         return;
     }
+    
     NSView *v = [vc view];
     
     //Compute the new window frame
@@ -498,6 +503,7 @@
     NSSize newSize = [v frame].size;
     float deltaWidth = newSize.width - currentSize.width;
     float deltaHeight = newSize.height - currentSize.height;
+    
     NSRect windowFrame = [w frame];
     windowFrame.size.height += deltaHeight;
     windowFrame.origin.y -= deltaHeight;
@@ -505,9 +511,10 @@
     
     //Clear the box for resizing
     [box setContentView:nil];
+    
     [w setFrame:windowFrame
         display:YES
-        animate:YES];
+        animate:NO];
     
     //Put the view in the box
     [box setContentView:v];

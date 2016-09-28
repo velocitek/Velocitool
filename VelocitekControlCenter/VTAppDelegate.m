@@ -4,6 +4,8 @@
 #import "DeviceSettingsController.h"
 #import "VTDefines.h"
 
+@import CocoaLumberjack;
+
 @implementation VTAppDelegate
 
 /**
@@ -36,7 +38,23 @@
     }    
 }
 
+- (void) setupLogging {
+    
+    [DDLog addLogger:[DDTTYLogger sharedInstance]]; // TTY = Xcode console
+    [DDLog addLogger:[DDASLLogger sharedInstance]]; // ASL = Apple System Logs
+    
+#ifdef DEBUG
+    DDFileLogger *fileLogger = [[DDFileLogger alloc] init]; // File Logger
+    fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
+    fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+    [DDLog addLogger:fileLogger];
+#endif
+    
+}
+
 - (void)applicationDidFinishLaunching:sender {
+    
+    //[self setupLogging];
     
     // Checking operating system version...
     NSOperatingSystemVersion systemVersion = [[NSProcessInfo processInfo] operatingSystemVersion];

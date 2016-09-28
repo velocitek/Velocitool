@@ -10,6 +10,8 @@
 		095982001D624BE000B9D190 /* VTDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 095981FF1D624BE000B9D190 /* VTDefines.m */; };
 		47535E861D90987D00512DF3 /* post-build-script.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47535E851D90987D00512DF3 /* post-build-script.txt */; };
 		478CE9861D99AB1900DAD61A /* VTDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080EFD4115C35D00013C9C3 /* VTDateTime.m */; };
+		478D01281D9B46B600F673CD /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478D01271D9B46B500F673CD /* CocoaLumberjack.framework */; };
+		478D01291D9B46B600F673CD /* CocoaLumberjack.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 478D01271D9B46B500F673CD /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		47FD75671D88944C00DEEE0E /* GPS-Action-Replay.app in Resources */ = {isa = PBXBuildFile; fileRef = 47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */; };
 		7009C76B11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
 		70135D3711D082A50046A8BF /* DeviceSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70135D3511D082A50046A8BF /* DeviceSettingsController.m */; };
@@ -81,6 +83,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				478D01291D9B46B600F673CD /* CocoaLumberjack.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -98,6 +101,8 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Velocitool_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Velocitool_Prefix.pch; sourceTree = "<group>"; };
 		47535E851D90987D00512DF3 /* post-build-script.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "post-build-script.txt"; sourceTree = "<group>"; };
+		478D01271D9B46B500F673CD /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = Carthage/Build/Mac/CocoaLumberjack.framework; sourceTree = "<group>"; };
+		478D012B1D9B46F900F673CD /* CocoaLumberjack.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CocoaLumberjack.framework.dSYM; path = Carthage/Build/Mac/CocoaLumberjack.framework.dSYM; sourceTree = "<group>"; };
 		47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "GPS-Action-Replay.app"; path = "../app-bundler/build/GPS-Action-Replay.app"; sourceTree = "<group>"; };
 		7009C76811BF52FF0076DB4D /* VTProgressTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTProgressTracker.h; sourceTree = "<group>"; };
 		7009C76911BF52FF0076DB4D /* VTProgressTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTProgressTracker.m; sourceTree = "<group>"; };
@@ -191,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */,
+				478D01281D9B46B600F673CD /* CocoaLumberjack.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -240,6 +246,8 @@
 		29B97314FDCFA39411CA2CEA /* Velocitool */ = {
 			isa = PBXGroup;
 			children = (
+				478D012B1D9B46F900F673CD /* CocoaLumberjack.framework.dSYM */,
+				478D01271D9B46B500F673CD /* CocoaLumberjack.framework */,
 				47535E851D90987D00512DF3 /* post-build-script.txt */,
 				ED3976731C427AEB00147C1F /* README.md */,
 				ED2A015D0F339B6A005C0CE0 /* Communication */,
@@ -595,6 +603,7 @@
 					"$(SRCROOT)",
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
@@ -602,6 +611,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Velocitool_Prefix.pch;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "DEBUG=1";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -628,7 +638,7 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -655,10 +665,12 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Velocitool_Prefix.pch;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = "RELEASE=1";
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
 				GCC_TREAT_NONCONFORMANT_CODE_ERRORS_AS_WARNINGS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -685,7 +697,7 @@
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -702,6 +714,7 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -715,6 +728,7 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;

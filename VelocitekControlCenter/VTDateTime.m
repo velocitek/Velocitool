@@ -38,15 +38,27 @@
     return dateFormatter;
 }
 
+- (NSCalendar*) getGregorianUTCCalendar {
+    NSCalendar * calendar = [NSCalendar calendarWithIdentifier: NSCalendarIdentifierGregorian];
+    NSTimeZone * timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+    [calendar setTimeZone:timeZone];
+    return calendar;
+}
+
+- (NSDateComponents*) getComponentsFromDate:(NSDate*) date {
+    NSCalendar * calendar = [self getGregorianUTCCalendar];
+    NSCalendarUnit componentsToGet = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitNanosecond;
+    NSDateComponents *components = [calendar components:componentsToGet fromDate:date];
+    return components;
+}
+
 - (instancetype)initWithDate:(NSDate *)date {
     
     if ((self = [super init])) {
+        
         _date = date;
-        NSCalendarUnit componentsToGet = NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitNanosecond;
-        NSCalendar * calendar = [NSCalendar calendarWithIdentifier: NSCalendarIdentifierGregorian];
-        NSTimeZone * timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-        [calendar setTimeZone:timeZone];
-        NSDateComponents *components = [calendar components:componentsToGet fromDate:date];
+
+        NSDateComponents *components = [self getComponentsFromDate:date];
         
         int yearInt = (int)components.year - 2000;
         int monthInt = (int)components.month;
@@ -68,6 +80,7 @@
         _picDateRepresentation = [NSData dataWithBytes:picBytes length:[VTDateTime picRepresentationSize]];
         
         VTDateTime * test = [[VTDateTime alloc] initWithPicDateRepresentation:_picDateRepresentation];
+        
         NSLog(@"Date created with bytes: %@\nAnd string: %@\nFor original date: %@", [_picDateRepresentation description], [test description], [date description]);
         
     }
