@@ -131,6 +131,7 @@
         case EV_ENTRY:
             NSLog(@"VTLOG: DOWNLOADING_TRACK_LOGS, EV_ENTRY");  // VTLOG for debugging
             //NSLog(@"Just changed to DOWNLOADING TRACK LOGS state.");
+            NSAssert([NSThread isMainThread], @"Should be on main thread!");
             [trackLogsDownloadingProgressIndicator setUsesThreadedAnimation:YES];
             [trackLogsDownloadingProgressIndicator startAnimation:self];
             break;
@@ -486,6 +487,8 @@
 
 -(void)displayViewController:(NSViewController *)vc
 {
+    NSAssert([NSThread isMainThread], @"Should be on main thread!");
+
     //Try to end editing
     NSWindow *w = [box window];
     
