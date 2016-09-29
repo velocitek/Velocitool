@@ -15,5 +15,6 @@ extern NSString *VTDeviceRemovedNotification;
 - (NSArray *)devices;
 // Returns a specific device.
 - (VTDevice *)deviceForSerialNumber:(NSString *)serial;
-
+- (void)reenumerateUsbDevice:(io_service_t) usbDevice;
+-(void) resetUsbDevice:(io_service_t) usbDevice;
 @end

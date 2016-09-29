@@ -5,18 +5,19 @@
 #import "VTFirmwareFile.h"
 #import "VTGlobals.h"
 #import "VTRecord.h"
+#import "VTDeviceLoader.h"
 
 #include <IOKit/usb/IOUSBLib.h>
 
 @interface VTDevice () {
     NSDictionary *_usbProperties;
+    io_service_t usbDevice;
 }
 // The open connection to the device.
 @property(nonatomic, readonly, strong) VTConnection *connection;
 
 // Private designated initializer.
-- (instancetype)initWithConnection:(VTConnection *)connection
-                     usbProperties:(NSDictionary *)usbProperties;
+- (instancetype)initWithConnection:(VTConnection *)connection usbProperties:(NSDictionary*) properties;
 @end
 
 @interface VTDeviceGeneration3 : VTDevice {
@@ -59,25 +60,63 @@ static NSDictionary *productIDToClass = nil;
 }
 
 + deviceForUSBProperties:(NSDictionary *)usbProperties {
+    
     int productID = [[usbProperties objectForKey:@kUSBProductID] intValue];
+    
     NSAssert(productID, @"No productID");
+    
     id klass = [productIDToClass objectForKey:[NSNumber numberWithInt:productID]];
     if (!klass) {
         return nil;
     }
+    
     int vendorID = [[usbProperties objectForKey:@kUSBVendorID] intValue];
     NSAssert(vendorID, @"No vendor ID");
+    
     NSString *serial = [usbProperties objectForKey:@kUSBSerialNumberString];
     NSAssert(serial, @"No serial number");
     
+    NSString *productName = [usbProperties objectForKey:@kUSBProductString];
+    
+    
+    NSString *locationId = [usbProperties objectForKey:@"locationID"];
+
+    NSLog(@"locationId = %@", locationId);
+    
+    [NSThread sleepForTimeInterval:2.0];
+
     VTConnection *connection = [VTConnection connectionWithVendorID:vendorID
                                                           productID:productID
-                                                       serialNumber:serial];
-    if (!connection) {
-        return nil;
+                                                       serialNumber:serial
+                                                        productName:productName];
+    
+    NSLog(@"Opening connection to device: %@ - %@", productName, serial);
+    BOOL success = [connection open];
+    
+    if (!success) {
+        
+        NSLog(@"Open failed. Waiting 5 seconds and trying again.");
+        
+        [NSThread sleepForTimeInterval:5.0];
+        
+        success = [connection open];
+
+        if (!success) {
+            
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:@"OK"];
+            [alert setMessageText:@"We're having trouble connecting to your device."];
+            [alert setInformativeText:@"Please unplug the device USB cable, wait a few seconds, and plug it back in."];
+            [alert setAlertStyle:NSWarningAlertStyle];
+            [alert runModal];
+            
+            return nil;
+        }
+        
+        
     }
-    return [[klass alloc] initWithConnection:connection
-                               usbProperties:usbProperties];
+    
+    return [[klass alloc] initWithConnection:connection usbProperties:usbProperties];
 }
 
 #pragma mark - Init

@@ -12,7 +12,7 @@
 #import <dlfcn.h>
 #import "ftd2xx.h"
 
-#define DRIVER_READ_TIMEOUT 1000 // in milliseconds
+#define DRIVER_READ_TIMEOUT 5000 // in milliseconds
 #define DRIVER_WRITE_TIMEOUT 1000
 
 //
@@ -56,6 +56,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     int _vendorID;
     int _productID;
     NSString *_serial;
+    NSString *_productName;
     // Amount of bytes available for reading.
     NSUInteger _available;
 }
@@ -63,10 +64,9 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 // Designated initializer.
 - (instancetype)initWithVendorID:(int)vendorID
                        productID:(int)productID
-                    serialNumber:(NSString *)serial;
+                    serialNumber:(NSString *)serial
+                     productName:(NSString*)productName;
 
-// Opens the connection. Done on init.
-- (void)open;
 // Closes the connection.
 - (void)close;
 // Closes, then reopens the connection.
@@ -139,26 +139,28 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 
 + connectionWithVendorID:(int)vendorID
                productID:(int)productID
-            serialNumber:(NSString *)serial {
+            serialNumber:(NSString *)serial
+             productName:(NSString*)productName
+{
     return [[self alloc] initWithVendorID:vendorID
                                 productID:productID
-                             serialNumber:serial];
+                             serialNumber:serial
+                              productName:productName];
 }
 
 - (instancetype)initWithVendorID:(int)vendorID
                        productID:(int)productID
-                    serialNumber:(NSString *)serial {
+                    serialNumber:(NSString *)serial
+                     productName:(NSString*)productName
+{
     if ((self = [super init])) {
         
-        NSLog(@"VTLog: Initialized with Vendor ID = %d, Product ID = %d, Serial Number = %@", vendorID, productID, serial);
+        NSLog(@"VTLog: Initialized with Vendor ID = %d, Product ID = %d, Serial Number = %@, Product Name = %@", vendorID, productID, serial, productName);
         _vendorID = vendorID;
         _productID = productID;
         _serial = [serial copy];
+        _productName = productName;
         _progressTracker = [[VTProgressTracker alloc] init];
-        [self open];
-        if (!_ft_handle) {
-            self = nil;
-        }
     }
     return self;
 }
@@ -166,6 +168,10 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 - (void)dealloc {
     [self close];
     _serial = nil;
+}
+
+-(BOOL) isOpen {
+    return (_ft_handle != nil && _ft_handle != 0);
 }
 
 #pragma mark - Public methods
@@ -562,48 +568,56 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 
 #pragma mark Private methods
 
-- (void)open {
+- (BOOL)open {
+    
     FT_STATUS ft_error;
     FT_HANDLE ft_handle;
     
     // Make sure the library can find the device I want.
     if ((ft_error = (*pFT_SetVIDPID)(_vendorID, _productID))) {
         NSLog(@"VTError: Call to FT_SetVIDPID failed with error %u", ft_error);
-        return;
+        return false;
     }
+    
+
     
     // Open the device, selecting it by serial number.
     const char *serialString = [_serial UTF8String];
-    if ((ft_error = (*pFT_OpenEx)((char *)serialString, FT_OPEN_BY_SERIAL_NUMBER,
-                                  &ft_handle))) {
-        NSLog(@"VTError: Call to FT_OpenEx failed with error %u", ft_error);
-        return;
+    if ((ft_error = (*pFT_OpenEx)((char *)serialString, FT_OPEN_BY_SERIAL_NUMBER, &ft_handle))) {
+        NSLog(@"VTError: Call to FT_OpenEx (by serial) failed with error %u", ft_error);
+        
+        // Try opening the device by product name
+        const char *productNameString = [_productName UTF8String];
+        if ((ft_error = (*pFT_OpenEx)((char *)productNameString, FT_OPEN_BY_DESCRIPTION, &ft_handle))) {
+            NSLog(@"VTError: Call to FT_OpenEx (by description) failed with error %u", ft_error);
+        }
     }
     
+        
     if (!ft_handle) {
         NSLog(@"VTError: Unable to open device with serial number %@", _serial);
-        return;
+        return false;
     }
     
     // Reset the device. Is this really necessary?
     if ((ft_error = (*pFT_ResetDevice)(ft_handle))) {
         NSLog(@"VTError: Call to FT_ResetDevice failed with error %u", ft_error);
         [self close];
-        return;
+        return false;
     }
     
     // Purge buffers. Probably not necessary either, but a good practice.
     if ((ft_error = (*pFT_Purge)(ft_handle, FT_PURGE_RX | FT_PURGE_TX))) {
         NSLog(@"VTError: Call to FT_ResetDevice failed with error %u", ft_error);
         [self close];
-        return;
+        return false;
     }
     
     // Set Baud Rate.
     if ((ft_error = (*pFT_SetBaudRate)(ft_handle, FT_BAUD_115200))) {
         NSLog(@"VTError: Call to FT_SetBaudRate failed with error %u", ft_error);
         [self close];
-        return;
+        return false;
     }
     
     // Set parameters.
@@ -612,7 +626,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
         NSLog(@"VTError: Call to FT_SetDataCharacteristics failed with error %u",
               ft_error);
         [self close];
-        return;
+        return false;
     }
     
     // Set timeouts
@@ -620,11 +634,13 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     if ((ft_error = (*pFT_SetTimeouts)(ft_handle, DRIVER_READ_TIMEOUT, DRIVER_WRITE_TIMEOUT))) {
         NSLog(@"VTError: Call to FT_SetTimeouts failed with error %u", ft_error);
         [self close];
-        return;
+        return false;
     }
     
     _ft_handle = ft_handle;
     _available = 0;
+    
+    return true;
 }
 
 - (void)close {
@@ -725,7 +741,7 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     }
     
     NSLog(@"waitForResponseLength timed out after waiting %d ms for %lu byte(s)", timeOutInMs, (unsigned long)length);
-    NSLog(@"%@",[NSThread callStackSymbols]);
+    //NSLog(@"%@",[NSThread callStackSymbols]);
     return 0;
     
 }

@@ -213,11 +213,11 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 }
 
 - (void)_deviceAdded:(NSNotification *)note {
+    
     NSString *serial = [[note userInfo] objectForKey:@"serial"];
     
     if(serial) 
 	{
-		
 		//Wait 1s to give the device microcontroller a chance to initialize (if the device did not have batteries installed
 		//it will have just powered up when it was connected to the USB cable)
 		sleep(1);
@@ -227,8 +227,10 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 		VTDevice *newDevice = [deviceLoader deviceForSerialNumber:serial];
 		
 		[deviceController addObject:newDevice];
-		if ([devices count] == 1)
-			[self setFirstConnectedAndTriggerNotification:newDevice];
+        
+        if ([devices count] == 1) {
+            [self setFirstConnectedAndTriggerNotification:newDevice];
+        }
 		
 		
     }

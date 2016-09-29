@@ -14,7 +14,8 @@
 // number.
 + connectionWithVendorID:(int)vendorID
                productID:(int)productID
-            serialNumber:(NSString *)serial;
+            serialNumber:(NSString *)serial
+             productName:(NSString*)productName;
 
 // Run the given command.
 - runCommand:(VTCommand *)command;
@@ -57,5 +58,8 @@
 // the reliability of FTDI's mac drivers
 - (BOOL)writeFirmwareFile:(VTFirmwareFile *)firmwareFile;
 - (BOOL)readFirmwareUpdateFlowControlChars;
+
+-(BOOL) open;
+-(BOOL) isOpen;
 
 @end

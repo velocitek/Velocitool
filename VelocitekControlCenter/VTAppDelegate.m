@@ -4,8 +4,6 @@
 #import "DeviceSettingsController.h"
 #import "VTDefines.h"
 
-@import CocoaLumberjack;
-
 @implementation VTAppDelegate
 
 /**
