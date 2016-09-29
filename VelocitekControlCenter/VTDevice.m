@@ -42,6 +42,7 @@
 
 @implementation VTDevice
 static NSDictionary *productIDToClass = nil;
+static BOOL _initialLoad = true;
 
 @synthesize connection = _connection;
 
@@ -60,6 +61,8 @@ static NSDictionary *productIDToClass = nil;
 }
 
 + deviceForUSBProperties:(NSDictionary *)usbProperties {
+    
+    NSLog(@"deviceForUSBProperties");
     
     int productID = [[usbProperties objectForKey:@kUSBProductID] intValue];
     
@@ -83,7 +86,12 @@ static NSDictionary *productIDToClass = nil;
 
     NSLog(@"locationId = %@", locationId);
     
-    [NSThread sleepForTimeInterval:2.0];
+    if (_initialLoad) {
+        _initialLoad = false;
+    }
+    else {
+        [NSThread sleepForTimeInterval:2.0];
+    }
 
     VTConnection *connection = [VTConnection connectionWithVendorID:vendorID
                                                           productID:productID
@@ -93,11 +101,16 @@ static NSDictionary *productIDToClass = nil;
     NSLog(@"Opening connection to device: %@ - %@", productName, serial);
     BOOL success = [connection open];
     
+    if (!success) return nil;
+    
+    /*
     if (!success) {
         
         NSLog(@"Open failed. Waiting 5 seconds and trying again.");
         
-        [NSThread sleepForTimeInterval:5.0];
+        [[VTDeviceLoader loader] reenumerateUsbDevice:[usbProperties objectForKey:@"io_service_t"]];
+        
+        [NSThread sleepForTimeInterval:3.0];
         
         success = [connection open];
 
@@ -115,6 +128,7 @@ static NSDictionary *productIDToClass = nil;
         
         
     }
+     */
     
     return [[klass alloc] initWithConnection:connection usbProperties:usbProperties];
 }

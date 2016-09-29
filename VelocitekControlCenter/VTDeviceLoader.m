@@ -141,6 +141,8 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
 
 - (void)_addDevice:(io_service_t)usbDevice {
     
+    NSLog(@"VTDeviceLoader:_addDevice");
+    
     NSAssert(usbDevice, @"Unexpected empty usbDevice.");
     
     CFMutableDictionaryRef properties;
@@ -174,6 +176,10 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
                 
             }
         }
+        else {
+            [self reenumerateUsbDevice:usbDevice];
+        }
+        
         CFRelease(properties);
     }
 }
@@ -185,9 +191,6 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     struct IOUSBDeviceStruct187 **dev = NULL;
     HRESULT                     result;
     SInt32                      score;
-    UInt16                      vendor;
-    UInt16                      product;
-    UInt16                      release;
     
     //Create an intermediate plug-in
     kr = IOCreatePlugInInterfaceForService(usbDevice,

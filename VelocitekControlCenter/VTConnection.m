@@ -579,13 +579,13 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
         return false;
     }
     
-
-    
     // Open the device, selecting it by serial number.
     const char *serialString = [_serial UTF8String];
     if ((ft_error = (*pFT_OpenEx)((char *)serialString, FT_OPEN_BY_SERIAL_NUMBER, &ft_handle))) {
         NSLog(@"VTError: Call to FT_OpenEx (by serial) failed with error %u", ft_error);
         
+        sleep(0.5);
+
         // Try opening the device by product name
         const char *productNameString = [_productName UTF8String];
         if ((ft_error = (*pFT_OpenEx)((char *)productNameString, FT_OPEN_BY_DESCRIPTION, &ft_handle))) {
@@ -593,11 +593,12 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
         }
     }
     
-        
     if (!ft_handle) {
         NSLog(@"VTError: Unable to open device with serial number %@", _serial);
         return false;
     }
+    
+    sleep(0.5);
     
     // Reset the device. Is this really necessary?
     if ((ft_error = (*pFT_ResetDevice)(ft_handle))) {
