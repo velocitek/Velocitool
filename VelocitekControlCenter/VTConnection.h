@@ -61,5 +61,7 @@
 
 -(BOOL) open;
 -(BOOL) isOpen;
++ (void) reloadDynamicLibrary;
+- (void) closeConnectionAndReloadLibrary;
 
 @end

@@ -176,9 +176,6 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
                 
             }
         }
-        else {
-            [self reenumerateUsbDevice:usbDevice];
-        }
         
         CFRelease(properties);
     }
@@ -337,7 +334,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
         
         NSString *location = [(__bridge NSDictionary *)properties objectForKey:@"locationID"];
         
-        NSAssert(location, @"Inable to extract location from properties");
+        NSAssert(location, @"Unable to extract location from properties");
         
         VTDevice *device = [_devicesByLocation objectForKey:location];
         if (!device) {
@@ -351,7 +348,6 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
             [_devicesBySerial removeObjectForKey:serial];
             
             [[NSNotificationCenter defaultCenter]
-             
              postNotificationName:VTDeviceRemovedNotification
              object:self
              userInfo:[NSDictionary dictionaryWithObject:serial

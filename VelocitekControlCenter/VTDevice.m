@@ -42,7 +42,6 @@
 
 @implementation VTDevice
 static NSDictionary *productIDToClass = nil;
-static BOOL _initialLoad = true;
 
 @synthesize connection = _connection;
 
@@ -81,54 +80,56 @@ static BOOL _initialLoad = true;
     
     NSString *productName = [usbProperties objectForKey:@kUSBProductString];
     
-    
-    NSString *locationId = [usbProperties objectForKey:@"locationID"];
-
-    NSLog(@"locationId = %@", locationId);
-    
-    if (_initialLoad) {
-        _initialLoad = false;
-    }
-    else {
-        [NSThread sleepForTimeInterval:2.0];
-    }
-
     VTConnection *connection = [VTConnection connectionWithVendorID:vendorID
                                                           productID:productID
                                                        serialNumber:serial
                                                         productName:productName];
     
     NSLog(@"Opening connection to device: %@ - %@", productName, serial);
+    
+    [NSThread sleepForTimeInterval:0.5];
+
     BOOL success = [connection open];
     
-    if (!success) return nil;
-    
-    /*
+    // Retry 1
     if (!success) {
         
-        NSLog(@"Open failed. Waiting 5 seconds and trying again.");
+        NSLog(@"Open failed. Closing connection, reloading driver,waiting 0.5 seconds before trying again.");
+
+        [VTConnection reloadDynamicLibrary];
         
-        [[VTDeviceLoader loader] reenumerateUsbDevice:[usbProperties objectForKey:@"io_service_t"]];
-        
-        [NSThread sleepForTimeInterval:3.0];
+        [NSThread sleepForTimeInterval:1.0];
         
         success = [connection open];
-
+        
+        // Retry 2
         if (!success) {
             
-            NSAlert *alert = [[NSAlert alloc] init];
-            [alert addButtonWithTitle:@"OK"];
-            [alert setMessageText:@"We're having trouble connecting to your device."];
-            [alert setInformativeText:@"Please unplug the device USB cable, wait a few seconds, and plug it back in."];
-            [alert setAlertStyle:NSWarningAlertStyle];
-            [alert runModal];
+            NSLog(@"Open failed. Closing connection, reloading driver, waiting 3 seconds before trying again.");
             
-            return nil;
+            [VTConnection reloadDynamicLibrary];
+            
+            [NSThread sleepForTimeInterval:3];
+            
+            success = [connection open];
+            
+            if (!success) {
+                
+                NSAlert *alert = [[NSAlert alloc] init];
+                [alert addButtonWithTitle:@"OK"];
+                [alert setMessageText:@"We're having trouble connecting to your device."];
+                [alert setInformativeText:@"Please unplug the device USB cable, wait a few seconds, and plug it back in."];
+                [alert setAlertStyle:NSWarningAlertStyle];
+                [alert runModal];
+                
+                return nil;
+            }
+            
+            
         }
         
         
     }
-     */
     
     return [[klass alloc] initWithConnection:connection usbProperties:usbProperties];
 }
@@ -253,10 +254,12 @@ static BOOL _initialLoad = true;
 
 - (NSString *)firmwareVersion {
     if (!_firmwareVersion) {
+        
         VTCommand *firmwareVersionCommand =
         [VTCommand commandWithSignal:'V'
                            parameter:nil
                          resultClass:[VTFirmwareVersionRecord class]];
+        
         VTFirmwareVersionRecord *result =
         (VTFirmwareVersionRecord *)[self.connection
                                     runCommand:firmwareVersionCommand];

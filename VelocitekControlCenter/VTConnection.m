@@ -91,16 +91,29 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 @implementation VTConnection
 @synthesize progressTracker = _progressTracker;
 
+static void * dynamicLibraryHandle;
+
 + (void)initialize {
     if (self != [VTConnection self]) {
         return;
     }
-    
+    [VTConnection loadDynamicLibrary];
+}
+
++ (void) reloadDynamicLibrary {
+    dlclose(dynamicLibraryHandle);
+    [VTConnection loadDynamicLibrary];
+}
+
+- (void) closeConnectionAndReloadLibrary {
+    [self close];
+    [VTConnection reloadDynamicLibrary];
+}
+
++ (void) loadDynamicLibrary {
     // On first use load the dynamic library and setup all the pointers to the
     // functions in it.
-    NSString *path =
-    [[NSBundle mainBundle] pathForResource:@"libftd2xx.1.2.2.dylib"
-                                    ofType:@""];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"libftd2xx.1.2.2.dylib" ofType:@""];
     
     void *handle = dlopen([path UTF8String], RTLD_LAZY | RTLD_GLOBAL);
     NSAssert2(handle, @"Can't load the library at %@: %s", path, dlerror());
@@ -135,6 +148,8 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     NSAssert(pFT_Close, @"FT_Close");
     pFT_ListDevices = dlsym(handle, "FT_ListDevices");
     NSAssert(pFT_ListDevices, @"FT_ListDevices");
+    
+    dynamicLibraryHandle = handle;
 }
 
 + connectionWithVendorID:(int)vendorID
@@ -154,7 +169,6 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
                      productName:(NSString*)productName
 {
     if ((self = [super init])) {
-        
         NSLog(@"VTLog: Initialized with Vendor ID = %d, Product ID = %d, Serial Number = %@, Product Name = %@", vendorID, productID, serial, productName);
         _vendorID = vendorID;
         _productID = productID;
@@ -645,6 +659,9 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 }
 
 - (void)close {
+    
+    NSLog(@"%@",[NSThread callStackSymbols]);
+
     FT_STATUS ft_error;
     if (_ft_handle && (ft_error = (*pFT_Close)(_ft_handle))) {
         NSLog(@"VTError: Call to FT_Close failed with error %u", ft_error);
@@ -766,13 +783,6 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     
     if ((ft_error = (*pFT_Read)(_ft_handle, buffer, dword_length, &sizedone))) {
         NSLog(@"VTError: Call to FT_Read failed with error %u", ft_error);
-        /*
-        NSException *e = [NSException
-                          exceptionWithName:@"FT_Read failed"
-                          reason:[NSString stringWithFormat:@"Call to FT_Read failed with error %u", ft_error]
-                          userInfo:nil];
-        @throw e;
-         */
         return nil;
     }
     
@@ -780,13 +790,6 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
     
     if (sizedone != length) {
         NSLog(@"VTError: Call to FT_Read read only %u of %lu", sizedone, (unsigned long)length);
-        /*
-        NSException *e = [NSException
-                          exceptionWithName:@"FT_Read failed"
-                          reason:[NSString stringWithFormat:@"Call to FT_Read read only %u of %lu", sizedone, (unsigned long)length]
-                          userInfo:nil];
-        @throw e;
-         */
         return nil;
     }
     
