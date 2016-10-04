@@ -26,6 +26,7 @@ static void _RawDeviceAdded(void *loader_ptr, io_iterator_t iterator) {
     
     while ((usbDevice = IOIteratorNext(iterator))) {
         [loader _addDevice:usbDevice];
+        NSLog(@"_RawDeviceAdded: %d", usbDevice);
         IOObjectRelease(usbDevice);
     }
 }
@@ -36,6 +37,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     
     while ((usbDevice = IOIteratorNext(iterator))) {
         [loader _removeDevice:usbDevice];
+        NSLog(@"_RawDeviceRemoved: %d", usbDevice);
         IOObjectRelease(usbDevice);
     }
 }
@@ -181,6 +183,44 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     }
 }
 
+
+- (void)_removeDevice:(io_service_t)usbDevice {
+    NSAssert(usbDevice, @"Unexpected empty usbDevice.");
+    
+    CFMutableDictionaryRef properties;
+    IOReturn result = IORegistryEntryCreateCFProperties(usbDevice, &properties, kCFAllocatorDefault, kNilOptions);
+    NSAssert(result == kIOReturnSuccess, @"Can't create properties.");
+    
+    if (properties) {
+        
+        NSString *location = [(__bridge NSDictionary *)properties objectForKey:@"locationID"];
+        
+        NSAssert(location, @"Unable to extract location from properties");
+        
+        VTDevice *device = [_devicesByLocation objectForKey:location];
+        if (!device) {
+            NSLog(@"Removal of a device not properly registered.");
+        }
+        else {
+            // Retain the serial as the device is likely to be deallocated.
+            NSString *serial = [device serial];
+            
+            [_devicesByLocation removeObjectForKey:location];
+            [_devicesBySerial removeObjectForKey:serial];
+            
+            [[NSNotificationCenter defaultCenter]
+             postNotificationName:VTDeviceRemovedNotification
+             object:self
+             userInfo:[NSDictionary dictionaryWithObject:serial
+                                                  forKey:@"serial"]];
+            
+            [device closeDeviceConnection];
+            
+        }
+        CFRelease(properties);
+    }
+}
+
 -(void) reenumerateUsbDevice:(io_service_t) usbDevice
 {
     kern_return_t               kr;
@@ -215,24 +255,6 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
         printf("Couldn’t create a device interface (%08x)\n", (int) result);
         return;
     }
-    
-    
-    /*
-     //Check these values for confirmation
-     kr = (*dev)->GetDeviceVendor(dev, &vendor);
-     kr = (*dev)->GetDeviceProduct(dev, &product);
-     kr = (*dev)->GetDeviceReleaseNumber(dev, &release);
-     
-     if ((vendor != kOurVendorID) || (product != kOurProductID) || (release != 1))
-     {
-     printf("Found unwanted device (vendor = %d, product = %d)\n",
-     vendor, product);
-     (void) (*dev)->Release(dev);
-     return;
-     }
-     */
-    
-    
     
     //Open the device to change its state
     kr = (*dev)->USBDeviceOpen(dev);
@@ -287,24 +309,6 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
         return;
     }
     
-    
-    /*
-     //Check these values for confirmation
-     kr = (*dev)->GetDeviceVendor(dev, &vendor);
-     kr = (*dev)->GetDeviceProduct(dev, &product);
-     kr = (*dev)->GetDeviceReleaseNumber(dev, &release);
-     
-     if ((vendor != kOurVendorID) || (product != kOurProductID) || (release != 1))
-     {
-     printf("Found unwanted device (vendor = %d, product = %d)\n",
-     vendor, product);
-     (void) (*dev)->Release(dev);
-     return;
-     }
-     */
-    
-    
-    
     //Open the device to change its state
     kr = (*dev)->USBDeviceOpen(dev);
     if (kr != kIOReturnSuccess)
@@ -320,41 +324,6 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     kr = (*dev)->USBDeviceClose(dev);
     kr = (*dev)->Release(dev);
     
-}
-
-
-- (void)_removeDevice:(io_service_t)usbDevice {
-    NSAssert(usbDevice, @"Unexpected empty usbDevice.");
-    
-    CFMutableDictionaryRef properties;
-    IOReturn result = IORegistryEntryCreateCFProperties(usbDevice, &properties, kCFAllocatorDefault, kNilOptions);
-    NSAssert(result == kIOReturnSuccess, @"Can't create properties.");
-    
-    if (properties) {
-        
-        NSString *location = [(__bridge NSDictionary *)properties objectForKey:@"locationID"];
-        
-        NSAssert(location, @"Unable to extract location from properties");
-        
-        VTDevice *device = [_devicesByLocation objectForKey:location];
-        if (!device) {
-            NSLog(@"Removal of a device not properly registered.");
-        }
-        else {
-            // Retain the serial as the device is likely to be deallocated.
-            NSString *serial = [device serial];
-            
-            [_devicesByLocation removeObjectForKey:location];
-            [_devicesBySerial removeObjectForKey:serial];
-            
-            [[NSNotificationCenter defaultCenter]
-             postNotificationName:VTDeviceRemovedNotification
-             object:self
-             userInfo:[NSDictionary dictionaryWithObject:serial
-                                                  forKey:@"serial"]];
-        }
-        CFRelease(properties);
-    }
 }
 
 @end

@@ -49,6 +49,7 @@ static FT_STATUS (*pFT_GetStatus)(FT_HANDLE ftHandle, DWORD *dwRxBytes,
                                   DWORD *dwTxBytes, DWORD *dwEventDWord);
 static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 
+
 @interface VTConnection () {
     // Handle to the FT device.
     void *_ft_handle;
@@ -67,8 +68,6 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
                     serialNumber:(NSString *)serial
                      productName:(NSString*)productName;
 
-// Closes the connection.
-- (void)close;
 // Closes, then reopens the connection.
 - (void)reset;
 
@@ -92,16 +91,21 @@ static FT_STATUS (*pFT_ListDevices)(PVOID pvArg1, PVOID pvArg2, DWORD dwFlags);
 @synthesize progressTracker = _progressTracker;
 
 static void * dynamicLibraryHandle;
+NSString* path;
 
 + (void)initialize {
     if (self != [VTConnection self]) {
         return;
     }
+    path = [[NSBundle mainBundle] pathForResource:@"libftd2xx.1.2.2.dylib" ofType:@""];
     [VTConnection loadDynamicLibrary];
 }
 
 + (void) reloadDynamicLibrary {
-    dlclose(dynamicLibraryHandle);
+    int result = dlclose(dynamicLibraryHandle);
+    if (result != 0) {
+        [NSException raise:@"UnableToCloseDynamicLibrary" format:@"Unable to close dylib with result: %d", result];
+    }
     [VTConnection loadDynamicLibrary];
 }
 
@@ -111,45 +115,80 @@ static void * dynamicLibraryHandle;
 }
 
 + (void) loadDynamicLibrary {
-    // On first use load the dynamic library and setup all the pointers to the
-    // functions in it.
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"libftd2xx.1.2.2.dylib" ofType:@""];
+    @synchronized (self) {
+        // On first use load the dynamic library and setup all the pointers to the
+        // functions in it.
     
-    void *handle = dlopen([path UTF8String], RTLD_LAZY | RTLD_GLOBAL);
-    NSAssert2(handle, @"Can't load the library at %@: %s", path, dlerror());
+        void *handle = dlopen([path UTF8String], RTLD_NOW | RTLD_LOCAL);
+        
+        if (!handle) {
+            [NSException raise:@"UnableToLoadDynamicLibrary" format:@"Unable to load dylib at path: %@", path];
+        }
+        
+        NSAssert2(handle, @"Can't load the library at %@: %s", path, dlerror());
+        
+        pFT_SetVIDPID = dlsym(handle, "FT_SetVIDPID");
+        NSAssert(pFT_SetVIDPID, @"FT_SetVIDPID");
+        //NSLog(@"pFT_SetVIDPID = %p", pFT_SetVIDPID);
+        
+        pFT_OpenEx = dlsym(handle, "FT_OpenEx");
+        NSAssert(pFT_OpenEx, @"FT_OpenEx");
+        //NSLog(@"FT_OpenEx = %p", pFT_OpenEx);
     
-    pFT_SetVIDPID = dlsym(handle, "FT_SetVIDPID");
-    NSAssert(pFT_SetVIDPID, @"FT_SetVIDPID");
-    pFT_OpenEx = dlsym(handle, "FT_OpenEx");
-    NSAssert(pFT_OpenEx, @"FT_OpenEx");
-    pFT_SetBaudRate = dlsym(handle, "FT_SetBaudRate");
-    NSAssert(pFT_SetBaudRate, @"FT_SetBaudRate");
-    pFT_SetDataCharacteristics = dlsym(handle, "FT_SetDataCharacteristics");
-    NSAssert(pFT_SetDataCharacteristics, @"FT_SetDataCharacteristics");
-    pFT_SetTimeouts = dlsym(handle, "FT_SetTimeouts");
-    NSAssert(pFT_SetTimeouts, @"FT_SetTimeouts");
-    pFT_SetRts = dlsym(handle, "FT_SetRts");
-    NSAssert(pFT_SetRts, @"FT_SetRts");
-    pFT_ClrRts = dlsym(handle, "FT_ClrRts");
-    NSAssert(pFT_ClrRts, @"FT_ClrRts");
-    pFT_SetFlowControl = dlsym(handle, "FT_SetFlowControl");
-    NSAssert(pFT_SetFlowControl, @"FT_SetFlowControl");
-    pFT_Write = dlsym(handle, "FT_Write");
-    NSAssert(pFT_Write, @"FT_Write");
-    pFT_Read = dlsym(handle, "FT_Read");
-    NSAssert(pFT_Read, @"FT_Read");
-    pFT_GetStatus = dlsym(handle, "FT_GetStatus");
-    NSAssert(pFT_GetStatus, @"FT_GetStatus");
-    pFT_ResetDevice = dlsym(handle, "FT_ResetDevice");
-    NSAssert(pFT_ResetDevice, @"FT_ResetDevice");
-    pFT_Purge = dlsym(handle, "FT_Purge");
-    NSAssert(pFT_Purge, @"FT_Purge");
-    pFT_Close = dlsym(handle, "FT_Close");
-    NSAssert(pFT_Close, @"FT_Close");
-    pFT_ListDevices = dlsym(handle, "FT_ListDevices");
-    NSAssert(pFT_ListDevices, @"FT_ListDevices");
-    
-    dynamicLibraryHandle = handle;
+        pFT_SetBaudRate = dlsym(handle, "FT_SetBaudRate");
+        NSAssert(pFT_SetBaudRate, @"FT_SetBaudRate");
+        //NSLog(@"pFT_SetBaudRate = %p", pFT_SetBaudRate);
+
+        pFT_SetDataCharacteristics = dlsym(handle, "FT_SetDataCharacteristics");
+        NSAssert(pFT_SetDataCharacteristics, @"FT_SetDataCharacteristics");
+        //NSLog(@"pFT_SetDataCharacteristics = %p", pFT_SetDataCharacteristics);
+
+        pFT_SetTimeouts = dlsym(handle, "FT_SetTimeouts");
+        NSAssert(pFT_SetTimeouts, @"FT_SetTimeouts");
+        //NSLog(@"pFT_SetDataCharacteristics = %p", pFT_SetDataCharacteristics);
+
+        pFT_SetRts = dlsym(handle, "FT_SetRts");
+        NSAssert(pFT_SetRts, @"FT_SetRts");
+        //NSLog(@"pFT_SetRts = %p", pFT_SetRts);
+
+        pFT_ClrRts = dlsym(handle, "FT_ClrRts");
+        NSAssert(pFT_ClrRts, @"FT_ClrRts");
+        //NSLog(@"pFT_ClrRts = %p", pFT_ClrRts);
+
+        pFT_SetFlowControl = dlsym(handle, "FT_SetFlowControl");
+        NSAssert(pFT_SetFlowControl, @"FT_SetFlowControl");
+        //NSLog(@"pFT_SetFlowControl = %p", pFT_SetFlowControl);
+
+        pFT_Write = dlsym(handle, "FT_Write");
+        NSAssert(pFT_Write, @"FT_Write");
+        //NSLog(@"pFT_Write = %p", pFT_Write);
+
+        pFT_Read = dlsym(handle, "FT_Read");
+        NSAssert(pFT_Read, @"FT_Read");
+        //NSLog(@"pFT_Read = %p", pFT_Read);
+
+        pFT_GetStatus = dlsym(handle, "FT_GetStatus");
+        NSAssert(pFT_GetStatus, @"FT_GetStatus");
+        //NSLog(@"pFT_GetStatus = %p", pFT_GetStatus);
+
+        pFT_ResetDevice = dlsym(handle, "FT_ResetDevice");
+        NSAssert(pFT_ResetDevice, @"FT_ResetDevice");
+        //NSLog(@"pFT_ResetDevice = %p", pFT_ResetDevice);
+
+        pFT_Purge = dlsym(handle, "FT_Purge");
+        NSAssert(pFT_Purge, @"FT_Purge");
+        //NSLog(@"pFT_Purge = %p", pFT_Purge);
+
+        pFT_Close = dlsym(handle, "FT_Close");
+        NSAssert(pFT_Close, @"FT_Close");
+        //NSLog(@"pFT_Close = %p", pFT_Close);
+
+        pFT_ListDevices = dlsym(handle, "FT_ListDevices");
+        NSAssert(pFT_ListDevices, @"FT_ListDevices");
+        //NSLog(@"pFT_ListDevices = %p", pFT_ListDevices);
+
+        dynamicLibraryHandle = handle;
+    }
 }
 
 + connectionWithVendorID:(int)vendorID
@@ -180,7 +219,7 @@ static void * dynamicLibraryHandle;
 }
 
 - (void)dealloc {
-    [self close];
+    NSAssert(![self isOpen], @"Deallocating VTConnection that is still open!");
     _serial = nil;
 }
 
@@ -660,7 +699,7 @@ static void * dynamicLibraryHandle;
 
 - (void)close {
     
-    NSLog(@"%@",[NSThread callStackSymbols]);
+    //NSLog(@"%@",[NSThread callStackSymbols]);
 
     FT_STATUS ft_error;
     if (_ft_handle && (ft_error = (*pFT_Close)(_ft_handle))) {

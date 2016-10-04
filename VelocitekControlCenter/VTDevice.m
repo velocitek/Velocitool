@@ -85,31 +85,29 @@ static NSDictionary *productIDToClass = nil;
                                                        serialNumber:serial
                                                         productName:productName];
     
-    NSLog(@"Opening connection to device: %@ - %@", productName, serial);
+    NSLog(@"Opening connection (%p) to device: %@ - %@", connection, productName, serial);
     
-    [NSThread sleepForTimeInterval:0.5];
-
     BOOL success = [connection open];
     
     // Retry 1
     if (!success) {
         
-        NSLog(@"Open failed. Closing connection, reloading driver,waiting 0.5 seconds before trying again.");
-
-        [VTConnection reloadDynamicLibrary];
+        NSLog(@"Open failed. Reloading driver and waiting 0.5 seconds before trying again.");
         
-        [NSThread sleepForTimeInterval:1.0];
+        [connection recover];
+
+        sleep(3);
         
         success = [connection open];
         
         // Retry 2
         if (!success) {
             
-            NSLog(@"Open failed. Closing connection, reloading driver, waiting 3 seconds before trying again.");
+            NSLog(@"Open failed. Reloading driver and waiting 3 seconds before trying again.");
             
-            [VTConnection reloadDynamicLibrary];
+            [connection closeConnectionAndReloadLibrary];
             
-            [NSThread sleepForTimeInterval:3];
+            sleep(3);
             
             success = [connection open];
             
@@ -203,6 +201,10 @@ static NSDictionary *productIDToClass = nil;
 
 - (void)eraseAll {
     // For subclassers to implement
+    VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
+}
+
+- (void) closeDeviceConnection {
     VTRaiseAbstractMethodException(self, _cmd, [VTDevice self]);
 }
 
@@ -306,6 +308,10 @@ static NSDictionary *productIDToClass = nil;
 
 - (void)recoverDeviceConnection {
     [self.connection recover];
+}
+
+- (void) closeDeviceConnection {
+    [self.connection close];
 }
 
 @end

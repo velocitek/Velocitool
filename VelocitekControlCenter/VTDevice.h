@@ -37,5 +37,6 @@
 - (BOOL)updateFirmware:(NSString *)filePath;
 
 - (void) recoverDeviceConnection;
+- (void) closeDeviceConnection;
 
 @end
