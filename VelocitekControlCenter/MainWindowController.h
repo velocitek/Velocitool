@@ -12,7 +12,8 @@
 #define TRACK_LOG_VIEW 2
 #define DOWNLOADING_TRACK 3
 #define FILE_VIEW 4
-#define NO_STATE_CHANGE 5
+#define UPLOADING_FIRMWARE 5
+#define NO_STATE_CHANGE 6
 
 
 
@@ -42,7 +43,6 @@
 @property (nonatomic, readwrite) unsigned int currentState;
 @property (nonatomic, readonly) TrackLogViewController *trackLogViewController;	
 @property (nonatomic, readonly) TrackFileViewController *trackFileViewController;
-
 
 - (IBAction)switchViews:(id)sender;
 - (NSAlert*) getAlertWithMessage:(NSString*)message informativeText:(NSString*) informativeText;

@@ -14,6 +14,7 @@
                 <outlet property="eraseAllButton" destination="75" id="79"/>
                 <outlet property="openButton" destination="65" id="80"/>
                 <outlet property="trackpointLogController" destination="38" id="39"/>
+                <outlet property="updateFirmwareButton" destination="Iut-HX-jXo" id="f2I-HY-hap"/>
                 <outlet property="view" destination="1" id="2"/>
             </connections>
         </customObject>
@@ -108,7 +109,7 @@
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="5">
-                        <rect key="frame" x="1" y="242" width="586" height="15"/>
+                        <rect key="frame" x="1" y="334" width="586" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="4">
@@ -121,9 +122,9 @@
                     </tableHeaderView>
                 </scrollView>
                 <button verticalHuggingPriority="750" id="59">
-                    <rect key="frame" x="14" y="376" width="205" height="32"/>
+                    <rect key="frame" x="14" y="376" width="175" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Download Selected Tracks" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="60">
+                    <buttonCell key="cell" type="push" title="Download Tracks" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="60">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -148,24 +149,8 @@
                         <action selector="fileOpen:" target="-2" id="82"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" id="69">
-                    <rect key="frame" x="219" y="376" width="185" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Update Device Settings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="70">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="updateDeviceSettings:" target="-2" id="83"/>
-                        <binding destination="-2" name="hidden" keyPath="firstConnectedDevice" id="120">
-                            <dictionary key="options">
-                                <string key="NSValueTransformerName">DeviceHasNoDeviceSettingsValueTransformer</string>
-                            </dictionary>
-                        </binding>
-                    </connections>
-                </button>
                 <button verticalHuggingPriority="750" id="75">
-                    <rect key="frame" x="409" y="376" width="205" height="32"/>
+                    <rect key="frame" x="328" y="376" width="143" height="32"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Erase All Tracks" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="76">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -179,6 +164,17 @@
                                 <string key="NSValueTransformerName">NSIsNil</string>
                             </dictionary>
                         </binding>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" id="Iut-HX-jXo">
+                    <rect key="frame" x="471" y="376" width="144" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Update Firmware" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="x19-5s-cml">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="updateFirmware:" target="-2" id="PJf-o5-aA1"/>
                     </connections>
                 </button>
                 <box autoresizesSubviews="NO" title="Connected Device" borderType="line" id="77">
@@ -235,7 +231,24 @@
                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </box>
+                <button verticalHuggingPriority="750" id="69">
+                    <rect key="frame" x="189" y="376" width="139" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Update Settings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="70">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="updateDeviceSettings:" target="-2" id="83"/>
+                        <binding destination="-2" name="hidden" keyPath="firstConnectedDevice" id="120">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">DeviceHasNoDeviceSettingsValueTransformer</string>
+                            </dictionary>
+                        </binding>
+                    </connections>
+                </button>
             </subviews>
+            <point key="canvasLocation" x="263" y="413.5"/>
         </customView>
         <userDefaultsController representsSharedInstance="YES" id="26"/>
         <arrayController id="37" userLabel="Device Controller">

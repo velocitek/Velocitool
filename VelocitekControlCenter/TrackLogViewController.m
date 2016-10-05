@@ -33,8 +33,12 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 @synthesize firstConnectedDevice;
 
 
-
-
+- (IBAction)updateFirmware:(id)sender
+{
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    //NSLog(@"Sending notification that the Open button has been selected by the user.");
+    [notificationCenter postNotificationName:VTUpdateFirmwareNotification object:self];
+}
 
 - (IBAction)fileOpen:(id)sender
 {

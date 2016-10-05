@@ -299,6 +299,7 @@ static NSDictionary *productIDToClass = nil;
 }
 
 - (BOOL)updateFirmware:(NSString *)filePath {
+    
     NSLog(@"VTLOG: [VTDevice, updateFirmware = %@]", filePath);  // VTLOG for debugging
     
     VTFirmwareFile *firmwareFile =

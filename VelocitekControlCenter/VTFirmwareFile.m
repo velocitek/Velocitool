@@ -22,18 +22,23 @@
 	
 	NSMutableArray *arrayOfStrings = [self createArrayOfStrings];
 	
+    NSLog(@"Num lines in arrayOfStrings = %lu", (unsigned long)[arrayOfStrings count]);
+    
 	[self removeExtraneousLines:arrayOfStrings];
 	
-	/*
+    NSLog(@"Num lines in arrayOfStrings after stripping exraneous = %lu", [arrayOfStrings count]);
+
+    /*
 	for (NSString *string in arrayOfStrings)
 	{
 		NSLog(@"%@",string);
 		
-	}
+	}	
 	*/
-	
-	
+    
 	[self convertToArrayOfDataObjects:arrayOfStrings];
+    
+    NSLog(@"Num lines in firmware data array = %lu", [firmwareData count]);
 	
 }
 
@@ -73,6 +78,8 @@
 		
 		if (removeLine)
 		{
+            
+            NSLog(@"Removing line: %@", [arrayOfStrings objectAtIndex:i]);
 			[arrayOfStrings removeObjectAtIndex:i];
 			
 			//Decrement the loop counter to account for the fact that all the array elements have been shifted
@@ -93,14 +100,13 @@
 //This routines takes an array of NSString objects and converts it to an array of NSData objects.  The bytes in the data object correspond the the ASCII values of the characters in the string.
 -(void)convertToArrayOfDataObjects:(NSMutableArray *)arrayOfStrings
 {
-#define MAX_FIRMWARE_LINE_LENGTH 100
+    #define MAX_FIRMWARE_LINE_LENGTH 100
+    
 	char cString[MAX_FIRMWARE_LINE_LENGTH];
 	
 	NSData *lineAsData;
 	
 	NSMutableArray *arrayOfDataLines = [[NSMutableArray alloc] init];
-	
-	
 	
 	//for each line in the array
 	for (NSString *line in arrayOfStrings)
@@ -110,7 +116,6 @@
 		
 		//use dataWithBytes to convert the Cstring to a data object
 		lineAsData = [NSData dataWithBytes:cString length:[line length]];
-		
 		
 		//add the data object to the firmwareDataArray
 		[arrayOfDataLines addObject:lineAsData];

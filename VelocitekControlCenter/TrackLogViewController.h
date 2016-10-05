@@ -21,7 +21,8 @@ extern NSString *VTFirstConnectedDeviceRemovedNotification;
 	
 	IBOutlet NSButton *openButton;
 	IBOutlet NSButton *downloadButton;
-			
+	IBOutlet NSButton *updateFirmwareButton;
+
 	IBOutlet NSButton *deviceSettingsButton;
 	IBOutlet NSButton *eraseAllButton;	
 	
@@ -41,6 +42,7 @@ extern NSString *VTFirstConnectedDeviceRemovedNotification;
 - (IBAction)fileOpen:(id)sender;
 - (IBAction)updateDeviceSettings:(id)sender;
 - (IBAction)eraseAll:(id)sender;
+- (IBAction)updateFirmware:(id)sender;
 
 /*Not currently implemented
 - (IBAction)updateDeviceFirmware:(id)sender;

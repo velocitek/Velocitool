@@ -524,8 +524,11 @@ NSString* path;
     return [self writeFirmwareFile:firmwareFile];
 }
 
+
 - (BOOL)writeFirmwareFile:(VTFirmwareFile *)firmwareFile {
+    
     NSArray *firmwareData = [firmwareFile firmwareData];
+    
     float lineCounter = 0;
     float numLinesInUpdate = (float)[firmwareData count];
     // float percentComplete = 0;
@@ -537,16 +540,15 @@ NSString* path;
     [self setFlowControl:YES];
     
     NSUInteger bytesWritten;
-    // NSLog(@"Starting to send firmware data.");
+    
+    NSLog(@"Starting to send firmware data.");
     // for each element in firmwareData
     for (NSData *dataLine in firmwareData) {
-        status = (*pFT_GetStatus)(_ft_handle, &numBytesInRXQueue,
-                                  &numBytesInTXQueue, &event);
+        
+        status = (*pFT_GetStatus)(_ft_handle, &numBytesInRXQueue, &numBytesInTXQueue, &event);
         NSAssert(FT_SUCCESS(status), @"Unexpected status.");
         
-        // NSLog(@"About to write firmware line %d.  %d bytes in RX Queue, %d bytes
-        // in TX Queue.", (int)lineCounter, numBytesInRXQueue, numBytesInTXQueue);
-        // write data object to connection
+        NSLog(@"About to write firmware line %d.  %d bytes in RX Queue, %d bytes in TX Queue.", (int)lineCounter, numBytesInRXQueue, numBytesInTXQueue);
         
         usleep(100000);
         bytesWritten = [self write:dataLine];
@@ -594,8 +596,7 @@ NSString* path;
 - (BOOL)readFirmwareUpdateFlowControlChars {
     unsigned char firstFlowControlCharacter = [self readChar];  // XOFF;//
     if (firstFlowControlCharacter != XOFF) {
-        NSLog(@"VTError: First flow control character received from device not "
-              @"valid, aborting firmware update");
+        NSLog(@"VTError: First flow control character received from device not valid, aborting firmware update");
         return FIRMWARE_UPDATE_FAILED;
     }
     unsigned char secondFlowControlCharacter = [self readChar];  // ACKLOD;//
@@ -605,7 +606,8 @@ NSString* path;
               @"line did not pass the checksum test.");
         NSLog(@"Aborting firmware update.");
         return FIRMWARE_UPDATE_FAILED;
-    } else if (secondFlowControlCharacter != ACKLOD) {
+    }
+    else if (secondFlowControlCharacter != ACKLOD) {
         NSLog(@"VTError: firmware line not acknowledged even though successfully "
               @"written. Aborting firmware update");
         return FIRMWARE_UPDATE_FAILED;

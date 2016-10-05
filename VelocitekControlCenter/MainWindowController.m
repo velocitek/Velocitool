@@ -32,6 +32,7 @@
 #define EV_FILE_CLOSED 8
 #define EV_CONNECTION_INTERRUPTED 9
 #define EV_ERASE_ALL_CONFIRMED 10
+#define EV_UPDATE_FIRMWARE_SELECTED 11
 
 @interface MainWindowController (private)
 
@@ -86,6 +87,7 @@
     {
             
         case EV_ENTRY:
+            
             NSLog(@"VTLOG: READY, EV_ENTRY");  // VTLOG for debugging
             
             [self performSelectorOnMainThread:@selector(displayViewController:) withObject:trackLogViewController waitUntilDone:YES];
@@ -99,6 +101,7 @@
             
             
         case EV_STARTED_ESTABLISHING_CONNECTION:
+            
             NSLog(@"VTLOG: READY, EV_STARTED_ESTABLISHING_CONNECTION");  // VTLOG for debugging
             
             nextState = DOWNLOADING_TRACK_LOGS;//Decide what the next state will be
@@ -106,7 +109,16 @@
             break;
             
         case EV_FILE_OPENED:
+            
             NSLog(@"VTLOG: READY, EV_FILE_OPENED");  // VTLOG for debugging
+            
+            nextState = FILE_VIEW;//Decide what the next state will be
+            
+            break;
+            
+        case EV_UPDATE_FIRMWARE_SELECTED:
+            
+            NSLog(@"VTLOG: READY, EV_UPDATE_FIRMWARE_SELECTED");  // VTLOG for debugging
             
             nextState = FILE_VIEW;//Decide what the next state will be
             
@@ -184,6 +196,10 @@
             NSLog(@"VTLOG: TRACK_LOG_VIEW, EV_FILE_OPENED");  // VTLOG for debugging
             nextState = FILE_VIEW;//Decide what the next state will be
             break;
+            
+        case EV_UPDATE_FIRMWARE_SELECTED:
+            NSLog(@"VTLOG: TRACK_LOG_VIEW, EV_UPDATE_FIRMWARE_SELECTED");  // VTLOG for debugging
+            nextState = UPLOADING_FIRMWARE;
             
         case EV_EXIT:
             break;
@@ -265,6 +281,54 @@
     
 }
 
+
+- (unsigned int) handleFirmwareUpdate:(unsigned int) currentEvent {
+    
+    unsigned int nextState = NO_STATE_CHANGE;
+    
+    switch (currentEvent)
+    {
+        case EV_ENTRY:
+            NSLog(@"VTLOG: EV_UPDATE_FIRMWARE_SELECTED, EV_ENTRY");  // VTLOG for debugging
+            nextState = [self doUpdateFirmware];
+            break;
+            
+        case EV_EXIT:
+            break;
+    }
+    
+    return nextState;
+}
+
+- (unsigned int) doUpdateFirmware
+{
+    
+    VTDevice * dev = [trackLogViewController firstConnectedDevice];
+    
+    NSInteger result;
+    NSArray *fileTypes = [NSArray arrayWithObject:@"hex"];
+    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
+    
+    [oPanel setAllowedFileTypes:fileTypes];
+    
+    result = [oPanel runModal];
+    
+    [oPanel close];
+    
+    if (result != NSOKButton) {
+        return READY;
+    }
+
+    NSString * firmwareFilePath = [[oPanel URL] path];
+    
+    NSLog(@"Updating firmware with file at path: %@", firmwareFilePath);
+    
+    [dev performSelector:@selector(updateFirmware:) withObject:firmwareFilePath afterDelay:0.0];
+    
+    return READY;
+
+}
+
 -(void)runStateMachine:(unsigned int)currentEvent
 {
    	
@@ -272,7 +336,6 @@
     
     switch (currentState)
     {
-            
         case READY:
             nextState = [self handleStateReady:currentEvent];
             break;
@@ -292,12 +355,16 @@
         case FILE_VIEW:
             nextState = [self handleStateFileView:currentEvent];
             break;
+            
+        case UPLOADING_FIRMWARE:
+            nextState = [self handleFirmwareUpdate:currentEvent];
+            break;
     }
     
     //   If we are making a state transition
     if (nextState != NO_STATE_CHANGE)
     {
-        //   Execute entry functions for old state
+        //   Execute exit functions for old state
         [self runStateMachine:EV_EXIT];
         
         [self setCurrentState:nextState]; //Modify state variable
@@ -307,8 +374,6 @@
     }
     
 }
-
-
 
 -(void)registerForNotifications
 {
@@ -359,8 +424,16 @@
                name:VTEraseAllConfirmedNotification
              object:nil];
     
+    [nc addObserver:self
+           selector:@selector(handleUpdateFirmwareNotification:)
+               name:VTUpdateFirmwareNotification
+             object:nil];
     
     
+}
+
+- (void)handleUpdateFirmwareNotification:(NSNotification *)note {
+    [self runStateMachine:EV_UPDATE_FIRMWARE_SELECTED];
 }
 
 
@@ -436,6 +509,7 @@
 {
     [self runStateMachine:EV_ERASE_ALL_CONFIRMED];
 }
+
 
 -(void)openDeviceSettingsPanel
 {
