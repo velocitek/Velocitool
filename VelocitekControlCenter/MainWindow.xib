@@ -27,7 +27,7 @@
                     <box autoresizesSubviews="NO" borderType="line" id="3">
                         <rect key="frame" x="17" y="39" width="628" height="508"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <view key="contentView" autoresizesSubviews="NO" id="GxY-TA-0y6">
+                        <view key="contentView" id="GxY-TA-0y6">
                             <rect key="frame" x="1" y="1" width="626" height="492"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         </view>
@@ -59,7 +59,7 @@
                             <tabViewItem label="Downloading Track Logs" identifier="1" id="64">
                                 <view key="view" id="65">
                                     <rect key="frame" x="0.0" y="0.0" width="628" height="23"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="77">
                                             <rect key="frame" x="59" y="-19" width="122" height="17"/>
@@ -89,7 +89,7 @@
                             <tabViewItem label="Track Log View" identifier="2" id="67">
                                 <view key="view" id="68">
                                     <rect key="frame" x="0.0" y="0.0" width="628" height="23"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="111">
                                             <rect key="frame" x="31" y="5" width="355" height="17"/>
@@ -117,8 +117,8 @@
                             </tabViewItem>
                             <tabViewItem label="Downloading Track" identifier="3" id="69">
                                 <view key="view" id="70">
-                                    <rect key="frame" x="10" y="7" width="608" height="-15"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="628" height="23"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <progressIndicator verticalHuggingPriority="750" maxValue="100" bezeled="NO" style="bar" id="100">
                                             <rect key="frame" x="12" y="-1" width="180" height="20"/>
@@ -128,7 +128,7 @@
                                             </connections>
                                         </progressIndicator>
                                         <textField verticalHuggingPriority="750" id="101">
-                                            <rect key="frame" x="202" y="-35" width="343" height="17"/>
+                                            <rect key="frame" x="202" y="3" width="343" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Downloading track 100% complete" id="102">
                                                 <font key="font" metaFont="system"/>
@@ -163,6 +163,37 @@
                                                 <binding destination="-2" name="displayPatternValue1" keyPath="trackFileViewController.currentFile.numTrackpoints" id="170">
                                                     <dictionary key="options">
                                                         <string key="NSDisplayPattern">%{value1}@ trackpoints loaded</string>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                            </tabViewItem>
+                            <tabViewItem label="Downloading Track" identifier="3" id="wGd-f1-yAx" userLabel="Updating Firmware">
+                                <view key="view" id="x2o-dA-P02">
+                                    <rect key="frame" x="0.0" y="0.0" width="628" height="23"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <progressIndicator verticalHuggingPriority="750" maxValue="100" bezeled="NO" style="bar" id="W08-M3-cdD">
+                                            <rect key="frame" x="12" y="-1" width="180" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                            <connections>
+                                                <binding destination="-2" name="value" keyPath="trackLogViewController.firstConnectedDevice._connection.progressTracker.progressPercentage" id="TvM-RW-JNE"/>
+                                            </connections>
+                                        </progressIndicator>
+                                        <textField verticalHuggingPriority="750" id="Kb4-XR-vrF">
+                                            <rect key="frame" x="202" y="3" width="343" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Firmware update 100% complete" id="lxs-dC-KIv">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="-2" name="displayPatternValue1" keyPath="trackLogViewController.firstConnectedDevice._connection.progressTracker.progressPercentageToDisplay" id="P4i-vf-gma">
+                                                    <dictionary key="options">
+                                                        <string key="NSDisplayPattern">Firmware upload %{value1}@% complete...</string>
                                                     </dictionary>
                                                 </binding>
                                             </connections>

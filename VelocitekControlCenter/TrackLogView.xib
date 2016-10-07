@@ -175,6 +175,11 @@
                     </buttonCell>
                     <connections>
                         <action selector="updateFirmware:" target="-2" id="PJf-o5-aA1"/>
+                        <binding destination="-2" name="hidden" keyPath="firstConnectedDevice" id="1P4-6E-4Nr">
+                            <dictionary key="options">
+                                <string key="NSValueTransformerName">NSIsNil</string>
+                            </dictionary>
+                        </binding>
                     </connections>
                 </button>
                 <box autoresizesSubviews="NO" title="Connected Device" borderType="line" id="77">

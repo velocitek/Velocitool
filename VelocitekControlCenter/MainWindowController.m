@@ -18,6 +18,7 @@
 
 #import "VTAppDelegate.h"
 #import "DeviceSettingsController.h"
+#import "VTFirmwareUpdateOperation.h"
 
 //Events processed by state machine
 #define EV_ENTRY 0
@@ -33,6 +34,8 @@
 #define EV_CONNECTION_INTERRUPTED 9
 #define EV_ERASE_ALL_CONFIRMED 10
 #define EV_UPDATE_FIRMWARE_SELECTED 11
+#define EV_UPDATE_FIRMWARE_UPDATE_SUCCESS 12
+#define EV_UPDATE_FIRMWARE_UPDATE_FAILURE 13
 
 @interface MainWindowController (private)
 
@@ -40,6 +43,7 @@
 -(void)openDeviceSettingsPanel;
 -(void)registerForNotifications;
 -(void)runStateMachine:(unsigned int)currentEvent;
+- (NSAlert*) getAlertWithMessage:(NSString*)message informativeText:(NSString*) informativeText;
 
 @end
 
@@ -73,11 +77,17 @@
         
         [self setCurrentState:READY];
         [self runStateMachine:EV_ENTRY];
+        
+        queue = [[NSOperationQueue alloc] init];
+
     }
     
     return self;
 }
 
+/******************************************************************
+    READY STATE
+ ******************************************************************/
 
 - (unsigned int) handleStateReady:(unsigned int) currentEvent {
     
@@ -120,7 +130,7 @@
             
             NSLog(@"VTLOG: READY, EV_UPDATE_FIRMWARE_SELECTED");  // VTLOG for debugging
             
-            nextState = FILE_VIEW;//Decide what the next state will be
+            nextState = UPLOADING_FIRMWARE; //Decide what the next state will be
             
             break;
             
@@ -133,6 +143,11 @@
     return nextState;
 
 }
+
+
+/******************************************************************
+ DOWNLOADING TRACK LOGS STATE
+ ******************************************************************/
 
 - (unsigned int) handleStateDownloadingTrackLogs:(unsigned int) currentEvent {
     
@@ -165,6 +180,10 @@
     return nextState;
     
 }
+
+/******************************************************************
+ TRACK LOG VIEW STATE
+ ******************************************************************/
 
 - (unsigned int) handleStateTrackLogView:(unsigned int) currentEvent {
     
@@ -209,6 +228,10 @@
     
 }
 
+/******************************************************************
+ DOWNLOADING TRACK STATE
+ ******************************************************************/
+
 - (unsigned int) handleStateDownloadingTrack:(unsigned int) currentEvent {
     
     unsigned int nextState = NO_STATE_CHANGE;
@@ -250,6 +273,10 @@
     
 }
 
+/******************************************************************
+ FILE VIEW STATE
+ ******************************************************************/
+
 - (unsigned int) handleStateFileView:(unsigned int) currentEvent {
     
     unsigned int nextState = NO_STATE_CHANGE;
@@ -281,24 +308,65 @@
     
 }
 
+/******************************************************************
+ FIRMWARE UPDATE STATE
+ ******************************************************************/
 
 - (unsigned int) handleFirmwareUpdate:(unsigned int) currentEvent {
     
     unsigned int nextState = NO_STATE_CHANGE;
     
+    NSAlert * alert;
+    
     switch (currentEvent)
     {
         case EV_ENTRY:
             NSLog(@"VTLOG: EV_UPDATE_FIRMWARE_SELECTED, EV_ENTRY");  // VTLOG for debugging
+            [trackLogViewController setUpdateFirmwareButtonEnabled:false];
             nextState = [self doUpdateFirmware];
             break;
             
+        case EV_UPDATE_FIRMWARE_UPDATE_SUCCESS:
+            
+            NSLog(@"EV_UPDATE_FIRMWARE_UPDATE_SUCCESS");
+            
+            alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:@"OK"];
+            [alert setMessageText:@"Firware update succeeded!"];
+            [alert setInformativeText:@"Please disconnect, power off and back on, and reconnect the device to ensure proper function."];
+            [alert setAlertStyle:NSInformationalAlertStyle];
+            [alert runModal];
+            
+            [trackLogViewController setUpdateFirmwareButtonEnabled:true];
+            
+            nextState = READY;
+
+            break;
+            
+        case EV_UPDATE_FIRMWARE_UPDATE_FAILURE:
+            
+            NSLog(@"EV_UPDATE_FIRMWARE_UPDATE_FAILURE");
+            
+            alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:@"OK"];
+            [alert setMessageText:@"Firware update failed."];
+            [alert setAlertStyle:NSWarningAlertStyle];
+            [alert runModal];
+            
+            [trackLogViewController setUpdateFirmwareButtonEnabled:true];
+
+            nextState = READY;
+            
+            break;
+            
         case EV_EXIT:
+            
             break;
     }
     
     return nextState;
 }
+
 
 - (unsigned int) doUpdateFirmware
 {
@@ -318,16 +386,46 @@
     if (result != NSOKButton) {
         return READY;
     }
-
+    
     NSString * firmwareFilePath = [[oPanel URL] path];
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"OK"];
+    [alert addButtonWithTitle:@"Cancel"];
+    [alert setMessageText:@"Firmware updatewill erase all previous recorded data on your device. Are you sure you would like to update the firmware with the following file?"];
+    [alert setInformativeText:firmwareFilePath];
+    [alert setAlertStyle:NSWarningAlertStyle];
+    
+    if ([alert runModal] == NSAlertSecondButtonReturn) {
+        return READY;
+    }
     
     NSLog(@"Updating firmware with file at path: %@", firmwareFilePath);
     
-    [dev performSelector:@selector(updateFirmware:) withObject:firmwareFilePath afterDelay:0.0];
+    VTFirmwareUpdateOperation * operation = [[VTFirmwareUpdateOperation alloc] initWithDevice:dev path:firmwareFilePath];
     
-    return READY;
-
+    [queue addOperation:operation];
+    
+    return NO_STATE_CHANGE;
 }
+
+
+/******************************************************************
+ 
+ STATE MACHINE MAIN SWITCH
+ 
+    General flow: events are fired, which are caught by handlers
+    below. These handlers call the runStateMachine() method with
+    a new event. This event is sent to the current state method
+    where the event is handled, potentially resulting in a new
+    state or in actions that trigger more events.
+ 
+    The currentState property is tied via bindings to the status
+    view shown at the bottom of the main window, so the defined
+    values of those states is important.
+ 
+ ******************************************************************/
+
 
 -(void)runStateMachine:(unsigned int)currentEvent
 {
@@ -429,6 +527,10 @@
                name:VTUpdateFirmwareNotification
              object:nil];
     
+    [nc addObserver:self
+           selector:@selector(handleUpdateFirmwareFinishedNotification:)
+               name:VTUpdateFirmwareFinishedNotification
+             object:nil];
     
 }
 
@@ -436,6 +538,17 @@
     [self runStateMachine:EV_UPDATE_FIRMWARE_SELECTED];
 }
 
+- (void)handleUpdateFirmwareFinishedNotification:(NSNotification*)note {
+    
+    bool success = ((VTFirmwareUpdateOperation*)note.object).success;
+    
+    if (success) {
+        [self runStateMachine:EV_UPDATE_FIRMWARE_UPDATE_SUCCESS];
+    }
+    else {
+        [self runStateMachine:EV_UPDATE_FIRMWARE_UPDATE_FAILURE];
+    }
+}
 
 //Convert notifications into events for the state machine to process
 -(void)handleDownloadButtonPress:(NSNotification *)note

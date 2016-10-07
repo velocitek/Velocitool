@@ -57,5 +57,6 @@ extern NSString *VTFirstConnectedDeviceRemovedNotification;
 - (VTDevice *)firstConnectedDevice;
 - (void)removeAllDevices;
 
+- (void) setUpdateFirmwareButtonEnabled:(bool) enabled;
 
 @end

@@ -541,6 +541,9 @@ NSString* path;
     
     NSUInteger bytesWritten;
     
+    [self.progressTracker setGoal:(float)numLinesInUpdate];
+    [self.progressTracker setCurrentProgress:0.0];
+    
     NSLog(@"Starting to send firmware data.");
     // for each element in firmwareData
     for (NSData *dataLine in firmwareData) {
@@ -550,7 +553,7 @@ NSString* path;
         
         NSLog(@"About to write firmware line %d.  %d bytes in RX Queue, %d bytes in TX Queue.", (int)lineCounter, numBytesInRXQueue, numBytesInTXQueue);
         
-        usleep(100000);
+        usleep(10000);
         bytesWritten = [self write:dataLine];
         
         if (bytesWritten != [dataLine length]) {
@@ -581,6 +584,8 @@ NSString* path;
          
          }
          */
+        
+        [self.progressTracker performSelectorOnMainThread:@selector(incrementProgress) withObject:nil waitUntilDone:YES];
         
         if (lineCounter == (numLinesInUpdate - 1)) {
             // NSLog(@"Firmware update is now 100 %% complete");

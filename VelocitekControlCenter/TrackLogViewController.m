@@ -264,6 +264,10 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
     }
 }
 
+- (void) setUpdateFirmwareButtonEnabled:(bool) enabled{
+    [updateFirmwareButton setEnabled:enabled];
+}
+
 @end
 
 

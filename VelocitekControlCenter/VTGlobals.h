@@ -71,4 +71,4 @@ extern void VTRaiseAbstractMethodException(id object, SEL _cmd,
 #define VTEraseAllConfirmedNotification @"VTEraseAllButtonSelectedNotification" 
 
 #define VTUpdateFirmwareNotification @"VTUpdateFirmwareNotification"
-
+#define VTUpdateFirmwareFinishedNotification @"VTUpdateFirmwareFinishedNotification"

@@ -6,7 +6,11 @@
 //  Copyright 2010 Velocitek. All rights reserved.
 //
 
-//State Definitions
+// State Definitions:
+// The currentState property is tied via bindings to the status
+// view shown at the bottom of the main window, so the defined
+// values of those states is important.
+
 #define READY 0
 #define DOWNLOADING_TRACK_LOGS 1
 #define TRACK_LOG_VIEW 2
@@ -29,8 +33,10 @@
 	IBOutlet NSBox *box;
 	IBOutlet NSButton *viewSwitchButton;
 	IBOutlet NSProgressIndicator *trackLogsDownloadingProgressIndicator;
+    IBOutlet NSButton *firwareUpdateButton;
 
-	
+    NSOperationQueue * queue;
+
 	unsigned int currentState;
 	
 	DeviceSettingsController *deviceSettingsController;
