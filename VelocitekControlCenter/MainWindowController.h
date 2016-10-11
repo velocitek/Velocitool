@@ -42,7 +42,10 @@
 	DeviceSettingsController *deviceSettingsController;
 	TrackLogViewController *trackLogViewController;	
 	TrackFileViewController *trackFileViewController;
-	
+    
+    NSString * speedPuckFirmwareFilePath;
+    NSString * proStartFirmwareFilePath;
+
 	    
 }
 

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		095982001D624BE000B9D190 /* VTDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 095981FF1D624BE000B9D190 /* VTDefines.m */; };
+		47076CE21DAD767B003944BC /* Velocitek_ProStart_1-6.hex in Resources */ = {isa = PBXBuildFile; fileRef = 47076CE01DAD767B003944BC /* Velocitek_ProStart_1-6.hex */; };
+		47076CE31DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex in Resources */ = {isa = PBXBuildFile; fileRef = 47076CE11DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex */; };
 		47535E861D90987D00512DF3 /* post-build-script.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47535E851D90987D00512DF3 /* post-build-script.txt */; };
 		478CE9861D99AB1900DAD61A /* VTDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080EFD4115C35D00013C9C3 /* VTDateTime.m */; };
 		478D01281D9B46B600F673CD /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478D01271D9B46B500F673CD /* CocoaLumberjack.framework */; };
@@ -100,6 +102,8 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32CA4F630368D1EE00C91783 /* Velocitool_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Velocitool_Prefix.pch; sourceTree = "<group>"; };
+		47076CE01DAD767B003944BC /* Velocitek_ProStart_1-6.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Velocitek_ProStart_1-6.hex"; sourceTree = "<group>"; };
+		47076CE11DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Velocitek_SpeedPuck_1-51.hex"; sourceTree = "<group>"; };
 		47535E851D90987D00512DF3 /* post-build-script.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "post-build-script.txt"; sourceTree = "<group>"; };
 		478D01271D9B46B500F673CD /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = Carthage/Build/Mac/CocoaLumberjack.framework; sourceTree = "<group>"; };
 		478D012B1D9B46F900F673CD /* CocoaLumberjack.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CocoaLumberjack.framework.dSYM; path = Carthage/Build/Mac/CocoaLumberjack.framework.dSYM; sourceTree = "<group>"; };
@@ -274,6 +278,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				47076CE01DAD767B003944BC /* Velocitek_ProStart_1-6.hex */,
+				47076CE11DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex */,
 				47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */,
 				EDF727250F4234B700E503AE /* images */,
 				7080EDF61159AA510013C9C3 /* libftd2xx.0.1.7.dylib */,
@@ -490,6 +496,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47076CE21DAD767B003944BC /* Velocitek_ProStart_1-6.hex in Resources */,
+				47076CE31DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex in Resources */,
 				ED80A45F1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				77C8C1F90C07829500965286 /* MainMenu.xib in Resources */,

@@ -37,6 +37,9 @@
 #define EV_UPDATE_FIRMWARE_UPDATE_SUCCESS 12
 #define EV_UPDATE_FIRMWARE_UPDATE_FAILURE 13
 
+#define PROSTART_FIRMWARE_FILE @"Velocitek_ProStart_1-6"
+#define SPEEDPUCK_FIRMWARE_FILE @"Velocitek_SpeedPuck_1-51"
+
 @interface MainWindowController (private)
 
 -(void)displayViewController:(NSViewController *)vc;
@@ -79,7 +82,13 @@
         [self runStateMachine:EV_ENTRY];
         
         queue = [[NSOperationQueue alloc] init];
+        
+        proStartFirmwareFilePath = [[NSBundle mainBundle] pathForResource:PROSTART_FIRMWARE_FILE ofType:@"hex"];
+        speedPuckFirmwareFilePath = [[NSBundle mainBundle] pathForResource:SPEEDPUCK_FIRMWARE_FILE ofType:@"hex"];
 
+        NSAssert(proStartFirmwareFilePath, @"ProStart firmware file not found with name: %@", PROSTART_FIRMWARE_FILE);
+        NSAssert(proStartFirmwareFilePath, @"SpeedPuck firmware file not found with name: %@", SPEEDPUCK_FIRMWARE_FILE);
+        
     }
     
     return self;
@@ -373,6 +382,7 @@
     
     VTDevice * dev = [trackLogViewController firstConnectedDevice];
     
+    /*
     NSInteger result;
     NSArray *fileTypes = [NSArray arrayWithObject:@"hex"];
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
@@ -386,14 +396,36 @@
     if (result != NSOKButton) {
         return READY;
     }
+     
+     NSString * firmwareFilePath = [[oPanel URL] path];
+
+    */
     
-    NSString * firmwareFilePath = [[oPanel URL] path];
+    NSString * firmwareFilePath;
+    
+    NSString* model = [dev model];
+    
+    if ([model isEqualToString:@"SpeedPuck"]) {
+        firmwareFilePath = speedPuckFirmwareFilePath;
+    }
+    else if ([model isEqualToString:@"ProStart"]) {
+        firmwareFilePath = proStartFirmwareFilePath;
+    }
+    else {
+        NSAlert *alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:@"Unsupported device model"];
+        [alert setInformativeText:[NSString stringWithFormat:@"Device model should be ProStart or SpeedPuck. Your model not recognized: %@", model]];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert runModal];
+        return READY;
+    }
     
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"OK"];
     [alert addButtonWithTitle:@"Cancel"];
-    [alert setMessageText:@"Firmware updatewill erase all previous recorded data on your device. Are you sure you would like to update the firmware with the following file?"];
-    [alert setInformativeText:firmwareFilePath];
+    [alert setMessageText:@"Firmware update will erase all previous recorded data on your device.\n\nAre you sure you would like to update the firmware with the following file?"];
+    [alert setInformativeText:[firmwareFilePath lastPathComponent]];
     [alert setAlertStyle:NSWarningAlertStyle];
     
     if ([alert runModal] == NSAlertSecondButtonReturn) {

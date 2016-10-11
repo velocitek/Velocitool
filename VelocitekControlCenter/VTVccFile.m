@@ -161,7 +161,7 @@
     
     [self createMyVelocitekFilesDirIfNeeded];
     
-    [svPanel setDirectoryURL:[NSURL URLWithString:VELOCITEK_FILES_DIR]];
+    [svPanel setDirectoryURL:[NSURL URLWithString:[VELOCITEK_FILES_DIR stringByExpandingTildeInPath]]];
 		
 	//call setDirectoryURL to NSHomeDirectory()
 	//[svPanel setDirectoryURL:[NSURL URLWithString:NSHomeDirectory()]];
@@ -202,11 +202,11 @@
 
 - (void) createMyVelocitekFilesDirIfNeeded {
     
-    if(![[NSFileManager defaultManager] fileExistsAtPath:VELOCITEK_FILES_DIR]) {
+    if(![[NSFileManager defaultManager] fileExistsAtPath:[VELOCITEK_FILES_DIR stringByExpandingTildeInPath]]) {
         
         NSError * error = nil;
         
-        [[NSFileManager defaultManager] createDirectoryAtPath:VELOCITEK_FILES_DIR
+        [[NSFileManager defaultManager] createDirectoryAtPath:[VELOCITEK_FILES_DIR stringByExpandingTildeInPath]
                                   withIntermediateDirectories:YES
                                                    attributes:nil
                                                         error:&error];
@@ -240,7 +240,7 @@
 	
     [self createMyVelocitekFilesDirIfNeeded];
     
-    [svPanel setDirectoryURL:[NSURL URLWithString:VELOCITEK_FILES_DIR]];
+    [svPanel setDirectoryURL:[NSURL URLWithString:[VELOCITEK_FILES_DIR stringByExpandingTildeInPath]]];
 
 	//call setDirectoryURL to NSHomeDirectory()
 	//[svPanel setDirectoryURL:[NSURL URLWithString:NSHomeDirectory()]];
@@ -298,7 +298,7 @@
     
     [self createMyVelocitekFilesDirIfNeeded];
     
-    [svPanel setDirectoryURL:[NSURL URLWithString:VELOCITEK_FILES_DIR]];
+    [svPanel setDirectoryURL:[NSURL URLWithString:[VELOCITEK_FILES_DIR stringByExpandingTildeInPath]]];
 	
 	
 	//call runModal method of save panel to display the panel, record the result of the call

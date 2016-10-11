@@ -48,12 +48,12 @@
     fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
     [DDLog addLogger:fileLogger];
 #endif
-    
+
 }
 
 - (void)applicationDidFinishLaunching:sender {
     
-    //[self setupLogging];
+    [self setupLogging];
     
     // Checking operating system version...
     NSOperatingSystemVersion systemVersion = [[NSProcessInfo processInfo] operatingSystemVersion];
