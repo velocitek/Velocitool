@@ -8,12 +8,16 @@
 
 #define TEMP_GPX_FILENAME @"temporaryGpxFile.gpx"
 
+#define VELOCITEK_FILES_DIR @"~/Documents/MyVelocitekFiles"
+
 #import "VTVccFile.h"
 #import "VTVccXmlDoc.h"
 #import "VTVccRootElement.h"
 #import "VTCapturedTrackElement.h"
 #import "VTTrackFromDevice.h"
 #import "VTXmlDate.h"
+
+
 
 
 @interface VTVccFile (private)
@@ -154,6 +158,10 @@
 	[svPanel setCanCreateDirectories:YES];
 	
 	[svPanel setNameFieldStringValue:[vccFileWrapper filename]];
+    
+    [self createMyVelocitekFilesDirIfNeeded];
+    
+    [svPanel setDirectoryURL:[NSURL URLWithString:VELOCITEK_FILES_DIR]];
 		
 	//call setDirectoryURL to NSHomeDirectory()
 	//[svPanel setDirectoryURL:[NSURL URLWithString:NSHomeDirectory()]];
@@ -192,13 +200,33 @@
 							
 }
 
+- (void) createMyVelocitekFilesDirIfNeeded {
+    
+    if(![[NSFileManager defaultManager] fileExistsAtPath:VELOCITEK_FILES_DIR]) {
+        
+        NSError * error = nil;
+        
+        [[NSFileManager defaultManager] createDirectoryAtPath:VELOCITEK_FILES_DIR
+                                  withIntermediateDirectories:YES
+                                                   attributes:nil
+                                                        error:&error];
+        
+        if (error != nil) {
+            NSLog(@"Error creating directory: %@", error);
+        }
+        
+    }
+
+    
+}
+
 -(void)saveAsGpx
 {
 	[self createGpxXmlDoc];	
     
     //create an instance of NSSavePanel called svPanel
 	NSSavePanel *svPanel = [NSSavePanel savePanel];
-	
+    
     //define an array with one element: the string "gpx" to use as a parameter for savePanel's setAllowedFileTypes method
 	NSArray* fileTypes = [NSArray arrayWithObject:@"gpx"];
 	
@@ -210,6 +238,10 @@
 	
 	[svPanel setNameFieldStringValue:[gpxFileWrapper filename]];
 	
+    [self createMyVelocitekFilesDirIfNeeded];
+    
+    [svPanel setDirectoryURL:[NSURL URLWithString:VELOCITEK_FILES_DIR]];
+
 	//call setDirectoryURL to NSHomeDirectory()
 	//[svPanel setDirectoryURL:[NSURL URLWithString:NSHomeDirectory()]];
 	
@@ -263,6 +295,10 @@
 	[svPanel setCanCreateDirectories:YES];
 	
 	[svPanel setNameFieldStringValue:[kmlFileWrapper filename]];
+    
+    [self createMyVelocitekFilesDirIfNeeded];
+    
+    [svPanel setDirectoryURL:[NSURL URLWithString:VELOCITEK_FILES_DIR]];
 	
 	
 	//call runModal method of save panel to display the panel, record the result of the call

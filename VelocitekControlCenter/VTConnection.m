@@ -505,6 +505,20 @@ NSString* path;
 
 # pragma mark Broken Firmware code.
 
++ (void) showDeviceUnresponsiveAlert {
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert addButtonWithTitle:@"Go to support page"];
+    [alert addButtonWithTitle:@"Close"];
+    [alert setMessageText:@"Device was unresponsive. Unable to update firmware."];
+    [alert setInformativeText:@"To request help, go to this URL:\nhttp://www.velocitek.com/broken \n\nOr click the \"Go to support page\" button to open this URL in your default browser.\n"];
+    [alert setAlertStyle:NSWarningAlertStyle];
+    NSModalResponse result = [alert runModal];
+    
+    if (result == NSAlertFirstButtonReturn) {
+        [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString: @"http://www.velocitek.com/broken"]];
+    }
+}
+
 - (BOOL)runFirmwareUpdate:(VTFirmwareFile *)firmwareFile {
     unsigned char response;
     [self setRTS];
@@ -514,11 +528,18 @@ NSString* path;
     [self writeUnsignedChar:signalChar];
     
     response = [self readUnsignedChar];
+    
     if (response != 'R') {
+        
+        [VTConnection showDeviceUnresponsiveAlert];
+        
         NSLog(@"VTError: Wrong response %c to signal %c.", response, signalChar);
+        
         [self recover];
+        
         return FIRMWARE_UPDATE_FAILED;
     }
+    
     [self clearRTS];
     
     return [self writeFirmwareFile:firmwareFile];
@@ -551,7 +572,7 @@ NSString* path;
         status = (*pFT_GetStatus)(_ft_handle, &numBytesInRXQueue, &numBytesInTXQueue, &event);
         NSAssert(FT_SUCCESS(status), @"Unexpected status.");
         
-        NSLog(@"About to write firmware line %d.  %d bytes in RX Queue, %d bytes in TX Queue.", (int)lineCounter, numBytesInRXQueue, numBytesInTXQueue);
+        //NSLog(@"About to write firmware line %d.  %d bytes in RX Queue, %d bytes in TX Queue.", (int)lineCounter, numBytesInRXQueue, numBytesInTXQueue);
         
         usleep(10000);
         bytesWritten = [self write:dataLine];
@@ -565,25 +586,6 @@ NSString* path;
         [self readChar];
         [self readChar];
         [self readChar];
-        
-        // if (![self readFirmwareUpdateFlowControlChars]) return
-        // FIRMWARE_UPDATE_FAILED;
-        
-        /*
-         percentComplete = ((lineCounter + 1) / numLinesInUpdate) * 100;
-         
-         //if percentComplete is greater than or equal to percentCompleteToReport +
-         5.0
-         if (percentComplete >= percentCompleteToReport + 5.0)
-         {
-         percentCompleteToReport = percentComplete;
-         
-         //reportPercentComplete
-         NSLog(@"Firmware update is now %f %%
-         complete",percentCompleteToReport);
-         
-         }
-         */
         
         [self.progressTracker performSelectorOnMainThread:@selector(incrementProgress) withObject:nil waitUntilDone:YES];
         

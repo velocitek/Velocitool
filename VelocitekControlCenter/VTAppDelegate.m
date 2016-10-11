@@ -3,6 +3,7 @@
 #import "MainWindowController.h"
 #import "DeviceSettingsController.h"
 #import "VTDefines.h"
+#import "VTConnection.h"
 
 @implementation VTAppDelegate
 
@@ -82,7 +83,8 @@
     _loader = [VTDeviceLoader loader]; // No need to retain: singleton
 	
 	// Create the main window
-    mainWindowController = [[MainWindowController alloc] init];	
+    mainWindowController = [[MainWindowController alloc] init];
+    
 }
 
 /**
