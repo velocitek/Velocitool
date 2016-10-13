@@ -216,6 +216,15 @@ static NSDictionary *productIDToClass = nil;
     return [NSString stringWithFormat:@"%@ (%@, %@)", sd, s, fv];
 }
 
+
+- (void) reenumerateDevice {
+    
+    if ([_usbProperties objectForKey:@"io_service_t"]) {
+        io_service_t devService = [_usbProperties objectForKey:@"io_service_t"];
+        [[VTDeviceLoader loader] reenumerateUsbDevice:devService];
+    }
+    
+}
 @end
 
 @implementation VTDeviceS10
@@ -314,6 +323,7 @@ static NSDictionary *productIDToClass = nil;
 - (void) closeDeviceConnection {
     [self.connection close];
 }
+
 
 @end
 

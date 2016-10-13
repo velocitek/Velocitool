@@ -36,6 +36,7 @@
 #define EV_UPDATE_FIRMWARE_SELECTED 11
 #define EV_UPDATE_FIRMWARE_UPDATE_SUCCESS 12
 #define EV_UPDATE_FIRMWARE_UPDATE_FAILURE 13
+#define EV_TRACK_DOWNLOAD_CANCELED 14
 
 #define PROSTART_FIRMWARE_FILE @"Velocitek_ProStart_1-6"
 #define SPEEDPUCK_FIRMWARE_FILE @"Velocitek_SpeedPuck_1-51"
@@ -250,10 +251,12 @@
         case EV_ENTRY:
             NSLog(@"VTLOG: DOWNLOADING_TRACK, EV_ENTRY");  // VTLOG for debugging
             //NSLog(@"Just changed to DOWNLOADING TRACK state.");
+            [[trackLogViewController getDownloadButton] setEnabled:NO];
             [trackFileViewController setDevice:[trackLogViewController firstConnectedDevice]];
             [trackFileViewController setTrackLogs:[trackLogViewController trackpointLogs]];
             [trackFileViewController downloadTrackFromDevice];
             break;
+            
             
         case EV_TRACK_FINISHED_DOWNLOADING:
             NSLog(@"VTLOG: DOWNLOADING_TRACK, EV_TRACK_FINISHED_DOWNLOADING");  // VTLOG for debugging
@@ -266,14 +269,18 @@
             //Initialize the trackFileViewController's currentTrack member using the downloaded track
             [trackFileViewController initializeCurrentFileFromTrack];
             
+            [[trackLogViewController getDownloadButton] setEnabled:YES];
+
             break;
             
         case EV_CONNECTION_INTERRUPTED:
             NSLog(@"VTLOG: DOWNLOADING_TRACK, EV_CONNECTION_INTERRUPTED");  // VTLOG for debugging
             nextState = READY;//Decide what the next state will be
+            [[trackLogViewController getDownloadButton] setEnabled:YES];
             break;
             
         case EV_EXIT:
+            [[trackLogViewController getDownloadButton] setEnabled:YES];
             break;
             
     }
@@ -331,7 +338,9 @@
     {
         case EV_ENTRY:
             NSLog(@"VTLOG: EV_UPDATE_FIRMWARE_SELECTED, EV_ENTRY");  // VTLOG for debugging
-            [trackLogViewController setUpdateFirmwareButtonEnabled:false];
+            [trackLogViewController setUpdateFirmwareButtonEnabled:NO];
+            [trackLogViewController setDownloadButtonEnabled:NO];
+            [trackLogViewController setEraseAllTracksButtonEnabled:NO];
             nextState = [self doUpdateFirmware];
             break;
             
@@ -347,7 +356,9 @@
             [alert runModal];
             
             [trackLogViewController setUpdateFirmwareButtonEnabled:true];
-            
+            [trackLogViewController setDownloadButtonEnabled:true];
+            [trackLogViewController setEraseAllTracksButtonEnabled:true];
+
             nextState = READY;
 
             break;
@@ -363,6 +374,8 @@
             [alert runModal];
             
             [trackLogViewController setUpdateFirmwareButtonEnabled:true];
+            [trackLogViewController setDownloadButtonEnabled:true];
+            [trackLogViewController setEraseAllTracksButtonEnabled:true];
 
             nextState = READY;
             

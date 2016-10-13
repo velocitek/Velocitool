@@ -20,6 +20,7 @@
 @property (nonatomic, readwrite) NSUInteger numTrackpoints;
 @property (nonatomic, readwrite, strong) VTCapturedTrackElement *capturedTrackXMLElement;
 
-- (id)initWithDeviceAndTrackLogs:(VTDevice *)device trackLogs:(NSMutableArray *)trackLogs;
+- (id) initWithDeviceAndTrackLogs:(VTDevice *)device trackLogs:(NSMutableArray *)trackLogs;
+- (void) handleCancelDownload:(NSNotification*) notification;
 
 @end

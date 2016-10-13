@@ -38,5 +38,6 @@
 
 - (void) recoverDeviceConnection;
 - (void) closeDeviceConnection;
+- (void) reenumerateDevice;
 
 @end

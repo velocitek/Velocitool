@@ -39,10 +39,12 @@ extern NSString *VTFirstConnectedDeviceRemovedNotification;
 @property (nonatomic, readwrite, strong) NSMutableArray *trackpointLogs;
 @property (nonatomic, readwrite, strong) VTDevice *firstConnectedDevice;
 
+
 - (IBAction)fileOpen:(id)sender;
 - (IBAction)updateDeviceSettings:(id)sender;
 - (IBAction)eraseAll:(id)sender;
 - (IBAction)updateFirmware:(id)sender;
+- (NSButton*) getDownloadButton;
 
 /*Not currently implemented
 - (IBAction)updateDeviceFirmware:(id)sender;
@@ -56,7 +58,10 @@ extern NSString *VTFirstConnectedDeviceRemovedNotification;
 - (void)armNotifications;
 - (VTDevice *)firstConnectedDevice;
 - (void)removeAllDevices;
+- (void)reenumerateFirstConnectedDevice;
 
 - (void) setUpdateFirmwareButtonEnabled:(bool) enabled;
+- (void) setDownloadButtonEnabled:(bool) enabled;
+- (void) setEraseAllTracksButtonEnabled:(bool) enabled;
 
 @end

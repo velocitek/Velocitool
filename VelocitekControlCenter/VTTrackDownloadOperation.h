@@ -3,14 +3,14 @@
 @class VTDevice;
 
 extern NSString *VTTrackFinishedDownloadingNotification;
+extern NSString *VTTrackCancelDownloadNotification;
 
 @interface VTTrackDownloadOperation : NSOperation {
 	
 	VTTrackFromDevice *trackFromDevice;
 	VTDevice *device;
 	NSMutableArray *selectedTrackLogs;
-	NSMutableArray *trackpoints;
-	
+	NSMutableArray *trackpoints;	
 }
 
 - (id)initWithTrackObject:(VTTrackFromDevice*)track;

@@ -199,6 +199,10 @@
 	[self setTrackFromDevice:[[VTTrackFromDevice alloc] initWithDeviceAndTrackLogs:device trackLogs:trackLogs]];
 }
 
+- (void) cancelDownload {
+    
+}
+
 - (void)initializeCurrentFileFromTrack
 {		
 		

@@ -26,6 +26,11 @@
 // at launch time. All the functions I use are dynamically looked up and stored
 // in those static variables.
 //
+
+/*
+    Consider replacing driver with open source driver: https://www.intra2net.com/en/developer/libftdi/
+ */
+
 static FT_STATUS (*pFT_SetVIDPID)(DWORD dwVID, DWORD dwPID);
 static FT_STATUS (*pFT_OpenEx)(PVOID pArg1, DWORD Flags, FT_HANDLE *pHandle);
 static FT_STATUS (*pFT_ResetDevice)(FT_HANDLE ftHandle);
@@ -503,7 +508,7 @@ NSString* path;
     [self reset];
 }
 
-# pragma mark Broken Firmware code.
+# pragma mark Firmware code.
 
 + (void) showDeviceUnresponsiveAlert {
     NSAlert *alert = [[NSAlert alloc] init];
@@ -520,15 +525,19 @@ NSString* path;
 }
 
 - (BOOL)runFirmwareUpdate:(VTFirmwareFile *)firmwareFile {
+    
     unsigned char response;
     [self setRTS];
     
     // Send the Write Firmware command signal
     unsigned char signalChar = 'L';
+    
     [self writeUnsignedChar:signalChar];
     
     response = [self readUnsignedChar];
     
+    // If device doesn't respond to this, it's considered unresponsive
+    // and user should contact support.
     if (response != 'R') {
         
         [VTConnection showDeviceUnresponsiveAlert];
@@ -583,9 +592,15 @@ NSString* path;
                   (int)lineCounter);
         }
         
+        /*
         [self readChar];
         [self readChar];
         [self readChar];
+        */
+        
+        if (![self readFirmwareUpdateFlowControlChars]) {
+            return FIRMWARE_UPDATE_FAILED;
+        }
         
         [self.progressTracker performSelectorOnMainThread:@selector(incrementProgress) withObject:nil waitUntilDone:YES];
         
@@ -601,11 +616,13 @@ NSString* path;
 }
 
 - (BOOL)readFirmwareUpdateFlowControlChars {
+    
     unsigned char firstFlowControlCharacter = [self readChar];  // XOFF;//
     if (firstFlowControlCharacter != XOFF) {
         NSLog(@"VTError: First flow control character received from device not valid, aborting firmware update");
         return FIRMWARE_UPDATE_FAILED;
     }
+    
     unsigned char secondFlowControlCharacter = [self readChar];  // ACKLOD;//
     if (secondFlowControlCharacter == XON) {
         NSLog(@"VTError: ACK (0x06) not received between XOFF and XON.  This means "
@@ -619,12 +636,14 @@ NSString* path;
               @"written. Aborting firmware update");
         return FIRMWARE_UPDATE_FAILED;
     }
+    
     unsigned thirdFlowControlCharacter = [self readChar];  // XON;//
     if (thirdFlowControlCharacter != XON) {
         NSLog(@"VTError: Third flow control character received from device, not "
               @"valid aborting firmware update");
         return FIRMWARE_UPDATE_FAILED;
     }
+    
     return FIRMWARE_UPDATE_SUCCEEDED;
 }
 
@@ -684,8 +703,7 @@ NSString* path;
     }
     
     // Set parameters.
-    if ((ft_error = (*pFT_SetDataCharacteristics)(
-                                                  ft_handle, FT_BITS_8, FT_STOP_BITS_1, FT_PARITY_NONE))) {
+    if ((ft_error = (*pFT_SetDataCharacteristics)(ft_handle, FT_BITS_8, FT_STOP_BITS_1, FT_PARITY_NONE))) {
         NSLog(@"VTError: Call to FT_SetDataCharacteristics failed with error %u",
               ft_error);
         [self close];

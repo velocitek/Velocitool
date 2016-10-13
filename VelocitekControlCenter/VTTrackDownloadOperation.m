@@ -12,6 +12,7 @@
 @end
 
 NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingNotification";
+NSString *VTTrackCancelDownloadNotification = @"VTTrackCancelDownloadNotification";
 
 @implementation VTTrackDownloadOperation
 
@@ -22,9 +23,12 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
     trackFromDevice = track;
     device = [track device];
     selectedTrackLogs = [track selectedTrackLogs];
+      
+      
   }
   return self;
 }
+
 
 - (void)main {
     
@@ -49,9 +53,9 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
         newTrackpoints = [self trackpointsHelper:nil expectedNumTrackpoint:expectedNumTrackpoints start:start end:end];
         
 		[trackpoints addObjectsFromArray:newTrackpoints];
-		
+        
 	}
-	
+    	
 	[trackFromDevice setTrackpoints:trackpoints];
 	[trackFromDevice setNumTrackpoints:[trackpoints count]];
 	[trackFromDevice setCapturedTrackXMLElement:[VTCapturedTrackElement capturedTrackElementWithTrackPointsAndDevice:trackpoints device:device]];
@@ -109,6 +113,10 @@ NSString *VTTrackFinishedDownloadingNotification = @"VTTrackFinishedDownloadingN
 }
 
 - (NSMutableArray*) trackpointsHelper:(NSMutableArray*)acc expectedNumTrackpoint:(unsigned long)expectedNumTrackpoints start:(NSDate*)start end:(NSDate*)end {
+    
+    if (self.isCancelled) {
+        return acc;
+    }
     
     NSLog(@"Expected num trackpoint = %lu", expectedNumTrackpoints);
     NSLog(@"Start Date = %f - %@", [start timeIntervalSinceReferenceDate], [start description]);

@@ -29,13 +29,20 @@
 	if ((self = [super init])) {
 
     trackpoints = [[NSMutableArray alloc] init];
+        
+        
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self
+           selector:@selector(handleCancelDownload:)
+               name:VTTrackCancelDownloadNotification
+             object:nil];
     
     device = deviceToDownloadFrom;	
     selectedTrackLogs = trackLogs;
     
     [self removeUnselectedTrackLogs];
     
-    [self downloadTrack];	
+    [self downloadTrack];
   }
 	return self;
 	
@@ -71,6 +78,10 @@
 	[queue addOperation:trackDownloadOperation];
 	
 			
+}
+
+- (void) handleCancelDownload:(NSNotification*) notification {
+    [queue cancelAllOperations];
 }
 
 - (void)dealloc

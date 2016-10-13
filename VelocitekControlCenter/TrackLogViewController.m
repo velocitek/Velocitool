@@ -32,6 +32,9 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 @synthesize trackpointLogs;
 @synthesize firstConnectedDevice;
 
+- (NSButton*) getDownloadButton {
+    return downloadButton;
+}
 
 - (IBAction)updateFirmware:(id)sender
 {
@@ -193,6 +196,26 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 	
 }
 
+- (void)reenumerateFirstConnectedDevice
+{
+    for (VTTrackpointLogRecord *trackpointLog in trackpointLogs)
+    {
+        [trackpointLogController removeObject:trackpointLog];
+        
+    }
+    
+    VTDevice * dev = firstConnectedDevice;
+    
+    [self setFirstConnectedDevice:nil];
+    
+    [dev reenumerateDevice];
+    
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    //NSLog(@"Sending notification that the first connected device was removed");
+    [notificationCenter postNotificationName:VTFirstConnectedDeviceRemovedNotification object:self];
+    
+}
+
 - (void)lookForAlreadyConnectedDevices
 {
 	
@@ -266,6 +289,13 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 
 - (void) setUpdateFirmwareButtonEnabled:(bool) enabled{
     [updateFirmwareButton setEnabled:enabled];
+}
+- (void) setDownloadButtonEnabled:(bool) enabled {
+    [downloadButton setEnabled:enabled];
+}
+
+- (void) setEraseAllTracksButtonEnabled:(bool) enabled {
+    [eraseAllButton setEnabled:enabled];
 }
 
 @end
