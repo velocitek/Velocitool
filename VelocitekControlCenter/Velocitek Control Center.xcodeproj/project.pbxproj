@@ -11,9 +11,11 @@
 		47076CE21DAD767B003944BC /* Velocitek_ProStart_1-6.hex in Resources */ = {isa = PBXBuildFile; fileRef = 47076CE01DAD767B003944BC /* Velocitek_ProStart_1-6.hex */; };
 		47076CE31DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex in Resources */ = {isa = PBXBuildFile; fileRef = 47076CE11DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex */; };
 		47535E861D90987D00512DF3 /* post-build-script.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47535E851D90987D00512DF3 /* post-build-script.txt */; };
+		475A21CC1DB43BD200D6DCBF /* FirmwareUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 475A21CB1DB43BD200D6DCBF /* FirmwareUpdateViewController.m */; };
 		478CE9861D99AB1900DAD61A /* VTDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080EFD4115C35D00013C9C3 /* VTDateTime.m */; };
 		478D01281D9B46B600F673CD /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478D01271D9B46B500F673CD /* CocoaLumberjack.framework */; };
 		478D01291D9B46B600F673CD /* CocoaLumberjack.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 478D01271D9B46B500F673CD /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		479B12861DB1767F00A04F56 /* FirmwareUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B12851DB1767F00A04F56 /* FirmwareUpdateView.xib */; };
 		47FD75671D88944C00DEEE0E /* GPS-Action-Replay.app in Resources */ = {isa = PBXBuildFile; fileRef = 47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */; };
 		7009C76B11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
 		70135D3711D082A50046A8BF /* DeviceSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70135D3511D082A50046A8BF /* DeviceSettingsController.m */; };
@@ -105,8 +107,11 @@
 		47076CE01DAD767B003944BC /* Velocitek_ProStart_1-6.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Velocitek_ProStart_1-6.hex"; sourceTree = "<group>"; };
 		47076CE11DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Velocitek_SpeedPuck_1-51.hex"; sourceTree = "<group>"; };
 		47535E851D90987D00512DF3 /* post-build-script.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "post-build-script.txt"; sourceTree = "<group>"; };
+		475A21CA1DB43BD200D6DCBF /* FirmwareUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareUpdateViewController.h; sourceTree = "<group>"; };
+		475A21CB1DB43BD200D6DCBF /* FirmwareUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareUpdateViewController.m; sourceTree = "<group>"; };
 		478D01271D9B46B500F673CD /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = Carthage/Build/Mac/CocoaLumberjack.framework; sourceTree = "<group>"; };
 		478D012B1D9B46F900F673CD /* CocoaLumberjack.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CocoaLumberjack.framework.dSYM; path = Carthage/Build/Mac/CocoaLumberjack.framework.dSYM; sourceTree = "<group>"; };
+		479B12851DB1767F00A04F56 /* FirmwareUpdateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirmwareUpdateView.xib; sourceTree = "<group>"; };
 		47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "GPS-Action-Replay.app"; path = "../app-bundler/build/GPS-Action-Replay.app"; sourceTree = "<group>"; };
 		7009C76811BF52FF0076DB4D /* VTProgressTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTProgressTracker.h; sourceTree = "<group>"; };
 		7009C76911BF52FF0076DB4D /* VTProgressTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTProgressTracker.m; sourceTree = "<group>"; };
@@ -289,6 +294,7 @@
 				77C8C1F70C07829500965286 /* MainMenu.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				479B12851DB1767F00A04F56 /* FirmwareUpdateView.xib */,
 				7023A9F011ACE36400975EC0 /* TrackLogView.xib */,
 				7023AA2E11ACFB9B00975EC0 /* TrackFileView.xib */,
 				709C83BA11AD1CBE00663AFB /* MainWindow.xib */,
@@ -343,6 +349,8 @@
 				7023A9EC11ACE1CC00975EC0 /* TrackLogViewController.m */,
 				7023AA2911ACFA0300975EC0 /* TrackFileViewController.h */,
 				7023AA2A11ACFA0300975EC0 /* TrackFileViewController.m */,
+				475A21CA1DB43BD200D6DCBF /* FirmwareUpdateViewController.h */,
+				475A21CB1DB43BD200D6DCBF /* FirmwareUpdateViewController.m */,
 				70135D3411D082A50046A8BF /* DeviceSettingsController.h */,
 				70135D3511D082A50046A8BF /* DeviceSettingsController.m */,
 				701360A611D930C90046A8BF /* VTDeviceSettingMenu.h */,
@@ -498,6 +506,7 @@
 			files = (
 				47076CE21DAD767B003944BC /* Velocitek_ProStart_1-6.hex in Resources */,
 				47076CE31DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex in Resources */,
+				479B12861DB1767F00A04F56 /* FirmwareUpdateView.xib in Resources */,
 				ED80A45F1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				77C8C1F90C07829500965286 /* MainMenu.xib in Resources */,
@@ -530,6 +539,7 @@
 				ED4B9A590F155F8700AF563B /* VTDeviceLoader.m in Sources */,
 				EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */,
 				ED2B25030F261CAB00A5EDDB /* VTGlobals.m in Sources */,
+				475A21CC1DB43BD200D6DCBF /* FirmwareUpdateViewController.m in Sources */,
 				ED2A01610F339B8F005C0CE0 /* VTConnection.m in Sources */,
 				EDF7261E0F3E274E00E503AE /* VTAppDelegate.m in Sources */,
 				7080EFD6115C35D00013C9C3 /* VTDateTime.m in Sources */,

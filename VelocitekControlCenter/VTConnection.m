@@ -544,9 +544,9 @@ NSString* path;
         
         NSLog(@"VTError: Wrong response %c to signal %c.", response, signalChar);
         
-        [self recover];
+        //[self recover];
         
-        return FIRMWARE_UPDATE_FAILED;
+        //return FIRMWARE_UPDATE_FAILED;
     }
     
     [self clearRTS];

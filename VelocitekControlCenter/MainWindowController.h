@@ -26,7 +26,7 @@
 @class TrackLogViewController;
 @class TrackFileViewController;
 @class DeviceSettingsController;
-
+@class FirmwareUpdateViewController;
 
 @interface MainWindowController : NSWindowController {
 	
@@ -42,6 +42,7 @@
 	DeviceSettingsController *deviceSettingsController;
 	TrackLogViewController *trackLogViewController;	
 	TrackFileViewController *trackFileViewController;
+    FirmwareUpdateViewController * firmwareUpdateViewController;
     
     NSString * speedPuckFirmwareFilePath;
     NSString * proStartFirmwareFilePath;

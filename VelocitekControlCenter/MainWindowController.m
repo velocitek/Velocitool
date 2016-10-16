@@ -1,4 +1,4 @@
-//
+it//
 //  MainWindowController.m
 //  Velocitool
 //
@@ -19,6 +19,7 @@
 #import "VTAppDelegate.h"
 #import "DeviceSettingsController.h"
 #import "VTFirmwareUpdateOperation.h"
+#import "FirmwareUpdateViewController.h"
 
 //Events processed by state machine
 #define EV_ENTRY 0
@@ -37,6 +38,7 @@
 #define EV_UPDATE_FIRMWARE_UPDATE_SUCCESS 12
 #define EV_UPDATE_FIRMWARE_UPDATE_FAILURE 13
 #define EV_TRACK_DOWNLOAD_CANCELED 14
+#define EV_UPDATE_FIRMWARE_UPDATE_CANCELLED 15
 
 #define PROSTART_FIRMWARE_FILE @"Velocitek_ProStart_1-6"
 #define SPEEDPUCK_FIRMWARE_FILE @"Velocitek_SpeedPuck_1-51"
@@ -76,6 +78,7 @@
         
         trackLogViewController = [[TrackLogViewController alloc] init];
         trackFileViewController = [[TrackFileViewController alloc] init];
+        firmwareUpdateViewController = [[FirmwareUpdateViewController alloc] init];
         
         [self showWindow:nil];
         
@@ -251,7 +254,7 @@
         case EV_ENTRY:
             NSLog(@"VTLOG: DOWNLOADING_TRACK, EV_ENTRY");  // VTLOG for debugging
             //NSLog(@"Just changed to DOWNLOADING TRACK state.");
-            [[trackLogViewController getDownloadButton] setEnabled:NO];
+            [trackLogViewController setDownloadButtonEnabled:NO];
             [trackFileViewController setDevice:[trackLogViewController firstConnectedDevice]];
             [trackFileViewController setTrackLogs:[trackLogViewController trackpointLogs]];
             [trackFileViewController downloadTrackFromDevice];
@@ -269,18 +272,18 @@
             //Initialize the trackFileViewController's currentTrack member using the downloaded track
             [trackFileViewController initializeCurrentFileFromTrack];
             
-            [[trackLogViewController getDownloadButton] setEnabled:YES];
+            [trackLogViewController setDownloadButtonEnabled:YES];
 
             break;
             
         case EV_CONNECTION_INTERRUPTED:
             NSLog(@"VTLOG: DOWNLOADING_TRACK, EV_CONNECTION_INTERRUPTED");  // VTLOG for debugging
             nextState = READY;//Decide what the next state will be
-            [[trackLogViewController getDownloadButton] setEnabled:YES];
+            [trackLogViewController setDownloadButtonEnabled:YES];
             break;
             
         case EV_EXIT:
-            [[trackLogViewController getDownloadButton] setEnabled:YES];
+            [trackLogViewController setDownloadButtonEnabled:YES];
             break;
             
     }
@@ -328,11 +331,42 @@
  FIRMWARE UPDATE STATE
  ******************************************************************/
 
+- (void) firmwareUpdateSuccessHelper {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSAlert * alert;
+        alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:@"Firware update succeeded!"];
+        [alert setInformativeText:@"Please disconnect, power off and back on, and reconnect the device to ensure proper function."];
+        [alert setAlertStyle:NSInformationalAlertStyle];
+        [alert runModal];
+        
+        [trackLogViewController setUpdateFirmwareButtonEnabled:true];
+        [trackLogViewController setDownloadButtonEnabled:true];
+        [trackLogViewController setEraseAllTracksButtonEnabled:true];
+    });
+}
+
+-(void) firmwareUpdateFailureHelper {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSAlert * alert;
+        alert = [[NSAlert alloc] init];
+        [alert addButtonWithTitle:@"OK"];
+        [alert setMessageText:@"Firware update failed."];
+        [alert setInformativeText:@"Please try to update the firmware again."];
+        [alert setAlertStyle:NSWarningAlertStyle];
+        [alert runModal];
+        
+        [trackLogViewController setUpdateFirmwareButtonEnabled:true];
+        [trackLogViewController setDownloadButtonEnabled:true];
+        [trackLogViewController setEraseAllTracksButtonEnabled:true];
+    });
+    
+}
+
 - (unsigned int) handleFirmwareUpdate:(unsigned int) currentEvent {
     
     unsigned int nextState = NO_STATE_CHANGE;
-    
-    NSAlert * alert;
     
     switch (currentEvent)
     {
@@ -347,19 +381,10 @@
         case EV_UPDATE_FIRMWARE_UPDATE_SUCCESS:
             
             NSLog(@"EV_UPDATE_FIRMWARE_UPDATE_SUCCESS");
-            
-            alert = [[NSAlert alloc] init];
-            [alert addButtonWithTitle:@"OK"];
-            [alert setMessageText:@"Firware update succeeded!"];
-            [alert setInformativeText:@"Please disconnect, power off and back on, and reconnect the device to ensure proper function."];
-            [alert setAlertStyle:NSInformationalAlertStyle];
-            [alert runModal];
-            
-            [trackLogViewController setUpdateFirmwareButtonEnabled:true];
-            [trackLogViewController setDownloadButtonEnabled:true];
-            [trackLogViewController setEraseAllTracksButtonEnabled:true];
 
-            nextState = READY;
+            [self firmwareUpdateSuccessHelper];
+            
+            [firmwareUpdateViewController showSuccessTab];
 
             break;
             
@@ -367,16 +392,14 @@
             
             NSLog(@"EV_UPDATE_FIRMWARE_UPDATE_FAILURE");
             
-            alert = [[NSAlert alloc] init];
-            [alert addButtonWithTitle:@"OK"];
-            [alert setMessageText:@"Firware update failed."];
-            [alert setAlertStyle:NSWarningAlertStyle];
-            [alert runModal];
-            
-            [trackLogViewController setUpdateFirmwareButtonEnabled:true];
-            [trackLogViewController setDownloadButtonEnabled:true];
-            [trackLogViewController setEraseAllTracksButtonEnabled:true];
+            [self firmwareUpdateFailureHelper];
 
+            nextState = READY;
+            
+            break;
+            
+        case EV_FIRST_DEVICE_REMOVED:
+            
             nextState = READY;
             
             break;
@@ -442,8 +465,12 @@
     [alert setAlertStyle:NSWarningAlertStyle];
     
     if ([alert runModal] == NSAlertSecondButtonReturn) {
+        [trackLogViewController setUpdateFirmwareButtonEnabled:true];
         return READY;
     }
+    
+    [self performSelectorOnMainThread:@selector(displayViewController:) withObject:firmwareUpdateViewController waitUntilDone:YES];
+    [firmwareUpdateViewController showInProgressTab];
     
     NSLog(@"Updating firmware with file at path: %@", firmwareFilePath);
     

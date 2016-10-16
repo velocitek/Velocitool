@@ -11,6 +11,7 @@
 @class VTDeclinationValue;
 
 @interface DeviceSettingsController : NSWindowController {
+    
   VTDevice *device;
 
   IBOutlet NSButton *okButton;
