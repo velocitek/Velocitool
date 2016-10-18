@@ -46,11 +46,11 @@
 	NSData *xmlData = [self XMLDataWithOptions:NSXMLNodePrettyPrint];
     if (![xmlData writeToFile:fileName atomically:YES]) {
         NSBeep();
-        NSLog(@"Could not write document out...");
+        DDLogError(@"Could not write document out...");
         
     }
 	else{
-		 NSLog(@"Saved VCC file");
+		 DDLogInfo(@"Saved VCC file");
 	}
     
 

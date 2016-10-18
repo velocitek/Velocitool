@@ -61,7 +61,7 @@ static NSDictionary *productIDToClass = nil;
 
 + deviceForUSBProperties:(NSDictionary *)usbProperties {
     
-    NSLog(@"deviceForUSBProperties");
+    DDLogInfo(@"deviceForUSBProperties");
     
     int productID = [[usbProperties objectForKey:@kUSBProductID] intValue];
     
@@ -85,14 +85,14 @@ static NSDictionary *productIDToClass = nil;
                                                        serialNumber:serial
                                                         productName:productName];
     
-    NSLog(@"Opening connection (%p) to device: %@ - %@", connection, productName, serial);
+    DDLogInfo(@"Opening connection (%p) to device: %@ - %@", connection, productName, serial);
     
     BOOL success = [connection open];
     
     // Retry 1
     if (!success) {
         
-        NSLog(@"Open failed. Reloading driver and waiting 0.5 seconds before trying again.");
+        DDLogError(@"Open failed. Reloading driver and waiting 0.5 seconds before trying again.");
         
         [connection recover];
 
@@ -103,7 +103,7 @@ static NSDictionary *productIDToClass = nil;
         // Retry 2
         if (!success) {
             
-            NSLog(@"Open failed. Reloading driver and waiting 3 seconds before trying again.");
+            DDLogError(@"Open failed. Reloading driver and waiting 3 seconds before trying again.");
             
             [connection closeConnectionAndReloadLibrary];
             
@@ -309,7 +309,7 @@ static NSDictionary *productIDToClass = nil;
 
 - (BOOL)updateFirmware:(NSString *)filePath {
     
-    NSLog(@"VTLOG: [VTDevice, updateFirmware = %@]", filePath);  // VTLOG for debugging
+    DDLogInfo(@"VTLOG: [VTDevice, updateFirmware = %@]", filePath);  // VTLOG for debugging
     
     VTFirmwareFile *firmwareFile =
     [VTFirmwareFile vtFirmwareFileWithFilePath:filePath];

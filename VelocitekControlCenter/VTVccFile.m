@@ -212,7 +212,7 @@
                                                         error:&error];
         
         if (error != nil) {
-            NSLog(@"Error creating directory: %@", error);
+            DDLogError(@"Error creating directory: %@", error);
         }
         
     }
@@ -341,7 +341,7 @@
 }
 -(void)launchReplayInGpsar
 {
-    NSLog(@"VTLOG: [VTVccFile, launchReplayInGpsar]");  // VTLOG for debugging
+    DDLogDebug(@"VTLOG: [VTVccFile, launchReplayInGpsar]");  // VTLOG for debugging
     
     //create gpx format xml representation of the current file	
 	[self createGpxXmlDoc];
@@ -573,8 +573,6 @@
 //2010-07-20T20:52:42-07:00 becomes 2010-07-21T03:52:42
 - (NSString *)convertVccDateStringToVccGmtDateString:(NSString *)vccDateString
 {
-	//NSLog(@"%@",vccDateString);
-	
 	//create a VTXmlDate object using xmlDateWithVccDateString
 	VTXmlDate *dateToConvert = [VTXmlDate xmlDateWithVccDateString:vccDateString]; 
 	

@@ -48,7 +48,7 @@
     fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
     [DDLog addLogger:fileLogger];
 #endif
-
+    
 }
 
 - (void)applicationDidFinishLaunching:sender {
@@ -57,10 +57,10 @@
     
     // Checking operating system version...
     NSOperatingSystemVersion systemVersion = [[NSProcessInfo processInfo] operatingSystemVersion];
-    NSLog (@"Current OSx Version = %ld.%ld.%ld", (long)systemVersion.majorVersion, (long)systemVersion.minorVersion, (long)systemVersion.patchVersion);
+    DDLogError(@"Current OSx Version = %ld.%ld.%ld", (long)systemVersion.majorVersion, (long)systemVersion.minorVersion, (long)systemVersion.patchVersion);
     
     if ( systemVersion.majorVersion < 10 || ( systemVersion.majorVersion == 10 && systemVersion.minorVersion < 7 ) ) {
-        NSString * sMessage = [NSString stringWithFormat:@"%@ It is compatible with 10.7.0 and later.", kErrorIncompatibleMessage];
+        NSString * sMessage = [NSString stringWithFormat:@"%@ It is compatible with 10.8.0 and later.", kErrorIncompatibleMessage];
         NSAlert *eraseAllAlert = [NSAlert alertWithMessageText:sMessage
                                                  defaultButton:@"OK"
                                                alternateButton:nil

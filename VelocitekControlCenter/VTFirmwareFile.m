@@ -22,11 +22,11 @@
 	
 	NSMutableArray *arrayOfStrings = [self createArrayOfStrings];
 	
-    NSLog(@"Num lines in arrayOfStrings = %lu", (unsigned long)[arrayOfStrings count]);
+    DDLogDebug(@"Num lines in arrayOfStrings = %lu", (unsigned long)[arrayOfStrings count]);
     
 	[self removeExtraneousLines:arrayOfStrings];
 	
-    NSLog(@"Num lines in arrayOfStrings after stripping exraneous = %lu", [arrayOfStrings count]);
+    DDLogDebug(@"Num lines in arrayOfStrings after stripping exraneous = %lu", [arrayOfStrings count]);
 
     /*
 	for (NSString *string in arrayOfStrings)
@@ -38,7 +38,7 @@
     
 	[self convertToArrayOfDataObjects:arrayOfStrings];
     
-    NSLog(@"Num lines in firmware data array = %lu", [firmwareData count]);
+    DDLogDebug(@"Num lines in firmware data array = %lu", [firmwareData count]);
 	
 }
 
@@ -79,7 +79,7 @@
 		if (removeLine)
 		{
             
-            NSLog(@"Removing line: %@", [arrayOfStrings objectAtIndex:i]);
+            DDLogDebug(@"Removing line: %@", [arrayOfStrings objectAtIndex:i]);
 			[arrayOfStrings removeObjectAtIndex:i];
 			
 			//Decrement the loop counter to account for the fact that all the array elements have been shifted

@@ -31,9 +31,7 @@
 	return trackpointElement;
 }
 
-- (id)initWithTrackpoint:(VTTrackpointRecord *)trackpointRecord {
-    //NSLog(@"VTLOG: [VTTrackpoint, initWithTrackpoint](record = %@)", trackpointRecord);  // VTLOG for debugging
-    
+- (id)initWithTrackpoint:(VTTrackpointRecord *)trackpointRecord {    
   if ((self = [super initWithKind:NSXMLElementKind])) {
     [self setName:@"Trackpoint"];
     trackpoint = trackpointRecord;

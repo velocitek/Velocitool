@@ -44,11 +44,11 @@ NSString *VTTrackCancelDownloadNotification = @"VTTrackCancelDownloadNotificatio
 		start = [trackpointLog start];
 		end = [trackpointLog end];
 		
-        NSLog(@"Downloading trackpoints. Start = %@, End = %@", [start description], [end description]);
+        DDLogInfo(@"Downloading trackpoints. Start = %@, End = %@", [start description], [end description]);
         
         int expectedNumTrackpoints = trackpointLog.numTrackpoints;
         
-        NSLog(@"Expecting %d trackpoints.", expectedNumTrackpoints);
+        DDLogInfo(@"Expecting %d trackpoints.", expectedNumTrackpoints);
         
         newTrackpoints = [self trackpointsHelper:nil expectedNumTrackpoint:expectedNumTrackpoints start:start end:end];
         
@@ -61,7 +61,6 @@ NSString *VTTrackCancelDownloadNotification = @"VTTrackCancelDownloadNotificatio
 	[trackFromDevice setCapturedTrackXMLElement:[VTCapturedTrackElement capturedTrackElementWithTrackPointsAndDevice:trackpoints device:device]];
 	
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	//NSLog(@"Sending notification that the track has finished downloading");
 	[notificationCenter postNotificationName:VTTrackFinishedDownloadingNotification object:self];
 
 }
@@ -85,13 +84,13 @@ NSString *VTTrackCancelDownloadNotification = @"VTTrackCancelDownloadNotificatio
     VTTrackpointRecord * last = [acc lastObject];
     VTTrackpointRecord * currentRecord;
     
-    NSLog(@"addObjectsWithoutOverlap:");
-    if (last) NSLog(@"last in accumulator: %@", [self dateInfo:last.timestamp]);
-    NSLog(@"first in newly read points: %@", [self dateInfo:((VTTrackpointRecord*)[newPoints firstObject]).timestamp]);
-    NSLog(@"last in newly read points: %@", [self dateInfo:((VTTrackpointRecord*)[newPoints lastObject]).timestamp]);
+    DDLogDebug(@"addObjectsWithoutOverlap:");
+    if (last) DDLogDebug(@"last in accumulator: %@", [self dateInfo:last.timestamp]);
+    DDLogDebug(@"first in newly read points: %@", [self dateInfo:((VTTrackpointRecord*)[newPoints firstObject]).timestamp]);
+    DDLogDebug(@"last in newly read points: %@", [self dateInfo:((VTTrackpointRecord*)[newPoints lastObject]).timestamp]);
 
     if ([acc count] == 0) {
-        NSLog(@"Discarding 0 overlapping track points (acc is empty).");
+        DDLogDebug(@"Discarding 0 overlapping track points (acc is empty).");
         [acc addObjectsFromArray:newPoints];
     }
     else {
@@ -104,7 +103,7 @@ NSString *VTTrackCancelDownloadNotification = @"VTTrackCancelDownloadNotificatio
                 break;
             }
         }
-        NSLog(@"Discarding %d overlapping track points.", i);
+        DDLogDebug(@"Discarding %d overlapping track points.", i);
         [newPointsMutable removeObjectsInRange:NSMakeRange(0, i)];
         [acc addObjectsFromArray:newPointsMutable];
     }
@@ -118,28 +117,28 @@ NSString *VTTrackCancelDownloadNotification = @"VTTrackCancelDownloadNotificatio
         return acc;
     }
     
-    NSLog(@"Expected num trackpoint = %lu", expectedNumTrackpoints);
-    NSLog(@"Start Date = %f - %@", [start timeIntervalSinceReferenceDate], [start description]);
-    NSLog(@"End Date  = %f - %@", [end timeIntervalSinceReferenceDate], [end description]);
+    DDLogDebug(@"Expected num trackpoint = %lu", expectedNumTrackpoints);
+    DDLogDebug(@"Start Date = %f - %@", [start timeIntervalSinceReferenceDate], [start description]);
+    DDLogDebug(@"End Date  = %f - %@", [end timeIntervalSinceReferenceDate], [end description]);
     
     
     if (acc == nil) acc = [[NSMutableArray alloc] init];
     
     NSArray * newTrackpoints = [device trackpoints:start endTime:end];
     
-    NSLog(@"New trackpoints downloaded = %lu", [newTrackpoints count]);
+    DDLogDebug(@"New trackpoints downloaded = %lu", [newTrackpoints count]);
     
     //[acc addObjectsFromArray:newTrackpoints];
     
     acc = [self addObjectsWithoutOverlap:acc toAdd:newTrackpoints];
     
-    NSLog(@"Total in accumulator after merging = %lu", [acc count]);
+    DDLogDebug(@"Total in accumulator after merging = %lu", [acc count]);
 
     if ([acc count] < expectedNumTrackpoints) {
         
-        NSLog(@"[acc count] < expectedNumTrackpoints, recovering...");
-        NSLog(@"start time interval =%fl", [start timeIntervalSinceReferenceDate]);
-        NSLog(@"end time interval  =%fl", [end timeIntervalSinceReferenceDate]);
+        DDLogDebug(@"[acc count] < expectedNumTrackpoints, recovering...");
+        DDLogDebug(@"start time interval =%fl", [start timeIntervalSinceReferenceDate]);
+        DDLogDebug(@"end time interval  =%fl", [end timeIntervalSinceReferenceDate]);
         
         // get last trackpoint
         VTTrackpointRecord *lastTrackpoint = [acc lastObject];
@@ -149,10 +148,10 @@ NSString *VTTrackCancelDownloadNotification = @"VTTrackCancelDownloadNotificatio
         
         // increment by 1 ms
         NSTimeInterval timeOfLastTrackpoint = [dateOfLastTrackpoint timeIntervalSinceReferenceDate];
-        NSLog(@"timeOfLastTrackpoint =% f", timeOfLastTrackpoint);
+        DDLogDebug(@"timeOfLastTrackpoint =% f", timeOfLastTrackpoint);
 
         NSTimeInterval newTimeInterval = timeOfLastTrackpoint + 0.1;
-        NSLog(@"timeOfLastTrackpoint+1 = %f",newTimeInterval);
+        DDLogDebug(@"timeOfLastTrackpoint+1 = %f",newTimeInterval);
         NSDate *datePlusOne =[NSDate dateWithTimeIntervalSinceReferenceDate:newTimeInterval];
         
         // This reads any lingering data from the connection and resets it by opening and closing the connection

@@ -41,7 +41,7 @@ int main (int argc, const char * argv[]) {
 void convertTimestamp(NSTimeInterval timestamp) {
     NSDate * date = [NSDate dateWithTimeIntervalSinceReferenceDate:timestamp];
     VTDateTime *vtDateTime = [VTDateTime vtDateWithDate:date];
-    NSLog(@"timestamp = %f", timestamp);
-    NSLog(@"date      = %@", [date description]);
-    NSLog(@"vtDate    = %@", [vtDateTime description]);
+    DDLogDebug(@"timestamp = %f", timestamp);
+    DDLogDebug(@"date      = %@", [date description]);
+    DDLogDebug(@"vtDate    = %@", [vtDateTime description]);
 }

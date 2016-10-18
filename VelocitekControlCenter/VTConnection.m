@@ -134,63 +134,63 @@ NSString* path;
         
         pFT_SetVIDPID = dlsym(handle, "FT_SetVIDPID");
         NSAssert(pFT_SetVIDPID, @"FT_SetVIDPID");
-        //NSLog(@"pFT_SetVIDPID = %p", pFT_SetVIDPID);
+        //DDLogDebug(@"pFT_SetVIDPID = %p", pFT_SetVIDPID);
         
         pFT_OpenEx = dlsym(handle, "FT_OpenEx");
         NSAssert(pFT_OpenEx, @"FT_OpenEx");
-        //NSLog(@"FT_OpenEx = %p", pFT_OpenEx);
+        //DDLogDebug(@"FT_OpenEx = %p", pFT_OpenEx);
     
         pFT_SetBaudRate = dlsym(handle, "FT_SetBaudRate");
         NSAssert(pFT_SetBaudRate, @"FT_SetBaudRate");
-        //NSLog(@"pFT_SetBaudRate = %p", pFT_SetBaudRate);
+        //DDLogDebug(@"pFT_SetBaudRate = %p", pFT_SetBaudRate);
 
         pFT_SetDataCharacteristics = dlsym(handle, "FT_SetDataCharacteristics");
         NSAssert(pFT_SetDataCharacteristics, @"FT_SetDataCharacteristics");
-        //NSLog(@"pFT_SetDataCharacteristics = %p", pFT_SetDataCharacteristics);
+        //DDLogDebug(@"pFT_SetDataCharacteristics = %p", pFT_SetDataCharacteristics);
 
         pFT_SetTimeouts = dlsym(handle, "FT_SetTimeouts");
         NSAssert(pFT_SetTimeouts, @"FT_SetTimeouts");
-        //NSLog(@"pFT_SetDataCharacteristics = %p", pFT_SetDataCharacteristics);
+        //DDLogDebug(@"pFT_SetDataCharacteristics = %p", pFT_SetDataCharacteristics);
 
         pFT_SetRts = dlsym(handle, "FT_SetRts");
         NSAssert(pFT_SetRts, @"FT_SetRts");
-        //NSLog(@"pFT_SetRts = %p", pFT_SetRts);
+        //DDLogDebug(@"pFT_SetRts = %p", pFT_SetRts);
 
         pFT_ClrRts = dlsym(handle, "FT_ClrRts");
         NSAssert(pFT_ClrRts, @"FT_ClrRts");
-        //NSLog(@"pFT_ClrRts = %p", pFT_ClrRts);
+        //DDLogDebug(@"pFT_ClrRts = %p", pFT_ClrRts);
 
         pFT_SetFlowControl = dlsym(handle, "FT_SetFlowControl");
         NSAssert(pFT_SetFlowControl, @"FT_SetFlowControl");
-        //NSLog(@"pFT_SetFlowControl = %p", pFT_SetFlowControl);
+        //DDLogDebug(@"pFT_SetFlowControl = %p", pFT_SetFlowControl);
 
         pFT_Write = dlsym(handle, "FT_Write");
         NSAssert(pFT_Write, @"FT_Write");
-        //NSLog(@"pFT_Write = %p", pFT_Write);
+        //DDLogDebug(@"pFT_Write = %p", pFT_Write);
 
         pFT_Read = dlsym(handle, "FT_Read");
         NSAssert(pFT_Read, @"FT_Read");
-        //NSLog(@"pFT_Read = %p", pFT_Read);
+        //DDLogDebug(@"pFT_Read = %p", pFT_Read);
 
         pFT_GetStatus = dlsym(handle, "FT_GetStatus");
         NSAssert(pFT_GetStatus, @"FT_GetStatus");
-        //NSLog(@"pFT_GetStatus = %p", pFT_GetStatus);
+        //DDLogDebug(@"pFT_GetStatus = %p", pFT_GetStatus);
 
         pFT_ResetDevice = dlsym(handle, "FT_ResetDevice");
         NSAssert(pFT_ResetDevice, @"FT_ResetDevice");
-        //NSLog(@"pFT_ResetDevice = %p", pFT_ResetDevice);
+        //DDLogDebug(@"pFT_ResetDevice = %p", pFT_ResetDevice);
 
         pFT_Purge = dlsym(handle, "FT_Purge");
         NSAssert(pFT_Purge, @"FT_Purge");
-        //NSLog(@"pFT_Purge = %p", pFT_Purge);
+        //DDLogDebug(@"pFT_Purge = %p", pFT_Purge);
 
         pFT_Close = dlsym(handle, "FT_Close");
         NSAssert(pFT_Close, @"FT_Close");
-        //NSLog(@"pFT_Close = %p", pFT_Close);
+        //DDLogDebug(@"pFT_Close = %p", pFT_Close);
 
         pFT_ListDevices = dlsym(handle, "FT_ListDevices");
         NSAssert(pFT_ListDevices, @"FT_ListDevices");
-        //NSLog(@"pFT_ListDevices = %p", pFT_ListDevices);
+        //DDLogDebug(@"pFT_ListDevices = %p", pFT_ListDevices);
 
         dynamicLibraryHandle = handle;
     }
@@ -213,7 +213,7 @@ NSString* path;
                      productName:(NSString*)productName
 {
     if ((self = [super init])) {
-        NSLog(@"VTLog: Initialized with Vendor ID = %d, Product ID = %d, Serial Number = %@, Product Name = %@", vendorID, productID, serial, productName);
+        DDLogInfo(@"VTLog: Initialized with Vendor ID = %d, Product ID = %d, Serial Number = %@, Product Name = %@", vendorID, productID, serial, productName);
         _vendorID = vendorID;
         _productID = productID;
         _serial = [serial copy];
@@ -256,7 +256,7 @@ NSString* path;
     // Read the response, which should be an echo of the command.
     unsigned char response = [self readUnsignedChar];
     if (response != signalChar) {
-        NSLog(@"VTError: Wrong response %c to signal %c. Aborting.", response,
+        DDLogError(@"VTError: Wrong response %c to signal %c. Aborting.", response,
               signalChar);
         [self recover];
         return nil;
@@ -276,7 +276,7 @@ NSString* path;
     // parameters reception.
     response = [self readUnsignedChar];
     if (response != signalChar) {
-        NSLog(@"VTError: Wrong response %c to signal %c. Aborting.", response,
+        DDLogError(@"VTError: Wrong response %c to signal %c. Aborting.", response,
               signalChar);
         [self recover];
         return nil;
@@ -318,7 +318,7 @@ NSString* path;
             //NSLog(@"%f", currentTimestamp);
             
             if (previous != nil && fabs(currentTimestamp - previousTimestamp) > badDataJumpThreshold) {
-                NSLog(@"VTError: bad data detected! Previous datetime: (%f) %@, Current timestamp: (%f) %@", previousTimestamp, [previous.timestamp description], currentTimestamp, [current.timestamp description]);
+                DDLogError(@"VTError: bad data detected! Previous datetime: (%f) %@, Current timestamp: (%f) %@", previousTimestamp, [previous.timestamp description], currentTimestamp, [current.timestamp description]);
                 [self clearRTS];
                 return [results copy];
             }
@@ -360,7 +360,7 @@ NSString* path;
     // Read the response, which should be an echo of the command.
     unsigned char response = [self readUnsignedChar];
     if (response != signalChar) {
-        NSLog(@"VTError: Wrong response %c to signal %c. Aborting.", response,
+        DDLogError(@"VTError: Wrong response %c to signal %c. Aborting.", response,
               signalChar);
         [self recover];
         return nil;
@@ -380,7 +380,7 @@ NSString* path;
     // parameters reception.
     response = [self readUnsignedChar];
     if (response != signalChar) {
-        NSLog(@"VTError: Wrong response %c to signal %c. Aborting.", response,
+        DDLogError(@"VTError: Wrong response %c to signal %c. Aborting.", response,
               signalChar);
         [self recover];
         return nil;
@@ -401,9 +401,7 @@ NSString* path;
             
             
             [result readFromConnection:self];
-            
-            //NSLog(@"%@", [result description]);
-            
+                        
             [results addObject:result];
             
             [self.progressTracker
@@ -482,7 +480,6 @@ NSString* path;
 - (NSDate *)readDate {
     VTDateTime *dateToConvert = [VTDateTime vtDateWithPicBytes:[self readLength:[VTDateTime picRepresentationSize]]];
     NSDate * date = [dateToConvert date];
-    //NSLog(@"Date read: %@", [date description]);
     return date;
 }
 
@@ -510,11 +507,11 @@ NSString* path;
 
 # pragma mark Firmware code.
 
-+ (void) showDeviceUnresponsiveAlert {
+- (void) showDeviceUnresponsiveAlert {
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"Go to support page"];
-    [alert addButtonWithTitle:@"Close"];
-    [alert setMessageText:@"Device was unresponsive. Unable to update firmware."];
+    [alert addButtonWithTitle:@"OK"];
+    [alert setMessageText:@"Device appears to be unresponsive. Will attempt to force firmware update. Please contact support if update fails and problem persists."];
     [alert setInformativeText:@"To request help, go to this URL:\nhttp://www.velocitek.com/broken \n\nOr click the \"Go to support page\" button to open this URL in your default browser.\n"];
     [alert setAlertStyle:NSWarningAlertStyle];
     NSModalResponse result = [alert runModal];
@@ -540,9 +537,9 @@ NSString* path;
     // and user should contact support.
     if (response != 'R') {
         
-        [VTConnection showDeviceUnresponsiveAlert];
+        [self performSelectorOnMainThread:@selector(showDeviceUnresponsiveAlert) withObject:nil waitUntilDone:YES];
         
-        NSLog(@"VTError: Wrong response %c to signal %c.", response, signalChar);
+        DDLogError(@"VTError: Wrong response %c to signal %c.", response, signalChar);
         
         //[self recover];
         
@@ -574,29 +571,25 @@ NSString* path;
     [self.progressTracker setGoal:(float)numLinesInUpdate];
     [self.progressTracker setCurrentProgress:0.0];
     
-    NSLog(@"Starting to send firmware data.");
+    DDLogInfo(@"Starting to send firmware data.");
     // for each element in firmwareData
     for (NSData *dataLine in firmwareData) {
         
         status = (*pFT_GetStatus)(_ft_handle, &numBytesInRXQueue, &numBytesInTXQueue, &event);
-        NSAssert(FT_SUCCESS(status), @"Unexpected status.");
         
-        //NSLog(@"About to write firmware line %d.  %d bytes in RX Queue, %d bytes in TX Queue.", (int)lineCounter, numBytesInRXQueue, numBytesInTXQueue);
+        if (!FT_SUCCESS(status)) {
+            DDLogError(@"VTError: Firmware update failed status check at line %d with status = %d.", (int)lineCounter, status);
+            return FIRMWARE_UPDATE_FAILED;
+        }
         
-        usleep(10000);
+        //DDLogDebug(@"About to write firmware line %d.  %d bytes in RX Queue, %d bytes in TX Queue.", (int)lineCounter, numBytesInRXQueue, numBytesInTXQueue);
+        
+        usleep(1000);
         bytesWritten = [self write:dataLine];
         
         if (bytesWritten != [dataLine length]) {
-            NSLog(@"VTError: Firmware line %d was not written successfully.  "
-                  @"Aborting firmware update.",
-                  (int)lineCounter);
+            DDLogError(@"VTError: Firmware line %d was not written successfully. Aborting firmware update.", (int)lineCounter);
         }
-        
-        /*
-        [self readChar];
-        [self readChar];
-        [self readChar];
-        */
         
         if (![self readFirmwareUpdateFlowControlChars]) {
             return FIRMWARE_UPDATE_FAILED;
@@ -605,13 +598,14 @@ NSString* path;
         [self.progressTracker performSelectorOnMainThread:@selector(incrementProgress) withObject:nil waitUntilDone:YES];
         
         if (lineCounter == (numLinesInUpdate - 1)) {
-            // NSLog(@"Firmware update is now 100 %% complete");
+            DDLogInfo(@"Firmware update is now 100 %% complete");
             [self setFlowControl:NO];
             return FIRMWARE_UPDATE_SUCCEEDED;
         }
         
         lineCounter++;
     }
+    
     return FIRMWARE_UPDATE_FAILED;
 }
 
@@ -619,27 +613,27 @@ NSString* path;
     
     unsigned char firstFlowControlCharacter = [self readChar];  // XOFF;//
     if (firstFlowControlCharacter != XOFF) {
-        NSLog(@"VTError: First flow control character received from device not valid, aborting firmware update");
+        DDLogError(@"VTError: First flow control character received from device not valid, aborting firmware update");
         return FIRMWARE_UPDATE_FAILED;
     }
     
     unsigned char secondFlowControlCharacter = [self readChar];  // ACKLOD;//
     if (secondFlowControlCharacter == XON) {
-        NSLog(@"VTError: ACK (0x06) not received between XOFF and XON.  This means "
+        DDLogError(@"VTError: ACK (0x06) not received between XOFF and XON.  This means "
               @"the end of a firmware line was received by the device but the "
               @"line did not pass the checksum test.");
-        NSLog(@"Aborting firmware update.");
+        DDLogError(@"Aborting firmware update.");
         return FIRMWARE_UPDATE_FAILED;
     }
     else if (secondFlowControlCharacter != ACKLOD) {
-        NSLog(@"VTError: firmware line not acknowledged even though successfully "
+        DDLogError(@"VTError: firmware line not acknowledged even though successfully "
               @"written. Aborting firmware update");
         return FIRMWARE_UPDATE_FAILED;
     }
     
     unsigned thirdFlowControlCharacter = [self readChar];  // XON;//
     if (thirdFlowControlCharacter != XON) {
-        NSLog(@"VTError: Third flow control character received from device, not "
+        DDLogError(@"VTError: Third flow control character received from device, not "
               @"valid aborting firmware update");
         return FIRMWARE_UPDATE_FAILED;
     }
@@ -656,26 +650,26 @@ NSString* path;
     
     // Make sure the library can find the device I want.
     if ((ft_error = (*pFT_SetVIDPID)(_vendorID, _productID))) {
-        NSLog(@"VTError: Call to FT_SetVIDPID failed with error %u", ft_error);
+        DDLogError(@"VTError: Call to FT_SetVIDPID failed with error %u", ft_error);
         return false;
     }
     
     // Open the device, selecting it by serial number.
     const char *serialString = [_serial UTF8String];
     if ((ft_error = (*pFT_OpenEx)((char *)serialString, FT_OPEN_BY_SERIAL_NUMBER, &ft_handle))) {
-        NSLog(@"VTError: Call to FT_OpenEx (by serial) failed with error %u", ft_error);
+        DDLogError(@"VTError: Call to FT_OpenEx (by serial) failed with error %u", ft_error);
         
         sleep(0.5);
 
         // Try opening the device by product name
         const char *productNameString = [_productName UTF8String];
         if ((ft_error = (*pFT_OpenEx)((char *)productNameString, FT_OPEN_BY_DESCRIPTION, &ft_handle))) {
-            NSLog(@"VTError: Call to FT_OpenEx (by description) failed with error %u", ft_error);
+            DDLogError(@"VTError: Call to FT_OpenEx (by description) failed with error %u", ft_error);
         }
     }
     
     if (!ft_handle) {
-        NSLog(@"VTError: Unable to open device with serial number %@", _serial);
+        DDLogError(@"VTError: Unable to open device with serial number %@", _serial);
         return false;
     }
     
@@ -683,28 +677,28 @@ NSString* path;
     
     // Reset the device. Is this really necessary?
     if ((ft_error = (*pFT_ResetDevice)(ft_handle))) {
-        NSLog(@"VTError: Call to FT_ResetDevice failed with error %u", ft_error);
+        DDLogDebug(@"VTError: Call to FT_ResetDevice failed with error %u", ft_error);
         [self close];
         return false;
     }
     
     // Purge buffers. Probably not necessary either, but a good practice.
     if ((ft_error = (*pFT_Purge)(ft_handle, FT_PURGE_RX | FT_PURGE_TX))) {
-        NSLog(@"VTError: Call to FT_ResetDevice failed with error %u", ft_error);
+        DDLogDebug(@"VTError: Call to FT_ResetDevice failed with error %u", ft_error);
         [self close];
         return false;
     }
     
     // Set Baud Rate.
     if ((ft_error = (*pFT_SetBaudRate)(ft_handle, FT_BAUD_115200))) {
-        NSLog(@"VTError: Call to FT_SetBaudRate failed with error %u", ft_error);
+        DDLogDebug(@"VTError: Call to FT_SetBaudRate failed with error %u", ft_error);
         [self close];
         return false;
     }
     
     // Set parameters.
     if ((ft_error = (*pFT_SetDataCharacteristics)(ft_handle, FT_BITS_8, FT_STOP_BITS_1, FT_PARITY_NONE))) {
-        NSLog(@"VTError: Call to FT_SetDataCharacteristics failed with error %u",
+        DDLogDebug(@"VTError: Call to FT_SetDataCharacteristics failed with error %u",
               ft_error);
         [self close];
         return false;
@@ -713,7 +707,7 @@ NSString* path;
     // Set timeouts
     //
     if ((ft_error = (*pFT_SetTimeouts)(ft_handle, DRIVER_READ_TIMEOUT, DRIVER_WRITE_TIMEOUT))) {
-        NSLog(@"VTError: Call to FT_SetTimeouts failed with error %u", ft_error);
+        DDLogDebug(@"VTError: Call to FT_SetTimeouts failed with error %u", ft_error);
         [self close];
         return false;
     }
@@ -726,11 +720,11 @@ NSString* path;
 
 - (void)close {
     
-    //NSLog(@"%@",[NSThread callStackSymbols]);
+    //DDLogDebug(@"%@",[NSThread callStackSymbols]);
 
     FT_STATUS ft_error;
     if (_ft_handle && (ft_error = (*pFT_Close)(_ft_handle))) {
-        NSLog(@"VTError: Call to FT_Close failed with error %u", ft_error);
+        DDLogDebug(@"VTError: Call to FT_Close failed with error %u", ft_error);
     }
     _ft_handle = 0;
     _available = 0;
@@ -745,7 +739,7 @@ NSString* path;
     FT_STATUS ft_error;
     
     if ((ft_error = (*pFT_SetRts)(_ft_handle))) {
-        NSLog(@"VTError: Call to FT_SetRts failed with error %u", ft_error);
+        DDLogDebug(@"VTError: Call to FT_SetRts failed with error %u", ft_error);
         return;
     }
     usleep(50000);  // Give the device 50ms to react...
@@ -755,7 +749,7 @@ NSString* path;
     FT_STATUS ft_error;
     
     if ((ft_error = (*pFT_ClrRts)(_ft_handle))) {
-        NSLog(@"VTError: Call to FT_ClrRts failed with error %u", ft_error);
+        DDLogDebug(@"VTError: Call to FT_ClrRts failed with error %u", ft_error);
         return;
     }
     usleep(500000);  // Give the device 500ms to react...
@@ -771,7 +765,7 @@ NSString* path;
     }
     
     if (ft_error) {
-        NSLog(@"VTError: Call to FT_SetFlowControl failed with error %u", ft_error);
+        DDLogDebug(@"VTError: Call to FT_SetFlowControl failed with error %u", ft_error);
     }
 }
 
@@ -790,12 +784,12 @@ NSString* path;
     unsigned int returned_length = 0;
     if ((ft_error = (*pFT_Write)(_ft_handle, (void *)[data bytes],
                                  passed_length, &returned_length))) {
-        NSLog(@"VTError: Call to FT_Write failed with error %u", ft_error);
+        DDLogDebug(@"VTError: Call to FT_Write failed with error %u", ft_error);
         return 0;
     }
     sizedone = returned_length;
     if (sizedone != [data length]) {
-        NSLog(@"VTError: Call to FT_Write failed, wrote only %lu of %lu",
+        DDLogDebug(@"VTError: Call to FT_Write failed, wrote only %lu of %lu",
               (unsigned long)sizedone, (unsigned long)[data length]);
     }
     return sizedone;
@@ -813,7 +807,7 @@ NSString* path;
         DWORD event;
         
         if ((ft_error = (*pFT_GetStatus)(_ft_handle, &rxQueueLength, &txQueueLength,  &event))) {
-            NSLog(@"VTError: Call to FT_GetStatus failed with error %u", ft_error);
+            DDLogDebug(@"VTError: Call to FT_GetStatus failed with error %u", ft_error);
             return 0;
         }
         
@@ -824,14 +818,14 @@ NSString* path;
         usleep(timeoutInUSeconds/100);
     }
     
-    NSLog(@"waitForResponseLength timed out after waiting %d ms for %lu byte(s)", timeOutInMs, (unsigned long)length);
-    //NSLog(@"%@",[NSThread callStackSymbols]);
+    DDLogInfo(@"waitForResponseLength timed out after waiting %d ms for %lu byte(s)", timeOutInMs, (unsigned long)length);
+    //DDLogDebug(@"%@",[NSThread callStackSymbols]);
     return 0;
     
 }
 
 - (NSData *)readLength:(NSUInteger)length timeout:(int)timeOutInMs {
-    //NSLog(@"VTLOG: [VTConnection, readLength = %lu timeout = %d]", (unsigned long)length, timeOutInMs);  // VTLOG for debugging
+    //DDLogDebug(@"VTLOG: [VTConnection, readLength = %lu timeout = %d]", (unsigned long)length, timeOutInMs);  // VTLOG for debugging
     
     FT_STATUS ft_error;
     DWORD sizedone;
@@ -848,18 +842,18 @@ NSString* path;
     }
     
     if ((ft_error = (*pFT_Read)(_ft_handle, buffer, dword_length, &sizedone))) {
-        NSLog(@"VTError: Call to FT_Read failed with error %u", ft_error);
+        DDLogDebug(@"VTError: Call to FT_Read failed with error %u", ft_error);
         return nil;
     }
     
     _available -= sizedone;
     
     if (sizedone != length) {
-        NSLog(@"VTError: Call to FT_Read read only %u of %lu", sizedone, (unsigned long)length);
+        DDLogDebug(@"VTError: Call to FT_Read read only %u of %lu", sizedone, (unsigned long)length);
         return nil;
     }
     
-    //NSLog(@"Returning bytes of length: %d", (int)length);
+    //DDLogDebug(@"Returning bytes of length: %d", (int)length);
     
     return [NSData dataWithBytes:buffer length:length];
 }

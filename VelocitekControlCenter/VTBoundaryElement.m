@@ -90,7 +90,7 @@ Methods (private):
 	sortDescriptors = [NSArray arrayWithObject:sortDescriptor];
 	sortedArray = [trackpoints sortedArrayUsingDescriptors:sortDescriptors];
 	
-	//NSLog(@"sortedArray: %@",sortedArray);
+	//DDLogDebug(@"sortedArray: %@",sortedArray);
 							
 	if(minOrMax == MINIMUM)
 		//extremeValue = member of first element of the sorted array

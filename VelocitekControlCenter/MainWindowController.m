@@ -1,4 +1,4 @@
-it//
+//
 //  MainWindowController.m
 //  Velocitool
 //
@@ -42,6 +42,8 @@ it//
 
 #define PROSTART_FIRMWARE_FILE @"Velocitek_ProStart_1-6"
 #define SPEEDPUCK_FIRMWARE_FILE @"Velocitek_SpeedPuck_1-51"
+
+@import CocoaLumberjack;
 
 @interface MainWindowController (private)
 
@@ -111,11 +113,11 @@ it//
             
         case EV_ENTRY:
             
-            NSLog(@"VTLOG: READY, EV_ENTRY");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: READY, EV_ENTRY");  // VTLOG for debugging
             
             [self performSelectorOnMainThread:@selector(displayViewController:) withObject:trackLogViewController waitUntilDone:YES];
             //[self displayViewController:trackLogViewController];
-            //NSLog(@"Just changed to READY state.");
+            //DDLogDebug(@"Just changed to READY state.");
             
             //Wait for the main window to resize and check to see if any Velocitek devices are connected to the Mac
             [trackLogViewController performSelector: @selector(lookForAlreadyConnectedDevices) withObject: nil afterDelay: 0.5];
@@ -125,7 +127,7 @@ it//
             
         case EV_STARTED_ESTABLISHING_CONNECTION:
             
-            NSLog(@"VTLOG: READY, EV_STARTED_ESTABLISHING_CONNECTION");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: READY, EV_STARTED_ESTABLISHING_CONNECTION");  // VTLOG for debugging
             
             nextState = DOWNLOADING_TRACK_LOGS;//Decide what the next state will be
             
@@ -133,7 +135,7 @@ it//
             
         case EV_FILE_OPENED:
             
-            NSLog(@"VTLOG: READY, EV_FILE_OPENED");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: READY, EV_FILE_OPENED");  // VTLOG for debugging
             
             nextState = FILE_VIEW;//Decide what the next state will be
             
@@ -141,14 +143,14 @@ it//
             
         case EV_UPDATE_FIRMWARE_SELECTED:
             
-            NSLog(@"VTLOG: READY, EV_UPDATE_FIRMWARE_SELECTED");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: READY, EV_UPDATE_FIRMWARE_SELECTED");  // VTLOG for debugging
             
             nextState = UPLOADING_FIRMWARE; //Decide what the next state will be
             
             break;
             
         case EV_EXIT:
-            //                NSLog(@"VTLOG: READY, EV_EXIT");  // VTLOG for debugging
+            //                DDLogDebug(@"VTLOG: READY, EV_EXIT");  // VTLOG for debugging
             break;
             
     }
@@ -169,20 +171,20 @@ it//
     switch (currentEvent)
     {
         case EV_ENTRY:
-            NSLog(@"VTLOG: DOWNLOADING_TRACK_LOGS, EV_ENTRY");  // VTLOG for debugging
-            //NSLog(@"Just changed to DOWNLOADING TRACK LOGS state.");
+            DDLogDebug(@"VTLOG: DOWNLOADING_TRACK_LOGS, EV_ENTRY");  // VTLOG for debugging
+            //DDLogDebug(@"Just changed to DOWNLOADING TRACK LOGS state.");
             NSAssert([NSThread isMainThread], @"Should be on main thread!");
             [trackLogsDownloadingProgressIndicator setUsesThreadedAnimation:YES];
             [trackLogsDownloadingProgressIndicator startAnimation:self];
             break;
             
         case EV_TRACKLOGS_FINISHED_DOWNLOADING:
-            NSLog(@"VTLOG: DOWNLOADING_TRACK_LOGS, EV_TRACKLOGS_FINISHED_DOWNLOADING");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: DOWNLOADING_TRACK_LOGS, EV_TRACKLOGS_FINISHED_DOWNLOADING");  // VTLOG for debugging
             nextState = TRACK_LOG_VIEW;//Decide what the next state will be
             break;
             
         case EV_CONNECTION_INTERRUPTED:
-            NSLog(@"VTLOG: DOWNLOADING_TRACK_LOGS, EV_CONNECTION_INTERRUPTED");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: DOWNLOADING_TRACK_LOGS, EV_CONNECTION_INTERRUPTED");  // VTLOG for debugging
             nextState = READY;//Decide what the next state will be
             break;
             
@@ -205,32 +207,32 @@ it//
     switch (currentEvent)
     {
         case EV_ENTRY:
-            NSLog(@"VTLOG: TRACK_LOG_VIEW, EV_ENTRY");  // VTLOG for debugging
-            //NSLog(@"Just changed to TRACK LOG VIEW state.");
+            DDLogDebug(@"VTLOG: TRACK_LOG_VIEW, EV_ENTRY");  // VTLOG for debugging
+            //DDLogDebug(@"Just changed to TRACK LOG VIEW state.");
             break;
             
         case EV_DOWNLOAD_BUTTON_PRESSED:
-            NSLog(@"VTLOG: TRACK_LOG_VIEW, EV_DOWNLOAD_BUTTON_PRESSED");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: TRACK_LOG_VIEW, EV_DOWNLOAD_BUTTON_PRESSED");  // VTLOG for debugging
             nextState = DOWNLOADING_TRACK;//Decide what the next state will be
             break;
             
         case EV_FIRST_DEVICE_REMOVED:
-            NSLog(@"VTLOG: TRACK_LOG_VIEW, EV_FIRST_DEVICE_REMOVED");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: TRACK_LOG_VIEW, EV_FIRST_DEVICE_REMOVED");  // VTLOG for debugging
             nextState = READY;//Decide what the next state will be
             break;
             
         case EV_ERASE_ALL_CONFIRMED:
-            NSLog(@"VTLOG: TRACK_LOG_VIEW, EV_ERASE_ALL_CONFIRMED");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: TRACK_LOG_VIEW, EV_ERASE_ALL_CONFIRMED");  // VTLOG for debugging
             nextState = READY;//Decide what the next state will be
             break;
             
         case EV_FILE_OPENED:
-            NSLog(@"VTLOG: TRACK_LOG_VIEW, EV_FILE_OPENED");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: TRACK_LOG_VIEW, EV_FILE_OPENED");  // VTLOG for debugging
             nextState = FILE_VIEW;//Decide what the next state will be
             break;
             
         case EV_UPDATE_FIRMWARE_SELECTED:
-            NSLog(@"VTLOG: TRACK_LOG_VIEW, EV_UPDATE_FIRMWARE_SELECTED");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: TRACK_LOG_VIEW, EV_UPDATE_FIRMWARE_SELECTED");  // VTLOG for debugging
             nextState = UPLOADING_FIRMWARE;
             
         case EV_EXIT:
@@ -252,8 +254,8 @@ it//
     switch (currentEvent)
     {
         case EV_ENTRY:
-            NSLog(@"VTLOG: DOWNLOADING_TRACK, EV_ENTRY");  // VTLOG for debugging
-            //NSLog(@"Just changed to DOWNLOADING TRACK state.");
+            DDLogDebug(@"VTLOG: DOWNLOADING_TRACK, EV_ENTRY");  // VTLOG for debugging
+            //DDLogDebug(@"Just changed to DOWNLOADING TRACK state.");
             [trackLogViewController setDownloadButtonEnabled:NO];
             [trackFileViewController setDevice:[trackLogViewController firstConnectedDevice]];
             [trackFileViewController setTrackLogs:[trackLogViewController trackpointLogs]];
@@ -262,7 +264,7 @@ it//
             
             
         case EV_TRACK_FINISHED_DOWNLOADING:
-            NSLog(@"VTLOG: DOWNLOADING_TRACK, EV_TRACK_FINISHED_DOWNLOADING");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: DOWNLOADING_TRACK, EV_TRACK_FINISHED_DOWNLOADING");  // VTLOG for debugging
             
             nextState = FILE_VIEW;//Decide what the next state will be
 
@@ -277,7 +279,7 @@ it//
             break;
             
         case EV_CONNECTION_INTERRUPTED:
-            NSLog(@"VTLOG: DOWNLOADING_TRACK, EV_CONNECTION_INTERRUPTED");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: DOWNLOADING_TRACK, EV_CONNECTION_INTERRUPTED");  // VTLOG for debugging
             nextState = READY;//Decide what the next state will be
             [trackLogViewController setDownloadButtonEnabled:YES];
             break;
@@ -303,18 +305,18 @@ it//
     switch (currentEvent)
     {
         case EV_ENTRY:
-            NSLog(@"VTLOG: FILE_VIEW, EV_ENTRY");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: FILE_VIEW, EV_ENTRY");  // VTLOG for debugging
             [self performSelectorOnMainThread:@selector(displayViewController:) withObject:trackFileViewController waitUntilDone:YES];
             //[self displayViewController:trackFileViewController];
-            //NSLog(@"Just changed to TRACK FILE VIEW state.");
+            //DDLogDebug(@"Just changed to TRACK FILE VIEW state.");
             break;
             
         case EV_FILE_OPENED:
-            NSLog(@"VTLOG: FILE_VIEW, EV_FILE_OPENED");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: FILE_VIEW, EV_FILE_OPENED");  // VTLOG for debugging
             break;
             
         case EV_FILE_CLOSED:
-            NSLog(@"VTLOG: FILE_VIEW, EV_FILE_CLOSED");  // VTLOG for debugging
+            DDLogDebug(@"VTLOG: FILE_VIEW, EV_FILE_CLOSED");  // VTLOG for debugging
             nextState = READY;//Decide what the next state will be
             break;
             
@@ -337,13 +339,9 @@ it//
         alert = [[NSAlert alloc] init];
         [alert addButtonWithTitle:@"OK"];
         [alert setMessageText:@"Firware update succeeded!"];
-        [alert setInformativeText:@"Please disconnect, power off and back on, and reconnect the device to ensure proper function."];
+        [alert setInformativeText:@"Please disconnect the device, power it off and back on, and reconnect the device to ensure proper function."];
         [alert setAlertStyle:NSInformationalAlertStyle];
         [alert runModal];
-        
-        [trackLogViewController setUpdateFirmwareButtonEnabled:true];
-        [trackLogViewController setDownloadButtonEnabled:true];
-        [trackLogViewController setEraseAllTracksButtonEnabled:true];
     });
 }
 
@@ -356,10 +354,6 @@ it//
         [alert setInformativeText:@"Please try to update the firmware again."];
         [alert setAlertStyle:NSWarningAlertStyle];
         [alert runModal];
-        
-        [trackLogViewController setUpdateFirmwareButtonEnabled:true];
-        [trackLogViewController setDownloadButtonEnabled:true];
-        [trackLogViewController setEraseAllTracksButtonEnabled:true];
     });
     
 }
@@ -371,16 +365,13 @@ it//
     switch (currentEvent)
     {
         case EV_ENTRY:
-            NSLog(@"VTLOG: EV_UPDATE_FIRMWARE_SELECTED, EV_ENTRY");  // VTLOG for debugging
-            [trackLogViewController setUpdateFirmwareButtonEnabled:NO];
-            [trackLogViewController setDownloadButtonEnabled:NO];
-            [trackLogViewController setEraseAllTracksButtonEnabled:NO];
+            DDLogDebug(@"VTLOG: EV_UPDATE_FIRMWARE_SELECTED, EV_ENTRY");  // VTLOG for debugging
             nextState = [self doUpdateFirmware];
             break;
             
         case EV_UPDATE_FIRMWARE_UPDATE_SUCCESS:
             
-            NSLog(@"EV_UPDATE_FIRMWARE_UPDATE_SUCCESS");
+            DDLogDebug(@"EV_UPDATE_FIRMWARE_UPDATE_SUCCESS");
 
             [self firmwareUpdateSuccessHelper];
             
@@ -390,7 +381,7 @@ it//
             
         case EV_UPDATE_FIRMWARE_UPDATE_FAILURE:
             
-            NSLog(@"EV_UPDATE_FIRMWARE_UPDATE_FAILURE");
+            DDLogDebug(@"EV_UPDATE_FIRMWARE_UPDATE_FAILURE");
             
             [self firmwareUpdateFailureHelper];
 
@@ -472,7 +463,7 @@ it//
     [self performSelectorOnMainThread:@selector(displayViewController:) withObject:firmwareUpdateViewController waitUntilDone:YES];
     [firmwareUpdateViewController showInProgressTab];
     
-    NSLog(@"Updating firmware with file at path: %@", firmwareFilePath);
+    DDLogInfo(@"Updating firmware with file at path: %@", firmwareFilePath);
     
     VTFirmwareUpdateOperation * operation = [[VTFirmwareUpdateOperation alloc] initWithDevice:dev path:firmwareFilePath];
     
@@ -625,35 +616,35 @@ it//
 //Convert notifications into events for the state machine to process
 -(void)handleDownloadButtonPress:(NSNotification *)note
 {
-    //NSLog(@"Received notification: %@", [note name]);
+    //DDLogDebug(@"Received notification: %@", [note name]);
     [self runStateMachine:EV_DOWNLOAD_BUTTON_PRESSED];
     
 }
 
 -(void)handleTrackFinishedDownloading:(NSNotification *)note
 {
-    //NSLog(@"Received notification: %@", [note name]);
+    //DDLogDebug(@"Received notification: %@", [note name]);
     [self runStateMachine:EV_TRACK_FINISHED_DOWNLOADING];
     
 }
 
 -(void)handleStartedEstablishingConnectionWithDevice:(NSNotification *)note
 {
-    //NSLog(@"Received notification: %@", [note name]);
+    //DDLogDebug(@"Received notification: %@", [note name]);
     [self runStateMachine:EV_STARTED_ESTABLISHING_CONNECTION];
     
 }
 
 -(void)handleTrackLogsFinishedDownloading:(NSNotification *)note
 {
-    //NSLog(@"Received notification: %@", [note name]);
+    //DDLogDebug(@"Received notification: %@", [note name]);
     [self runStateMachine:EV_TRACKLOGS_FINISHED_DOWNLOADING];
     
 }
 
 -(void)handleFirstConnectedDeviceRemoved:(NSNotification *)note
 {
-    //NSLog(@"Received notification: %@", [note name]);
+    //DDLogDebug(@"Received notification: %@", [note name]);
     [self runStateMachine:EV_FIRST_DEVICE_REMOVED];
     
 }
@@ -661,7 +652,7 @@ it//
 - (void)handleFileOpenSelected:(NSNotification*)note
 {
     
-    //NSLog(@"Main window controller received notification: %@", [note name]);
+    //DDLogDebug(@"Main window controller received notification: %@", [note name]);
     
     NSInteger result;
     NSArray *fileTypes = [NSArray arrayWithObject:@"vcc"];

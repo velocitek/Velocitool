@@ -146,15 +146,12 @@
 		
 	}
 	
-	//NSArray *selectedObjects = [possibleValuesArrayController selectedObjects];
-	//NSLog(@"Selected objects: %@",selectedObjects);
-	
 	//if matching value found is still NO
 	if(matchingValueFound == NO)
 	{			
 						
 		//send error message to terminal 
-		NSLog(@"An option with the requested numerical value of %@ could not be found.  Using default value of %@ (%@) instead.",numVal, [defaultValue numericalValue], [defaultValue displayValue]);		
+		DDLogError(@"An option with the requested numerical value of %@ could not be found.  Using default value of %@ (%@) instead.",numVal, [defaultValue numericalValue], [defaultValue displayValue]);
 		 
 		[self setSelectedDeviceSetting:defaultValue];
 		

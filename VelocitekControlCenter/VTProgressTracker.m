@@ -22,7 +22,7 @@
 
 - (void)setGoal:(float)newGoal
 {
-    NSLog(@"VTLOG: [VTProgressTracker, setGoal = %f]", newGoal);  // VTLOG for debugging
+    DDLogDebug(@"VTLOG: [VTProgressTracker, setGoal = %f]", newGoal);  // VTLOG for debugging
     
 	goal = newGoal;
 	[self updatePercentage];
@@ -47,14 +47,11 @@
 
 - (float)progressPercentage
 {
-	//NSLog(@"-progressPercentage is returning %f", progressPercentage);
 	return progressPercentage;
 }
 
 - (void)setProgressPercentage:(float)x
 {
-	
-	//NSLog(@"-setProgressPercentage: is called with %f",x);
 	progressPercentage	= x;
 }
 

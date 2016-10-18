@@ -21,7 +21,7 @@
 
 - (void)main
 {
-    NSLog(@"VTLOG: [VTFirmwareUpdateOperation, testMain]");  // VTLOG for debugging
+    DDLogDebug(@"VTLOG: [VTFirmwareUpdateOperation, testMain]");  // VTLOG for debugging
     
     //NOTE: Make sure this is the absolute path to where the firmware file is on your machine
     if([device updateFirmware:pathToFirmwareFile])

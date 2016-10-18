@@ -141,7 +141,7 @@ commandParameterFromDate:(NSDate *)startTime
   unsigned char receivedHeaderCharacter = [connection readUnsignedChar];
 
   if (receivedHeaderCharacter != expectedHeaderCharacter) {
-    NSLog(@"VTError: Invalid record header received from device.  Received %c, "
+    DDLogError(@"VTError: Invalid record header received from device.  Received %c, "
           @"expected %c. Aborting.",
           receivedHeaderCharacter, expectedHeaderCharacter);
     [connection recover];

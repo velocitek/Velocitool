@@ -285,7 +285,7 @@
 				//[NSException raise:@"VTError" 
 				//			format:@"A VTDeviceSettingMenu object with the key member %@ could not be found in the menus array",key];		
 				
-				NSLog(@"A VTDeviceSettingMenu object with the key member %@ could not be found in the menus array",key);
+				DDLogError(@"A VTDeviceSettingMenu object with the key member %@ could not be found in the menus array",key);
 			}
 						
 		}
@@ -326,29 +326,24 @@
 
 -(IBAction)deviceOperationModeButtonSelected:(id)sender
 {
-	//NSLog(@"device operation mode changed");
 	[self chooseWhichMenusToEnable];
 }
 
 
 - (IBAction)closePanelAndSaveDeviceSettings:(id)sender
 {
-	//NSLog(@"OK button selected");
 	[self updateDeviceSettingsWithMenuSelections];
 	[self close];
 }
 
 - (IBAction)closePanelWithoutSavingDeviceSettings:(id)sender
 {
-	//NSLog(@"Cancel button selected");
 	[self close];
 }
 
 - (IBAction)restoreDefaults:(id)sender
 {
-	//NSLog(@"Restore Defaults button selected");
-		
-		
+				
 	for(NSString *key in menus)
 	{		
         

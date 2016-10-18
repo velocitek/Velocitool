@@ -26,7 +26,7 @@ static void _RawDeviceAdded(void *loader_ptr, io_iterator_t iterator) {
     
     while ((usbDevice = IOIteratorNext(iterator))) {
         [loader _addDevice:usbDevice];
-        NSLog(@"_RawDeviceAdded: %d", usbDevice);
+        DDLogDebug(@"_RawDeviceAdded: %d", usbDevice);
         IOObjectRelease(usbDevice);
     }
 }
@@ -37,7 +37,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
     
     while ((usbDevice = IOIteratorNext(iterator))) {
         [loader _removeDevice:usbDevice];
-        NSLog(@"_RawDeviceRemoved: %d", usbDevice);
+        DDLogDebug(@"_RawDeviceRemoved: %d", usbDevice);
         IOObjectRelease(usbDevice);
     }
 }
@@ -67,7 +67,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
         // Set up matching dictionary for class IOUSBDevice and its subclasses
         matchingDict = IOServiceMatching(kIOUSBDeviceClassName);
         if (!matchingDict) {
-            NSLog(@"ERR: Couldn’t create a USB matching dictionary");
+            DDLogError(@"ERR: Couldn’t create a USB matching dictionary");
             return nil;
         }
         
@@ -143,7 +143,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
 
 - (void)_addDevice:(io_service_t)usbDevice {
     
-    NSLog(@"VTDeviceLoader:_addDevice");
+    DDLogDebug(@"VTDeviceLoader:_addDevice");
     
     NSAssert(usbDevice, @"Unexpected empty usbDevice.");
     
@@ -199,7 +199,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
         
         VTDevice *device = [_devicesByLocation objectForKey:location];
         if (!device) {
-            NSLog(@"Removal of a device not properly registered.");
+            DDLogError(@"Removal of a device not properly registered.");
         }
         else {
             // Retain the serial as the device is likely to be deallocated.

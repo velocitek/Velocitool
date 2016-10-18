@@ -18,12 +18,10 @@
 }
 
 + (id)vtDateWithPicBytes:(NSData *)bytes {
-    //NSLog(@"VTLOG: [VTDateTime, vtDateWithPicBytes = %@]", bytes);  // VTLOG for debugging
     return [[self alloc] initWithPicDateRepresentation:bytes];
 }
 
 + (id)vtDateWithDate:(NSDate *)dateObject {
-    //NSLog(@"VTLOG: [VTDateTime, vtDateWithDate = %@]", dateObject);  // VTLOG for debugging
     return [[self alloc] initWithDate:dateObject];
 }
 
@@ -81,7 +79,7 @@
         
         VTDateTime * test = [[VTDateTime alloc] initWithPicDateRepresentation:_picDateRepresentation];
         
-        NSLog(@"Date created with bytes: %@\nAnd string: %@\nFor original date: %@", [_picDateRepresentation description], [test description], [date description]);
+        DDLogDebug(@"Date created with bytes: %@\nAnd string: %@\nFor original date: %@", [_picDateRepresentation description], [test description], [date description]);
         
     }
     
@@ -93,7 +91,7 @@
         
         _picDateRepresentation = bytes;
         
-        //NSLog(@"%@", [_picDateRepresentation description]);
+        //DDLogDebug(@"%@", [_picDateRepresentation description]);
         
         unsigned char picBytes[[VTDateTime picRepresentationSize]];
         [_picDateRepresentation getBytes:picBytes length:[VTDateTime picRepresentationSize]];

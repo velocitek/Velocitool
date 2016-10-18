@@ -79,9 +79,7 @@
 //  NSAssert([bytes length] == [self picRepresentationSize], @"Invalid input");
     
     if ( !bytes )  // if bytes is null
-    {
-        NSLog(@"VTLOG: [VTFloat, vtFloatWithPicBytes = %@]", bytes);  // VTLOG for debugging
-        
+    {        
         return [[self alloc] initWithFloat:0.0f];
     }
     
@@ -89,8 +87,6 @@
 }
 
 + (id)vtFloatWithFloat:(float)f {
-    NSLog(@"VTLOG: [VTFloat, vtFloatWithFloat = %f]", f);  // VTLOG for debugging
-    
   return [[self alloc] initWithFloat:f];
 }
 
