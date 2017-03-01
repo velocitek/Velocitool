@@ -31,7 +31,7 @@
 <key>NSSupportsAutomaticGraphicsSwitching</key>
 <true/>
 <key>JVMRuntime</key>
-<string>jdk1.7.0_79.jdk</string>
+<string>jdk1.8.0_102.jdk</string>
 <key>JVMVersion</key>
 <string>1.5+</string>
 <key>JVMMainClassName</key>

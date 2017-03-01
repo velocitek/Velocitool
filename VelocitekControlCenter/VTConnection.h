@@ -64,7 +64,6 @@
 - (void) close;
 + (void) reloadDynamicLibrary;
 - (void) closeConnectionAndReloadLibrary;
-+ (void) showDeviceUnresponsiveAlert;
 - (void) showDeviceUnresponsiveAlert;
 
 @end

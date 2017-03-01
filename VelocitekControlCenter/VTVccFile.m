@@ -105,8 +105,7 @@
     gpxFileWrapper = [[NSFileWrapper alloc] init];
     kmlFileWrapper = [[NSFileWrapper alloc] init];
 
-    NSString *fileNameWithoutExtension =
-        [self removeVccExtensionFromFileName:[vccFileWrapper filename]];
+    NSString *fileNameWithoutExtension = [self removeVccExtensionFromFileName:[vccFileWrapper filename]];
     [self setFileWrapperFilenames:fileNameWithoutExtension];
 
     vccFormatXmlDoc = [[NSXMLDocument alloc] initWithContentsOfURL:fileLocation

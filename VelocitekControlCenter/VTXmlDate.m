@@ -33,8 +33,7 @@
 - (id)initWithVccDateString:(NSString *)vccDateString {
     if ((self = [super init])) {
         // convert the vcc date string to international format
-        NSString *internationalString =
-        [self convertVccDateStringToInternationalFormat:vccDateString];
+        NSString *internationalString = [self convertVccDateStringToInternationalFormat:vccDateString];
         
         date = [NSDate dateWithString:internationalString];
     }
@@ -106,10 +105,7 @@
         stringGuaranteedToHaveTimezone = vccDateString;
     }
     
-    NSString *stringWithSpaceInsteadOfTBetweenDateAndTime =
-    [stringGuaranteedToHaveTimezone
-     stringByReplacingOccurrencesOfString:@"T"
-     withString:@" "];
+    NSString *stringWithSpaceInsteadOfTBetweenDateAndTime = [stringGuaranteedToHaveTimezone stringByReplacingOccurrencesOfString:@"T" withString:@" "];
     
     NSString *stringWithSpaceInFrontOfTimezone = [self putSpaceBetweenTimeAndTimezone:stringWithSpaceInsteadOfTBetweenDateAndTime];
     
@@ -133,8 +129,7 @@
 }
 
 - (NSUInteger)countColons:(NSString *)stringWithColons {
-    NSUInteger numberOfColons =
-    [[stringWithColons componentsSeparatedByString:@":"] count] - 1;
+    NSUInteger numberOfColons = [[stringWithColons componentsSeparatedByString:@":"] count] - 1;
     return numberOfColons;
 }
 

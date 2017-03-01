@@ -654,20 +654,26 @@
     
     //DDLogDebug(@"Main window controller received notification: %@", [note name]);
     
-    NSInteger result;
-    NSArray *fileTypes = [NSArray arrayWithObject:@"vcc"];
-    NSOpenPanel *oPanel = [NSOpenPanel openPanel];
-    
-    [oPanel setAllowedFileTypes:fileTypes];
-    
-    result = [oPanel runModal];
-    
-    if (result == NSOKButton) {
+    dispatch_async(dispatch_get_main_queue(), ^{
         
-        [trackFileViewController initializeCurrentFileFromURL:[oPanel URL]];
-        [self runStateMachine:EV_FILE_OPENED];
+        NSInteger result;
+        NSArray *fileTypes = [NSArray arrayWithObject:@"vcc"];
+        NSOpenPanel *oPanel = [NSOpenPanel openPanel];
         
-    }
+        [oPanel setAllowedFileTypes:fileTypes];
+        
+        result = [oPanel runModal];
+        
+        if (result == NSOKButton) {
+            
+            [trackFileViewController initializeCurrentFileFromURL:[oPanel URL]];
+            [self runStateMachine:EV_FILE_OPENED];
+            
+        }
+        
+    });
+    
+
     
 }
 

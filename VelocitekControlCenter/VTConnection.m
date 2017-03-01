@@ -102,7 +102,7 @@ NSString* path;
     if (self != [VTConnection self]) {
         return;
     }
-    path = [[NSBundle mainBundle] pathForResource:@"libftd2xx.1.2.2.dylib" ofType:@""];
+    path = [[NSBundle mainBundle] pathForResource:@"libftd2xx.1.4.4.dylib" ofType:@""];
     [VTConnection loadDynamicLibrary];
 }
 

@@ -10,13 +10,18 @@
 		095982001D624BE000B9D190 /* VTDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 095981FF1D624BE000B9D190 /* VTDefines.m */; };
 		47076CE21DAD767B003944BC /* Velocitek_ProStart_1-6.hex in Resources */ = {isa = PBXBuildFile; fileRef = 47076CE01DAD767B003944BC /* Velocitek_ProStart_1-6.hex */; };
 		47076CE31DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex in Resources */ = {isa = PBXBuildFile; fileRef = 47076CE11DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex */; };
+		4723BC091E66857E0085123C /* velocitool2.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4723BC081E66857E0085123C /* velocitool2.icns */; };
+		4723BC0B1E6685C00085123C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4723BC0A1E6685C00085123C /* Images.xcassets */; };
+		4723BC0D1E6686C70085123C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4723BC0C1E6686C70085123C /* Entitlements.plist */; };
 		47535E861D90987D00512DF3 /* post-build-script.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47535E851D90987D00512DF3 /* post-build-script.txt */; };
 		475A21CC1DB43BD200D6DCBF /* FirmwareUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 475A21CB1DB43BD200D6DCBF /* FirmwareUpdateViewController.m */; };
+		476095A11E52201F000AF7CF /* GPS-Action-Replay.app in Resources */ = {isa = PBXBuildFile; fileRef = 47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */; };
+		4774789E1E48D9B80066F342 /* Velocitek_Control_Center_Unit_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774789D1E48D9B80066F342 /* Velocitek_Control_Center_Unit_Tests.m */; };
 		478CE9861D99AB1900DAD61A /* VTDateTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7080EFD4115C35D00013C9C3 /* VTDateTime.m */; };
 		478D01281D9B46B600F673CD /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478D01271D9B46B500F673CD /* CocoaLumberjack.framework */; };
-		478D01291D9B46B600F673CD /* CocoaLumberjack.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 478D01271D9B46B500F673CD /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		479B12861DB1767F00A04F56 /* FirmwareUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B12851DB1767F00A04F56 /* FirmwareUpdateView.xib */; };
-		47FD75671D88944C00DEEE0E /* GPS-Action-Replay.app in Resources */ = {isa = PBXBuildFile; fileRef = 47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */; };
+		47F9035B1E64BD050098D83E /* libftd2xx.1.4.4.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 47F9035A1E64BD050098D83E /* libftd2xx.1.4.4.dylib */; };
+		47F9035C1E64BD960098D83E /* libftd2xx.1.4.4.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 47F9035A1E64BD050098D83E /* libftd2xx.1.4.4.dylib */; };
 		7009C76B11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
 		70135D3711D082A50046A8BF /* DeviceSettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 70135D3511D082A50046A8BF /* DeviceSettingsController.m */; };
 		70135D3D11D0832C0046A8BF /* DeviceSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70135D3C11D0832C0046A8BF /* DeviceSettings.xib */; };
@@ -57,7 +62,6 @@
 		ED4B99C80F1548A000AF563B /* VTDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B99C70F1548A000AF563B /* VTDevice.m */; };
 		ED4B9A590F155F8700AF563B /* VTDeviceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */; };
 		ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EDFC3F690EF8948D00E1DD2F /* IOKit.framework */; };
-		ED80A45F1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib in Resources */ = {isa = PBXBuildFile; fileRef = ED80A45E1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib */; };
 		EDA9F4020F16B638004112D5 /* VTCommand.m in Sources */ = {isa = PBXBuildFile; fileRef = EDA9F4000F16B638004112D5 /* VTCommand.m */; };
 		EDE897E41158CDCF009E8151 /* tool.m in Sources */ = {isa = PBXBuildFile; fileRef = EDE897E31158CDCF009E8151 /* tool.m */; };
 		EDE897E61158CE3A009E8151 /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
@@ -70,6 +74,16 @@
 		EDFC3EF70EF81CCF00E1DD2F /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = EDFC3EF60EF81CCF00E1DD2F /* dsa_pub.pem */; };
 		EDFC3F4E0EF88A5A00E1DD2F /* velocitool.icns in Resources */ = {isa = PBXBuildFile; fileRef = EDFC3F4D0EF88A5A00E1DD2F /* velocitool.icns */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		477478A01E48D9B80066F342 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
+			remoteInfo = "Velocitek Control Center";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		7086E29411F531DB00EEC381 /* CopyFiles */ = {
@@ -87,7 +101,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				478D01291D9B46B600F673CD /* CocoaLumberjack.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,12 +119,20 @@
 		32CA4F630368D1EE00C91783 /* Velocitool_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Velocitool_Prefix.pch; sourceTree = "<group>"; };
 		47076CE01DAD767B003944BC /* Velocitek_ProStart_1-6.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Velocitek_ProStart_1-6.hex"; sourceTree = "<group>"; };
 		47076CE11DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Velocitek_SpeedPuck_1-51.hex"; sourceTree = "<group>"; };
+		4723BC081E66857E0085123C /* velocitool2.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = velocitool2.icns; sourceTree = "<group>"; };
+		4723BC0A1E6685C00085123C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Velocitek Control Center/Images.xcassets"; sourceTree = "<group>"; };
+		4723BC0C1E6686C70085123C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		47535E851D90987D00512DF3 /* post-build-script.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "post-build-script.txt"; sourceTree = "<group>"; };
 		475A21CA1DB43BD200D6DCBF /* FirmwareUpdateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirmwareUpdateViewController.h; sourceTree = "<group>"; };
 		475A21CB1DB43BD200D6DCBF /* FirmwareUpdateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirmwareUpdateViewController.m; sourceTree = "<group>"; };
+		4774789B1E48D9B80066F342 /* Velocitek Control Center Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Velocitek Control Center Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4774789D1E48D9B80066F342 /* Velocitek_Control_Center_Unit_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Velocitek_Control_Center_Unit_Tests.m; sourceTree = "<group>"; };
+		4774789F1E48D9B80066F342 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		478D01271D9B46B500F673CD /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = Carthage/Build/Mac/CocoaLumberjack.framework; sourceTree = "<group>"; };
 		478D012B1D9B46F900F673CD /* CocoaLumberjack.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CocoaLumberjack.framework.dSYM; path = Carthage/Build/Mac/CocoaLumberjack.framework.dSYM; sourceTree = "<group>"; };
 		479B12851DB1767F00A04F56 /* FirmwareUpdateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirmwareUpdateView.xib; sourceTree = "<group>"; };
+		47F9035A1E64BD050098D83E /* libftd2xx.1.4.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libftd2xx.1.4.4.dylib; sourceTree = "<group>"; };
+		47F9035D1E64C2350098D83E /* Velocitek Control Center.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Velocitek Control Center.entitlements"; sourceTree = "<group>"; };
 		47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "GPS-Action-Replay.app"; path = "../app-bundler/build/GPS-Action-Replay.app"; sourceTree = "<group>"; };
 		7009C76811BF52FF0076DB4D /* VTProgressTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTProgressTracker.h; sourceTree = "<group>"; };
 		7009C76911BF52FF0076DB4D /* VTProgressTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTProgressTracker.m; sourceTree = "<group>"; };
@@ -180,10 +201,8 @@
 		ED4B99C70F1548A000AF563B /* VTDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDevice.m; sourceTree = "<group>"; };
 		ED4B9A570F155F8700AF563B /* VTDeviceLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDeviceLoader.h; sourceTree = "<group>"; };
 		ED4B9A580F155F8700AF563B /* VTDeviceLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDeviceLoader.m; sourceTree = "<group>"; };
-		ED6505F90F099EDD0018D068 /* libftd2xx.0.1.7.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; path = libftd2xx.0.1.7.dylib; sourceTree = "<group>"; };
 		ED6505FE0F099EFE0018D068 /* ftd2xx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftd2xx.h; sourceTree = "<group>"; };
 		ED6C716F0F09A89D00BF3260 /* WinTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinTypes.h; sourceTree = "<group>"; };
-		ED80A45E1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libftd2xx.1.2.2.dylib; sourceTree = "<group>"; };
 		EDA9F3FF0F16B638004112D5 /* VTCommand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTCommand.h; sourceTree = "<group>"; };
 		EDA9F4000F16B638004112D5 /* VTCommand.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTCommand.m; sourceTree = "<group>"; };
 		EDE897DA1158CD2D009E8151 /* Tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Tool; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -200,10 +219,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		477478981E48D9B80066F342 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072E0486CEB800E47090 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47F9035B1E64BD050098D83E /* libftd2xx.1.4.4.dylib in Frameworks */,
 				ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */,
 				478D01281D9B46B600F673CD /* CocoaLumberjack.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
@@ -248,6 +275,7 @@
 			children = (
 				8D1107320486CEB800E47090 /* Velocitek Control Center.app */,
 				EDE897DA1158CD2D009E8151 /* Tool */,
+				4774789B1E48D9B80066F342 /* Velocitek Control Center Unit Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -255,6 +283,7 @@
 		29B97314FDCFA39411CA2CEA /* Velocitool */ = {
 			isa = PBXGroup;
 			children = (
+				47F9035D1E64C2350098D83E /* Velocitek Control Center.entitlements */,
 				478D012B1D9B46F900F673CD /* CocoaLumberjack.framework.dSYM */,
 				478D01271D9B46B500F673CD /* CocoaLumberjack.framework */,
 				47535E851D90987D00512DF3 /* post-build-script.txt */,
@@ -265,6 +294,7 @@
 				ED21C5D30F64779E002BE074 /* View */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				4774789C1E48D9B80066F342 /* Velocitek Control Center Unit Tests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -283,12 +313,14 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4723BC0A1E6685C00085123C /* Images.xcassets */,
+				47F9035A1E64BD050098D83E /* libftd2xx.1.4.4.dylib */,
 				47076CE01DAD767B003944BC /* Velocitek_ProStart_1-6.hex */,
 				47076CE11DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex */,
 				47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */,
 				EDF727250F4234B700E503AE /* images */,
-				7080EDF61159AA510013C9C3 /* libftd2xx.0.1.7.dylib */,
 				EDFC3F4D0EF88A5A00E1DD2F /* velocitool.icns */,
+				4723BC081E66857E0085123C /* velocitool2.icns */,
 				EDFC3EF60EF81CCF00E1DD2F /* dsa_pub.pem */,
 				70135D3C11D0832C0046A8BF /* DeviceSettings.xib */,
 				77C8C1F70C07829500965286 /* MainMenu.xib */,
@@ -298,6 +330,7 @@
 				7023A9F011ACE36400975EC0 /* TrackLogView.xib */,
 				7023AA2E11ACFB9B00975EC0 /* TrackFileView.xib */,
 				709C83BA11AD1CBE00663AFB /* MainWindow.xib */,
+				4723BC0C1E6686C70085123C /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -309,6 +342,15 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4774789C1E48D9B80066F342 /* Velocitek Control Center Unit Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4774789D1E48D9B80066F342 /* Velocitek_Control_Center_Unit_Tests.m */,
+				4774789F1E48D9B80066F342 /* Info.plist */,
+			);
+			path = "Velocitek Control Center Unit Tests";
 			sourceTree = "<group>";
 		};
 		708274E211B5CF9B00DD66FF /* XML */ = {
@@ -429,6 +471,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4774789A1E48D9B80066F342 /* Velocitek Control Center Unit Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 477478A21E48D9B80066F342 /* Build configuration list for PBXNativeTarget "Velocitek Control Center Unit Tests" */;
+			buildPhases = (
+				477478971E48D9B80066F342 /* Sources */,
+				477478981E48D9B80066F342 /* Frameworks */,
+				477478991E48D9B80066F342 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				477478A11E48D9B80066F342 /* PBXTargetDependency */,
+			);
+			name = "Velocitek Control Center Unit Tests";
+			productName = "Velocitek Control Center Unit Tests";
+			productReference = 4774789B1E48D9B80066F342 /* Velocitek Control Center Unit Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8D1107260486CEB800E47090 /* Velocitek Control Center */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Velocitek Control Center" */;
@@ -471,11 +531,23 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0730;
 				TargetAttributes = {
+					4774789A1E48D9B80066F342 = {
+						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 4RQWHVTUNE;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 8D1107260486CEB800E47090;
+					};
 					8D1107260486CEB800E47090 = {
 						DevelopmentTeam = 4RQWHVTUNE;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -495,29 +567,40 @@
 			targets = (
 				8D1107260486CEB800E47090 /* Velocitek Control Center */,
 				EDE897D91158CD2D009E8151 /* Tool */,
+				4774789A1E48D9B80066F342 /* Velocitek Control Center Unit Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		477478991E48D9B80066F342 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D1107290486CEB800E47090 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				47076CE21DAD767B003944BC /* Velocitek_ProStart_1-6.hex in Resources */,
+				4723BC0D1E6686C70085123C /* Entitlements.plist in Resources */,
 				47076CE31DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex in Resources */,
+				47F9035C1E64BD960098D83E /* libftd2xx.1.4.4.dylib in Resources */,
+				476095A11E52201F000AF7CF /* GPS-Action-Replay.app in Resources */,
 				479B12861DB1767F00A04F56 /* FirmwareUpdateView.xib in Resources */,
-				ED80A45F1C4A57A9003DF999 /* libftd2xx.1.2.2.dylib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				77C8C1F90C07829500965286 /* MainMenu.xib in Resources */,
 				EDFC3EF70EF81CCF00E1DD2F /* dsa_pub.pem in Resources */,
-				47FD75671D88944C00DEEE0E /* GPS-Action-Replay.app in Resources */,
 				EDFC3F4E0EF88A5A00E1DD2F /* velocitool.icns in Resources */,
+				4723BC091E66857E0085123C /* velocitool2.icns in Resources */,
 				EDF726C20F422E1D00E503AE /* SpeedPuck.icns in Resources */,
 				EDF726E50F42318F00E503AE /* S10.jpg in Resources */,
 				EDF726E60F42318F00E503AE /* SC1.jpg in Resources */,
 				ED3976741C427AEB00147C1F /* README.md in Resources */,
 				7023A9F111ACE36400975EC0 /* TrackLogView.xib in Resources */,
+				4723BC0B1E6685C00085123C /* Images.xcassets in Resources */,
 				7023AA2F11ACFB9B00975EC0 /* TrackFileView.xib in Resources */,
 				709C83BB11AD1CBE00663AFB /* MainWindow.xib in Resources */,
 				70135D3D11D0832C0046A8BF /* DeviceSettings.xib in Resources */,
@@ -530,6 +613,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		477478971E48D9B80066F342 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4774789E1E48D9B80066F342 /* Velocitek_Control_Center_Unit_Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -582,6 +673,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		477478A11E48D9B80066F342 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* Velocitek Control Center */;
+			targetProxy = 477478A01E48D9B80066F342 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
@@ -590,14 +689,6 @@
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
-		};
-		7080EDF61159AA510013C9C3 /* libftd2xx.0.1.7.dylib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				ED6505F90F099EDD0018D068 /* libftd2xx.0.1.7.dylib */,
-			);
-			name = libftd2xx.0.1.7.dylib;
-			sourceTree = SOURCE_ROOT;
 		};
 		77C8C1F70C07829500965286 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
@@ -610,14 +701,111 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		477478A31E48D9B80066F342 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4RQWHVTUNE;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "Velocitek Control Center Unit Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.traveltar.Velocitek-Control-Center-Unit-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Velocitek Control Center.app/Contents/MacOS/Velocitek Control Center";
+			};
+			name = Debug;
+		};
+		477478A41E48D9B80066F342 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 4RQWHVTUNE;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "Velocitek Control Center Unit Tests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.traveltar.Velocitek-Control-Center-Unit-Tests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Velocitek Control Center.app/Contents/MacOS/Velocitek Control Center";
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 20;
 				DEVELOPMENT_TEAM = 4RQWHVTUNE;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)",
@@ -657,13 +845,14 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitekcontrolcenter;
 				PRODUCT_NAME = "Velocitek Control Center";
 				SDKROOT = macosx;
@@ -676,10 +865,12 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 20;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 4RQWHVTUNE;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -717,13 +908,14 @@
 				GCC_WARN_UNUSED_PARAMETER = NO;
 				GCC_WARN_UNUSED_VALUE = YES;
 				INFOPLIST_FILE = Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
+				INSTALL_PATH = /Applications;
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"$(PROJECT_DIR)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitekcontrolcenter;
 				PRODUCT_NAME = "Velocitek Control Center";
 				SDKROOT = macosx;
@@ -736,10 +928,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				ENABLE_TESTABILITY = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx;
@@ -750,9 +943,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				SDKROOT = macosx;
 			};
@@ -864,6 +1059,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		477478A21E48D9B80066F342 /* Build configuration list for PBXNativeTarget "Velocitek Control Center Unit Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				477478A31E48D9B80066F342 /* Debug */,
+				477478A41E48D9B80066F342 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "Velocitek Control Center" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
