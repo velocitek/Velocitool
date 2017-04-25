@@ -63,7 +63,7 @@ static NSDictionary *productIDToClass = nil;
     
     DDLogInfo(@"deviceForUSBProperties");
     
-    int productID = [[usbProperties objectForKey:@kUSBProductID] intValue];
+    unsigned int productID = [[usbProperties objectForKey:@kUSBProductID] unsignedIntValue];
     
     NSAssert(productID, @"No productID");
     
@@ -72,7 +72,7 @@ static NSDictionary *productIDToClass = nil;
         return nil;
     }
     
-    int vendorID = [[usbProperties objectForKey:@kUSBVendorID] intValue];
+    unsigned int vendorID = [[usbProperties objectForKey:@kUSBVendorID] unsignedIntValue];
     NSAssert(vendorID, @"No vendor ID");
     
     NSString *serial = [usbProperties objectForKey:@kUSBSerialNumberString];

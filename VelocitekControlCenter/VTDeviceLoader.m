@@ -54,6 +54,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
 
 - init {
     if ((self = [super init])) {
+        
         _devicesByLocation = [[NSMutableDictionary alloc] init];
         _devicesBySerial = [[NSMutableDictionary alloc] init];
         
@@ -144,7 +145,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
 - (void)_addDevice:(io_service_t)usbDevice {
     
     DDLogDebug(@"VTDeviceLoader:_addDevice");
-    
+        
     NSAssert(usbDevice, @"Unexpected empty usbDevice.");
     
     CFMutableDictionaryRef properties;
@@ -173,8 +174,7 @@ static void _RawDeviceRemoved(void *loader_ptr, io_iterator_t iterator) {
                 [[NSNotificationCenter defaultCenter]
                  postNotificationName:VTDeviceAddedNotification
                  object:self
-                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:serial, @"serial", location, @"location", nil]
-                 ];
+                 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:serial, @"serial", location, @"location", nil]];
                 
             }
         }

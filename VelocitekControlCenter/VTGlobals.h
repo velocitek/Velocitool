@@ -4,6 +4,11 @@
 extern void VTRaiseAbstractMethodException(id object, SEL _cmd,
                                            Class abstractClass);
 
+extern void SetVelocitekFilesDir(NSString* path);
+extern NSString* GetVelocitekFilesDir(void);
+extern bool IsSetVelocitekFilesDir(void);
+extern bool PathExistsAndIsDir(NSString* path);
+
 #define VTDeclinationPref    @"declination"
 
 #define VTRecordRatePref          @"recordRate"
@@ -59,6 +64,7 @@ extern void VTRaiseAbstractMethodException(id object, SEL _cmd,
 #define VTCloseButtonPressedNotification @"VTCloseButtonPressedNotification" 
 #define VTExportGPXButtonSelectedNotification @"VTExportGPXButtonSelectedNotification" 
 #define VTExportKMLButtonSelectedNotification @"VTExportKMLButtonSelectedNotification" 
+#define VTDefaultDirectoryButtonSelectedNotification @"VTDefaultDirectoryButtonSelectedNotification"
 
 #define VTUpdateDeviceSettingsButtonSelectedNotification @"VTUpdateDeviceSettingsButtonSelectedNotification" 
 
@@ -72,3 +78,5 @@ extern void VTRaiseAbstractMethodException(id object, SEL _cmd,
 
 #define VTUpdateFirmwareNotification @"VTUpdateFirmwareNotification"
 #define VTUpdateFirmwareFinishedNotification @"VTUpdateFirmwareFinishedNotification"
+
+#define VCCDefaultFileDirPrefKey @"VCC_DEFAULT_FILE_DIR"

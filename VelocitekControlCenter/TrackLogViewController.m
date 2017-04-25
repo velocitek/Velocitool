@@ -48,6 +48,12 @@ NSString *VTFirstConnectedDeviceRemovedNotification = @"VTFirstConnectedDeviceRe
 	[notificationCenter postNotificationName:VTOpenButtonSelectedNotification object:self];
 }
 
+- (IBAction)setDefaultFileDirectory:(id)sender
+{
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter postNotificationName:VTDefaultDirectoryButtonSelectedNotification object:self];
+}
+
 - (IBAction)updateDeviceSettings:(id)sender
 {
 	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];

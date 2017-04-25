@@ -493,6 +493,10 @@
 -(void)runStateMachine:(unsigned int)currentEvent
 {
    	
+    if (![MainWindowController isSetFileDirectoryInPrefs]) {
+       [self pickVelocitekDirectory];
+    }
+    
     unsigned int nextState;
     
     switch (currentState)
@@ -535,6 +539,8 @@
     }
     
 }
+
+
 
 -(void)registerForNotifications
 {
@@ -595,6 +601,10 @@
                name:VTUpdateFirmwareFinishedNotification
              object:nil];
     
+    [nc addObserver:self
+           selector:@selector(handleSetDefaultFileDirectoryNotification:)
+               name:VTDefaultDirectoryButtonSelectedNotification
+             object:nil];
 }
 
 - (void)handleUpdateFirmwareNotification:(NSNotification *)note {
@@ -675,6 +685,65 @@
     
 
     
+}
+
+
+- (void) pickVelocitekDirectory {
+    
+    // Get the main window for the document.
+    NSWindow* window = [self window];
+    
+    // Create and configure the panel.
+    NSOpenPanel* panel = [NSOpenPanel openPanel];
+    [panel setCanChooseDirectories:YES];
+    [panel setCanChooseFiles:NO];
+    [panel setAllowsMultipleSelection:NO];
+    [panel setCanCreateDirectories:YES];
+    [panel setTitle:@"Pick a directory"];
+    [panel setMessage:@"Please choose a directory for your Velocitek files"];
+    
+    // Display the panel attached to the document's window.
+    [panel beginSheetModalForWindow:window completionHandler:^(NSInteger result){
+        if (result == NSFileHandlingPanelOKButton) {
+            
+            NSArray* urls = [panel URLs];
+            
+            NSURL * url = [urls firstObject];
+            
+            [MainWindowController setFileDirectoryInPrefs:url];
+            
+        }
+        
+    }];
+
+}
+
+- (void)handleSetDefaultFileDirectoryNotification:(NSNotification*)note
+{
+    [self pickVelocitekDirectory];
+}
+
++ (NSURL*) getFileDirectoryFromPrefs {
+    NSString * path = [[NSUserDefaults standardUserDefaults] objectForKey:VCCDefaultFileDirPrefKey];
+    if (path != nil) {
+        NSURL * url = [NSURL fileURLWithPath:path];
+        return url;
+    }
+    else {
+        return nil;
+    }
+}
+
++ (void) setFileDirectoryInPrefs: (NSURL *) url {
+    NSString * path = [url absoluteString];
+    DDLogInfo(@"VCC file directory set: %@", path);
+    [[NSUserDefaults standardUserDefaults] setObject:path forKey:VCCDefaultFileDirPrefKey];
+}
+
++ (bool) isSetFileDirectoryInPrefs {
+    NSURL * url = [MainWindowController getFileDirectoryFromPrefs];
+    if (url == nil) return false;
+    else return true;
 }
 
 - (void)handleSetupUpdateDeviceSettingsSelected:(NSNotification*)note

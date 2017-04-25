@@ -4,6 +4,7 @@
 #import "DeviceSettingsController.h"
 #import "VTDefines.h"
 #import "VTConnection.h"
+#include "ftd2xx.h"
 
 @implementation VTAppDelegate
 
@@ -78,13 +79,13 @@
 	// If fast user switching is used I need to release the USB devices. Or at least stop talking to them...
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(_switchHandler:) name:NSWorkspaceSessionDidBecomeActiveNotification object:nil];
     [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self selector:@selector(_switchHandler:) name:NSWorkspaceSessionDidResignActiveNotification object:nil];
-
+    
 	// prime it
     _loader = [VTDeviceLoader loader]; // No need to retain: singleton
 	
 	// Create the main window
     mainWindowController = [[MainWindowController alloc] init];
-    
+
 }
 
 /**

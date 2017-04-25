@@ -16,3 +16,27 @@ void VTRaiseAbstractMethodException(id object, SEL _cmd, Class abstractClass) {
                NSStringFromClass(objectClass), sel_getName(_cmd)];
   }
 }
+
+/*
+void SetVelocitekFilesDir(NSString* path) {
+    [[NSUserDefaults standardUserDefaults] setValue:path forKey:@"VELOCITEK_FILES_DIR"];
+}
+
+NSString* GetVelocitekFilesDir(void) {
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"VELOCITEK_FILES_DIR"];
+}
+
+bool IsSetVelocitekFilesDir(void) {
+    return [[NSUserDefaults standardUserDefaults] stringForKey:@"VELOCITEK_FILES_DIR"] != nil;
+}
+
+bool PathExistsAndIsDir(NSString* path) {
+    BOOL isDir = NO;
+    if([[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir] && isDir){
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+*/

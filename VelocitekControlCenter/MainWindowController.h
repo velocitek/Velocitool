@@ -46,7 +46,6 @@
     
     NSString * speedPuckFirmwareFilePath;
     NSString * proStartFirmwareFilePath;
-
 	    
 }
 
@@ -56,5 +55,9 @@
 
 - (IBAction)switchViews:(id)sender;
 - (NSAlert*) getAlertWithMessage:(NSString*)message informativeText:(NSString*) informativeText;
+
++ (NSURL*) getFileDirectoryFromPrefs;
++ (void) setFileDirectoryInPrefs: (NSURL *) url;
++ (bool) isSetFileDirectoryInPrefs;
 
 @end

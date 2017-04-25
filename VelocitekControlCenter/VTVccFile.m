@@ -8,15 +8,14 @@
 
 #define TEMP_GPX_FILENAME @"temporaryGpxFile.gpx"
 
-#define VELOCITEK_FILES_DIR @"~/Documents/MyVelocitekFiles"
-
 #import "VTVccFile.h"
 #import "VTVccXmlDoc.h"
 #import "VTVccRootElement.h"
 #import "VTCapturedTrackElement.h"
 #import "VTTrackFromDevice.h"
 #import "VTXmlDate.h"
-
+#import "VTGlobals.h"
+#import "MainWindowController.h"
 
 
 
@@ -158,9 +157,8 @@
 	
 	[svPanel setNameFieldStringValue:[vccFileWrapper filename]];
     
-    [self createMyVelocitekFilesDirIfNeeded];
     
-    [svPanel setDirectoryURL:[NSURL URLWithString:[VELOCITEK_FILES_DIR stringByExpandingTildeInPath]]];
+    [svPanel setDirectoryURL:[MainWindowController getFileDirectoryFromPrefs]];
 		
 	//call setDirectoryURL to NSHomeDirectory()
 	//[svPanel setDirectoryURL:[NSURL URLWithString:NSHomeDirectory()]];
@@ -199,26 +197,6 @@
 							
 }
 
-- (void) createMyVelocitekFilesDirIfNeeded {
-    
-    if(![[NSFileManager defaultManager] fileExistsAtPath:[VELOCITEK_FILES_DIR stringByExpandingTildeInPath]]) {
-        
-        NSError * error = nil;
-        
-        [[NSFileManager defaultManager] createDirectoryAtPath:[VELOCITEK_FILES_DIR stringByExpandingTildeInPath]
-                                  withIntermediateDirectories:YES
-                                                   attributes:nil
-                                                        error:&error];
-        
-        if (error != nil) {
-            DDLogError(@"Error creating directory: %@", error);
-        }
-        
-    }
-
-    
-}
-
 -(void)saveAsGpx
 {
 	[self createGpxXmlDoc];	
@@ -236,10 +214,8 @@
 	[svPanel setCanCreateDirectories:YES];
 	
 	[svPanel setNameFieldStringValue:[gpxFileWrapper filename]];
-	
-    [self createMyVelocitekFilesDirIfNeeded];
     
-    [svPanel setDirectoryURL:[NSURL URLWithString:[VELOCITEK_FILES_DIR stringByExpandingTildeInPath]]];
+    [svPanel setDirectoryURL:[MainWindowController getFileDirectoryFromPrefs]];
 
 	//call setDirectoryURL to NSHomeDirectory()
 	//[svPanel setDirectoryURL:[NSURL URLWithString:NSHomeDirectory()]];
@@ -294,10 +270,8 @@
 	[svPanel setCanCreateDirectories:YES];
 	
 	[svPanel setNameFieldStringValue:[kmlFileWrapper filename]];
-    
-    [self createMyVelocitekFilesDirIfNeeded];
-    
-    [svPanel setDirectoryURL:[NSURL URLWithString:[VELOCITEK_FILES_DIR stringByExpandingTildeInPath]]];
+        
+    [svPanel setDirectoryURL:[MainWindowController getFileDirectoryFromPrefs]];
 	
 	
 	//call runModal method of save panel to display the panel, record the result of the call
@@ -338,6 +312,7 @@
     CFRelease(uuidObj);
     return uuidString;
 }
+
 -(void)launchReplayInGpsar
 {
     DDLogDebug(@"VTLOG: [VTVccFile, launchReplayInGpsar]");  // VTLOG for debugging
@@ -345,6 +320,8 @@
     //create gpx format xml representation of the current file	
 	[self createGpxXmlDoc];
 	
+    // TODO: this needs to be NSTask launching!!!
+    
 	NSData *xmlData = [gpxFormatXmlDoc XMLDataWithOptions:NSXMLNodePrettyPrint];
     
     NSString *tempDirectory = NSTemporaryDirectory();
@@ -354,7 +331,7 @@
 	if([xmlData writeToFile:tempGpxFilePath atomically:YES])
     {
         NSString *gpsarPath = [[NSBundle mainBundle] pathForResource:@"GPS-Action-Replay" ofType:@"app"];
-        NSURL *gpsarUrl = [NSURL fileURLWithPath:gpsarPath];
+        //NSURL *gpsarUrl = [NSURL fileURLWithPath:gpsarPath];
 
         //launch the gpx file in GPS Action Replay using NSWorkspace	
 		NSArray *arguments = [NSArray arrayWithObjects:tempGpxFilePath,nil];
@@ -364,10 +341,16 @@
 									   arguments, NSWorkspaceLaunchConfigurationArguments, nil];
 		
 		
+        /*
 		[[NSWorkspace sharedWorkspace] launchApplicationAtURL:gpsarUrl
 													  options:NSWorkspaceLaunchDefault | NSWorkspaceLaunchNewInstance
 												configuration:configuration 
 														error:NULL];
+         */
+        
+        NSString * stubPath = [gpsarPath stringByAppendingString:@"/Contents/MacOS/universalJavaApplicationStub"];
+        
+        [NSTask launchedTaskWithLaunchPath:stubPath arguments:arguments];
 	}
 		
 }

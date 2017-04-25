@@ -18,7 +18,7 @@
 
 
 #import <Cocoa/Cocoa.h>
-#import "VTDateTime.h"
+#import "ftd2xx.h"
 
 void convertTimestamp(double timestamp);
 
@@ -32,12 +32,38 @@ int main (int argc, const char * argv[]) {
     
     NSTimeInterval interval = (double)[arg1 intValue];
     
-    convertTimestamp(interval);
+    FT_STATUS ft_error;
+    FT_HANDLE ft_handle;
+    
+    DWORD vid = 0x0403;
+    DWORD pid = 0xb70a;
+    
+    DWORD       libVersion = 0;
+    
+    
+    // Make sure the library can find the device I want.
+    ft_error = FT_SetVIDPID(vid, pid);
+    
+    if(ft_error != FT_OK) {
+        NSLog(@"VTError: Call to FT_SetVIDPID failed with error %u", ft_error);
+        return false;
+    }
+    
+    DWORD       totalDevices = 0;
+    
+    ft_error = FT_ListDevices(&totalDevices, NULL, FT_LIST_NUMBER_ONLY);
+    
+    if(ft_error != FT_OK) {
+        printf("Error: FT_ListDevices(%d)\n", (int)ft_error);
+        return 1;
+    }
+
     
     [pool drain];
     return 0;
 }
 
+/*
 void convertTimestamp(NSTimeInterval timestamp) {
     NSDate * date = [NSDate dateWithTimeIntervalSinceReferenceDate:timestamp];
     VTDateTime *vtDateTime = [VTDateTime vtDateWithDate:date];
@@ -45,3 +71,4 @@ void convertTimestamp(NSTimeInterval timestamp) {
     DDLogDebug(@"date      = %@", [date description]);
     DDLogDebug(@"vtDate    = %@", [vtDateTime description]);
 }
+*/

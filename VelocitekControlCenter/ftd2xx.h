@@ -41,6 +41,10 @@ kernel & user mode
 #ifndef FTD2XX_H
 #define FTD2XX_H
 
+#ifdef _WIN32
+// Compiling on Windows
+#include <windows.h>
+
 // The following ifdef block is the standard way of creating macros
 // which make exporting from a DLL simpler.  All files within this DLL
 // are compiled with the FTD2XX_EXPORTS symbol defined on the command line.
@@ -51,24 +55,24 @@ kernel & user mode
 
 #ifdef FTD2XX_EXPORTS
 #define FTD2XX_API __declspec(dllexport)
+#elif defined(FTD2XX_STATIC)
+// Avoid decorations when linking statically to D2XX.
+#define FTD2XX_API
+// Static D2XX depends on these Windows libs:
+#pragma comment(lib, "setupapi.lib")
+#pragma comment(lib, "advapi32.lib")
+#pragma comment(lib, "user32.lib")
 #else
 #define FTD2XX_API __declspec(dllimport)
 #endif
 
-#ifndef _WINDOWS
-#include <pthread.h>
+#else // _WIN32
+// Compiling on non-Windows platform.
 #include "WinTypes.h"
-/** Substitute for HANDLE returned by Windows CreateEvent API */
-typedef struct _EVENT_HANDLE{
-	pthread_cond_t eCondVar;
-	pthread_mutex_t eMutex;
-	int iVar;
-} EVENT_HANDLE;
-#ifdef FTD2XX_API
-#undef FTD2XX_API
+// No decorations needed.
 #define FTD2XX_API
-#endif /* FTD2XX_API */
-#endif /* _WINDOWS */
+
+#endif // _WIN32
 
 typedef PVOID	FT_HANDLE;
 typedef ULONG	FT_STATUS;
@@ -219,7 +223,11 @@ enum {
 	FT_DEVICE_2232H,
 	FT_DEVICE_4232H,
 	FT_DEVICE_232H,
-	FT_DEVICE_X_SERIES
+	FT_DEVICE_X_SERIES,
+	FT_DEVICE_4222H_0,
+	FT_DEVICE_4222H_1_2,
+	FT_DEVICE_4222H_3,
+    FT_DEVICE_4222_PROG,
 };
 
 //
@@ -276,8 +284,8 @@ enum {
 //
 
 #define FT_X_SERIES_CBUS_TRISTATE			0x00	//	Tristate
-#define FT_X_SERIES_CBUS_RXLED				0x01	//	Tx LED
-#define FT_X_SERIES_CBUS_TXLED				0x02	//	Rx LED
+#define FT_X_SERIES_CBUS_TXLED				0x01	//	Tx LED
+#define FT_X_SERIES_CBUS_RXLED				0x02	//	Rx LED
 #define FT_X_SERIES_CBUS_TXRXLED			0x03	//	Tx and Rx LED
 #define FT_X_SERIES_CBUS_PWREN				0x04	//	Power Enable
 #define FT_X_SERIES_CBUS_SLEEP				0x05	//	Sleep
@@ -309,6 +317,18 @@ enum {
 extern "C" {
 #endif
 
+
+#ifdef FTD2XX_STATIC
+    FTD2XX_API
+        FT_STATUS WINAPI FT_Initialise(
+        void
+        );
+
+    FTD2XX_API
+        void WINAPI FT_Finalise(
+        void
+        );
+#endif // FTD2XX_STATIC
 
 	FTD2XX_API
 		FT_STATUS WINAPI FT_Open(
@@ -1006,10 +1026,10 @@ extern "C" {
 		ULONG ulDeadmanTimeout
 		);
 
-#ifndef _WINDOWS
-	/* Linux etc. offer extra functions to compensate for lack of .INF file
-	 * to specify VID+PID combinations.
-	 */
+#ifndef _WIN32
+	// Extra functions for non-Windows platforms to compensate
+	// for lack of .INF file to specify Vendor and Product IDs.
+
 	FTD2XX_API
 		FT_STATUS FT_SetVIDPID(
 		DWORD dwVID, 
@@ -1027,8 +1047,8 @@ extern "C" {
 		FT_HANDLE ftHandle,
 		LPDWORD lpdwLocId
 		);
-#endif /* _WINDOWS */		
-		
+#endif // _WIN32        
+
 	FTD2XX_API
 		FT_STATUS WINAPI FT_GetDeviceInfo(
 		FT_HANDLE ftHandle,
@@ -1082,12 +1102,12 @@ extern "C" {
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_CloseHandle(
+		BOOL WINAPI FT_W32_CloseHandle(
 		FT_HANDLE ftHandle
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_ReadFile(
+		BOOL WINAPI FT_W32_ReadFile(
 		FT_HANDLE ftHandle,
 		LPVOID lpBuffer,
 		DWORD nBufferSize,
@@ -1096,7 +1116,7 @@ extern "C" {
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_WriteFile(
+		BOOL WINAPI FT_W32_WriteFile(
 		FT_HANDLE ftHandle,
 		LPVOID lpBuffer,
 		DWORD nBufferSize,
@@ -1110,15 +1130,15 @@ extern "C" {
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_GetOverlappedResult(
+		BOOL WINAPI FT_W32_GetOverlappedResult(
 		FT_HANDLE ftHandle,
 		LPOVERLAPPED lpOverlapped,
 		LPDWORD lpdwBytesTransferred,
-	  WIN_BOOL bWait
+		BOOL bWait
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_CancelIo(
+		BOOL WINAPI FT_W32_CancelIo(
 		FT_HANDLE ftHandle
 		);
 
@@ -1161,7 +1181,7 @@ extern "C" {
 		WORD XoffLim;				/* Transmit X-OFF threshold				*/
 		BYTE ByteSize;				/* Number of bits/byte, 4-8				*/
 		BYTE Parity;				/* 0-4=None,Odd,Even,Mark,Space			*/
-		BYTE StopBits;				/* 0,1,2 = 1, 1.5, 2					*/
+		BYTE StopBits;				/* FT_STOP_BITS_1 or FT_STOP_BITS_2		*/
 		char XonChar;				/* Tx and Rx X-ON character				*/
 		char XoffChar;				/* Tx and Rx X-OFF character			*/
 		char ErrorChar;				/* Error replacement char				*/
@@ -1180,85 +1200,85 @@ extern "C" {
 
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_ClearCommBreak(
+		BOOL WINAPI FT_W32_ClearCommBreak(
 		FT_HANDLE ftHandle
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_ClearCommError(
+		BOOL WINAPI FT_W32_ClearCommError(
 		FT_HANDLE ftHandle,
 		LPDWORD lpdwErrors,
 		LPFTCOMSTAT lpftComstat
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_EscapeCommFunction(
+		BOOL WINAPI FT_W32_EscapeCommFunction(
 		FT_HANDLE ftHandle,
 		DWORD dwFunc
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_GetCommModemStatus(
+		BOOL WINAPI FT_W32_GetCommModemStatus(
 		FT_HANDLE ftHandle,
 		LPDWORD lpdwModemStatus
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_GetCommState(
+		BOOL WINAPI FT_W32_GetCommState(
 		FT_HANDLE ftHandle,
 		LPFTDCB lpftDcb
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_GetCommTimeouts(
+		BOOL WINAPI FT_W32_GetCommTimeouts(
 		FT_HANDLE ftHandle,
 		FTTIMEOUTS *pTimeouts
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_PurgeComm(
+		BOOL WINAPI FT_W32_PurgeComm(
 		FT_HANDLE ftHandle,
 		DWORD dwMask
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_SetCommBreak(
+		BOOL WINAPI FT_W32_SetCommBreak(
 		FT_HANDLE ftHandle
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_SetCommMask(
+		BOOL WINAPI FT_W32_SetCommMask(
 		FT_HANDLE ftHandle,
 		ULONG ulEventMask
 		);
 
 	FTD2XX_API
-		WIN_BOOL WINAPI FT_W32_GetCommMask(
+		BOOL WINAPI FT_W32_GetCommMask(
 		FT_HANDLE ftHandle,
 		LPDWORD lpdwEventMask
 		);
 
 	FTD2XX_API
-		WIN_BOOL WINAPI FT_W32_SetCommState(
+		BOOL WINAPI FT_W32_SetCommState(
 		FT_HANDLE ftHandle,
 		LPFTDCB lpftDcb
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_SetCommTimeouts(
+		BOOL WINAPI FT_W32_SetCommTimeouts(
 		FT_HANDLE ftHandle,
 		FTTIMEOUTS *pTimeouts
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_SetupComm(
+		BOOL WINAPI FT_W32_SetupComm(
 		FT_HANDLE ftHandle,
 		DWORD dwReadBufferSize,
 		DWORD dwWriteBufferSize
 		);
 
 	FTD2XX_API
-    WIN_BOOL WINAPI FT_W32_WaitCommEvent(
+		BOOL WINAPI FT_W32_WaitCommEvent(
 		FT_HANDLE ftHandle,
 		PULONG pulEvent,
 		LPOVERLAPPED lpOverlapped
@@ -1375,6 +1395,47 @@ extern "C" {
 		DWORD *dwRxBytes
 		);
 
+	FTD2XX_API
+		FT_STATUS WINAPI FT_ComPortIdle(
+		FT_HANDLE ftHandle
+		);
+
+	FTD2XX_API
+		FT_STATUS WINAPI FT_ComPortCancelIdle(
+		FT_HANDLE ftHandle
+		);
+
+	FTD2XX_API
+		FT_STATUS WINAPI FT_VendorCmdGet(
+		FT_HANDLE ftHandle,
+		UCHAR Request,
+		UCHAR *Buf,
+		USHORT Len
+		);
+
+	FTD2XX_API
+		FT_STATUS WINAPI FT_VendorCmdSet(
+		FT_HANDLE ftHandle,
+		UCHAR Request,
+		UCHAR *Buf,
+		USHORT Len
+		);
+
+	FTD2XX_API
+		FT_STATUS WINAPI FT_VendorCmdGetEx(
+		FT_HANDLE ftHandle,
+		USHORT wValue,
+		UCHAR *Buf,
+		USHORT Len
+		);
+
+	FTD2XX_API
+		FT_STATUS WINAPI FT_VendorCmdSetEx(
+		FT_HANDLE ftHandle,
+		USHORT wValue,
+		UCHAR *Buf,
+		USHORT Len
+		);
 
 #ifdef __cplusplus
 }
