@@ -194,6 +194,7 @@
 		8D1107320486CEB800E47090 /* Velocitek Control Center.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Velocitek Control Center.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E94C5AEC23707D45005FDB80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		E94C5AED23707D48005FDB80 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E94C5AEE23708186005FDB80 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		ED2A015E0F339B8F005C0CE0 /* VTConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTConnection.h; sourceTree = "<group>"; };
 		ED2A015F0F339B8F005C0CE0 /* VTConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTConnection.m; sourceTree = "<group>"; };
 		ED2B25000F261CAB00A5EDDB /* VTGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTGlobals.h; sourceTree = "<group>"; };
@@ -312,6 +313,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E94C5AEE23708186005FDB80 /* Cartfile */,
 				47D796D21EA133B50053E5AC /* libftd2xx.1.4.4.dylib */,
 				4723BC0A1E6685C00085123C /* Images.xcassets */,
 				47076CE01DAD767B003944BC /* Velocitek_ProStart_1-6.hex */,
@@ -541,7 +543,7 @@
 						TestTargetID = 8D1107260486CEB800E47090;
 					};
 					8D1107260486CEB800E47090 = {
-						DevelopmentTeam = 4RQWHVTUNE;
+						DevelopmentTeam = 2KND3AN372;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -809,7 +811,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 28;
-				DEVELOPMENT_TEAM = 4RQWHVTUNE;
+				DEVELOPMENT_TEAM = 2KND3AN372;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)",
@@ -876,7 +878,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 28;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 4RQWHVTUNE;
+				DEVELOPMENT_TEAM = 2KND3AN372;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",

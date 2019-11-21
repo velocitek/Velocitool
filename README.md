@@ -28,6 +28,14 @@ Then move in the app directory
     cd speedtrack/Velocitool
 
 
+Install dependencies
+------------------------
+
+    brew install carthage
+    cd VelocitekControlCenter
+    carthage update
+
+
 Bump versions
 -------------
 
