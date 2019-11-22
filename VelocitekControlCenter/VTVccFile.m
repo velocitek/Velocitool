@@ -153,7 +153,7 @@
 		
 	//call setCanCreateDirectories to Yes
 	[svPanel setCanCreateDirectories:YES];
-	[svPanel setNameFieldStringValue:[vccFileWrapper filename]];
+	[svPanel setNameFieldStringValue:[self removeVccExtensionFromFileName:vccFileWrapper.filename]];
     [svPanel setDirectoryURL:[MainWindowController getFileDirectoryFromPrefs]];
 		
 	//call setDirectoryURL to NSHomeDirectory()
@@ -333,7 +333,7 @@
 	NSArray *elementsArray = [rootElement elementsForName:@"CapturedTrack"];	
 	NSXMLElement *capturedTrack = [elementsArray objectAtIndex:0];
 	
-	//get the captruedTrack element's name attribute as a NSXMLNode object using capturedTrack's attributeForName method
+	//get the capturedTrack element's name attribute as a NSXMLNode object using capturedTrack's attributeForName method
 	NSXMLNode *numberTrkptsAttribute = [capturedTrack attributeForName:@"name"];
 	
 	//set the string value of the name attribute to the desired track name
