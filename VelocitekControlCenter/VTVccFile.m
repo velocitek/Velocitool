@@ -16,7 +16,7 @@
 #import "VTXmlDate.h"
 #import "VTGlobals.h"
 #import "MainWindowController.h"
-
+#import "ChartedSailsConnection.h"
 
 
 @interface VTVccFile (private)
@@ -48,12 +48,12 @@
 
 @implementation VTVccFile
 
+@synthesize fileURL;
 @synthesize vccFileWrapper;
 @synthesize kmlFileWrapper;
 @synthesize gpxFileWrapper;
 
 @synthesize numTrackpoints;
-@synthesize fileSaved;	
 
 + (id)vccFileWithTrackFromDevice:(VTTrackFromDevice*)trackFromDevice
 {
@@ -64,8 +64,7 @@
 + (id)vccFileWithURL:(NSURL*)fileLocation
 {
 	VTVccFile *vccFile = [[self alloc] initWithURL:fileLocation];
-	return vccFile;	
-
+	return vccFile;
 }
 
 - (id)initWithTrackFromDevice:(VTTrackFromDevice *)trackFromDevice {
@@ -88,9 +87,6 @@
 
     // use getNumTrackpointsFromXML to define the value of numTrackpoints
     [self getNumTrackpointsFromXML];
-
-    // set fileSaved to NO
-    [self setFileSaved:NO];
   }
   return self;
 }
@@ -112,14 +108,18 @@
                                                              error:NULL];
     // TODO: create error if file is corrupt
     [self getNumTrackpointsFromXML];
-    [self setFileSaved:YES];
+    [self setFileURL:fileLocation];
   }
   return self;
 }
 
 - (void)dealloc {
-    
 	 vccFormatXmlDoc = nil;
+}
+
+- (BOOL)fileSaved
+{
+    return self.fileURL != nil;
 }
 
 - (void)setFileWrapperFilenames:(NSString*)fileNameWithoutExtension
@@ -136,13 +136,11 @@
 	
 	[gpxFileWrapper setPreferredFilename:fileNameWithGpxExtension];
 	[gpxFileWrapper setFilename:[gpxFileWrapper preferredFilename]];
-	
 }
 
 
 - (void)save
 {
-
 	//create an instance of NSSavePanel called svPanel
 	NSSavePanel *svPanel = [NSSavePanel savePanel];
 	
@@ -154,10 +152,7 @@
 		
 	//call setCanCreateDirectories to Yes
 	[svPanel setCanCreateDirectories:YES];
-	
 	[svPanel setNameFieldStringValue:[vccFileWrapper filename]];
-    
-    
     [svPanel setDirectoryURL:[MainWindowController getFileDirectoryFromPrefs]];
 		
 	//call setDirectoryURL to NSHomeDirectory()
@@ -169,7 +164,6 @@
 	//if the user selected the save button
 	if(runResult == NSFileHandlingPanelOKButton)
 	{
-		
 		NSString *fileNameWithoutExtension = [svPanel nameFieldStringValue];
 		[self setVccTrackName:fileNameWithoutExtension];
 		
@@ -180,21 +174,14 @@
 		[self fillFileWrapper];
 		
 		if([vccFileWrapper writeToURL:[svPanel URL] options:NSFileWrapperWritingWithNameUpdating originalContentsURL:nil error:NULL]) {
-			
-			[self setFileSaved:YES];
+			DDLogVerbose(@"Successful VCC save to %@", [svPanel URL].path);
 			[self setFileWrapperFilenames:fileNameWithoutExtension];
-								
+            [self setFileURL:[svPanel URL]];
 		}
-		
 		else {
-			
 			NSBeep();
-			
 		}
-
-				
 	}
-							
 }
 
 -(void)saveAsGpx
@@ -212,9 +199,7 @@
 	
 	//call setCanCreateDirectories to Yes
 	[svPanel setCanCreateDirectories:YES];
-	
 	[svPanel setNameFieldStringValue:[gpxFileWrapper filename]];
-    
     [svPanel setDirectoryURL:[MainWindowController getFileDirectoryFromPrefs]];
 
 	//call setDirectoryURL to NSHomeDirectory()
@@ -236,21 +221,12 @@
 		[self fillGpxFileWrapper];
 		
 		if([gpxFileWrapper writeToURL:[svPanel URL] options:NSFileWrapperWritingWithNameUpdating originalContentsURL:nil error:NULL]) {						
-			
-			
-			
-		}
-		
+			DDLogVerbose(@"Successful GPX export to %@", [svPanel URL].path);
+        }
 		else {
-			
 			NSBeep();
-			
 		}
-		
-		
 	}
-	
-	
 }
 
 -(void)saveAsKml
@@ -268,11 +244,8 @@
 	
 	//call setCanCreateDirectories to Yes
 	[svPanel setCanCreateDirectories:YES];
-	
 	[svPanel setNameFieldStringValue:[kmlFileWrapper filename]];
-        
     [svPanel setDirectoryURL:[MainWindowController getFileDirectoryFromPrefs]];
-	
 	
 	//call runModal method of save panel to display the panel, record the result of the call
 	NSInteger runResult = [svPanel runModal];
@@ -291,20 +264,14 @@
 		[self fillKmlFileWrapper];
 		
 		if([kmlFileWrapper writeToURL:[svPanel URL] options:NSFileWrapperWritingWithNameUpdating originalContentsURL:nil error:NULL]) {
-															
+            DDLogVerbose(@"Successful KML export to %@", [svPanel URL].path);
 		}
-		
 		else {
-			
 			NSBeep();
-			
 		}
-		
-		
 	}
-	
-	
 }
+
 - (NSString*) stringWithUUID {
     CFUUIDRef uuidObj = CFUUIDCreate(nil);//create a new UUID
     //get the string representation of the UUID
@@ -313,56 +280,41 @@
     return uuidString;
 }
 
--(void)launchReplayInGpsar
+- (void) launchReplayInChartedSails
 {
-    DDLogDebug(@"VTLOG: [VTVccFile, launchReplayInGpsar]");  // VTLOG for debugging
+    DDLogDebug(@"Launching ChartedSails replay");
     
-    //create gpx format xml representation of the current file	
-	[self createGpxXmlDoc];
-	
-    // TODO: this needs to be NSTask launching!!!
+    // If the file has not been saved yet. Ask user to save.
+    if (![self fileSaved]) {
+        [self save];
+        
+        if (![self fileSaved])
+            return;
+    }
     
-	NSData *xmlData = [gpxFormatXmlDoc XMLDataWithOptions:NSXMLNodePrettyPrint];
     
-    NSString *tempDirectory = NSTemporaryDirectory();
-    NSString *uniqueFileName = [[self stringWithUUID] stringByAppendingFormat:TEMP_GPX_FILENAME];
-    NSString *tempGpxFilePath = [NSString pathWithComponents:[NSArray arrayWithObjects:tempDirectory, uniqueFileName, nil]];
-     
-	if([xmlData writeToFile:tempGpxFilePath atomically:YES])
-    {
-        NSString *gpsarPath = [[NSBundle mainBundle] pathForResource:@"GPS-Action-Replay" ofType:@"app"];
-        //NSURL *gpsarUrl = [NSURL fileURLWithPath:gpsarPath];
+    [[ChartedSailsConnection connection] uploadTrack:self.fileURL completionHandler:^void (NSURL * _Nullable redirectURL, NSString * _Nullable errorMessage) {
+        if (errorMessage) {
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:@"An error occured"];
+            [alert setInformativeText:[NSString stringWithFormat:@"Please contact Velocitek support with error message: %@", errorMessage]];
+            [alert addButtonWithTitle:@"Ok"];
+            [alert runModal];
+        }
+        else {
+            [[NSWorkspace sharedWorkspace] openURL:redirectURL];
+        }
+    }];
+    
 
-        //launch the gpx file in GPS Action Replay using NSWorkspace	
-		NSArray *arguments = [NSArray arrayWithObjects:tempGpxFilePath,nil];
-		
-        
-		NSDictionary *configuration = [NSDictionary dictionaryWithObjectsAndKeys:
-									   arguments, NSWorkspaceLaunchConfigurationArguments, nil];
-		
-		
-        /*
-		[[NSWorkspace sharedWorkspace] launchApplicationAtURL:gpsarUrl
-													  options:NSWorkspaceLaunchDefault | NSWorkspaceLaunchNewInstance
-												configuration:configuration 
-														error:NULL];
-         */
-        
-        NSString * stubPath = [gpsarPath stringByAppendingString:@"/Contents/MacOS/universalJavaApplicationStub"];
-        
-        [NSTask launchedTaskWithLaunchPath:stubPath arguments:arguments];
-	}
-		
+
 }
-
-
 
 - (void)createGpxXmlDoc
 {
 	//createVccGmtDoc
 	[self createVccGmtXmlDoc];
 
-	
 	//transform vccGmtXmlDoc with TrackpointsToGpx.xslt to create gpxFormatXmlDoc
 	
 	NSString *trackpointsToGpxPath = [[NSBundle mainBundle] pathForResource:@"TrackpointsToGpx.xslt" 
@@ -373,8 +325,6 @@
 	NSData *gpxTransformation= [NSData dataWithContentsOfURL:xsltFileLocation];
 	
 	gpxFormatXmlDoc = [vccGmtFormatXmlDoc objectByApplyingXSLT:gpxTransformation arguments:nil error:NULL];
-	
-	
 }
 
 
@@ -393,7 +343,6 @@
 
 - (void)createVccGmtXmlDoc
 {
-
 	//start out by making vccGmtFormatXmlDoc a copy of vccFormatXmlDoc
 	vccGmtFormatXmlDoc = [vccFormatXmlDoc copy];
 	
@@ -402,12 +351,10 @@
 	
 	//convert the trackpoint timestamps to the vccGmt format
 	[self convertTrackpointTimestampsToVccGmtFormat];
-	
 }
 
 - (void)setVccTrackName:(NSString*)trackName
 {
-	
 	//get the root element of vccFormatXmlDoc using its rootElement method
 	NSXMLElement *rootElement = [vccFormatXmlDoc rootElement];
 	
@@ -420,12 +367,10 @@
 	
 	//set the string value of the name attribute to the desired track name
 	[numberTrkptsAttribute setStringValue:trackName];
-	
 }
 
 - (void)setKmlTrackName:(NSString*)trackName
-{		
-	
+{
 	//get the root element of kmlFormatXmlDoc using its rootElement method
 	NSXMLElement *rootElement = [kmlFormatXmlDoc rootElement];
 	
@@ -439,12 +384,10 @@
 	
 	//set the string value of the name element to the desired track name
 	[name setStringValue:trackName];
-	
 }
 
 - (void)setGpxTrackName:(NSString*)trackName
-{	
-	
+{
 	//get the root element of gpxFormatXmlDoc using its rootElement method
 	NSXMLElement *rootElement = [gpxFormatXmlDoc rootElement];
     
@@ -465,13 +408,11 @@
 	
 	//set the string value of the name element to the desired track name
 	[trksNameElement setStringValue:trackName];
-	
 }
 
 
 - (void)convertDownloadedOnTimeToVccGmtFormat
 {
-	
 	//get the root element of vccGmtFormatXmlDoc using its rootElement method
 	NSXMLElement *rootElement = [vccGmtFormatXmlDoc rootElement];
 	
@@ -490,12 +431,10 @@
 	
 	//set the value of the downloadedOn attribute using setStringValue
 	[downloadedOn setStringValue:downloadedOnVccGmtString];
-	
 }
 
 - (void)convertTrackpointTimestampsToVccGmtFormat
 {
-			
 	//get the root element of vccGmtFormatXmlDoc using its rootElement method
 	NSXMLElement *rootElement = [vccGmtFormatXmlDoc rootElement];
 	
@@ -513,7 +452,6 @@
 	//for each element in the array of Trackpoint elements
 	for (NSXMLElement *trackpoint in trackpointElements)
 	{
-	
 		//get the Trackpoint element's dateTime attribute as a NSXMLNode object using the Trackpoint element's attributeForName method
 		NSXMLNode *dateTime = [trackpoint attributeForName:@"dateTime"];
 		
@@ -525,9 +463,7 @@
 		
 		//set the value of the downloadedOn attribute using setStringValue
 		[dateTime setStringValue:vccGmtDateString];
-		
 	}
-	
 }
 
 - (void)fillGpxFileWrapper
@@ -546,7 +482,6 @@
 	
 	//use kmlFileWrapper's initWithSerializedRepresentation method to put the data in the file wrapper
 	[kmlFileWrapper initRegularFileWithContents:xmlData];
-	
 }
 
 //This method converts a standard VCC-style date string into a
@@ -563,7 +498,6 @@
 	
 }
 
-
 - (void)fillFileWrapper
 {
 	//serialize the data in vccFormatXmlDoc using its XMLDataWithOptions method
@@ -571,7 +505,6 @@
 	
 	//use vccFileWrapper's initWithSerializedRepresentation method to put the data in the file wrapper
 	[vccFileWrapper initRegularFileWithContents:xmlData];
-	
 }
 
 // This method parses vccFormatXmlDoc to get the value of the numberTrkpts element of the CapturedTrack element

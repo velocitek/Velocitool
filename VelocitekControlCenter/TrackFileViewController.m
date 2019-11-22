@@ -71,7 +71,7 @@
 
 - (IBAction)launchReplay:(id)sender
 {
-	[currentFile launchReplayInGpsar];
+	[currentFile launchReplayInChartedSails];
 }
 
 - (IBAction)returnToDeviceView:(id)sender

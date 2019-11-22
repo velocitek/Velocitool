@@ -33,7 +33,7 @@ Install dependencies
 
     brew install carthage
     cd VelocitekControlCenter
-    carthage update
+    carthage update --platform macOS
 
 
 Bump versions

@@ -39,9 +39,7 @@
 }
 
 - (void) setupLogging {
-    
-    [DDLog addLogger:[DDTTYLogger sharedInstance]]; // TTY = Xcode console
-    [DDLog addLogger:[DDASLLogger sharedInstance]]; // ASL = Apple System Logs
+    [DDLog addLogger:[DDOSLogger sharedInstance]];
     
 #ifdef DEBUG
     DDFileLogger *fileLogger = [[DDFileLogger alloc] init]; // File Logger
@@ -85,7 +83,6 @@
 	
 	// Create the main window
     mainWindowController = [[MainWindowController alloc] init];
-
 }
 
 /**
