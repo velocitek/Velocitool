@@ -57,22 +57,6 @@ Verify the version bumped properly
 
 Check on github that your version number made it there.
 
-Build and sign the GPS Action Replay app
-----------------------------------------
-
-This is the Gpsar "classic" referenced from this website: http://gpsactionreplay.free.fr/index.php?menu=6
-
-It is an older Java application. We are packaging it an an executable .app with a bundled JRE
-to help ensure that as many people as possible will be able to run it (regardless of their installed version of Java).
-
-After installing Apache Ant, change your working directory to the "app-bundler" directory and run:
-
-    ant bundleAndSignWithBundledJre
-
-This will package the gpsar.jar (along with the comm.jar file) into an executable .app and sign the code. The final result will be output in the "app-bundler/build" directory, but you shouldn't have to
-do anything with this as it's already added to the XCode project as a resource and will automatically be
-included in build in the next step.
-
 Build the Mac OSX application
 -----------------------------
 
