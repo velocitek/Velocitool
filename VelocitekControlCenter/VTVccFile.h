@@ -39,6 +39,5 @@
 - (void)save;
 - (void)saveAsGpx;
 - (void)saveAsKml;
-- (void)launchReplayInChartedSails;
 - (BOOL)fileSaved;
 @end

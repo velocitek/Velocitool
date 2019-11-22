@@ -74,6 +74,7 @@
     vccFormatXmlDoc = [VTVccXmlDoc
         vccXmlDocWithCapturedTrack:[trackFromDevice capturedTrackXMLElement]];
 
+    fileURL = nil;
     vccFileWrapper = [[NSFileWrapper alloc] init];
     gpxFileWrapper = [[NSFileWrapper alloc] init];
     kmlFileWrapper = [[NSFileWrapper alloc] init];
@@ -93,6 +94,7 @@
 
 - (id)initWithURL:(NSURL *)fileLocation {
   if ((self = [super init])) {
+    fileURL = fileLocation;
     vccFileWrapper =
         [[NSFileWrapper alloc] initWithURL:fileLocation
                                    options:NSFileWrapperReadingImmediate
@@ -108,7 +110,6 @@
                                                              error:NULL];
     // TODO: create error if file is corrupt
     [self getNumTrackpointsFromXML];
-    [self setFileURL:fileLocation];
   }
   return self;
 }
@@ -176,7 +177,7 @@
 		if([vccFileWrapper writeToURL:[svPanel URL] options:NSFileWrapperWritingWithNameUpdating originalContentsURL:nil error:NULL]) {
 			DDLogVerbose(@"Successful VCC save to %@", [svPanel URL].path);
 			[self setFileWrapperFilenames:fileNameWithoutExtension];
-            [self setFileURL:[svPanel URL]];
+            fileURL = [svPanel URL];
 		}
 		else {
 			NSBeep();
@@ -278,36 +279,6 @@
     NSString *uuidString = (NSString*)CFBridgingRelease(CFUUIDCreateString(nil, uuidObj));
     CFRelease(uuidObj);
     return uuidString;
-}
-
-- (void) launchReplayInChartedSails
-{
-    DDLogDebug(@"Launching ChartedSails replay");
-    
-    // If the file has not been saved yet. Ask user to save.
-    if (![self fileSaved]) {
-        [self save];
-        
-        if (![self fileSaved])
-            return;
-    }
-    
-    
-    [[ChartedSailsConnection connection] uploadTrack:self.fileURL completionHandler:^void (NSURL * _Nullable redirectURL, NSString * _Nullable errorMessage) {
-        if (errorMessage) {
-            NSAlert *alert = [[NSAlert alloc] init];
-            [alert setMessageText:@"An error occured"];
-            [alert setInformativeText:[NSString stringWithFormat:@"Please contact Velocitek support with error message: %@", errorMessage]];
-            [alert addButtonWithTitle:@"Ok"];
-            [alert runModal];
-        }
-        else {
-            [[NSWorkspace sharedWorkspace] openURL:redirectURL];
-        }
-    }];
-    
-
-
 }
 
 - (void)createGpxXmlDoc
