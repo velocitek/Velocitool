@@ -1,0 +1,21 @@
+on: 
+  push:
+
+jobs:
+  build:
+    name: macOS Build
+    runs-on: macOS-latest
+    steps:
+      - name: Force xcode 11
+        run: sudo xcode-select -switch /Applications/Xcode_11.1.app  
+
+      - uses: actions/checkout@v1
+
+      - name: Build
+        run: xcodebuild -project "VelocitekControlCenter/Velocitek Control Center.xcodeproj" -target "Velocitek Control Center" -configuration Release
+
+      - name: Package DMG
+        run: |
+          cd dmg-maker-bash
+          ./create-and-sign-dmg.sh
+
