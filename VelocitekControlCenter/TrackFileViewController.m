@@ -81,6 +81,7 @@
 - (IBAction)launchReplay:(id)sender
 {
     uploadProgressIndicator.hidden = FALSE;
+    [uploadProgressIndicator startAnimation:nil];
     replayButton.hidden = TRUE;
     
     DDLogDebug(@"Launching ChartedSails replay");
@@ -101,11 +102,13 @@
             [alert setInformativeText:[NSString stringWithFormat:@"Please contact Velocitek support with error message: %@", errorMessage]];
             [alert addButtonWithTitle:@"Ok"];
             [alert runModal];
+            [self->uploadProgressIndicator stopAnimation:nil];
             self->uploadProgressIndicator.hidden = TRUE;
             self->replayButton.hidden = FALSE;
         }
         else {
             [[NSWorkspace sharedWorkspace] openURL:redirectURL];
+            [self->uploadProgressIndicator stopAnimation:nil];
             self->uploadProgressIndicator.hidden = TRUE;
             self->replayButton.hidden = FALSE;
         }
