@@ -11,6 +11,10 @@ jobs:
 
       - uses: actions/checkout@v1
 
+      - name: Dependencies
+        run: |
+          carthage bootstrap --no-use-binaries --platform iOS --cache-builds
+
       - name: Build
         run: xcodebuild -project "VelocitekControlCenter/Velocitek Control Center.xcodeproj" -target "Velocitek Control Center" -configuration Release
 
