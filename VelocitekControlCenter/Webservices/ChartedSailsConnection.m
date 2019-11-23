@@ -24,7 +24,7 @@
 - (void) uploadTrack:(NSURL *) filePath completionHandler:(void (^)(NSURL * _Nullable redirectURL, NSString * _Nullable error))handler {
     DDLogInfo(@"Upload track to ChartedSails: %@", [filePath path]);
     
-    NSString *urlString = @"http://localhost:4000/upload";
+    NSString *urlString = @"https://api.chartedsails.com/upload";
 
     // - (void)someMethodThatTakesABlock:(returnType (^nullability)(parameterTypes))blockName;
     NSMutableURLRequest *request = [[AFHTTPRequestSerializer serializer] multipartFormRequestWithMethod:@"POST" URLString:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
