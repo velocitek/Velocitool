@@ -13,6 +13,7 @@ jobs:
 
       - name: Dependencies
         run: |
+          cd VelocitekControlCenter
           carthage bootstrap --no-use-binaries --platform iOS --cache-builds
 
       - name: Build
