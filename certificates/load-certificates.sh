@@ -22,3 +22,4 @@ security import certificates.p12 -k $KEY_CHAIN -P $CERT_PASSWORD -T /usr/bin/cod
 echo "Add keychain to keychain-list"
 security list-keychains -s $KEY_CHAIN
 
+security set-key-partition-list -S apple-tool:,apple: -s -k $KEYCHAIN_PASSWORD  $KEY_CHAIN
