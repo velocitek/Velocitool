@@ -21,7 +21,7 @@ jobs:
       - name: Dependencies
         run: |
           cd VelocitekControlCenter
-          carthage bootstrap --no-use-binaries --platform iOS --cache-builds
+          carthage bootstrap --no-use-binaries --platform mac --cache-builds
 
       - name: Build
         run: xcodebuild -project "VelocitekControlCenter/Velocitek Control Center.xcodeproj" -target "Velocitek Control Center" -configuration Release
