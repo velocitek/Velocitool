@@ -13,7 +13,7 @@ jobs:
 
       - name: Prepare certificates and keys
         env:
-          CERT_PASSWORD: ${{ secret.CERT_PASSWORD }}
+          CERT_PASSWORD: ${{ secrets.CERT_PASSWORD }}
         run: |
           cd certificates
           ./load-certificates.sh
