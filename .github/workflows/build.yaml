@@ -11,6 +11,13 @@ jobs:
 
       - uses: actions/checkout@v1
 
+      - name: Prepare certificates and keys
+        env:
+          CERT_PASSWORD: {{ secret.CERT_PASSWORD }}
+        run: |
+          cd certificates
+          ./load-certificates.sh
+
       - name: Dependencies
         run: |
           cd VelocitekControlCenter
