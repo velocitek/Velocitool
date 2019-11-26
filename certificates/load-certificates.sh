@@ -25,3 +25,10 @@ echo "Add keychain to keychain-list"
 security list-keychains -s $KEY_CHAIN
 
 security set-key-partition-list -S apple-tool:,apple: -s -k $KEYCHAIN_PASSWORD  $KEY_CHAIN
+
+
+echo "Install provisioning profile"
+uuid=`grep UUID -A1 -a Velocitek_Control_Center_AppStore.provisionprofile |grep -io "[-a-f0-9]\{36\}"`
+mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles/
+echo "Provisiong profile UUID: $uuid"
+cp Velocitek_Control_Center_AppStore.provisionprofile ~/Library/MobileDevice/Provisioning\ Profiles/$uuid.provisionprofile
