@@ -16,7 +16,7 @@
 #import "VTCapturedTrackElement.h"
 #import "VTAppDelegate.h"
 #import "VTVccFile.h"
-
+#import "ChartedSailsConnection.h"
 
 @interface TrackFileViewController (private)
 
@@ -32,150 +32,90 @@
 @synthesize currentFile;
 
 
-- (IBAction)fileSave:(id)sender
-{
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	[notificationCenter postNotificationName:VTSaveButtonSelectedNotification object:self];
-	
+- (id)init {
+	if((self = [super initWithNibName:@"TrackFileView" bundle:nil])) {
+       
+    }
+	return self;
 }
+
+- (void) viewDidLoad
+{
+    self->uploadProgressIndicator.hidden = TRUE;
+    self->unsavedTextField.hidden = currentFile.fileSaved;
+}
+
+
+#pragma mark actions
 
 - (IBAction)fileOpen:(id)sender
 {
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	[notificationCenter postNotificationName:VTOpenButtonSelectedNotification object:self];
-	
+    // Let the main view handle this.
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter postNotificationName:VTOpenButtonSelectedNotification object:self];
 }
 
-
-- (IBAction)fileClose:(id)sender
+- (IBAction)fileSave:(id)sender
 {
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	[notificationCenter postNotificationName:VTCloseButtonPressedNotification object:self];
-	
-}
-
-- (IBAction)fileExportGPX:(id)sender
-{
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	[notificationCenter postNotificationName:VTExportGPXButtonSelectedNotification object:self];
-	
-}
-
-- (IBAction)fileExportKML:(id)sender
-{
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	[notificationCenter postNotificationName:VTExportKMLButtonSelectedNotification object:self];
-	
-}
-
-
-- (IBAction)launchReplay:(id)sender
-{
-	[currentFile launchReplayInGpsar];
+	[currentFile save];
+    self->unsavedTextField.hidden = currentFile.fileSaved;
 }
 
 - (IBAction)returnToDeviceView:(id)sender
 {
-	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-	[notificationCenter postNotificationName:VTCloseButtonPressedNotification object:self];
+    // Let the main view handle this.
+    NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter postNotificationName:VTCloseButtonPressedNotification object:self];
 }
 
-- (id)init {
-	
-	if((self = [super initWithNibName:@"TrackFileView" bundle:nil])) {
-    [self registerForNotifications];
-  }
-	return self;
-	
-}
-
-
-
--(void)registerForNotifications
-{
-	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-	
-	[nc addObserver:self
-		   selector:@selector(handleFileSaveSelected:)
-			   name:VTSaveButtonSelectedNotification
-			 object:nil];
-	
-	[nc addObserver:self
-		   selector:@selector(handleFileOpenSelected:)
-			   name:VTOpenButtonSelectedNotification
-			 object:nil];
-	
-	[nc addObserver:self
-		   selector:@selector(handleFileCloseSelected:)
-			   name:VTCloseButtonPressedNotification
-			 object:nil];
-	
-	[nc addObserver:self
-		   selector:@selector(handleFileExportGPXSelected:)
-			   name:VTExportGPXButtonSelectedNotification
-			 object:nil];
-	
-	[nc addObserver:self
-		   selector:@selector(handleFileExportKMLSelected:)
-			   name:VTExportKMLButtonSelectedNotification
-			 object:nil];		
-	
-	/*[nc addObserver:self
-		   selector:@selector(handleSetupUpdateDeviceFirmwareSelected:)
-			   name:VTSetupUpdateDeviceFirmwareSelectedNotification
-			 object:nil];
-	 */
-	
-	
-	/*[nc addObserver:self
-		   selector:@selector(handleHelpTutorialVideoSelected:)
-			   name:VTHelpTutorialVideoSelectedNotification
-			 object:nil];
-	 */
-	 
-		
-}
-
-- (void)handleFileSaveSelected:(NSNotification*)note
-{
-	
-	[currentFile save];
-	
-}
-
-- (void)handleFileOpenSelected:(NSNotification*)note
-{
-	
-	
-}
-- (void)handleFileCloseSelected:(NSNotification*)note
-{
-	
-	
-}
-
-- (void)handleFileExportGPXSelected:(NSNotification*)note
+- (IBAction)fileExportGPX:(id)sender
 {
 	[currentFile saveAsGpx];
 }
 
-- (void)handleFileExportKMLSelected:(NSNotification*)note
+- (IBAction)fileExportKML:(id)sender
 {
     [currentFile saveAsKml];
 }
 
-
-- (void)handleSetupUpdateDeviceFirmwareSelected:(NSNotification*)note
+- (IBAction)launchReplay:(id)sender
 {
-		
+    uploadProgressIndicator.hidden = FALSE;
+    [uploadProgressIndicator startAnimation:nil];
+    replayButton.hidden = TRUE;
+    
+    DDLogDebug(@"Launching ChartedSails replay");
+    // If the file has not been saved yet. Ask user to save.
+    if (![currentFile fileSaved]) {
+        [currentFile save];
+        
+        if (![currentFile fileSaved])
+            return;
+    }
+
+    self->unsavedTextField.hidden = currentFile.fileSaved;
+
+    [[ChartedSailsConnection connection] uploadTrack:currentFile.fileURL completionHandler:^void (NSURL * _Nullable redirectURL, NSString * _Nullable errorMessage) {
+        if (errorMessage) {
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert setMessageText:@"An error occured"];
+            [alert setInformativeText:[NSString stringWithFormat:@"Please contact Velocitek support with error message: %@", errorMessage]];
+            [alert addButtonWithTitle:@"Ok"];
+            [alert runModal];
+            [self->uploadProgressIndicator stopAnimation:nil];
+            self->uploadProgressIndicator.hidden = TRUE;
+            self->replayButton.hidden = FALSE;
+        }
+        else {
+            [[NSWorkspace sharedWorkspace] openURL:redirectURL];
+            [self->uploadProgressIndicator stopAnimation:nil];
+            self->uploadProgressIndicator.hidden = TRUE;
+            self->replayButton.hidden = FALSE;
+        }
+    }];
 }
 
-- (void)handleHelpTutorialVideoSelected:(NSNotification*)note
-{
-	
-	
-}
-
+#pragma mark internal
 
 - (void)downloadTrackFromDevice
 {
@@ -183,21 +123,18 @@
 }
 
 - (void) cancelDownload {
-    
 }
 
 - (void)initializeCurrentFileFromTrack
-{		
-		
-	[self setCurrentFile:[VTVccFile vccFileWithTrackFromDevice:trackFromDevice]];	
-	
+{
+	[self setCurrentFile:[VTVccFile vccFileWithTrackFromDevice:trackFromDevice]];
+    self->unsavedTextField.hidden = currentFile.fileSaved;
 }
 
 - (void)initializeCurrentFileFromURL:(NSURL*)url
 {
-
 	[self setCurrentFile:[VTVccFile vccFileWithURL:url]];
-	 
+    self->unsavedTextField.hidden = currentFile.fileSaved;
 }
 
    

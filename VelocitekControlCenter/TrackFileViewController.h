@@ -14,7 +14,6 @@
 
 
 @interface TrackFileViewController : NSViewController {
-
 	VTTrackFromDevice *trackFromDevice;
 	VTVccFile *currentFile;
 	
@@ -28,7 +27,8 @@
 	
 	IBOutlet NSButton *replayButton;
 	IBOutlet NSButton *returnToDeviceViewButton;
-		
+    IBOutlet NSTextField *unsavedTextField;
+    IBOutlet NSProgressIndicator *uploadProgressIndicator;
 }
 
 @property (nonatomic, readwrite, strong) NSMutableArray *trackLogs;
@@ -47,7 +47,5 @@
 - (IBAction)fileOpen:(id)sender;
 - (IBAction)fileExportGPX:(id)sender;
 - (IBAction)fileExportKML:(id)sender;
-
-
 
 @end

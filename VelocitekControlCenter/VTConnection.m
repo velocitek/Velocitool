@@ -127,7 +127,7 @@ NSString* path;
         void *handle = dlopen([path UTF8String], RTLD_NOW | RTLD_LOCAL);
         
         if (!handle) {
-            [NSException raise:@"UnableToLoadDynamicLibrary" format:@"Unable to load dylib at path: %@", path];
+            [NSException raise:@"UnableToLoadDynamicLibrary" format:@"Unable to load dylib at path: %@ - %s", path, dlerror()];
         }
         
         NSAssert2(handle, @"Can't load the library at %@: %s", path, dlerror());

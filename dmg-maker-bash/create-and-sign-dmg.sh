@@ -1,7 +1,7 @@
 RELEASE_BUILD_SOURCE_FOLDER="../VelocitekControlCenter/build/Release"
 TARGET_DMG="../distribution/Velocitek-Control-Center-Installer.dmg"
 SOURCE_FOLDER=source_folder
-
+DEVID="Developer ID Application: Thomas Sarlandie de la Robertie (5T3325PF69)"
 
 if [ -f $SOURCE_FOLDER ];
 then
@@ -16,6 +16,8 @@ then
   echo "Removing previous $TARGET_DMG"
   rm $TARGET_DMG
 fi
+
+mkdir ../distribution
 
 echo "Copying release build from $RELEASE_BUILD_SOURCE_FOLDER"
 cp -R $RELEASE_BUILD_SOURCE_FOLDER/*.app source_folder
@@ -34,7 +36,7 @@ echo "Removing temp files"
 rm -rf source_folder
 
 echo "Signign DMG"
-codesign -v -s "Developer ID Application: Andrew Hughes (4RQWHVTUNE)" $TARGET_DMG
+codesign -v -s "$DEVID" $TARGET_DMG
 
 echo "Verifying DMG verbose"
 codesign --display --verbose=4 --verify $TARGET_DMG

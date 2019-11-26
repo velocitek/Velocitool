@@ -13,13 +13,9 @@
 		4723BC091E66857E0085123C /* velocitool2.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4723BC081E66857E0085123C /* velocitool2.icns */; };
 		4723BC0B1E6685C00085123C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4723BC0A1E6685C00085123C /* Images.xcassets */; };
 		4723BC0D1E6686C70085123C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4723BC0C1E6686C70085123C /* Entitlements.plist */; };
-		472834E51E68751600682AC9 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478D01271D9B46B500F673CD /* CocoaLumberjack.framework */; };
-		472834E61E68751600682AC9 /* CocoaLumberjack.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 478D01271D9B46B500F673CD /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		47535E861D90987D00512DF3 /* post-build-script.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47535E851D90987D00512DF3 /* post-build-script.txt */; };
 		475A21CC1DB43BD200D6DCBF /* FirmwareUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 475A21CB1DB43BD200D6DCBF /* FirmwareUpdateViewController.m */; };
-		476095A11E52201F000AF7CF /* GPS-Action-Replay.app in Resources */ = {isa = PBXBuildFile; fileRef = 47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */; };
 		4774789E1E48D9B80066F342 /* Velocitek_Control_Center_Unit_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4774789D1E48D9B80066F342 /* Velocitek_Control_Center_Unit_Tests.m */; };
-		478D01281D9B46B600F673CD /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 478D01271D9B46B500F673CD /* CocoaLumberjack.framework */; };
 		479B12861DB1767F00A04F56 /* FirmwareUpdateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 479B12851DB1767F00A04F56 /* FirmwareUpdateView.xib */; };
 		47D796D31EA133B50053E5AC /* libftd2xx.1.4.4.dylib in Resources */ = {isa = PBXBuildFile; fileRef = 47D796D21EA133B50053E5AC /* libftd2xx.1.4.4.dylib */; };
 		7009C76B11BF52FF0076DB4D /* VTProgressTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = 7009C76911BF52FF0076DB4D /* VTProgressTracker.m */; };
@@ -56,6 +52,12 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		E90B4E5B2387A01C00692CB4 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B4E592387A01C00692CB4 /* CocoaLumberjack.framework */; };
+		E90B4E5C2387A01C00692CB4 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B4E5A2387A01C00692CB4 /* AFNetworking.framework */; };
+		E90B4E5D2387A02200692CB4 /* AFNetworking.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = E90B4E5A2387A01C00692CB4 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E90B4E5E2387A02200692CB4 /* CocoaLumberjack.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = E90B4E592387A01C00692CB4 /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E90B4E622387B96E00692CB4 /* libftd2xx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 470185971E9FDC3F00B05458 /* libftd2xx.a */; };
+		E9A2FA2A23865EDE00D388FF /* ChartedSailsConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A2FA2923865EDE00D388FF /* ChartedSailsConnection.m */; };
 		ED2A01610F339B8F005C0CE0 /* VTConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2A015F0F339B8F005C0CE0 /* VTConnection.m */; };
 		ED2B25030F261CAB00A5EDDB /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
 		ED3976741C427AEB00147C1F /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = ED3976731C427AEB00147C1F /* README.md */; };
@@ -100,7 +102,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				472834E61E68751600682AC9 /* CocoaLumberjack.framework in Copy Frameworks */,
+				E90B4E5D2387A02200692CB4 /* AFNetworking.framework in Copy Frameworks */,
+				E90B4E5E2387A02200692CB4 /* CocoaLumberjack.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -108,7 +111,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		095981FE1D624BE000B9D190 /* VTDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTDefines.h; sourceTree = "<group>"; };
 		095981FF1D624BE000B9D190 /* VTDefines.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTDefines.m; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -131,12 +133,10 @@
 		4774789B1E48D9B80066F342 /* Velocitek Control Center Unit Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Velocitek Control Center Unit Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4774789D1E48D9B80066F342 /* Velocitek_Control_Center_Unit_Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Velocitek_Control_Center_Unit_Tests.m; sourceTree = "<group>"; };
 		4774789F1E48D9B80066F342 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		478D01271D9B46B500F673CD /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = Carthage/Build/Mac/CocoaLumberjack.framework; sourceTree = "<group>"; };
 		478D012B1D9B46F900F673CD /* CocoaLumberjack.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CocoaLumberjack.framework.dSYM; path = Carthage/Build/Mac/CocoaLumberjack.framework.dSYM; sourceTree = "<group>"; };
 		479B12851DB1767F00A04F56 /* FirmwareUpdateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FirmwareUpdateView.xib; sourceTree = "<group>"; };
 		47D796D21EA133B50053E5AC /* libftd2xx.1.4.4.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libftd2xx.1.4.4.dylib; sourceTree = "<group>"; };
 		47F9035D1E64C2350098D83E /* Velocitek Control Center.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Velocitek Control Center.entitlements"; sourceTree = "<group>"; };
-		47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = "GPS-Action-Replay.app"; path = "../app-bundler/build/GPS-Action-Replay.app"; sourceTree = "<group>"; };
 		7009C76811BF52FF0076DB4D /* VTProgressTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTProgressTracker.h; sourceTree = "<group>"; };
 		7009C76911BF52FF0076DB4D /* VTProgressTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTProgressTracker.m; sourceTree = "<group>"; };
 		70135D3411D082A50046A8BF /* DeviceSettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceSettingsController.h; sourceTree = "<group>"; };
@@ -192,9 +192,15 @@
 		70FBA0C21161A477005BE3B4 /* VTRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTRecord.h; sourceTree = "<group>"; };
 		70FBA0C31161A477005BE3B4 /* VTRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTRecord.m; sourceTree = "<group>"; };
 		77631A260C06C501005415CB /* Python.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Python.framework; path = /System/Library/Frameworks/Python.framework; sourceTree = "<absolute>"; };
-		77C8C1F80C07829500965286 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8D1107320486CEB800E47090 /* Velocitek Control Center.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Velocitek Control Center.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E90B4E592387A01C00692CB4 /* CocoaLumberjack.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CocoaLumberjack.framework; path = Carthage/Build/Mac/CocoaLumberjack.framework; sourceTree = "<group>"; };
+		E90B4E5A2387A01C00692CB4 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = Carthage/Build/Mac/AFNetworking.framework; sourceTree = "<group>"; };
+		E94C5AEC23707D45005FDB80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		E94C5AED23707D48005FDB80 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		E94C5AEE23708186005FDB80 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		E9A2FA2923865EDE00D388FF /* ChartedSailsConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartedSailsConnection.m; sourceTree = "<group>"; };
+		E9A2FA2C23865F6900D388FF /* ChartedSailsConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartedSailsConnection.h; sourceTree = "<group>"; };
 		ED2A015E0F339B8F005C0CE0 /* VTConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTConnection.h; sourceTree = "<group>"; };
 		ED2A015F0F339B8F005C0CE0 /* VTConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VTConnection.m; sourceTree = "<group>"; };
 		ED2B25000F261CAB00A5EDDB /* VTGlobals.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTGlobals.h; sourceTree = "<group>"; };
@@ -232,9 +238,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ED4B9ADC0F156BBB00AF563B /* IOKit.framework in Frameworks */,
-				478D01281D9B46B600F673CD /* CocoaLumberjack.framework in Frameworks */,
-				472834E51E68751600682AC9 /* CocoaLumberjack.framework in Frameworks */,
+				E90B4E5C2387A01C00692CB4 /* AFNetworking.framework in Frameworks */,
+				E90B4E5B2387A01C00692CB4 /* CocoaLumberjack.framework in Frameworks */,
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				E90B4E622387B96E00692CB4 /* libftd2xx.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,9 +291,9 @@
 		29B97314FDCFA39411CA2CEA /* Velocitool */ = {
 			isa = PBXGroup;
 			children = (
+				E9A2FA2B23865EE500D388FF /* Webservices */,
 				47F9035D1E64C2350098D83E /* Velocitek Control Center.entitlements */,
 				478D012B1D9B46F900F673CD /* CocoaLumberjack.framework.dSYM */,
-				478D01271D9B46B500F673CD /* CocoaLumberjack.framework */,
 				47535E851D90987D00512DF3 /* post-build-script.txt */,
 				ED3976731C427AEB00147C1F /* README.md */,
 				ED2A015D0F339B6A005C0CE0 /* Communication */,
@@ -314,11 +321,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E94C5AEE23708186005FDB80 /* Cartfile */,
 				47D796D21EA133B50053E5AC /* libftd2xx.1.4.4.dylib */,
 				4723BC0A1E6685C00085123C /* Images.xcassets */,
 				47076CE01DAD767B003944BC /* Velocitek_ProStart_1-6.hex */,
 				47076CE11DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex */,
-				47FD75661D88944C00DEEE0E /* GPS-Action-Replay.app */,
 				EDF727250F4234B700E503AE /* images */,
 				EDFC3F4D0EF88A5A00E1DD2F /* velocitool.icns */,
 				4723BC081E66857E0085123C /* velocitool2.icns */,
@@ -339,6 +346,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E90B4E5A2387A01C00692CB4 /* AFNetworking.framework */,
+				E90B4E592387A01C00692CB4 /* CocoaLumberjack.framework */,
 				470185971E9FDC3F00B05458 /* libftd2xx.a */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
@@ -380,6 +389,15 @@
 				7082784911BB01D400DD66FF /* VTXmlDate.m */,
 			);
 			name = XML;
+			sourceTree = "<group>";
+		};
+		E9A2FA2B23865EE500D388FF /* Webservices */ = {
+			isa = PBXGroup;
+			children = (
+				E9A2FA2923865EDE00D388FF /* ChartedSailsConnection.m */,
+				E9A2FA2C23865F6900D388FF /* ChartedSailsConnection.h */,
+			);
+			path = Webservices;
 			sourceTree = "<group>";
 		};
 		ED21C5D30F64779E002BE074 /* View */ = {
@@ -534,7 +552,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 1120;
 				TargetAttributes = {
 					4774789A1E48D9B80066F342 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -543,8 +561,8 @@
 						TestTargetID = 8D1107260486CEB800E47090;
 					};
 					8D1107260486CEB800E47090 = {
-						DevelopmentTeam = 4RQWHVTUNE;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = 5T3325PF69;
+						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -559,13 +577,14 @@
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "Velocitek Control Center" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
-				English,
-				Japanese,
-				French,
-				German,
+				ja,
+				Base,
+				en,
+				fr,
+				de,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* Velocitool */;
 			projectDirPath = "";
@@ -594,7 +613,6 @@
 				47D796D31EA133B50053E5AC /* libftd2xx.1.4.4.dylib in Resources */,
 				4723BC0D1E6686C70085123C /* Entitlements.plist in Resources */,
 				47076CE31DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex in Resources */,
-				476095A11E52201F000AF7CF /* GPS-Action-Replay.app in Resources */,
 				479B12861DB1767F00A04F56 /* FirmwareUpdateView.xib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				77C8C1F90C07829500965286 /* MainMenu.xib in Resources */,
@@ -663,6 +681,7 @@
 				70135ED111D825D90046A8BF /* VTDeviceSettingValue.m in Sources */,
 				70135EE511D8359F0046A8BF /* VTDeclinationValue.m in Sources */,
 				701360A811D930C90046A8BF /* VTDeviceSettingMenu.m in Sources */,
+				E9A2FA2A23865EDE00D388FF /* ChartedSailsConnection.m in Sources */,
 				701363AD11D9D4030046A8BF /* VTFirmwareUpdateOperation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -689,7 +708,7 @@
 		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				089C165DFE840E0CC02AAC07 /* English */,
+				E94C5AED23707D48005FDB80 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -697,7 +716,7 @@
 		77C8C1F70C07829500965286 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				77C8C1F80C07829500965286 /* English */,
+				E94C5AEC23707D45005FDB80 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -806,11 +825,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 28;
-				DEVELOPMENT_TEAM = 4RQWHVTUNE;
+				CURRENT_PROJECT_VERSION = 30;
+				DEVELOPMENT_TEAM = 5T3325PF69;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)",
 					"$(inherited)",
@@ -818,7 +839,6 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -860,6 +880,7 @@
 				"OTHER_LDFLAGS[arch=*]" = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitekcontrolcenter;
 				PRODUCT_NAME = "Velocitek Control Center";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
@@ -873,11 +894,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 4RQWHVTUNE;
+				DEVELOPMENT_TEAM = 5T3325PF69;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -924,6 +947,7 @@
 				"OTHER_LDFLAGS[arch=*]" = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.velocitek.velocitekcontrolcenter;
 				PRODUCT_NAME = "Velocitek Control Center";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
 				WRAPPER_EXTENSION = app;
@@ -933,14 +957,37 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -948,13 +995,36 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -963,15 +1033,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = 4RQWHVTUNE;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_MODEL_TUNING = G5;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1006,7 +1077,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = NO;
 				PRODUCT_NAME = Tool;
 				SDKROOT = macosx;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1017,16 +1087,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 4RQWHVTUNE;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/../Frameworks\"",
 				);
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_MODEL_TUNING = G5;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SYSTEM_LIBRARY_DIR)/Frameworks/AppKit.framework/Headers/AppKit.h";
@@ -1060,7 +1131,6 @@
 					"-framework",
 					AppKit,
 				);
-				PREBINDING = YES;
 				PRODUCT_NAME = Tool;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;

@@ -1,1 +1,6 @@
-github "CocoaLumberjack/CocoaLumberjack" == 2.4
+github "CocoaLumberjack/CocoaLumberjack" == 3.6
+# This version does not build with Xcode11 see issue#4408
+# github "AFNetworking/AFNetworking" ~> 3.0
+# this dude included a fix:
+github "kentaro-masa/AFNetworking" "120214d54a3138d99afb88dc124bedba9a1b8c70"
+

@@ -6,11 +6,8 @@ Prerequesites
 
 Make sure you are on the most recent version of the OS with the most recent version of XCode installed.
 
-To package the GPS Action Replay app, you will also need to install Apache Ant.
-
 For code signing, you will need a valid Apple Developer ID Certificate. The certificate common name will need to be
 updated in a few places:
-* app-builder/build.xml
 * dmg-maker-bash/create-and-sign-dmg.sh
 * the Xcode project itself, under Targets (select target)->General->Identity->Team
 
@@ -25,15 +22,17 @@ Don't do the build from XCode, use the command line. This is more resilient to c
 
 Then move in the app directory
 
-    cd speedtrack/Velocitool
+Install dependencies
+------------------------
 
+    brew install carthage
+    cd VelocitekControlCenter
+    carthage update --platform macOS
 
 Bump versions
 -------------
 
-Change your working directory to speedtrack/Velocitool
-
-(optional)bump the marketing version number. It is currently 1.1, you can change it to whatever is desired:
+Bump the marketing version number. It is currently 1.1, you can change it to whatever is desired:
 
     /usr/bin/agvtool new-marketing-version 42.51
 
@@ -48,22 +47,6 @@ Verify the version bumped properly
     git push
 
 Check on github that your version number made it there.
-
-Build and sign the GPS Action Replay app
-----------------------------------------
-
-This is the Gpsar "classic" referenced from this website: http://gpsactionreplay.free.fr/index.php?menu=6
-
-It is an older Java application. We are packaging it an an executable .app with a bundled JRE
-to help ensure that as many people as possible will be able to run it (regardless of their installed version of Java).
-
-After installing Apache Ant, change your working directory to the "app-bundler" directory and run:
-
-    ant bundleAndSignWithBundledJre
-
-This will package the gpsar.jar (along with the comm.jar file) into an executable .app and sign the code. The final result will be output in the "app-bundler/build" directory, but you shouldn't have to
-do anything with this as it's already added to the XCode project as a resource and will automatically be
-included in build in the next step.
 
 Build the Mac OSX application
 -----------------------------
@@ -82,3 +65,20 @@ To create the installer DMG, cd to the "dmg-maker-bash" directory and run:
     ./create-and-sign-dmg
 
 This will generate the DMG with the icon layout and artwork, and will sign the DMG using codesign. The final DMG is placed in the "distribution" directory.
+
+All at once repeatable build
+----------------------------
+
+    make clean
+    make release
+
+Continuous Integration
+----------------------
+
+This project is built automatically by Github Actions. 
+
+Unfortunately, generating the DMG file with the icon in the right place seems to
+be a really hard problem to solve on continuous integration so we are still
+doing this manually for now.
+
+See https://github.com/andreyvit/create-dmg/issues/72
