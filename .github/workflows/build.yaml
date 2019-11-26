@@ -31,3 +31,9 @@ jobs:
           cd dmg-maker-bash
           ./create-and-sign-dmg.sh
 
+      - name: publish build artifacts back to GitHub
+        uses: actions/upload-artifact@master
+        with:
+          name: VelocitekControlCenter
+          path: distribution/
+
