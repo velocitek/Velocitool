@@ -6,7 +6,6 @@
     cd VelocitekControlCenter
     carthage update --platform macOS
 
-
 ## How to build an official release of the app
 
 ### Prerequesites
@@ -15,19 +14,19 @@ Make sure you are on the most recent version of the OS with the most recent vers
 
 For code signing, you will need a valid Apple Developer ID Certificate. The certificate common name will need to be
 updated in a few places:
-* dmg-maker-bash/create-and-sign-dmg.sh
-* the Xcode project itself, under Targets (select target)->General->Identity->Team
+
+- dmg-maker-bash/create-and-sign-dmg.sh
+- the Xcode project itself, under Targets (select target)->General->Identity->Team
 
 You need 3 certificates:
 
- - A Developer ID certificate for distribution to users directly
- - A Mac App Distribution certificate (for AppStore)
- - A Mac App Installer Distribution certificate (required for AppStore too)
+- A Developer ID certificate for distribution to users directly
+- A Mac App Distribution certificate (for AppStore)
+- A Mac App Installer Distribution certificate (required for AppStore too)
 
 Three Velocitek certificates with the associated keys are saved in
 'certificates.p12' in this repo. You need a key to decrypt them. Ask Thomas
 Sarlandie (thomas@sarlandie.net).
-
 
 ## Bump versions
 
@@ -56,17 +55,22 @@ Run:
 
 ## For distribution to users
 
-Get the `.dmg` file in distribution/
+Get the `.dmg` file in `distribution/dmg`.
 
+Note: CI is unable to properly prepare the DMG (see below) so you will need to rerun the DMG build script on a developer computer.
+
+- Get the .app file from Continuous Integration Server
+- Run cd dmg-maker-bash && ./create-and-sign-dmg.sh "../distribution/dmg/VelocitekControlCenter.ipa/Velocitek Control Center.app" ../distribution/dmg/VelocitekControlCenter.dmg
 
 ## For AppStore
 
-We have not fully automated the build for the AppStore.
-
+- Get the `.ipa` file in `distribution/appstore`.
+- Create a new release in Apple Developer Portal
+- Upload the IPA using Apple's Transporter
 
 ## Continuous Integration
 
-This project is built automatically by Github Actions. 
+This project is built automatically by Github Actions.
 
 Unfortunately, generating the DMG file with the icon in the right place seems to
 be a really hard problem to solve on continuous integration so we are still
