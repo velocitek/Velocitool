@@ -66,7 +66,7 @@ Note: CI is unable to properly prepare the DMG (see below) so you will need to r
 
 - Get the `.ipa` file in `distribution/appstore`.
 - Create a new release in Apple Developer Portal
-- Upload the IPA using Apple's Transporter
+- Upload the IPA using Apple's Transporter (or use `make appstoreupload` to upload from command line)
 
 ## Continuous Integration
 
