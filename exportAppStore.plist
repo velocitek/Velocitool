@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>destination</key>
-	<string>export</string>
-	<key>installerSigningCertificate</key>
-	<string>844FB1C987BD9CF0E306A7D9F133D6CA478F1EAF</string>
-	<key>method</key>
-	<string>app-store</string>
-	<key>provisioningProfiles</key>
 	<dict>
-		<key>com.velocitek.velocitekcontrolcenter</key>
-		<string>Velocitek Control Center AppStore</string>
+		<key>destination</key>
+		<string>export</string>
+		<key>installerSigningCertificate</key>
+		<string>3rd Party Mac Developer Installer: Velocitek, Inc.</string>
+		<key>method</key>
+		<string>app-store</string>
+		<key>provisioningProfiles</key>
+		<dict>
+			<key>com.velocitek.velocitekcontrolcenter</key>
+			<string>Velocitek Control Center AppStore</string>
+		</dict>
+		<key>signingCertificate</key>
+		<string>3rd Party Mac Developer Application: Velocitek, Inc.</string>
+		<key>signingStyle</key>
+		<string>manual</string>
+		<key>teamID</key>
+		<string>TYA5L6SWSX</string>
+		<key>uploadSymbols</key>
+		<true/>
 	</dict>
-	<key>signingCertificate</key>
-	<string>C8839BF6E380214B8D7B49267E74CCC4DF1D5945</string>
-	<key>signingStyle</key>
-	<string>manual</string>
-	<key>teamID</key>
-	<string>TYA5L6SWSX</string>
-	<key>uploadSymbols</key>
-	<true/>
-</dict>
 </plist>
