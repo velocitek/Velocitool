@@ -66,6 +66,12 @@ To create the installer DMG, cd to the "dmg-maker-bash" directory and run:
 
 This will generate the DMG with the icon layout and artwork, and will sign the DMG using codesign. The final DMG is placed in the "distribution" directory.
 
+All at once repeatable build
+----------------------------
+
+    make clean
+    make release
+
 Continuous Integration
 ----------------------
 
