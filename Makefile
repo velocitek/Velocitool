@@ -9,6 +9,10 @@ appstore: $(ARCHIVE)
 	mkdir -p distribution/appstore
 	xcodebuild -project "VelocitekControlCenter/Velocitek Control Center.xcodeproj" -exportArchive -archivePath $(ARCHIVE) -exportPath "distribution/appstore/VelocitekControlCenter.ipa" -exportOptionsPlist exportAppStore.plist
 
+appstoreupload:
+	mkdir -p distribution/appstore
+	xcodebuild -project "VelocitekControlCenter/Velocitek Control Center.xcodeproj" -exportArchive -archivePath $(ARCHIVE) -exportPath "distribution/appstore/VelocitekControlCenter.ipa" -exportOptionsPlist exportAppStoreUpload.plist
+
 dmg: $(ARCHIVE)
 	mkdir -p distribution/dmg
 	xcodebuild -project "VelocitekControlCenter/Velocitek Control Center.xcodeproj" -exportArchive -archivePath $(ARCHIVE) -exportPath distribution/dmg/"VelocitekControlCenter.ipa" -exportOptionsPlist exportDeveloperId.plist
