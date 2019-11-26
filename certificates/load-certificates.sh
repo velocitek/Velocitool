@@ -16,8 +16,8 @@ security unlock-keychain -p $KEYCHAIN_PASSWORD $KEY_CHAIN
 security set-keychain-settings -t 3600 -u $KEY_CHAIN
 
 # Add certificates and secret keys to keychain and allow codesign to access them
-security import apple-development.cer -k $KEY_CHAIN -T /usr/bin/codesign
-security import apple-development.p12 -k $KEY_CHAIN -P $CERT_PASSWORD -T /usr/bin/codesign
+# security import apple-development.cer -k $KEY_CHAIN -T /usr/bin/codesign
+# security import apple-development.p12 -k $KEY_CHAIN -P $CERT_PASSWORD -T /usr/bin/codesign
 security import velocitek.cer -k $KEY_CHAIN -T /usr/bin/codesign
 security import velocitek.p12 -k $KEY_CHAIN -P $CERT_PASSWORD -T /usr/bin/codesign
 
