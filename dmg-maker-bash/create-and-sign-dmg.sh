@@ -59,3 +59,4 @@ codesign --display --verbose=4 --verify $TARGET_DMG
 echo "Verifying DMG with checksignature"
 $WD/check-signature $TARGET_DMG
 
+exit 0
