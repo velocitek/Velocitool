@@ -1,8 +1,15 @@
-How to build an official release of the app
-===========================================
+# Velocitek Control Center for Mac
 
-Prerequesites
--------------
+## Install dependencies
+
+    brew install carthage
+    cd VelocitekControlCenter
+    carthage update --platform macOS
+
+
+## How to build an official release of the app
+
+### Prerequesites
 
 Make sure you are on the most recent version of the OS with the most recent version of XCode installed.
 
@@ -11,26 +18,18 @@ updated in a few places:
 * dmg-maker-bash/create-and-sign-dmg.sh
 * the Xcode project itself, under Targets (select target)->General->Identity->Team
 
-Get the code
-------------
+You need 3 certificates:
 
-This is important: always build from a new clone. This way you are sure that what you build is really what is coming from github and that there is no local changes.
+ - A Developer ID certificate for distribution to users directly
+ - A Mac App Distribution certificate (for AppStore)
+ - A Mac App Installer Distribution certificate (required for AppStore too)
 
-Don't do the build from XCode, use the command line. This is more resilient to changes in XCode. Open a Terminal, create a new directory somewhere and clone the code from github:
+Three Velocitek certificates with the associated keys are saved in
+'certificates.p12' in this repo. You need a key to decrypt them. Ask Thomas
+Sarlandie (thomas@sarlandie.net).
 
-    git clone git@github.com:velocitek/speedtrack.git
 
-Then move in the app directory
-
-Install dependencies
-------------------------
-
-    brew install carthage
-    cd VelocitekControlCenter
-    carthage update --platform macOS
-
-Bump versions
--------------
+## Bump versions
 
 Bump the marketing version number. It is currently 1.1, you can change it to whatever is desired:
 
@@ -48,32 +47,24 @@ Verify the version bumped properly
 
 Check on github that your version number made it there.
 
-Build the Mac OSX application
------------------------------
+## Build the Mac OSX application
 
-Just run the following command:
-
-    xcodebuild -project "Velocitek Control Center.xcodeproj" -target "Velocitek Control Center" -configuration Release
-
-The XCode project is configured to codesign the release app. You may need to update the project to use whatever certificate/team information you have available.
-
-Creating the Installer DMG
---------------------------
-
-To create the installer DMG, cd to the "dmg-maker-bash" directory and run:
-
-    ./create-and-sign-dmg
-
-This will generate the DMG with the icon layout and artwork, and will sign the DMG using codesign. The final DMG is placed in the "distribution" directory.
-
-All at once repeatable build
-----------------------------
+Run:
 
     make clean
     make release
 
-Continuous Integration
-----------------------
+## For distribution to users
+
+Get the `.dmg` file in distribution/
+
+
+## For AppStore
+
+We have not fully automated the build for the AppStore.
+
+
+## Continuous Integration
 
 This project is built automatically by Github Actions. 
 

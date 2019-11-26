@@ -1,7 +1,22 @@
-RELEASE_BUILD_SOURCE_FOLDER="../VelocitekControlCenter/build/Release"
-TARGET_DMG="../distribution/Velocitek-Control-Center-Installer.dmg"
+#!/bin/bash
+
+if [ "$#" -ne 2 ]; then
+  echo "$0: <source .app> <destination dmg>"
+  exit -1
+fi
+
+if [ ! -f "$1" ]; then
+  echo "Source $1 does not exist."
+  exit -1
+fi
+
+SOURCE_APP=$1
+TARGET_DMG=$2
+WD=`dirname $0`
+
 SOURCE_FOLDER=source_folder
-DEVID="Developer ID Application: Thomas Sarlandie de la Robertie (5T3325PF69)"
+DEVID="Developer ID Application: Velocitek, Inc. (TYA5L6SWSX)"
+STOREID="Apple Distribution: Velocitek, Inc. (TYA5L6SWSX)"
 
 if [ -f $SOURCE_FOLDER ];
 then
@@ -17,29 +32,30 @@ then
   rm $TARGET_DMG
 fi
 
-mkdir ../distribution
+echo "Copying release build from $SOURCE_APP"
+cp -R "$SOURCE_APP" source_folder/
 
-echo "Copying release build from $RELEASE_BUILD_SOURCE_FOLDER"
-cp -R $RELEASE_BUILD_SOURCE_FOLDER/*.app source_folder
-./create-dmg \
+echo "Creating DMG"
+$WD/create-dmg \
 --volname "Velocitek Control Center Installer" \
---volicon "../VelocitekControlCenter/SpeedPuck.icns" \
+--volicon "../VelocitekControlCenter/AppIcon.icns" \
 --background ./velocitek-installer-background3.png \
 --icon-size 90 \
 --icon "Velocitek Control Center.app" 130 200 \
 --app-drop-link 440 200 \
 --window-size 576 460 \
-$TARGET_DMG \
+"$TARGET_DMG" \
 source_folder/
 
 echo "Removing temp files"
 rm -rf source_folder
 
-echo "Signign DMG"
+echo "Signing DMG"
 codesign -v -s "$DEVID" $TARGET_DMG
 
 echo "Verifying DMG verbose"
 codesign --display --verbose=4 --verify $TARGET_DMG
 
 echo "Verifying DMG with checksignature"
-./check-signature $TARGET_DMG
+$WD/check-signature $TARGET_DMG
+

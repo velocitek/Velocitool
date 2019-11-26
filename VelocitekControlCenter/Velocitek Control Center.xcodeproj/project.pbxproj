@@ -11,7 +11,6 @@
 		47076CE21DAD767B003944BC /* Velocitek_ProStart_1-6.hex in Resources */ = {isa = PBXBuildFile; fileRef = 47076CE01DAD767B003944BC /* Velocitek_ProStart_1-6.hex */; };
 		47076CE31DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex in Resources */ = {isa = PBXBuildFile; fileRef = 47076CE11DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex */; };
 		4723BC091E66857E0085123C /* velocitool2.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4723BC081E66857E0085123C /* velocitool2.icns */; };
-		4723BC0B1E6685C00085123C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4723BC0A1E6685C00085123C /* Images.xcassets */; };
 		4723BC0D1E6686C70085123C /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4723BC0C1E6686C70085123C /* Entitlements.plist */; };
 		47535E861D90987D00512DF3 /* post-build-script.txt in Resources */ = {isa = PBXBuildFile; fileRef = 47535E851D90987D00512DF3 /* post-build-script.txt */; };
 		475A21CC1DB43BD200D6DCBF /* FirmwareUpdateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 475A21CB1DB43BD200D6DCBF /* FirmwareUpdateViewController.m */; };
@@ -57,6 +56,8 @@
 		E90B4E5D2387A02200692CB4 /* AFNetworking.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = E90B4E5A2387A01C00692CB4 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E90B4E5E2387A02200692CB4 /* CocoaLumberjack.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = E90B4E592387A01C00692CB4 /* CocoaLumberjack.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E90B4E622387B96E00692CB4 /* libftd2xx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 470185971E9FDC3F00B05458 /* libftd2xx.a */; };
+		E9648AAB23AC56C00014013E /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = E9648AAA23AC56C00014013E /* AppIcon.icns */; };
+		E97FC2FC23AC56F50065ACE3 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E97FC2FB23AC56F50065ACE3 /* Images.xcassets */; };
 		E9A2FA2A23865EDE00D388FF /* ChartedSailsConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = E9A2FA2923865EDE00D388FF /* ChartedSailsConnection.m */; };
 		ED2A01610F339B8F005C0CE0 /* VTConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2A015F0F339B8F005C0CE0 /* VTConnection.m */; };
 		ED2B25030F261CAB00A5EDDB /* VTGlobals.m in Sources */ = {isa = PBXBuildFile; fileRef = ED2B25010F261CAB00A5EDDB /* VTGlobals.m */; };
@@ -123,7 +124,6 @@
 		47076CE01DAD767B003944BC /* Velocitek_ProStart_1-6.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Velocitek_ProStart_1-6.hex"; sourceTree = "<group>"; };
 		47076CE11DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Velocitek_SpeedPuck_1-51.hex"; sourceTree = "<group>"; };
 		4723BC081E66857E0085123C /* velocitool2.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = velocitool2.icns; sourceTree = "<group>"; };
-		4723BC0A1E6685C00085123C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Velocitek Control Center/Images.xcassets"; sourceTree = "<group>"; };
 		4723BC0C1E6686C70085123C /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		472834E91E68823300682AC9 /* ftd2xx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ftd2xx.h; sourceTree = "<group>"; };
 		472834EA1E68823300682AC9 /* WinTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WinTypes.h; sourceTree = "<group>"; };
@@ -199,6 +199,8 @@
 		E94C5AEC23707D45005FDB80 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		E94C5AED23707D48005FDB80 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E94C5AEE23708186005FDB80 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		E9648AAA23AC56C00014013E /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = AppIcon.icns; sourceTree = "<group>"; };
+		E97FC2FB23AC56F50065ACE3 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "Velocitek Control Center/Images.xcassets"; sourceTree = "<group>"; };
 		E9A2FA2923865EDE00D388FF /* ChartedSailsConnection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChartedSailsConnection.m; sourceTree = "<group>"; };
 		E9A2FA2C23865F6900D388FF /* ChartedSailsConnection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChartedSailsConnection.h; sourceTree = "<group>"; };
 		ED2A015E0F339B8F005C0CE0 /* VTConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VTConnection.h; sourceTree = "<group>"; };
@@ -321,9 +323,10 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E97FC2FB23AC56F50065ACE3 /* Images.xcassets */,
+				E9648AAA23AC56C00014013E /* AppIcon.icns */,
 				E94C5AEE23708186005FDB80 /* Cartfile */,
 				47D796D21EA133B50053E5AC /* libftd2xx.1.4.4.dylib */,
-				4723BC0A1E6685C00085123C /* Images.xcassets */,
 				47076CE01DAD767B003944BC /* Velocitek_ProStart_1-6.hex */,
 				47076CE11DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex */,
 				EDF727250F4234B700E503AE /* images */,
@@ -610,12 +613,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				47076CE21DAD767B003944BC /* Velocitek_ProStart_1-6.hex in Resources */,
+				E97FC2FC23AC56F50065ACE3 /* Images.xcassets in Resources */,
 				47D796D31EA133B50053E5AC /* libftd2xx.1.4.4.dylib in Resources */,
 				4723BC0D1E6686C70085123C /* Entitlements.plist in Resources */,
 				47076CE31DAD767B003944BC /* Velocitek_SpeedPuck_1-51.hex in Resources */,
 				479B12861DB1767F00A04F56 /* FirmwareUpdateView.xib in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				77C8C1F90C07829500965286 /* MainMenu.xib in Resources */,
+				E9648AAB23AC56C00014013E /* AppIcon.icns in Resources */,
 				EDFC3EF70EF81CCF00E1DD2F /* dsa_pub.pem in Resources */,
 				EDFC3F4E0EF88A5A00E1DD2F /* velocitool.icns in Resources */,
 				4723BC091E66857E0085123C /* velocitool2.icns in Resources */,
@@ -624,7 +629,6 @@
 				EDF726E60F42318F00E503AE /* SC1.jpg in Resources */,
 				ED3976741C427AEB00147C1F /* README.md in Resources */,
 				7023A9F111ACE36400975EC0 /* TrackLogView.xib in Resources */,
-				4723BC0B1E6685C00085123C /* Images.xcassets in Resources */,
 				7023AA2F11ACFB9B00975EC0 /* TrackFileView.xib in Resources */,
 				709C83BB11AD1CBE00663AFB /* MainWindow.xib in Resources */,
 				70135D3D11D0832C0046A8BF /* DeviceSettings.xib in Resources */,
