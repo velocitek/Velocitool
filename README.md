@@ -6,11 +6,8 @@ Prerequesites
 
 Make sure you are on the most recent version of the OS with the most recent version of XCode installed.
 
-To package the GPS Action Replay app, you will also need to install Apache Ant.
-
 For code signing, you will need a valid Apple Developer ID Certificate. The certificate common name will need to be
 updated in a few places:
-* app-builder/build.xml
 * dmg-maker-bash/create-and-sign-dmg.sh
 * the Xcode project itself, under Targets (select target)->General->Identity->Team
 
@@ -25,9 +22,6 @@ Don't do the build from XCode, use the command line. This is more resilient to c
 
 Then move in the app directory
 
-    cd speedtrack/Velocitool
-
-
 Install dependencies
 ------------------------
 
@@ -35,13 +29,10 @@ Install dependencies
     cd VelocitekControlCenter
     carthage update --platform macOS
 
-
 Bump versions
 -------------
 
-Change your working directory to speedtrack/Velocitool
-
-(optional)bump the marketing version number. It is currently 1.1, you can change it to whatever is desired:
+Bump the marketing version number. It is currently 1.1, you can change it to whatever is desired:
 
     /usr/bin/agvtool new-marketing-version 42.51
 
@@ -74,3 +65,14 @@ To create the installer DMG, cd to the "dmg-maker-bash" directory and run:
     ./create-and-sign-dmg
 
 This will generate the DMG with the icon layout and artwork, and will sign the DMG using codesign. The final DMG is placed in the "distribution" directory.
+
+Continuous Integration
+----------------------
+
+This project is built automatically by Github Actions. 
+
+Unfortunately, generating the DMG file with the icon in the right place seems to
+be a really hard problem to solve on continuous integration so we are still
+doing this manually for now.
+
+See https://github.com/andreyvit/create-dmg/issues/72
