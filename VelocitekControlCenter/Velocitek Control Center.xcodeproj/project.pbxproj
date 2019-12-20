@@ -552,16 +552,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 1120;
+				LastUpgradeCheck = 1130;
 				TargetAttributes = {
 					4774789A1E48D9B80066F342 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 4RQWHVTUNE;
+						DevelopmentTeam = TYA5L6SWSX;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 8D1107260486CEB800E47090;
 					};
 					8D1107260486CEB800E47090 = {
-						DevelopmentTeam = 5T3325PF69;
+						DevelopmentTeam = TYA5L6SWSX;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -570,7 +570,7 @@
 						};
 					};
 					EDE897D91158CD2D009E8151 = {
-						DevelopmentTeam = 4RQWHVTUNE;
+						DevelopmentTeam = TYA5L6SWSX;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -749,7 +749,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 4RQWHVTUNE;
+				DEVELOPMENT_TEAM = TYA5L6SWSX;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -799,7 +799,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 4RQWHVTUNE;
+				DEVELOPMENT_TEAM = TYA5L6SWSX;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -825,12 +825,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 30;
-				DEVELOPMENT_TEAM = 5T3325PF69;
+				DEVELOPMENT_TEAM = TYA5L6SWSX;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SRCROOT)",
@@ -894,12 +894,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 30;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 5T3325PF69;
+				DEVELOPMENT_TEAM = TYA5L6SWSX;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1036,7 +1036,7 @@
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 4RQWHVTUNE;
+				DEVELOPMENT_TEAM = TYA5L6SWSX;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1091,7 +1091,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 4RQWHVTUNE;
+				DEVELOPMENT_TEAM = TYA5L6SWSX;
 				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
