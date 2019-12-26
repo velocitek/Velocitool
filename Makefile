@@ -1,8 +1,11 @@
+
+
+# Note - this does not work properly as of Dec 2019 to sign and notarize for Apple. Use GUI tools instead.
+
 ARCHIVE=distribution/VelocitekControlCenter.xcarchive
 
 $(ARCHIVE): 
 	mkdir -p distribution
-#	xcodebuild -project "VelocitekControlCenter/Velocitek Control Center.xcodeproj" -target "Velocitek Control Center" -configuration Release
 	xcodebuild -project "VelocitekControlCenter/Velocitek Control Center.xcodeproj" -scheme 'Velocitek Control Center' -archivePath $(ARCHIVE) archive
 
 appstore: $(ARCHIVE)

@@ -23,13 +23,17 @@ jobs:
           cd VelocitekControlCenter
           carthage bootstrap --no-use-binaries --platform mac --cache-builds
 
+      - name: build
+        run: |
+	  xcodebuild -project "VelocitekControlCenter/Velocitek Control Center.xcodeproj" -scheme 'Velocitek Control Center' build
+
       # - name: Package DMG
       #   run: |
       #     make dmg
 
-      - name: Package for AppStore
-        run: |
-          make appstore
+          #- name: Package for AppStore
+          # run: |
+          # make appstore
 
       - name: publish build artifacts back to GitHub
         uses: actions/upload-artifact@master

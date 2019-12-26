@@ -46,28 +46,6 @@ Verify the version bumped properly
 
 Check on github that your version number made it there.
 
-## Build the Mac OSX application
-
-Run:
-
-    make clean
-    make release
-
-## For distribution to users
-
-Get the `.dmg` file in `distribution/dmg`.
-
-Note: CI is unable to properly prepare the DMG (see below) so you will need to rerun the DMG build script on a developer computer.
-
-- Get the .app file from Continuous Integration Server
-- Run cd dmg-maker-bash && ./create-and-sign-dmg.sh "../distribution/dmg/VelocitekControlCenter.ipa/Velocitek Control Center.app" ../distribution/dmg/VelocitekControlCenter.dmg
-
-## For AppStore
-
-- Get the `.ipa` file in `distribution/appstore`.
-- Create a new release in Apple Developer Portal
-- Upload the IPA using Apple's Transporter (or use `make appstoreupload` to upload from command line)
-
 ## Continuous Integration
 
 This project is built automatically by Github Actions.
@@ -77,3 +55,28 @@ be a really hard problem to solve on continuous integration so we are still
 doing this manually for now.
 
 See https://github.com/andreyvit/create-dmg/issues/72
+
+## Distribution
+
+As of December 2019, we were not able to fully automate the signing and release process. 
+
+The release process must be done manually.
+
+## For distribution to users
+
+- Build for Archive in Xcode
+- Open `Organizer` and select the build
+- Click 'Distribute' and follow instructions for distribution to users directly
+- Save the resulting notarized .app file in distribution/notarized
+
+- Open DMGCanvas (paid software but the free version seems to work fine for this) and open the velocitek.dmgCanvas project from the repo
+- Click Build
+- DMGCanvas will build the DMG, codesign it and have Apple notarize it.
+- The resulting .dmg should be fully signed and ready to distribute.
+
+## For AppStore
+
+- Select the archive in `Organizer`
+- Click `Distribute to AppStore` and let organizer do the upload to Apple
+- Create a new release and distribute via https://appstoreconnect.apple.com
+
